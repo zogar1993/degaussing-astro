@@ -1,0 +1,51 @@
+---
+export interface Props {
+	title: string;
+	body: string;
+	href: string;
+}
+
+const { href, title, body } = Astro.props;
+---
+
+<header>
+	<div class="logo-row">
+		<img class="logo" src="logo.png" alt="Degaussing Logo"/>
+	</div>
+	<nav>
+		<a href="/">Home</a>
+		<a href="/chapters">Chapters</a>
+		<a href="/characters">Characters</a>
+		<a href="/about">About</a>
+	</nav>
+</header>
+<style>
+	.logo-row {
+		display: flex;
+		justify-content: center;
+		background-color: #1D1D1B;
+		padding: 33px 0;
+	}
+
+	header {
+		display: flex;
+		flex-direction: column;
+	}
+
+	a {
+        display: flex;
+        padding: 11px 28px;
+        font-size: 32px;
+        font-family: "Germania One", "sans-serif";
+        text-decoration: none;
+        color: #EFEFEF;
+	}
+
+	nav {
+        display: flex;
+        justify-content: center;
+        height: 59px;
+        background-color: #1D1D1B;
+        box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.25);
+	}
+</style>

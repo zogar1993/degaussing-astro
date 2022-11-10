@@ -1,0 +1,162 @@
+---
+import Resets from '@julian_cataldo/astro-resets/Resets.astro';
+import Resets from '@fontsource/germania-one';
+import Header from '../components/Header.astro'
+---
+
+<head>
+    <title>Degaussing Comic</title>
+    <link rel="icon" href="/favicon.ico"/>
+    <Resets/>
+</head>
+<div class="background">
+    <Header/>
+        <main>
+        <div class="grid">
+            <article class="strip-container">
+                <img class="comic-strip" src="demo-image.png" alt="wea">
+            </article>
+            <aside class="last-update">
+
+            </aside>
+            <aside class="characters">
+
+            </aside>
+            <aside class="thank-you">
+
+            </aside>
+            <nav class="sticky-bar">
+                <div class="navigation-arrows">
+                    <div>&lt;&lt;</div>
+                    <div>&lt;</div>
+                </div>
+                <div>Page 5 | Chapter 2</div>
+                <div class="navigation-arrows">
+                    <div>&gt;</div>
+                    <div>&gt;&gt;</div>
+                </div>
+            </nav>
+
+            <aside class="comments">
+                Comments
+            </aside>
+        </div>
+
+
+
+        </main>
+
+</div>
+
+<style>
+    body {
+        margin: 0;
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-image: linear-gradient(to bottom, #1D1D1B, #E5E5E5);
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: 862px 208px;
+        gap: 18px;
+
+        padding: 30px 0;
+
+        grid-template-areas:
+            "strip last-update"
+            "strip characters"
+            "strip thank-you"
+            "sticky-bar momo"
+            "comments comments";
+    }
+
+    @media (max-width: 768px) {
+        .grid {
+            grid-template-columns: 1fr;
+            grid-template-areas:
+                "strip"
+                "last-update"
+                "characters"
+                "thank-you"
+                "comments";
+        }
+    }
+
+    .strip-container {
+        grid-area: strip;
+    }
+
+    .last-update {
+        grid-area: last-update;
+        height: 381px;
+    }
+
+    .characters {
+        grid-area: characters;
+        height: 565px;
+    }
+
+    .thank-you {
+        grid-area: thank-you;
+        height: 248px
+    }
+
+    .comments {
+        grid-area: comments;
+        height: 759px;
+        font-family: "Germania One";
+        font-size: 72px;
+    }
+
+    .sticky-bar {
+        box-sizing: border-box;
+        position: sticky;
+
+        grid-area: sticky-bar;
+        display: flex;
+        align-items: center;
+
+        width: 656px;
+        height: 59px;
+
+        background: #1D1D1B;
+        border: 1px solid #000000;
+        box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.25);
+        border-radius: 10px;
+
+        padding: 0 72px;
+
+        font-family: 'Germania One', "sans-serif";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 37px;
+
+        color: #EFEFEF;
+        bottom: 10px;
+
+        justify-self: center;
+
+        gap: 47px;
+    }
+
+    .navigation-arrows {
+        display: flex;
+        gap: 35px;
+    }
+
+    aside {
+        background-color: #D9D9D9;
+        border-radius: 5px;
+    }
+
+    .comic-strip {
+        width: 862px;
+        height: 1230px;
+    }
+</style>
