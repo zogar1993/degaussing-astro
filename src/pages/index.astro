@@ -1,5 +1,6 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro'
+import LastUpdate from '../components/LastUpdate.astro'
 ---
 
 <MainLayout title="Degaussing Comic">
@@ -7,12 +8,7 @@ import MainLayout from '../layouts/MainLayout.astro'
         <main class="strip-container">
             <img class="comic-strip" src="demo-image.png" alt="wea">
         </main>
-        <aside class="last-update">
-            <span>Last update:</span>
-            <span>November 8th</span>
-            <span>Chapter 2 | Page 5</span>
-            <img class="last-cover" src="demo-portada.png" alt="wea">
-        </aside>
+        <LastUpdate/>
         <aside class="characters">
 
         </aside>
@@ -37,6 +33,10 @@ import MainLayout from '../layouts/MainLayout.astro'
     </div>
 </MainLayout>
 <style>
+    .strip-container {
+        grid-area: strip;
+    }
+
     .grid {
         display: grid;
         grid-template-columns: 862px 208px;
@@ -62,20 +62,6 @@ import MainLayout from '../layouts/MainLayout.astro'
                 "thank-you"
                 "comments";
         }
-    }
-
-    .last-cover {
-        width: 161px;
-        height: 227px;
-    }
-
-    .strip-container {
-        grid-area: strip;
-    }
-
-    .last-update {
-        grid-area: last-update;
-        height: 381px;
     }
 
     .characters {
