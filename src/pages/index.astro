@@ -2,29 +2,25 @@
 import MainLayout from '../layouts/MainLayout.astro'
 import LastUpdate from '../components/LastUpdate.astro'
 import StickyNavBar from '../components/StickyNavBar.astro'
+import Characters from '../components/Characters.astro'
+import ThankYou from '../components/ThankYou.astro'
+import Comments from '../components/Comments.astro'
 ---
 
 <MainLayout title="Degaussing Comic">
     <div class="grid">
-        <main class="strip-container">
+        <main>
             <img class="comic-strip" src="demo-image.png" alt="wea">
         </main>
         <LastUpdate/>
-        <aside class="characters">
-
-        </aside>
-        <aside class="thank-you">
-
-        </aside>
+        <Characters/>
+        <ThankYou/>
         <StickyNavBar/>
-
-        <aside class="comments">
-            Comments
-        </aside>
+        <Comments/>
     </div>
 </MainLayout>
 <style>
-    .strip-container {
+    main {
         grid-area: strip;
     }
 
@@ -39,7 +35,7 @@ import StickyNavBar from '../components/StickyNavBar.astro'
             "strip last-update"
             "strip characters"
             "strip thank-you"
-            "sticky-bar momo"
+            "sticky-bar nothing"
             "comments comments";
     }
 
@@ -53,65 +49,6 @@ import StickyNavBar from '../components/StickyNavBar.astro'
                 "thank-you"
                 "comments";
         }
-    }
-
-    .characters {
-        grid-area: characters;
-        height: 565px;
-    }
-
-    .thank-you {
-        grid-area: thank-you;
-        height: 248px
-    }
-
-    .comments {
-        grid-area: comments;
-        height: 759px;
-        font-family: "Germania One", sans-serif;
-        font-size: 72px;
-    }
-
-    .sticky-bar {
-        box-sizing: border-box;
-        position: sticky;
-
-        grid-area: sticky-bar;
-        display: flex;
-        align-items: center;
-
-        width: 656px;
-        height: 59px;
-
-        background: #1D1D1B;
-        border: 1px solid #000000;
-        box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.25);
-        border-radius: 10px;
-
-        padding: 0 72px;
-
-        font-family: 'Germania One', "sans-serif";
-        font-style: normal;
-        font-weight: 400;
-        font-size: 32px;
-        line-height: 37px;
-
-        color: #EFEFEF;
-        bottom: 10px;
-
-        justify-self: center;
-
-        gap: 47px;
-    }
-
-    .navigation-arrows {
-        display: flex;
-        gap: 35px;
-    }
-
-    aside {
-        background-color: #D9D9D9;
-        border-radius: 5px;
     }
 
     .comic-strip {
