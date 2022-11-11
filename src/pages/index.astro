@@ -1,65 +1,42 @@
 ---
-import Resets from '@julian_cataldo/astro-resets/Resets.astro';
-import Resets from '@fontsource/germania-one';
-import Header from '../components/Header.astro'
+import MainLayout from '../layouts/MainLayout.astro'
 ---
 
-<head>
-    <title>Degaussing Comic</title>
-    <link rel="icon" href="/favicon.ico"/>
-    <Resets/>
-</head>
-<div class="background">
-    <Header/>
-        <main>
-        <div class="grid">
-            <article class="strip-container">
-                <img class="comic-strip" src="demo-image.png" alt="wea">
-            </article>
-            <aside class="last-update">
-
-            </aside>
-            <aside class="characters">
-
-            </aside>
-            <aside class="thank-you">
-
-            </aside>
-            <nav class="sticky-bar">
-                <div class="navigation-arrows">
-                    <div>&lt;&lt;</div>
-                    <div>&lt;</div>
-                </div>
-                <div>Page 5 | Chapter 2</div>
-                <div class="navigation-arrows">
-                    <div>&gt;</div>
-                    <div>&gt;&gt;</div>
-                </div>
-            </nav>
-
-            <aside class="comments">
-                Comments
-            </aside>
-        </div>
-
-
-
+<MainLayout title="Degaussing Comic">
+    <div class="grid">
+        <main class="strip-container">
+            <img class="comic-strip" src="demo-image.png" alt="wea">
         </main>
+        <aside class="last-update">
+            <span>Last update:</span>
+            <span>November 8th</span>
+            <span>Chapter 2 | Page 5</span>
+            <img class="last-cover" src="demo-portada.png" alt="wea">
+        </aside>
+        <aside class="characters">
 
-</div>
+        </aside>
+        <aside class="thank-you">
 
+        </aside>
+        <nav class="sticky-bar">
+            <div class="navigation-arrows">
+                <div>&lt;&lt;</div>
+                <div>&lt;</div>
+            </div>
+            <div>Page 5 | Chapter 2</div>
+            <div class="navigation-arrows">
+                <div>&gt;</div>
+                <div>&gt;&gt;</div>
+            </div>
+        </nav>
+
+        <aside class="comments">
+            Comments
+        </aside>
+    </div>
+</MainLayout>
 <style>
-    body {
-        margin: 0;
-    }
-
-    main {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background-image: linear-gradient(to bottom, #1D1D1B, #E5E5E5);
-    }
-
     .grid {
         display: grid;
         grid-template-columns: 862px 208px;
@@ -87,6 +64,11 @@ import Header from '../components/Header.astro'
         }
     }
 
+    .last-cover {
+        width: 161px;
+        height: 227px;
+    }
+
     .strip-container {
         grid-area: strip;
     }
@@ -109,7 +91,7 @@ import Header from '../components/Header.astro'
     .comments {
         grid-area: comments;
         height: 759px;
-        font-family: "Germania One";
+        font-family: "Germania One", sans-serif;
         font-size: 72px;
     }
 
