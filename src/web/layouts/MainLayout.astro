@@ -1,6 +1,6 @@
 ---
 import Header from '@web/components/Header.astro';
-import Resets from '@julian_cataldo/astro-resets/Resets.astro';
+import ResetCss from '@web/styles/ResetCss.astro';
 import '@fontsource/germania-one';
 import '@fontsource/inter';
 
@@ -16,7 +16,7 @@ const { title } = Astro.props;
 	<head>
 	    <title>{title}</title>
 	    <link rel="icon" href="/favicon.ico"/>
-	    <Resets/>
+	    <ResetCss/>
 	</head>
 	<body>
     	<Header/>
@@ -25,10 +25,11 @@ const { title } = Astro.props;
 		</div>
 	</body>
 </html>
+<style>
 
+</style>
 <style>
     body {
-        margin: 0;
         display: flex;
         flex-direction: column;
         align-items: stretch;

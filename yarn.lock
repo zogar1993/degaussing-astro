@@ -411,11 +411,6 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@julian_cataldo/astro-resets@^0.12.3":
-  version "0.12.3"
-  resolved "https://registry.yarnpkg.com/@julian_cataldo/astro-resets/-/astro-resets-0.12.3.tgz#82374605f7132b68c1fe77baea843fe6351cb836"
-  integrity sha512-mIC/+4wFtS7t6ABmXr/VjbAfBWO7JN2xjfTTSChTUWKyLsslkcSz2NLuQnIN34EGbQeq7buko1sCEfZXzaCJKg==
-
 "@ljharb/has-package-exports-patterns@^0.0.2":
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/@ljharb/has-package-exports-patterns/-/has-package-exports-patterns-0.0.2.tgz#c1718939b65efa1f45f53686c2fcfa992b9fb68f"
