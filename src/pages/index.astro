@@ -1,16 +1,8 @@
 ---
 import StripAsideLayout from '@web/layouts/StripAsideLayout.astro'
-import {getChapters} from "@server/GetChapters"
-import {getImage, getPreviousAndFirst} from "@server/Utils"
+import getLastPage from '@server/actions/GetLastPage'
 
-const locale = "en-US"
-const chapters = await getChapters({locale})
-
-const chapter = chapters.length
-const page = chapters[chapters.length - 1].pages.length
-
-const image = getImage({chapters, chapter, page})
-const backward = getPreviousAndFirst({chapters, chapter, page})
+const {image} = await getLastPage()
 ---
 
 <StripAsideLayout title="Degaussing Comic">
