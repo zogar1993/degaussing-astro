@@ -1,13 +1,15 @@
 ---
+import getLastUpdate from "@server/actions/GetLastUpdate"
 
+const {image, chapter, page} = await getLastUpdate()
 ---
 
 
 <aside class="last-update">
 	<span class="title">Last update:</span>
 	<span class="important">November 8th</span>
-	<span class="normal">Chapter 2 | Page 5</span>
-	<img class="last-cover" src="demo-portada.png" alt="wea">
+	<span class="normal">Chapter {chapter} | Page {page}</span>
+	<img class="last-cover" src={image} alt="wea">
 </aside>
 <style>
     .last-cover {
