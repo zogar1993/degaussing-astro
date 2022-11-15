@@ -21,3 +21,6 @@ pnpm-debug.log*
 
 #misc
 .cache
+.idea
+.vscode
+*.iml
