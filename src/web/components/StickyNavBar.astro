@@ -16,7 +16,7 @@ const { info: { current: {chapter, page}, backward, forward } } = Astro.props;
 		</>
 	}
 	</div>
-	<div>Chapter {chapter} | Page {page}</div>
+	<div>Chapter {chapter} | {page === 0 ? "Cover" : `Page ${page}`}</div>
 	<div class="navigation-arrows">
 	{forward &&
 		<>
