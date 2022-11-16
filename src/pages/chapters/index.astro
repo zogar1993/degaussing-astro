@@ -1,0 +1,22 @@
+---
+import MainLayout from '@web/layouts/MainLayout.astro'
+import getChaptersInfo from '@server/actions/getChaptersInfo'
+
+const chapters = await getChaptersInfo()
+---
+
+<MainLayout title="Degaussing Comic" >
+    {chapters.map((chapter) =>
+        <article>
+            <img src={chapter.cover} alt="wea" />
+            <h4>{chapter.name}</h4>
+            <span>{chapter.pagesAmount} pages</span>
+        </article>
+    )}
+</MainLayout>
+<style>
+    img {
+        width: 239px;
+        height: 338px;
+    }
+</style>
