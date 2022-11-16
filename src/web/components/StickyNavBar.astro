@@ -4,18 +4,26 @@ export interface Props {
 	page: number;
 }
 
-const { chapter, page } = Astro.props;
+const { info: { current: {chapter, page}, backward, forward } } = Astro.props;
 ---
 
 <nav class="sticky-bar">
 	<div class="navigation-arrows">
-		<div>&lt;&lt;</div>
-		<div>&lt;</div>
+	{backward &&
+		<>
+			<a href={`/chapters/${backward.all.chapter}/pages/${backward.all.page}#strip`}>&lt;&lt;</a>
+			<a href={`/chapters/${backward.one.chapter}/pages/${backward.one.page}#strip`}>&lt;</a>
+		</>
+	}
 	</div>
 	<div>Chapter {chapter} | Page {page}</div>
 	<div class="navigation-arrows">
-		<div>&gt;</div>
-		<div>&gt;&gt;</div>
+	{forward &&
+		<>
+			<a href={`/chapters/${forward.one.chapter}/pages/${forward.one.page}#strip`}>&gt;</a>
+			<a href={`/chapters/${forward.all.chapter}/pages/${forward.all.page}#strip`}>&gt;&gt;</a>
+		</>
+	}
 	</div>
 </nav>
 <style>
@@ -24,6 +32,7 @@ const { chapter, page } = Astro.props;
 
         grid-area: sticky-bar;
         display: flex;
+        justify-content: space-between;
         align-items: center;
 
         width: 656px;
@@ -52,6 +61,11 @@ const { chapter, page } = Astro.props;
 
     .navigation-arrows {
         display: flex;
-        gap: 35px;
+        width: 82px;
+        justify-content: space-between;
+    }
+
+    a {
+		color: #EFEFEF;
     }
 </style>

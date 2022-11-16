@@ -6,11 +6,11 @@ export async function getStaticPaths() {
     return await getAllPages()
 }
 
-const { image, chapter, page } = Astro.props;
+const info = Astro.props;
 ---
 
-<StripAsideLayout title="Degaussing Comic" chapter={chapter} page={page}>
-    <img class="comic-strip" src={image} alt="wea">
+<StripAsideLayout title="Degaussing Comic" info={info}>
+    <img id="strip" class="comic-strip" src={info.image} alt="wea"/>
 </StripAsideLayout>
 <style>
     .comic-strip {
