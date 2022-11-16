@@ -1,5 +1,5 @@
 import {getChapters} from "@server/GetChapters"
-import {getImage, getNextAndLast, getPreviousAndFirst} from "@server/Utils"
+import getPageInfo from "@server/GetPageInfo"
 
 export default async function getAllPages() {
 	const locale = "en-US"
@@ -12,15 +12,8 @@ export default async function getAllPages() {
 		...chapter.pages.map((_, j) => ({chapter: i + 1, page: j + 1}))
 	])
 	const paths = chapterNumbers.map(params => {
-		const {chapter, page} = params
-		const image = getImage({chapters, chapter, page})
-		const props = {
-			image,
-			backward: getPreviousAndFirst({chapters, chapter, page}),
-			current: {chapter: chapter, page: page},
-			forward: getNextAndLast({chapters, chapter, page})
-		}
-		return {params: {chapter: `${chapter}`, page: `${page}`}, props}
+		const props = getPageInfo({...params, chapters})
+		return {params: {chapter: `${props.current.chapter}`, page: `${props.current.page}`}, props}
 	})
 	//const localized = paths.flatMap(path => locales.map(locale => ({...path, locale})))
 	return paths

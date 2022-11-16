@@ -1,4 +1,4 @@
-import * as contentful from "contentful"
+import contentful from "contentful"
 
 const client = contentful.createClient({
 	space: import.meta.env.CONTENTFUL_SPACE!,

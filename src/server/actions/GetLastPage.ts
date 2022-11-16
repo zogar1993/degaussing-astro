@@ -1,5 +1,5 @@
 import {getChapters} from "@server/GetChapters"
-import {getImage, getPreviousAndFirst} from "@server/Utils"
+import getPageInfo from "@server/GetPageInfo"
 
 export default async function getLastPage() {
 	const locale = "en-US"
@@ -8,8 +8,5 @@ export default async function getLastPage() {
 	const chapter = chapters.length
 	const page = chapters[chapters.length - 1].pages.length
 
-	const image = getImage({chapters, chapter, page})
-	const backward = getPreviousAndFirst({chapters, chapter, page})
-
-	return {image, page, chapter}
+	return getPageInfo({chapters, chapter, page})
 }

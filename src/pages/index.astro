@@ -2,11 +2,11 @@
 import StripAsideLayout from '@web/layouts/StripAsideLayout.astro'
 import getLastPage from '@server/actions/GetLastPage'
 
-const {image} = await getLastPage()
+const info = await getLastPage()
 ---
 
-<StripAsideLayout title="Degaussing Comic">
-    <img class="comic-strip" src={image} alt="wea">
+<StripAsideLayout title="Degaussing Comic" info={info}>
+    <img class="comic-strip" src={info.image} alt="wea">
 </StripAsideLayout>
 <style>
     .comic-strip {
