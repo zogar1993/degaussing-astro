@@ -1,5 +1,6 @@
 ---
 import getLastUpdate from "@server/actions/GetLastUpdate"
+import { Image } from '@astrojs/image/components';
 
 const {image, chapter, page} = await getLastUpdate()
 ---
@@ -9,14 +10,9 @@ const {image, chapter, page} = await getLastUpdate()
 	<span class="title">Last update:</span>
 	<span class="important">November 8th</span>
 	<span class="normal">Chapter {chapter} | Page {page}</span>
-	<img class="last-cover" src={image} alt="wea">
+   	<Image src={image} alt="wea" width="161" height="227"/>
 </aside>
 <style>
-    .last-cover {
-        width: 161px;
-        height: 227px;
-    }
-
     .last-update {
         grid-area: last-update;
 

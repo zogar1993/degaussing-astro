@@ -1,4 +1,6 @@
 ---
+import { Image } from '@astrojs/image/components';
+
 export interface Props {
 	title: string;
 	body: string;
@@ -10,7 +12,7 @@ const { href, title, body } = Astro.props;
 
 <header>
 	<div class="logo-row">
-		<img class="logo" src="/logo.png" alt="Degaussing Logo"/>
+		<Image class="logo" src="/logo.png" alt="Degaussing Logo" width="613" height="177" />
 	</div>
 	<nav>
 		<a href="/">Home</a>

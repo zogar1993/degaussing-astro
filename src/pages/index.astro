@@ -1,16 +1,11 @@
 ---
 import StripAsideLayout from '@web/layouts/StripAsideLayout.astro'
 import getLastPage from '@server/actions/GetLastPage'
+import { Image } from '@astrojs/image/components';
 
 const info = await getLastPage()
 ---
 
 <StripAsideLayout title="Degaussing Comic" info={info}>
-    <img class="comic-strip" src={info.image} alt="wea">
+   <Image src={info.image} alt="wea" width="862" height="1230"/>
 </StripAsideLayout>
-<style>
-    .comic-strip {
-        width: 862px;
-        height: 1230px;
-    }
-</style>
