@@ -1,8 +1,6 @@
 ---
 import Header from '@web/components/Header.astro';
 import ResetCss from '@web/styles/ResetCss.astro';
-import '@fontsource/germania-one';
-import '@fontsource/inter';
 
 export interface Props {
 	title: string;
@@ -17,6 +15,18 @@ const { title } = Astro.props;
 	    <title>{title}</title>
 	    <link rel="icon" href="/favicon.ico"/>
 	    <ResetCss/>
+		<link
+			rel="stylesheet preload"
+			as="style"
+			href="https://fonts.googleapis.com/css?family=Germania+One&display=swap"
+			crossOrigin=""
+		/>
+		<link
+			rel="stylesheet preload"
+			as="style"
+			href="https://fonts.googleapis.com/css?family=Inter&display=swap"
+			crossOrigin=""
+		/>
 	</head>
 	<body>
     	<Header/>
