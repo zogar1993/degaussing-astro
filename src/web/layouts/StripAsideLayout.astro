@@ -32,13 +32,13 @@ const { backward, forward } = info;
         switch (e.key) {
             case "ArrowLeft":
                 if (backward) {
-                    window.location.replace(`/chapters/${backward.one.chapter}/pages/${backward.one.page}#strip`)
+                    window.location.href =`/chapters/${backward.one.chapter}/pages/${backward.one.page}#strip`
                     e.preventDefault()
                 }
                 break
             case "ArrowRight":
                 if (forward) {
-                    window.location.replace(`/chapters/${forward.one.chapter}/pages/${forward.one.page}#strip`)
+                    window.location.href = `/chapters/${forward.one.chapter}/pages/${forward.one.page}#strip`
                     e.preventDefault()
                 }
                 break
