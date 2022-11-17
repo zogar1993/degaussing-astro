@@ -12,6 +12,7 @@ export interface Props {
 }
 
 const { title, info } = Astro.props;
+const { backward, forward } = info;
 ---
 
 <MainLayout title={title}>
@@ -26,6 +27,26 @@ const { title, info } = Astro.props;
         <Comments/>
     </div>
 </MainLayout>
+<script define:vars={{ backward, forward }}>
+    const handleOnKeyDown = (e) => {
+        switch (e.key) {
+            case "ArrowLeft":
+                if (backward) {
+                    window.location.replace(`/chapters/${backward.one.chapter}/pages/${backward.one.page}#strip`)
+                    e.preventDefault()
+                }
+                break
+            case "ArrowRight":
+                if (forward) {
+                    window.location.replace(`/chapters/${forward.one.chapter}/pages/${forward.one.page}#strip`)
+                    e.preventDefault()
+                }
+                break
+        }
+    }
+
+    document.body.addEventListener("keydown", handleOnKeyDown)
+</script>
 <style>
     main {
         grid-area: main;
