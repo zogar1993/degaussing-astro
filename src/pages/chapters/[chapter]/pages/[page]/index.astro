@@ -1,12 +1,14 @@
 ---
-import StripAsideLayout from '@web/layouts/StripAsideLayout.astro'
-import getAllPages from "@server/actions/GetAllPages"
-import { Image } from '@astrojs/image/components';
+import { changeLanguage } from "i18next";
+import StripAsideLayout from "@web/layouts/StripAsideLayout.astro";
+import getAllPages from "@server/actions/GetAllPages";
+import { Image } from "@astrojs/image/components";
+
+changeLanguage("en-US");
 
 export async function getStaticPaths() {
-    return await getAllPages()
+    return await getAllPages();
 }
-
 const info = Astro.props;
 ---
 

@@ -1,8 +1,11 @@
 ---
-import MainLayout from '@web/layouts/MainLayout.astro'
-import getChaptersInfo from '@server/actions/GetChaptersInfo'
+import { changeLanguage } from "i18next";
+import MainLayout from "@web/layouts/MainLayout.astro";
+import getChaptersInfo from "@server/actions/GetChaptersInfo";
 
-const chapters = await getChaptersInfo()
+changeLanguage("en-US");
+
+const chapters = await getChaptersInfo();
 ---
 
 <MainLayout title="Degaussing Comic" >
