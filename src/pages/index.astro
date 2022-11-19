@@ -1,8 +1,8 @@
 ---
+import i18next, { changeLanguage } from "i18next";
+import { Image } from "@astrojs/image/components";
 import StripAsideLayout from "@web/layouts/StripAsideLayout.astro";
 import getLastPage from "@server/actions/GetLastPage";
-import { Image } from "@astrojs/image/components";
-import i18next, { changeLanguage } from "i18next";
 
 changeLanguage("en-US");
 

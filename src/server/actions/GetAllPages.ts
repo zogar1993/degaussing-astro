@@ -1,10 +1,8 @@
 import {getChapters} from "@server/GetChapters"
 import getPageInfo from "@server/GetPageInfo"
 
-export default async function getAllPages() {
-	const locale = "en-US"
-
-	const chapters = await getChapters({locale})
+export default async function getAllPages({language}: {language: string}) {
+	const chapters = await getChapters({language})
 
 	//const locales = ["en-US", "es"]
 	const chapterNumbers = chapters.flatMap((chapter, i) => [
