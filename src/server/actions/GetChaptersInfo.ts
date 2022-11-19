@@ -1,9 +1,7 @@
 import {getChapters} from "@server/GetChapters"
 
-export default async function getChaptersInfo() {
-	const locale = "en-US"
-
-	const chapters = await getChapters({locale})
+export default async function getChaptersInfo({language}: {language: string}) {
+	const chapters = await getChapters({language})
 
 	return chapters.map((chapter) => ({
 		name: chapter.name,

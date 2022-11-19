@@ -1,11 +1,11 @@
 ---
-import { changeLanguage } from "i18next";
+import i18next, { changeLanguage } from "i18next";
 import MainLayout from "@web/layouts/MainLayout.astro";
 import getChaptersInfo from "@server/actions/GetChaptersInfo";
 
 changeLanguage("en-US");
 
-const chapters = await getChaptersInfo();
+const chapters = await getChaptersInfo({language: i18next.language});
 ---
 
 <MainLayout title="Degaussing Comic" >
