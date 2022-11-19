@@ -1,19 +1,19 @@
 ---
 import { changeLanguage } from "i18next";
 import MainLayout from "@web/layouts/MainLayout.astro";
-import getChaptersInfo from "@server/actions/GetChaptersInfo";
+import getCharactersInfo from "@server/actions/getCharactersInfo";
 
 changeLanguage("en-US");
 
-const chapters = await getChaptersInfo();
+const characters = await getCharactersInfo();
 ---
 
 <MainLayout title="Degaussing Comic" >
-    {chapters.map((chapter) =>
+    {characters.map((character) =>
         <article>
-            <img src={chapter.cover} alt="wea" />
-            <h4>{chapter.name}</h4>
-            <span>{chapter.pagesAmount} pages</span>
+            <img src={character.portrait} alt="wea" />
+            <h4>{character.name}</h4>
+            <p>{character.description}</p>
         </article>
     )}
 </MainLayout>

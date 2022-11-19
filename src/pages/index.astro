@@ -1,9 +1,12 @@
 ---
-import StripAsideLayout from '@web/layouts/StripAsideLayout.astro'
-import getLastPage from '@server/actions/GetLastPage'
-import { Image } from '@astrojs/image/components';
+import StripAsideLayout from "@web/layouts/StripAsideLayout.astro";
+import getLastPage from "@server/actions/GetLastPage";
+import { Image } from "@astrojs/image/components";
+import i18next, { changeLanguage } from "i18next";
 
-const info = await getLastPage()
+changeLanguage("en-US");
+
+const info = await getLastPage({ language: i18next.language });
 ---
 
 <StripAsideLayout title="Degaussing Comic" info={info}>
