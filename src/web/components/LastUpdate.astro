@@ -1,8 +1,9 @@
 ---
+import i18next from "i18next";
 import getLastUpdate from "@server/actions/GetLastUpdate"
 import { Image } from '@astrojs/image/components';
 
-const {image, chapter, page} = await getLastUpdate()
+const {image, chapter, page} = await getLastUpdate({language: i18next.language})
 ---
 
 

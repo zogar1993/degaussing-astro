@@ -1,9 +1,8 @@
 import {getChapters} from "@server/GetChapters"
 import {getImage} from "@server/Utils"
 
-export default async function getLastUpdate() {
-	const locale = "en-US"
-	const chapters = await getChapters({locale})
+export default async function getLastUpdate({language}: {language: string}) {
+	const chapters = await getChapters({language})
 
 	const chapter = chapters.length
 	const page = chapters[chapters.length - 1].pages.length
