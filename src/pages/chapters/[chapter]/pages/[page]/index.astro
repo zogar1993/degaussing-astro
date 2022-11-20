@@ -1,8 +1,8 @@
 ---
 import i18next, { changeLanguage } from "i18next";
 import StripAsideLayout from "@web/layouts/StripAsideLayout.astro";
+import ComicStrip from "@web/components/ComicStrip.astro";
 import getAllPages from "@server/actions/GetAllPages";
-import { Image } from "@astrojs/image/components";
 
 changeLanguage("en-US");
 
@@ -13,5 +13,6 @@ const info = Astro.props;
 ---
 
 <StripAsideLayout title="Degaussing Comic" info={info}>
-    <Image id="strip" src={info.image} alt="wea" width="862" height="1230" format="avif"/>
+    <ComicStrip image={info.image} />
 </StripAsideLayout>
+

@@ -1,0 +1,16 @@
+---
+import { getImage } from "@astrojs/image";
+const { image } = Astro.props;
+const { src } = await getImage({ src: image, width: "862", height: "1230", format: "avif" });
+---
+<img src={src} alt="wea"/>
+<style>
+   img {
+      width: 862px;
+      height: 1230px;
+      aspect-ratio: auto 862 / 1230;
+      border: var(--border);
+      border-radius: var(--border-radius);
+      background: white;
+   }
+</style>

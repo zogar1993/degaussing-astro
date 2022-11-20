@@ -12,7 +12,7 @@ const { href, title, body } = Astro.props;
 
 <header>
 	<div class="logo-row">
-		<Image class="logo" src="/logo.png" alt="Degaussing Logo" width="613" height="177" format="avif"/>
+		<Image class="logo" src="/logo_degaussing.png" alt="Degaussing Logo" width="613" height="177" format="avif"/>
 	</div>
 	<nav>
 		<a href="/">Home</a>
@@ -26,6 +26,7 @@ const { href, title, body } = Astro.props;
 		display: flex;
 		justify-content: center;
 		background-color: var(--background-color-header);
+		background-image: radial-gradient(circle, var(--color-primary) 0%, var(--background-color-header) 100%);
 		padding: 33px 0;
 	}
 
