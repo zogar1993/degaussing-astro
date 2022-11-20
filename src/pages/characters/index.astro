@@ -8,7 +8,7 @@ changeLanguage("en-US");
 const characters = await getCharactersInfo({ language: i18next.language });
 ---
 
-<MainLayout title="Degaussing Comic" >
+<MainLayout title="Degaussing Comic" type="characters">
     {characters.map((character) =>
         <article>
             <img src={character.portrait} alt="wea" />

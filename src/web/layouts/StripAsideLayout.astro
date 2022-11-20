@@ -9,13 +9,14 @@ import Comments from '@web/components/Comments.astro'
 export interface Props {
     title: string;
 	info: any;
+	type: string;
 }
 
-const { title, info } = Astro.props;
+const { title, info, type } = Astro.props;
 const { backward, forward } = info;
 ---
 
-<MainLayout title={title}>
+<MainLayout title={title} type={type}>
     <div class="grid">
         <main>
             <slot/>

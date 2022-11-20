@@ -5,9 +5,10 @@ export interface Props {
 	title: string;
 	body: string;
 	href: string;
+	type: string;
 }
 
-const { href, title, body } = Astro.props;
+const { href, title, body, type } = Astro.props;
 ---
 
 <header>
@@ -15,10 +16,10 @@ const { href, title, body } = Astro.props;
 		<Image class="logo" src="/logo_degaussing.png" alt="Degaussing Logo" width="613" height="177" format="avif"/>
 	</div>
 	<nav>
-		<a href="/">Home</a>
-		<a href="/chapters">Chapters</a>
-		<a href="/characters">Characters</a>
-		<a href="/about">About</a>
+		<a href="/" class={type === "home" && "selected"}>Home</a>
+		<a href="/chapters" class={type === "chapters" && "selected"}>Chapters</a>
+		<a href="/characters" class={type === "characters" && "selected"}>Characters</a>
+		<a href="/about" class={type === "about" && "selected"}>About</a>
 	</nav>
 </header>
 <style>
@@ -28,6 +29,10 @@ const { href, title, body } = Astro.props;
 		background-color: var(--background-color-header);
 		background-image: radial-gradient(circle, var(--color-primary) 0%, var(--background-color-header) 100%);
 		padding: 33px 0;
+	}
+
+	.selected {
+        color: var(--color-title);
 	}
 
 	header {

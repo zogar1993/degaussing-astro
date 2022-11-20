@@ -8,7 +8,7 @@ changeLanguage("en-US");
 const chapters = await getChaptersInfo({ language: i18next.language });
 ---
 
-<MainLayout title="Degaussing Comic" >
+<MainLayout title="Degaussing Comic" type="chapters">
     {chapters.map((chapter) =>
         <article>
             <img src={chapter.cover} alt="wea" />
