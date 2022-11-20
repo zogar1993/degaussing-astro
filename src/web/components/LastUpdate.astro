@@ -14,17 +14,6 @@ const {image, chapter, page} = await getLastUpdate({language: i18next.language})
    	<Image src={image} alt="wea" width="161" height="227" format="avif"/>
 </aside>
 <style>
-    .last-update {
-        grid-area: last-update;
-
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-
-        height: 381px;
-        padding: 23px;
-    }
-
     .title {
         font-family: var(--font-family-title);
         font-size: 30px;
@@ -49,5 +38,15 @@ const {image, chapter, page} = await getLastUpdate({language: i18next.language})
     aside {
         background-color: var(--background-color-aside);
         border-radius: var(--border-radius);
+        border: var(--border);
+
+        grid-area: last-update;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        height: 381px;
+        padding: 23px;
     }
 </style>
