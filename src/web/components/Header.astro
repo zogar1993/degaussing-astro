@@ -1,5 +1,6 @@
 ---
 import { Image } from '@astrojs/image/components';
+import { t } from "i18next";
 
 export interface Props {
 	title: string;
@@ -16,10 +17,10 @@ const { href, title, body, type } = Astro.props;
 		<Image class="logo" src="/logo_degaussing.png" alt="Degaussing Logo" width="613" height="177" format="avif"/>
 	</div>
 	<nav>
-		<a href="/" class={type === "home" && "selected"}>Home</a>
-		<a href="/chapters" class={type === "chapters" && "selected"}>Chapters</a>
-		<a href="/characters" class={type === "characters" && "selected"}>Characters</a>
-		<a href="/about" class={type === "about" && "selected"}>About</a>
+		<a href="/" class={type === "home" && "selected"}>{t("menu.home")}</a>
+		<a href="/chapters" class={type === "chapters" && "selected"}>{t("menu.chapters")}</a>
+		<a href="/characters" class={type === "characters" && "selected"}>{t("menu.characters")}</a>
+		<a href="/about" class={type === "about" && "selected"}>{t("menu.about")}</a>
 	</nav>
 </header>
 <style>
@@ -27,7 +28,7 @@ const { href, title, body, type } = Astro.props;
 		display: flex;
 		justify-content: center;
 		background-color: var(--background-color-header);
-		background-image: radial-gradient(circle, var(--color-primary) 0%, var(--background-color-header) 100%);
+		background-image: radial-gradient(circle, var(--background-3) 0%, var(--background-4) 100%);
 		padding: 33px 0;
 	}
 

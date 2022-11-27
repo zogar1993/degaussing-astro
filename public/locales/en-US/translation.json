@@ -1,0 +1,14 @@
+{
+  "menu": {
+    "home": "Home",
+    "chapters": "Chapter",
+    "characters": "Characters",
+    "about": "About"
+  },
+  "strip": {
+    "last-update": "Last Update",
+    "page": "Page",
+    "chapter": "Chapter",
+    "cover": "Cover"
+  }
+}

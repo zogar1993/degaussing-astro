@@ -2,6 +2,7 @@
 import i18next from "i18next";
 import getLastUpdate from "@server/actions/GetLastUpdate"
 import { getImage } from "@astrojs/image";
+import { t } from "i18next";
 
 const {image, chapter, page} = await getLastUpdate({language: i18next.language})
 const { src } = await getImage({ src: image, width: "862", height: "1230", format: "avif" });
@@ -9,9 +10,9 @@ const { src } = await getImage({ src: image, width: "862", height: "1230", forma
 
 
 <aside class="last-update">
-	<span class="title">Last update:</span>
+	<span class="title">{t("strip.last-update")}:</span>
 	<span class="important">November 8th</span>
-	<span class="normal">Chapter {chapter} | Page {page}</span>
+	<span class="normal">{t("strip.chapter")} {chapter} | {t("strip.page")} {page}</span>
 	<img src={src} alt="wea"/>
 </aside>
 <style>

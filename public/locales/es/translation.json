@@ -1,0 +1,14 @@
+{
+  "menu": {
+    "home": "Inicio",
+    "chapters": "Capitulos",
+    "characters": "Personajes",
+    "about": "Acerca De"
+  },
+  "strip": {
+    "last-update": "Ultima Actualizacion",
+    "page": "Pagina",
+    "chapter": "Capitulo",
+    "cover": "Portada"
+  }
+}
