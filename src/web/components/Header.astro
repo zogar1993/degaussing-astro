@@ -1,7 +1,7 @@
 ---
 import { Image } from '@astrojs/image/components';
 import { t } from "i18next";
-import { localizeUrl } from "astro-i18next";
+import { localizePath } from "astro-i18next";
 
 export interface Props {
 	title: string;
@@ -18,10 +18,10 @@ const { href, title, body, type } = Astro.props;
 		<Image class="logo" src="/logo_degaussing.png" alt="Degaussing Logo" width="613" height="177" format="avif"/>
 	</div>
 	<nav>
-		<a href={localizeUrl("/")} class={type === "home" && "selected"}>{t("menu.home")}</a>
-		<a href={localizeUrl("/chapters")} class={type === "chapters" && "selected"}>{t("menu.chapters")}</a>
-		<a href={localizeUrl("/characters")} class={type === "characters" && "selected"}>{t("menu.characters")}</a>
-		<a href={localizeUrl("/about")} class={type === "about" && "selected"}>{t("menu.about")}</a>
+		<a href={localizePath("/")} class={type === "home" && "selected"}>{t("menu.home")}</a>
+		<a href={localizePath("/chapters")} class={type === "chapters" && "selected"}>{t("menu.chapters")}</a>
+		<a href={localizePath("/characters")} class={type === "characters" && "selected"}>{t("menu.characters")}</a>
+		<a href={localizePath("/about")} class={type === "about" && "selected"}>{t("menu.about")}</a>
 	</nav>
 </header>
 <style>

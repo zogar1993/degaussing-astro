@@ -1,6 +1,6 @@
 ---
 import { t } from "i18next";
-import { localizeUrl } from "astro-i18next";
+import { localizePath } from "astro-i18next";
 
 export interface Props {
 	chapter: number;
@@ -14,8 +14,8 @@ const { info: { current: {chapter, page}, backward, forward } } = Astro.props;
 	<div class="navigation-arrows">
 	{backward &&
 		<>
-			<a href={localizeUrl(`/chapters/${backward.all.chapter}/pages/${backward.all.page}#strip`)}>&lt;&lt;</a>
-			<a href={localizeUrl(`/chapters/${backward.one.chapter}/pages/${backward.one.page}#strip`)}>&lt;</a>
+			<a href={localizePath(`/chapters/${backward.all.chapter}/pages/${backward.all.page}#strip`)}>&lt;&lt;</a>
+			<a href={localizePath(`/chapters/${backward.one.chapter}/pages/${backward.one.page}#strip`)}>&lt;</a>
 		</>
 	}
 	</div>
@@ -23,8 +23,8 @@ const { info: { current: {chapter, page}, backward, forward } } = Astro.props;
 	<div class="navigation-arrows">
 	{forward &&
 		<>
-			<a href={localizeUrl(`/chapters/${forward.one.chapter}/pages/${forward.one.page}#strip`)}>&gt;</a>
-			<a href={localizeUrl(`/chapters/${forward.all.chapter}/pages/${forward.all.page}#strip`)}>&gt;&gt;</a>
+			<a href={localizePath(`/chapters/${forward.one.chapter}/pages/${forward.one.page}#strip`)}>&gt;</a>
+			<a href={localizePath(`/chapters/${forward.all.chapter}/pages/${forward.all.page}#strip`)}>&gt;&gt;</a>
 		</>
 	}
 	</div>
