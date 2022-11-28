@@ -1,25 +1,70 @@
 ---
 import i18next, { changeLanguage } from "i18next";
+import { localizePath } from "astro-i18next";
+import { getImage } from "@astrojs/image";
 import MainLayout from "@web/layouts/MainLayout.astro";
 import getChaptersInfo from "@server/actions/GetChaptersInfo";
 
 changeLanguage("en-US");
 
 const chapters = await getChaptersInfo({ language: i18next.language });
+
+for (const chapter of chapters) {
+    const { src } = await getImage({ src: chapter.cover, width: "239", height: "339", format: "avif" });
+    chapter.cover = src;
+}
 ---
 
 <MainLayout title="Degaussing Comic" type="chapters">
-    {chapters.map((chapter) =>
-        <article>
-            <img src={chapter.cover} alt="wea" />
-            <h4>{chapter.name}</h4>
-            <span>{chapter.pagesAmount} pages</span>
-        </article>
-    )}
+    <main>
+        {chapters.map((chapter) =>
+            <article>
+                <a href={localizePath(`/chapters/${chapter.number}/pages/0`)}>
+                    <img src={chapter.cover} alt="wea"/>
+                </a>
+                <h4>{chapter.name}</h4>
+                <span>{chapter.pagesAmount} pages</span>
+            </article>
+        )}
+    </main>
 </MainLayout>
 <style>
     img {
         width: 239px;
-        height: 338px;
+        height: 339px;
+
+        margin-bottom: 20px;
+
+        border-radius: var(--border-radius);
+    }
+
+    main {
+        grid-area: main;
+
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 27px;
+
+        width: min(862px, 100vw);
+        margin: 30px 0;
+
+        background-color: var(--background-color-primary);
+        border-radius: var(--border-radius);
+
+        padding: 25px 32px 32px 32px;
+    }
+
+    h4 {
+        color: var(--color-title);
+        font-family: var(--font-family-title);
+        font-size: 24px;
+
+        margin-bottom: 10px;
+    }
+
+    span {
+        color: var(--color-muted);
+        font-family: var(--font-family-text);
+        font-size: 14px;
     }
 </style>
