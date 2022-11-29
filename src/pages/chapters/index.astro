@@ -8,7 +8,6 @@ import getChaptersInfo from "@server/actions/GetChaptersInfo";
 changeLanguage("en-US");
 
 const chapters = await getChaptersInfo({ language: i18next.language });
-
 for (const chapter of chapters) {
     const { src } = await getImage({ src: chapter.cover, width: "239", height: "339", format: "avif" });
     chapter.cover = src;
