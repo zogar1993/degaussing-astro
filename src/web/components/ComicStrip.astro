@@ -3,7 +3,7 @@ import { getImage } from "@astrojs/image";
 const { image } = Astro.props;
 const { src } = await getImage({ src: image, width: "856", height: "1224", format: "avif" });
 ---
-<img src={src} alt="wea"/>
+<img id="strip" src={src} alt="wea"/>
 <style>
    img {
       width: 862px;
