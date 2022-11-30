@@ -18,7 +18,7 @@ for (const chapter of chapters) {
     <main>
         {chapters.map((chapter) =>
             <article>
-                <a href={localizePath(`/chapters/${chapter.number}/pages/0`)}>
+                <a href={localizePath(`/chapters/${chapter.number}/pages/0`) + "#strip"}>
                     <img src={chapter.cover} alt="wea"/>
                 </a>
                 <h4>{chapter.name}</h4>
