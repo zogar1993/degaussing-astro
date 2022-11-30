@@ -28,21 +28,10 @@ for (const chapter of chapters) {
     </main>
 </MainLayout>
 <style>
-    img {
-        width: 239px;
-        height: 339px;
-
-        margin-bottom: 20px;
-
-        border-radius: var(--border-radius);
-    }
-
     main {
-        grid-area: main;
-
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 27px;
+        grid-template-columns: auto auto auto;
+        justify-content: space-between;
 
         width: min(862px, 100vw);
         margin: 30px 0;
@@ -51,6 +40,15 @@ for (const chapter of chapters) {
         border-radius: var(--border-radius);
 
         padding: 25px 32px 32px 32px;
+    }
+
+    img {
+        width: 239px;
+        height: 339px;
+
+        margin-bottom: 20px;
+
+        border-radius: var(--border-radius);
     }
 
     h4 {

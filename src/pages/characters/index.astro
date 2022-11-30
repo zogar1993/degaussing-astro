@@ -9,15 +9,30 @@ const characters = await getCharactersInfo({ language: i18next.language });
 ---
 
 <MainLayout title="Degaussing Comic" type="characters">
-    {characters.map((character) =>
-        <article>
-            <img src={character.portrait} alt="wea" />
-            <h4>{character.name}</h4>
-            <p>{character.description}</p>
-        </article>
-    )}
+    <main>
+        {characters.map((character) =>
+            <article>
+                <img src={character.portrait} alt="wea" />
+                <h4>{character.name}</h4>
+                <p>{character.description}</p>
+            </article>
+        )}
+    </main>
 </MainLayout>
 <style>
+    main {
+        display: flex;
+        flex-direction: column;
+
+        width: min(862px, 100vw);
+        margin: 30px 0;
+
+        background-color: var(--background-color-primary);
+        border-radius: var(--border-radius);
+
+        padding: 25px 32px 32px 32px;
+    }
+
     img {
         width: 239px;
         height: 338px;

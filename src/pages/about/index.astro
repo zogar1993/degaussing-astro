@@ -1,0 +1,32 @@
+---
+import i18next, { changeLanguage } from "i18next";
+import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
+import MainLayout from "@web/layouts/MainLayout.astro";
+import getAbout from "@server/actions/GetAbout";
+
+changeLanguage("en-US");
+
+const { title, banner, synopsis } = await getAbout({ language: i18next.language });
+const synopsisHtml = documentToHtmlString(synopsis);
+---
+<MainLayout title="Degaussing Comic" type="about">
+    <main>
+        <h2>{title}</h2>
+        <Fragment set:html={synopsisHtml} />
+        <img src={banner} alt="wea"/>
+    </main>
+</MainLayout>
+<style>
+    main {
+        display: flex;
+        flex-direction: column;
+
+        width: min(862px, 100vw);
+        margin: 30px 0;
+
+        background-color: var(--background-color-primary);
+        border-radius: var(--border-radius);
+
+        padding: 25px 32px 32px 32px;
+    }
+</style>
