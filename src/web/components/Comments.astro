@@ -1,5 +1,6 @@
 ---
-
+import i18next from "i18next";
+const language = i18next.language;
 ---
 
 <aside class="comments">
@@ -14,7 +15,7 @@
             data-emit-metadata="0"
             data-input-position="top"
             data-theme="preferred_color_scheme"
-            data-lang="en"
+            data-lang={language === "es" ? "es" : "en"}
             data-loading="lazy"
             crossorigin="anonymous"
             async>
