@@ -1,0 +1,19 @@
+---
+const area = Astro.props["grid-area"]
+---
+<aside style={`grid-area: ${area}`}>
+    <slot/>
+</aside>
+<style>
+    aside {
+        background-color: var(--background-color-primary);
+        border-radius: var(--border-radius);
+        border: var(--border);
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        padding: 24px;
+    }
+</style>

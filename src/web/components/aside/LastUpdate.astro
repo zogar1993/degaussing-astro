@@ -2,17 +2,18 @@
 import i18next, { t } from "i18next";
 import { getImage } from "@astrojs/image";
 import getLastUpdate from "@server/actions/GetLastUpdate"
+import Aside from "@web/components/aside/Aside.astro"
 import Title from "@web/components/aside/Title.astro"
 
 const {image, chapter, page} = await getLastUpdate({language: i18next.language})
 const { src } = await getImage({ src: image, width: "161", height: "227", format: "avif" });
 ---
-<aside class="last-update">
+<Aside grid-area="last-update">
 	<Title>{t("strip.last-update")}:</Title>
 	<span class="important">November 8th</span>
 	<span class="normal">{t("strip.chapter")} {chapter} | {t("strip.page")} {page}</span>
 	<img src={src} alt="wea"/>
-</aside>
+</Aside>
 <style>
     .important {
         font-family: var(--font-family-text);
@@ -27,21 +28,6 @@ const { src } = await getImage({ src: image, width: "161", height: "227", format
         font-size: 14px;
         line-height: 23px;
         color: var(--color-text-aside);
-    }
-
-    aside {
-        background-color: var(--background-color-primary);
-        border-radius: var(--border-radius);
-        border: var(--border);
-
-        grid-area: last-update;
-
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-
-        height: 381px;
-        padding: 23px;
     }
 
     img {

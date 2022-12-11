@@ -1,19 +1,10 @@
 ---
 import { t } from "i18next";
+import Aside from "@web/components/aside/Aside.astro"
 import Title from "@web/components/aside/Title.astro"
 ---
-<aside class="characters">
+<Aside grid-area="characters">
 	<Title>{t("strip.characters")}</Title>
-</aside>
+</Aside>
 <style>
-    aside {
-        background-color: var(--background-color-primary);
-        border-radius: var(--border-radius);
-        border: var(--border);
-    }
-
-    .characters {
-        grid-area: characters;
-        height: 565px;
-    }
 </style>
