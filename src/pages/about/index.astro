@@ -11,7 +11,7 @@ const { title, banner, synopsis } = await getAbout({ language: i18next.language 
 const synopsisHtml = documentToHtmlString(synopsis);
 const { src } = await getImage({ src: banner, width: "798", height: "386", format: "avif" });
 ---
-<MainLayout title="Degaussing Comic" type="about">
+<MainLayout title="Degaussing Comic">
     <main>
         <h2>{title}</h2>
         <Fragment set:html={synopsisHtml} />

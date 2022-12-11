@@ -3,25 +3,18 @@ import { getImage } from "@astrojs/image";
 import { t } from "i18next";
 import { localizePath } from "astro-i18next";
 
-export interface Props {
-	title: string;
-	body: string;
-	href: string;
-	type: string;
-}
-
-const { href, title, body, type } = Astro.props;
 const { src: logo } = await getImage({ src: "/logo_degaussing.png", width: "613", height: "177", format: "avif" });
+const pathname = Astro.url.pathname
 ---
 <header>
 	<div class="logo-row">
 		<img src={logo} alt="Degaussing Logo"/>
 	</div>
 	<nav>
-		<a href={localizePath("/")} class={type === "home" && "selected"}>{t("menu.home")}</a>
-		<a href={localizePath("/chapters")} class={type === "chapters" && "selected"}>{t("menu.chapters")}</a>
-		<a href={localizePath("/characters")} class={type === "characters" && "selected"}>{t("menu.characters")}</a>
-		<a href={localizePath("/about")} class={type === "about" && "selected"}>{t("menu.about")}</a>
+		<a href={localizePath("/")} class={pathname === "/" && "selected"}>{t("menu.home")}</a>
+		<a href={localizePath("/chapters")} class={pathname === "/chapters/" && "selected"}>{t("menu.chapters")}</a>
+		<a href={localizePath("/characters")} class={pathname === "/characters/" && "selected"}>{t("menu.characters")}</a>
+		<a href={localizePath("/about")} class={pathname === "/about/" && "selected"}>{t("menu.about")}</a>
 	</nav>
 </header>
 <style>

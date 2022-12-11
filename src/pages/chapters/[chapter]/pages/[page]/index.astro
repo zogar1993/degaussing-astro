@@ -12,7 +12,7 @@ export async function getStaticPaths() {
 const info = Astro.props;
 ---
 
-<StripAsideLayout title="Degaussing Comic" type="none" info={info}>
+<StripAsideLayout title="Degaussing Comic" info={info}>
     <ComicStrip image={info.image} />
 </StripAsideLayout>
 
