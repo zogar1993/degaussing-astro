@@ -1,11 +1,16 @@
 ---
 import i18next, { changeLanguage } from "i18next";
+import { getImage } from "@astrojs/image";
 import MainLayout from "@web/layouts/MainLayout.astro";
 import getCharactersInfo from "@server/actions/GetCharactersInfo";
 
 changeLanguage("en-US");
 
 const characters = await getCharactersInfo({ language: i18next.language });
+for (const character of characters) {
+    const { src } = await getImage({ src: character.portrait, width: "222", height: "313", format: "avif" });
+    character.portrait = src;
+}
 ---
 
 <MainLayout title="Degaussing Comic" type="characters">

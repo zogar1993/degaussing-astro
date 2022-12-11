@@ -1,5 +1,5 @@
 ---
-import { Image } from '@astrojs/image/components';
+import { getImage } from "@astrojs/image";
 import { t } from "i18next";
 import { localizePath } from "astro-i18next";
 
@@ -11,11 +11,12 @@ export interface Props {
 }
 
 const { href, title, body, type } = Astro.props;
+const { src: logo } = await getImage({ src: "/logo_degaussing.png", width: "613", height: "177", format: "avif" });
 ---
 
 <header>
 	<div class="logo-row">
-		<Image class="logo" src="/logo_degaussing.png" alt="Degaussing Logo" width="613" height="177" format="avif"/>
+		<img src={logo} alt="Degaussing Logo"/>
 	</div>
 	<nav>
 		<a href={localizePath("/")} class={type === "home" && "selected"}>{t("menu.home")}</a>

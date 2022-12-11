@@ -1,5 +1,6 @@
 ---
 import i18next, { changeLanguage } from "i18next";
+import { getImage } from "@astrojs/image";
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 import MainLayout from "@web/layouts/MainLayout.astro";
 import getAbout from "@server/actions/GetAbout";
@@ -8,12 +9,13 @@ changeLanguage("en-US");
 
 const { title, banner, synopsis } = await getAbout({ language: i18next.language });
 const synopsisHtml = documentToHtmlString(synopsis);
+const { src } = await getImage({ src: banner, width: "798", height: "386", format: "avif" });
 ---
 <MainLayout title="Degaussing Comic" type="about">
     <main>
         <h2>{title}</h2>
         <Fragment set:html={synopsisHtml} />
-        <img src={banner} alt="wea"/>
+        <img src={src} alt="wea"/>
     </main>
 </MainLayout>
 <style>
@@ -28,5 +30,11 @@ const synopsisHtml = documentToHtmlString(synopsis);
         border-radius: var(--border-radius);
 
         padding: 25px 32px 32px 32px;
+    }
+
+    img {
+        width: 798px;
+        height: 386px;
+        aspect-ratio: auto 798 / 386;
     }
 </style>
