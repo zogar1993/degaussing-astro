@@ -16,7 +16,7 @@ const { src: logo } = await getImage({ src: "/logo_degaussing.png", width: "613"
 
 <header>
 	<div class="logo-row">
-		<img src={"/logo_degaussing.png"} alt="Degaussing Logo"/>
+		<img src={logo} alt="Degaussing Logo"/>
 	</div>
 	<nav>
 		<a href={localizePath("/")} class={type === "home" && "selected"}>{t("menu.home")}</a>
