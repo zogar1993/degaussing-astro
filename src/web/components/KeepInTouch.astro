@@ -1,0 +1,45 @@
+---
+import i18next from "i18next";
+const language = i18next.language;
+//TODO do newer first
+---
+<header>
+    <h3>Thanks for visiting us! Let's keep in touch!</h3>
+    <nav>
+        <a>I</a>
+        <a>F</a>
+        <a>W</a>
+        <a>G</a>
+    </nav>
+</header>
+<style>
+    header {
+        display: flex;
+        justify-content: space-between;
+    }
+    nav {
+        display: flex;
+        gap: 9px;
+    }
+    a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        width: 31px;
+        height: 31px;
+        background: rgba(128, 128, 128, 0.44);
+        border-radius: 5px;
+        fill: #F0BE5F;
+        color: #F0BE5F;
+        font-weight: bold;
+
+    }
+    h3 {
+        font-family: var(--font-family-title);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 37px;
+    }
+</style>

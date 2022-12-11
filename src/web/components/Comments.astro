@@ -1,10 +1,12 @@
 ---
 import i18next from "i18next";
 const language = i18next.language;
+//TODO do newer first
+import KeepInTouch from "@web/components/KeepInTouch.astro";
 ---
 
 <aside class="comments">
-    <h3>Thanks for visiting us! Let's keep in touch!</h3>
+    <KeepInTouch/>
     <script
         src="https://giscus.app/client.js"
         data-repo="zogar1993/degaussing-astro"
@@ -39,14 +41,4 @@ const language = i18next.language;
     .comments {
         grid-area: comments;
     }
-
-    h3 {
-        font-family: var(--font-family-title);
-        font-style: normal;
-        font-weight: 400;
-        font-size: 32px;
-        line-height: 37px;
-    }
-</style>
-<style is:global>
 </style>
