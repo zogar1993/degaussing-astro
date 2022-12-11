@@ -3,10 +3,28 @@ import { t } from "i18next";
 import Aside from "@web/components/aside/Aside.astro"
 import Title from "@web/components/aside/Title.astro"
 ---
-
 <Aside grid-area="thank-you">
 	<Title>{t("strip.thank-you")}</Title>
+	<div class="buttons">
+		<a>Patreon</a>
+		<a>Ko-Fi</a>
+	</div>
 </Aside>
 <style>
+	.buttons {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+	}
 
+	a {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		background: #F0BE5F;
+		border: 1px solid #432918;
+		border-radius: 5px;
+		height: 62px;
+	}
 </style>

@@ -13,7 +13,6 @@ export interface Props {
 const { href, title, body, type } = Astro.props;
 const { src: logo } = await getImage({ src: "/logo_degaussing.png", width: "613", height: "177", format: "avif" });
 ---
-
 <header>
 	<div class="logo-row">
 		<img src={logo} alt="Degaussing Logo"/>
