@@ -6,9 +6,11 @@
     "about": "Acerca De"
   },
   "strip": {
-    "last-update": "Ultima Actualizacion",
-    "page": "Pagina",
-    "chapter": "Capitulo",
+    "last-update": "Última Actualización",
+    "characters": "Personajes",
+    "thank-you": "Gracias!",
+    "page": "Página",
+    "chapter": "Capítulo",
     "cover": "Portada"
   }
 }

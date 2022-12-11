@@ -1,27 +1,19 @@
 ---
-import i18next from "i18next";
-import getLastUpdate from "@server/actions/GetLastUpdate"
+import i18next, { t } from "i18next";
 import { getImage } from "@astrojs/image";
-import { t } from "i18next";
+import getLastUpdate from "@server/actions/GetLastUpdate"
+import Title from "@web/components/aside/Title.astro"
 
 const {image, chapter, page} = await getLastUpdate({language: i18next.language})
 const { src } = await getImage({ src: image, width: "161", height: "227", format: "avif" });
 ---
-
-
 <aside class="last-update">
-	<span class="title">{t("strip.last-update")}:</span>
+	<Title>{t("strip.last-update")}:</Title>
 	<span class="important">November 8th</span>
 	<span class="normal">{t("strip.chapter")} {chapter} | {t("strip.page")} {page}</span>
 	<img src={src} alt="wea"/>
 </aside>
 <style>
-    .title {
-        font-family: var(--font-family-title);
-        font-size: 30px;
-        color: var(--color-title);
-    }
-
     .important {
         font-family: var(--font-family-text);
         font-weight: 600;
