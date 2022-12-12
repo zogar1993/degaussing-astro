@@ -703,17 +703,17 @@ ast-types@0.14.2:
   dependencies:
     tslib "^2.0.1"
 
-astro-i18next@1.0.0-beta.13:
-  version "1.0.0-beta.13"
-  resolved "https://registry.yarnpkg.com/astro-i18next/-/astro-i18next-1.0.0-beta.13.tgz#066e4bf4b498347075473cc1db31842578678241"
-  integrity sha512-f9kB0lsj2zFW/0O99AhC3Ltp+Gh2woTiluZAQDtwoPYoDZJbvT5JT8AVHfSF2t+FxSJiN45R1lRWiXq7MTBYhQ==
+astro-i18next@1.0.0-beta.14:
+  version "1.0.0-beta.14"
+  resolved "https://registry.yarnpkg.com/astro-i18next/-/astro-i18next-1.0.0-beta.14.tgz#4e3983be8afc3bea3f38ed97ea0396ba72d8dc2a"
+  integrity sha512-NfIJqI7hKTkvZX2IVNB6EgBvjMbmETIN6op573h5L/ktyvUT6Z29oEFztgaNV/wuXdEmsvPbFEA7I1TdOHuf8w==
   dependencies:
     "@proload/core" "^0.3.3"
     "@proload/plugin-tsm" "^0.2.1"
-    i18next "^22.0.4"
+    i18next "^22.0.6"
     i18next-browser-languagedetector "^7.0.1"
-    i18next-fs-backend "^2.0.0"
-    i18next-http-backend "^2.0.1"
+    i18next-fs-backend "^2.0.1"
+    i18next-http-backend "^2.0.2"
     iso-639-1 "^2.1.15"
     locale-emoji "^0.3.0"
 
@@ -1917,19 +1917,19 @@ i18next-browser-languagedetector@^7.0.1:
   dependencies:
     "@babel/runtime" "^7.19.4"
 
-i18next-fs-backend@^2.0.0:
+i18next-fs-backend@^2.0.1:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/i18next-fs-backend/-/i18next-fs-backend-2.1.0.tgz#a90983df2992f478e1d5f3a4c794754d19a0bcdc"
   integrity sha512-gur0HAEkVDeUgZ9WNUcACYYl2N5FUt0C6bQCWsFPc+IYMXYWfiFQa8QQ930QAVYf71I75Ptl4XqQo5sl/u6/mA==
 
-i18next-http-backend@^2.0.1:
+i18next-http-backend@^2.0.2:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/i18next-http-backend/-/i18next-http-backend-2.1.0.tgz#c521603b864e5334fee21fcf1a57c5adefb15089"
   integrity sha512-rTVhhFrpnZJnNvCCdC6RjhFPk0S6mJ2VAix93vbDD19ixlrSJtoNqkk49wvR10PImBSsuGJf35gMQwn2mjer6A==
   dependencies:
     cross-fetch "3.1.5"
 
-i18next@^22.0.4:
+i18next@^22.0.6:
   version "22.4.1"
   resolved "https://registry.yarnpkg.com/i18next/-/i18next-22.4.1.tgz#90041c018ab93a59b6e09d6b20b35e5500f32827"
   integrity sha512-BZWjrTX+OVaSxV5s94s2M+7wSlevdPgNtjeL/xXHl0CKkPGyjHNlkN6eN+0e0ex+EO8ec57OALRDUpiSSCo54g==
