@@ -4,7 +4,7 @@ const language = i18next.language;
 import KeepInTouch from "@web/components/KeepInTouch.astro";
 ---
 
-<aside class="comments">
+<aside>
     <KeepInTouch/>
     <script
         src="https://giscus.app/client.js"
@@ -27,18 +27,16 @@ import KeepInTouch from "@web/components/KeepInTouch.astro";
 </aside>
 <style>
     aside {
+        grid-area: comments;
+
         display: flex;
         flex-direction: column;
         gap: 30px;
 
-        background-color: var(--background-color-primary);
+        background-color: var(--background-color-comments);
         border-radius: var(--border-radius);
         border: var(--border);
 
         padding: 42px 92px;
-    }
-
-    .comments {
-        grid-area: comments;
     }
 </style>

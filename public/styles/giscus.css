@@ -46,15 +46,8 @@ main {
   --color-btn-primary-hover-border: rgb(27 31 36 / 15%);
   --color-btn-primary-selected-bg: hsl(137deg 55% 36% / 100%);
   --color-btn-primary-selected-shadow: inset 0 1px 0 rgb(0 45 17 / 20%);
-  --color-btn-primary-disabled-text: rgb(255 255 255 / 80%);
-  --color-btn-primary-disabled-bg: #94d3a2;
-  --color-btn-primary-disabled-border: rgb(27 31 36 / 15%);
-  --color-fg-default: #24292f;
-  --color-fg-muted: #57606a;
   --color-fg-subtle: #6e7781;
-  --color-canvas-default: #fff;
   --color-canvas-overlay: #fff;
-  --color-canvas-inset: #f6f8fa;
   --color-canvas-subtle: #f6f8fa;
   --color-border-default: #d0d7de;
   --color-border-muted: hsl(210deg 18% 87% / 100%);
@@ -80,9 +73,20 @@ main {
   --color-social-reaction-bg-hover: var(--color-scale-gray-1);
   --color-social-reaction-bg-reacted-hover: var(--color-scale-blue-1);
 
+  --color-btn-primary-disabled-bg: #E0AE4FBB;
+  --color-btn-primary-disabled-border: transparent;
+  --color-btn-primary-disabled-text: #3C3C3BBB;
+
   --color-btn-primary-bg: #F0BE5F;
   --color-btn-primary-text: #3C3C3B;
+
+  --color-fg-default: #FFFFFF;
+  --color-fg-muted: #DDDDDD;
+
+  --color-canvas-default: #036363;
+  --color-canvas-inset: #FFFFFF;
 }
+
 
 main .pagination-loader-container {
   background-image: url("https://github.com/images/modules/pulls/progressive-disclosure-line.svg");
@@ -90,4 +94,64 @@ main .pagination-loader-container {
 
 main .gsc-loading-image {
   background-image: url("https://github.githubassets.com/images/mona-loading-default.gif");
+}
+
+.gsc-comment-box-markdown-hint {
+  display: none;
+}
+
+.gsc-comment-box-bottom {
+  justify-content: flex-end;
+  margin: 0;
+}
+
+.gsc-comment-footer {
+  display: none;
+}
+
+.gsc-replies {
+  background-color: #036363;
+  display: none;
+}
+
+.gsc-comment-box-tabs {
+  display: none;
+}
+
+.gsc-reply-box {
+  display: none;
+}
+
+.gsc-comment-box {
+  border-width: 0 !important;
+}
+
+.gsc-comment {
+  border-width: 0;
+  margin: 0;
+}
+
+.gsc-comment-box-main {
+  margin: 0;
+}
+
+.color-box-border-info {
+  border-width: 0 !important;
+}
+
+.gsc-reactions-menu {
+  display: none;
+}
+
+.gsc-right-header {
+  display: none;
+}
+
+.input-contrast:focus {
+    background-color: var(--color-canvas-inset);
+    color: black;
+}
+
+.input-contrast {
+    resize: none;
 }
