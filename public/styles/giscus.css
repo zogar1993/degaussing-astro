@@ -155,3 +155,18 @@ main .gsc-loading-image {
 .input-contrast {
     resize: none;
 }
+
+* {
+  font-family: Inter, serif;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.gsc-comment-author > div {
+  display: none !important;
+}
