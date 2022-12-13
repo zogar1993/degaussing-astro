@@ -1,4 +1,5 @@
 ---
+import { localizePath } from "astro-i18next";
 import MainLayout from '@web/layouts/MainLayout.astro'
 import LastUpdate from '@web/components/aside/LastUpdate.astro'
 import Characters from '@web/components/aside/Characters.astro'
@@ -14,6 +15,8 @@ export interface Props {
 
 const { title, info, type } = Astro.props;
 const { backward, forward } = info;
+const previous = backward ? localizePath(`/chapters/${backward.one.chapter}/pages/${backward.one.page}`) + "#strip" : null;
+const next = forward ? localizePath(`/chapters/${forward.one.chapter}/pages/${forward.one.page}`) + "#strip" : null;
 ---
 
 <MainLayout title={title} type={type}>
@@ -28,18 +31,18 @@ const { backward, forward } = info;
         <Comments/>
     </div>
 </MainLayout>
-<script define:vars={{ backward, forward }}>
+<script define:vars={{ previous, next }}>
     const handleOnKeyDown = (e) => {
         switch (e.key) {
             case "ArrowLeft":
-                if (backward) {
-                    window.location.href =`/chapters/${backward.one.chapter}/pages/${backward.one.page}#strip`
+                if (previous) {
+                    window.location.href = previous
                     e.preventDefault()
                 }
                 break
             case "ArrowRight":
-                if (forward) {
-                    window.location.href = `/chapters/${forward.one.chapter}/pages/${forward.one.page}#strip`
+                if (next) {
+                    window.location.href = next
                     e.preventDefault()
                 }
                 break
