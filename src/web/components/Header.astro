@@ -3,12 +3,12 @@ import { getImage } from "@astrojs/image";
 import { t } from "i18next";
 import { localizePath } from "astro-i18next";
 
-const { src: logo } = await getImage({ src: "/logo_degaussing.png", width: "613", height: "177", format: "avif" });
+const { src: logo } = await getImage({ src: "/logo_degaussing_final.svg", width: "613", height: "177", format: "avif" });
 const pathname = Astro.url.pathname
 ---
 <header>
 	<div class="logo-row">
-		<img src={logo} alt="Degaussing Logo"/>
+		<img src="/logo_degaussing_final.svg" alt="Degaussing Logo"/>
 	</div>
 	<nav>
 		<a href={localizePath("/")} class={pathname === "/" && "selected"}>{t("menu.home")}</a>
@@ -39,7 +39,7 @@ const pathname = Astro.url.pathname
         display: flex;
         padding: 11px 28px;
         font-size: 32px;
-        font-family: "Germania One", "sans-serif";
+        font-family: var(--font-family-title);
         color: var(--color-primary);
 	}
 
@@ -49,5 +49,10 @@ const pathname = Astro.url.pathname
         height: 59px;
         background-color: var(--background-color-header);
         box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.25);
+	}
+
+	img {
+		width: 613px;
+		height: 177px;
 	}
 </style>

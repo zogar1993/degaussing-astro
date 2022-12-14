@@ -6,8 +6,14 @@ import Title from "@web/components/aside/Title.astro"
 <Aside grid-area="thank-you">
 	<Title>{t("strip.thank-you")}</Title>
 	<div class="buttons">
-		<a>Patreon</a>
-		<a>Ko-Fi</a>
+		<a href="">
+			<img src="/social/patreon.svg" alt=""/>
+			Patreon
+		</a>
+		<a href="https://ko-fi.com/eternallog?action=setcovercompletion">
+			<img src="/social/ko-fi.svg" alt=""/>
+			Ko-Fi
+		</a>
 	</div>
 </Aside>
 <style>
@@ -18,13 +24,17 @@ import Title from "@web/components/aside/Title.astro"
 	}
 
 	a {
-		display: flex;
-		justify-content: center;
+		display: grid;
+		grid-template-columns: 58px 1fr;
 		align-items: center;
+		padding-left: 17px;
 
 		background: #F0BE5F;
 		border: 1px solid #432918;
 		border-radius: 5px;
 		height: 62px;
+
+        font-family: var(--font-family-text);
+        color: var(--color-text-aside);
 	}
 </style>
