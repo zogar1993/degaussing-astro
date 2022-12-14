@@ -1,20 +1,18 @@
 ---
 import i18next, { t } from "i18next";
 const language = i18next.language;
-//TODO do newer first
+import {getSocialLinks} from "@server/actions/GetSocialLinks"
+
+const links = await getSocialLinks()
 ---
 <header>
     <h3>{t("comments.title")}</h3>
     <div class="buttons">
-        <a href="https://www.instagram.com/eternallog/" title="Instagram" target="_blank" rel="noopener">
-            <img src="/social/instagram.svg" alt=""/>
-        </a>
-        <a href="https://www.facebook.com/eternallogart" title="Facebook" target="_blank" rel="noopener">
-            <img src="/social/facebook.svg" alt=""/>
-        </a>
-        <a href="https://github.com/zogar1993/degaussing-astro" title="Github" target="_blank" rel="noopener">
-            <img src="/social/github.svg" alt=""/>
-        </a>
+        {links.map(link =>
+            <a href={link.href} title={link.text} target="_blank" rel="noopener">
+                <img src={link.icon} alt={link.text}/>
+            </a>
+        )}
     </div>
 </header>
 <style>
