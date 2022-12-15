@@ -96,30 +96,9 @@ main .gsc-loading-image {
   background-image: url("https://github.githubassets.com/images/mona-loading-default.gif");
 }
 
-.gsc-comment-box-markdown-hint {
-  display: none;
-}
-
 .gsc-comment-box-bottom {
   justify-content: flex-end;
   margin: 0;
-}
-
-.gsc-comment-footer {
-  display: none;
-}
-
-.gsc-replies {
-  background-color: #036363;
-  display: none;
-}
-
-.gsc-comment-box-tabs {
-  display: none;
-}
-
-.gsc-reply-box {
-  display: none;
 }
 
 .gsc-comment-box {
@@ -131,20 +110,16 @@ main .gsc-loading-image {
   margin: 0;
 }
 
+.gsc-comment > div {
+  border-width: 0 !important;
+}
+
 .gsc-comment-box-main {
   margin: 0;
 }
 
 .color-box-border-info {
   border-width: 0 !important;
-}
-
-.gsc-reactions-menu {
-  display: none;
-}
-
-.gsc-right-header {
-  display: none;
 }
 
 .input-contrast:focus {
@@ -169,4 +144,29 @@ main .gsc-loading-image {
 
 .gsc-comment-author > div {
   display: none !important;
+}
+
+.gsc-comment-box-markdown-hint {
+  display: none;
+}
+
+.gsc-replies {
+  background-color: #036363;
+  display: none;
+}
+
+.gsc-comment-box-tabs {
+  display: none;
+}
+
+.gsc-reply-box {
+  display: none;
+}
+
+.gsc-right-header {
+  display: none;
+}
+
+.gsc-comment-replies-count {
+  display: none;
 }
