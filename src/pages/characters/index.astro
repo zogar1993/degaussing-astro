@@ -12,12 +12,11 @@ for (const character of characters) {
     character.portrait = src;
 }
 ---
-
 <MainLayout title="Degaussing Comic">
     <main>
         <section>
             {characters.map((character) =>
-                <article>
+                <article id={character.slug}>
                     <img src={character.portrait} alt="wea" />
                     <div class="text-container">
                         <h4>{character.name}</h4>
