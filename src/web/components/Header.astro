@@ -1,10 +1,11 @@
 ---
+import i18next from "i18next";
 import { getImage } from "@astrojs/image";
 import { t } from "i18next";
 import { localizePath } from "astro-i18next";
 
 const { src: logo } = await getImage({ src: "/logo_degaussing_final.svg", width: "613", height: "177", format: "avif" });
-const pathname = Astro.url.pathname
+const pathname = Astro.url.pathname.split("/").filter((part, i) => !(i === 1 && part === i18next.language)).join("/")
 ---
 <header>
 	<div class="logo-row">
