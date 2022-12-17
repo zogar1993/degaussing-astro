@@ -1,12 +1,29 @@
 import {getChapters} from "@server/GetChapters"
-import {getImage} from "@server/Utils"
 
 export default async function getLastUpdate({language}: {language: string}) {
 	const chapters = await getChapters({language})
 
 	const chapter = chapters.length
-	const page = chapters[chapters.length - 1].pages.length
+	const current = chapters[chapters.length - 1]
+	const page = current.pages.length
 
-	const image = getImage({chapters, chapter, page: 0})
-	return {chapter, page, image}
+	const lastUpdate = new Date(current.pages[page - 1].createdAt)
+	const date = language === "es" ? getSpanishDate(lastUpdate) : getEnglishDate(lastUpdate, language)
+
+	const image = current.cover.image
+	return {chapter, page, image, date}
+}
+
+function getEnglishDate(date: Date, language: string) {
+	const year = date.getUTCFullYear()
+	const month = date.toLocaleString(language, { month: 'long', timeZone: "UTC" })
+	const day = date.getUTCDate()
+	return `${month} ${day}, ${year}`
+}
+
+function getSpanishDate(date: Date) {
+	const year = date.getUTCFullYear()
+	const month = date.toLocaleString("es", { month: '2-digit', timeZone: "UTC" })
+	const day = date.toLocaleString("es", { day: '2-digit', timeZone: "UTC" })
+	return `${day}/${month}/${year}`
 }

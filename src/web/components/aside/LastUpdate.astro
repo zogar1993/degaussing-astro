@@ -5,12 +5,12 @@ import getLastUpdate from "@server/actions/GetLastUpdate"
 import Aside from "@web/components/aside/Aside.astro"
 import Title from "@web/components/aside/Title.astro"
 
-const {image, chapter, page} = await getLastUpdate({language: i18next.language})
+const {image, chapter, page, date} = await getLastUpdate({language: i18next.language})
 const { src } = await getImage({ src: image, width: "161", height: "227", format: "avif" });
 ---
 <Aside grid-area="last-update">
 	<Title>{t("strip.last-update")}:</Title>
-	<span class="important">November 8th</span>
+	<span class="important">{date}</span>
 	<span class="normal">{t("strip.chapter")} {chapter} | {t("strip.page")} {page}</span>
 	<img src={src} alt="wea"/>
 </Aside>
