@@ -27,7 +27,7 @@ export function getPreviousAndFirst({chapters, chapter, page}: PageFunctionProps
 
 export function getImage({chapters, chapter, page}: PageFunctionProps) {
 	const current = chapters[chapter - 1]
-	const path = page === 0 ? current.cover : current.pages[page - 1]
+	const path = page === 0 ? current.cover.image : current.pages[page - 1].image
 	return `https:${path}`
 }
 
