@@ -1,31 +1,23 @@
 ---
 import i18next, { t } from "i18next";
 import { localizePath } from "astro-i18next";
-import { getImage } from "@astrojs/image";
+import Logo from "@web/components/Logo.astro"
 
-const { src: logo } = await getImage({ src: "/logo_degaussing_final.svg", width: "613", height: "177", format: "avif" });
 const pathname = Astro.url.pathname.split("/").filter((part, i) => !(i === 1 && part === i18next.language)).join("/")
 ---
 <header>
-	<div class="logo-row">
-		<img src="/logo_degaussing.svg" alt="Degaussing Logo"/>
-	</div>
+	<Logo/>
 	<nav>
 		<a href={localizePath("/")} class={pathname === "/" && "selected"}>{t("menu.home")}</a>
 		<a href={localizePath("/chapters")} class={pathname === "/chapters/" && "selected"}>{t("menu.chapters")}</a>
 		<a href={localizePath("/characters")} class={pathname === "/characters/" && "selected"}>{t("menu.characters")}</a>
 		<a href={localizePath("/about")} class={pathname === "/about/" && "selected"}>{t("menu.about")}</a>
+		<a href={(i18next.language === "es" ? "" : "/es") + pathname}>
+			<img src="/world.svg" alt="Change Language">
+		</a>
 	</nav>
 </header>
 <style>
-	.logo-row {
-		display: flex;
-		justify-content: center;
-		background-color: var(--background-color-header);
-		background-image: radial-gradient(circle, var(--background-3) 0%, var(--background-4) 100%);
-		padding: 33px 0;
-	}
-
 	.selected {
         color: var(--color-title);
 	}
@@ -52,7 +44,7 @@ const pathname = Astro.url.pathname.split("/").filter((part, i) => !(i === 1 && 
 	}
 
 	img {
-		width: 613px;
-		height: 177px;
+		width: 29px;
+		height: 29px;
 	}
 </style>
