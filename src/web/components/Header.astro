@@ -12,7 +12,7 @@ const pathname = Astro.url.pathname.split("/").filter((part, i) => !(i === 1 && 
 		<a href={localizePath("/chapters")} class={pathname === "/chapters/" && "selected"}>{t("menu.chapters")}</a>
 		<a href={localizePath("/characters")} class={pathname === "/characters/" && "selected"}>{t("menu.characters")}</a>
 		<a href={localizePath("/about")} class={pathname === "/about/" && "selected"}>{t("menu.about")}</a>
-		<a href={(i18next.language === "es" ? "" : "/es") + pathname} title={t("menu.language")}>
+		<a href={localizePath(pathname, i18next.language === "es" ? "en-US" : "es")} title={t("menu.language")}>
 			<img src="/world.svg" alt={t("menu.language")}>
 		</a>
 	</nav>
