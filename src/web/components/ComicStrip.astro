@@ -1,16 +1,29 @@
 ---
 import { getImage } from "@astrojs/image";
+import { stripWidth, stripHeight } from "@web/styles/CssDimensions";
 const { image } = Astro.props;
-const { src } = await getImage({ src: image, width: "856", height: "1224", format: "avif" });
+const { src } = await getImage({ src: image, width: "900", height: "1273", format: "avif" });
+
+//This strip is a little hacky because chrome likes to add a white line to the borders of the image.
+//This means that on normal strips, we do not notice the issue, but on covers it shows wrongly.
+//Having tried all internet options available, best I could think of was an extra div that does the border.
+
 ---
 <img id="strip" src={src} alt="wea"/>
+<div class="border"></div>
 <style>
    img {
-      width: 862px;
-      height: 1230px;
-      aspect-ratio: auto 862 / 1230;
-      border: var(--border);
-      border-radius: var(--border-radius);
-      background: white;
+        position: relative;
+        width: 100%;
+        aspect-ratio: var(--strip-aspect-ratio);
+        background: white;
+        border-radius: calc(var(--border-radius) + 1px);
+   }
+   .border {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border: var(--border);
+        border-radius: var(--border-radius);
    }
 </style>

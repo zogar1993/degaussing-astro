@@ -55,11 +55,12 @@ const next = forward ? localizePath(`/chapters/${forward.one.chapter}/pages/${fo
     main {
         grid-area: main;
         display: flex;
+        position: relative;
     }
 
     .grid {
         display: grid;
-        grid-template-columns: 862px 208px;
+        grid-template-columns: var(--strip-width) 208px;
         gap: 18px;
 
         padding: 30px 0;
