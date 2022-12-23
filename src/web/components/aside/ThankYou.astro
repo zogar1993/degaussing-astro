@@ -1,20 +1,23 @@
 ---
-import { t } from "i18next";
+import { t } from "i18next"
 import Aside from "@web/components/aside/Aside.astro"
 import Title from "@web/components/aside/Title.astro"
-import {getContributionLinks} from "@server/actions/GetContributionLinks"
+import { getContributionLinks } from "@server/actions/GetContributionLinks"
 
 const links = await getContributionLinks()
 ---
+
 <Aside grid-area="thank-you">
 	<Title>{t("strip.thank-you")}</Title>
 	<div class="buttons">
-		{links.map(link =>
-			<a href={link.href} target="_blank" rel="noopener">
-				<img src={link.icon} alt=""/>
-				{link.text}
-			</a>
-		)}
+		{
+			links.map((link) => (
+				<a href={link.href} target="_blank" rel="noopener">
+					<img src={link.icon} alt="" />
+					{link.text}
+				</a>
+			))
+		}
 	</div>
 </Aside>
 <style>
@@ -30,12 +33,12 @@ const links = await getContributionLinks()
 		align-items: center;
 		padding-left: 17px;
 
-		background: #F0BE5F;
+		background: #f0be5f;
 		border: 1px solid #432918;
 		border-radius: 5px;
 		height: 62px;
 
-        font-family: var(--font-family-text);
-        color: var(--color-text-aside);
+		font-family: var(--font-family-text);
+		color: var(--color-text-aside);
 	}
 </style>

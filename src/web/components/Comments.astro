@@ -1,42 +1,43 @@
 ---
-import i18next from "i18next";
-const language = i18next.language;
-import KeepInTouch from "@web/components/KeepInTouch.astro";
+import i18next from "i18next"
+const language = i18next.language
+import KeepInTouch from "@web/components/KeepInTouch.astro"
+//data-theme={`${/*Astro.url.origin*/ "https://www.degaussingcomic.com"}/styles/giscus.css`}
 ---
 
 <aside>
-    <KeepInTouch/>
-    <script
-        src="https://giscus.app/client.js"
-        data-repo="zogar1993/degaussing-astro"
-        data-repo-id="R_kgDOIaWmTA"
-        data-category="General"
-        data-category-id="DIC_kwDOIaWmTM4CS02J"
-        data-mapping="specific"
-        data-term={language === "es" ? "es" : "en"}
-        data-strict="0"
-        data-reactions-enabled="0"
-        data-emit-metadata="0"
-        data-input-position="top"
-        data-theme={`${/*Astro.url.origin*/ "https://www.degaussingcomic.com"}/styles/giscus.css`}
-        data-lang={language === "es" ? "es" : "en"}
-        data-loading="lazy"
-        crossorigin="anonymous"
-        async
-    />
+	<KeepInTouch />
+	<script
+		src="https://giscus.app/client.js"
+		data-repo="zogar1993/degaussing-astro"
+		data-repo-id="R_kgDOIaWmTA"
+		data-category="General"
+		data-category-id="DIC_kwDOIaWmTM4CS02J"
+		data-mapping="specific"
+		data-term={language === "es" ? "es" : "en"}
+		data-strict="0"
+		data-reactions-enabled="0"
+		data-emit-metadata="0"
+		data-input-position="top"
+		data-theme={`${Astro.url.origin}/styles/giscus.css`}
+		data-lang={language === "es" ? "es" : "en"}
+		data-loading="lazy"
+		crossorigin="anonymous"
+		async
+	></script>
 </aside>
 <style>
-    aside {
-        grid-area: comments;
+	aside {
+		grid-area: comments;
 
-        display: flex;
-        flex-direction: column;
-        gap: 30px;
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
 
-        background-color: var(--background-color-comments);
-        border-radius: var(--border-radius);
-        border: var(--border);
+		background-color: var(--background-color-comments);
+		border-radius: var(--border-radius);
+		border: var(--border);
 
-        padding: 42px 92px;
-    }
+		padding: 42px 92px;
+	}
 </style>

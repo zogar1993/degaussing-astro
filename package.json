@@ -1,24 +1,26 @@
 {
-  "name": "@example/basics",
-  "type": "module",
-  "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "dev": "yarn localize; astro dev",
-    "build": "yarn localize; astro build",
-    "preview": "yarn localize; astro preview",
-    "astro": "astro",
-    "localize": "yarn astro-i18next generate"
-  },
-  "dependencies": {
-    "@astrojs/image": "^0.11.4",
-    "@contentful/rich-text-html-renderer": "^15.13.1",
-    "astro": "1.6.14",
-    "astro-i18next": "1.0.0-beta.14",
-    "contentful": "9.1.29",
-    "sharp": ">=0.31.0"
-  },
-  "devDependencies": {
-    "@types/node": "^18.11.9"
-  }
+	"name": "@example/basics",
+	"type": "module",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"dev": "yarn localize; astro dev",
+		"build": "yarn localize; astro build",
+		"preview": "yarn localize; astro preview",
+		"astro": "astro",
+		"localize": "yarn astro-i18next generate"
+	},
+	"dependencies": {
+		"@astrojs/image": "^0.11.4",
+		"@contentful/rich-text-html-renderer": "^15.13.1",
+		"astro": "1.6.14",
+		"astro-i18next": "1.0.0-beta.14",
+		"contentful": "9.1.29",
+		"sharp": ">=0.31.0"
+	},
+	"devDependencies": {
+		"@types/node": "^18.11.9",
+		"prettier": "^2.8.1",
+		"prettier-plugin-astro": "^0.7.0"
+	}
 }

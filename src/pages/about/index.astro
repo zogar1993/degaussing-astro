@@ -7,34 +7,42 @@ import getAbout from "@server/actions/GetAbout";
 
 changeLanguage("en-US");
 
-const { title, banner, synopsis } = await getAbout({ language: i18next.language });
+const { title, banner, synopsis } = await getAbout({
+    language: i18next.language
+});
 const synopsisHtml = documentToHtmlString(synopsis);
-const { src } = await getImage({ src: banner, width: "798", height: "386", format: "avif" });
+const { src } = await getImage({
+    src: banner,
+    width: "798",
+    height: "386",
+    format: "avif"
+});
 ---
+
 <MainLayout title="Degaussing Comic">
-    <main>
-        <h2>{title}</h2>
-        <Fragment set:html={synopsisHtml} />
-        <img src={src} alt="wea"/>
-    </main>
+	<main>
+		<h2>{title}</h2>
+		<Fragment set:html={synopsisHtml} />
+		<img src={src} alt="wea" />
+	</main>
 </MainLayout>
 <style>
-    main {
-        display: flex;
-        flex-direction: column;
+	main {
+		display: flex;
+		flex-direction: column;
 
-        width: min(862px, 100vw);
-        margin: 30px 0;
+		width: min(862px, 100vw);
+		margin: 30px 0;
 
-        background-color: var(--background-color-primary);
-        border-radius: var(--border-radius);
+		background-color: var(--background-color-primary);
+		border-radius: var(--border-radius);
 
-        padding: 25px 32px 32px 32px;
-    }
+		padding: 25px 32px 32px 32px;
+	}
 
-    img {
-        width: 798px;
-        height: 386px;
-        aspect-ratio: auto 798 / 386;
-    }
+	img {
+		width: 798px;
+		height: 386px;
+		aspect-ratio: auto 798 / 386;
+	}
 </style>

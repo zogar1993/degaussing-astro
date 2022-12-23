@@ -9,59 +9,70 @@ changeLanguage("en-US");
 
 const chapters = await getChaptersInfo({ language: i18next.language });
 for (const chapter of chapters) {
-    const { src } = await getImage({ src: chapter.cover, width: "239", height: "339", format: "avif" });
+    const { src } = await getImage({
+        src: chapter.cover,
+        width: "239",
+        height: "339",
+        format: "avif"
+    });
     chapter.cover = src;
 }
 ---
 
 <MainLayout title="Degaussing Comic">
-    <main>
-        {chapters.map((chapter) =>
-            <article>
-                <a href={localizePath(`/chapters/${chapter.number}/pages/0`) + "#strip"}>
-                    <img src={chapter.cover} alt="wea"/>
-                </a>
-                <h4>{chapter.name}</h4>
-                <span>{chapter.pagesAmount} pages</span>
-            </article>
-        )}
-    </main>
+	<main>
+		{
+			chapters.map((chapter) => (
+				<article>
+					<a
+						href={
+							localizePath(`/chapters/${chapter.number}/pages/0`) + "#strip"
+						}
+					>
+						<img src={chapter.cover} alt="wea" />
+					</a>
+					<h4>{chapter.name}</h4>
+					<span>{chapter.pagesAmount} pages</span>
+				</article>
+			))
+		}
+	</main>
 </MainLayout>
 <style>
-    main {
-        display: grid;
-        grid-template-columns: auto auto auto;
-        justify-content: space-between;
+	main {
+		display: grid;
+		grid-template-columns: auto auto auto;
+		justify-content: space-between;
 
-        width: min(862px, 100vw);
-        margin: 30px 0;
+		width: min(862px, 100vw);
+		margin: 30px 0;
 
-        background-color: var(--background-color-primary);
-        border-radius: var(--border-radius);
+		background-color: var(--background-color-primary);
+		border-radius: var(--border-radius);
 
-        padding: 25px 32px 32px 32px;
-    }
+		padding: 25px 32px 32px 32px;
+	}
 
-    img {
-        width: 239px;
-        height: 339px;
+	img {
+		width: 239px;
+		height: 339px;
 
-        margin-bottom: 20px;
+		margin-bottom: 20px;
 
-        border-radius: var(--border-radius);
-    }
+		border-radius: var(--border-radius);
+	}
 
-    h4 {
-        color: var(--color-title);
-        font-family: var(--font-family-title);
-        font-size: 24px;
+	h4 {
+		color: var(--color-title);
+		font-family: var(--font-family-title);
+		font-size: 24px;
 
-        margin-bottom: 10px;
-    }
+		margin-bottom: 10px;
+	}
 
-    span {
-        color: var(--color-muted);
-        font-family: var(--font-family-text);
-        font-size: 14px;
-    }
+	span {
+		color: var(--color-muted);
+		font-family: var(--font-family-text);
+		font-size: 14px;
+	}
 </style>

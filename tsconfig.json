@@ -1,12 +1,12 @@
 {
-  "extends": "astro/tsconfigs/strict",
+	"extends": "astro/tsconfigs/strict",
 
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@web/*": ["src/web/*"],
-      "@server/*": ["src/server/*"],
-      "@transport/*": ["src/transport/*"]
-    }
-  }
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@web/*": ["src/web/*"],
+			"@server/*": ["src/server/*"],
+			"@transport/*": ["src/transport/*"]
+		}
+	}
 }

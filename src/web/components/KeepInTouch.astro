@@ -1,49 +1,51 @@
 ---
-import i18next, { t } from "i18next";
-const language = i18next.language;
-import {getSocialLinks} from "@server/actions/GetSocialLinks"
+import i18next, { t } from "i18next"
+const language = i18next.language
+import { getSocialLinks } from "@server/actions/GetSocialLinks"
 
 const links = await getSocialLinks()
 ---
+
 <header>
-    <h3>{t("comments.title")}</h3>
-    <div class="buttons">
-        {links.map(link =>
-            <a href={link.href} title={link.text} target="_blank" rel="noopener">
-                <img src={link.icon} alt={link.text}/>
-            </a>
-        )}
-    </div>
+	<h3>{t("comments.title")}</h3>
+	<div class="buttons">
+		{
+			links.map((link) => (
+				<a href={link.href} title={link.text} target="_blank" rel="noopener">
+					<img src={link.icon} alt={link.text} />
+				</a>
+			))
+		}
+	</div>
 </header>
 <style>
-    header {
-        display: flex;
-        justify-content: space-between;
-    }
-    .buttons {
-        display: flex;
-        gap: 9px;
-    }
-    a {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+	header {
+		display: flex;
+		justify-content: space-between;
+	}
+	.buttons {
+		display: flex;
+		gap: 9px;
+	}
+	a {
+		display: flex;
+		justify-content: center;
+		align-items: center;
 
-        width: 31px;
-        height: 31px;
-        background: rgba(128, 128, 128, 0.44);
-        border-radius: 5px;
-        fill: #F0BE5F;
-        color: #F0BE5F;
-        font-weight: bold;
-
-    }
-    h3 {
-        font-family: var(--font-family-title);
-        font-style: normal;
-        font-weight: 400;
-        font-size: 32px;
-        line-height: 37px;
-        color: #FFFFFF;
-    }
+		width: 31px;
+		height: 31px;
+		background: rgba(128, 128, 128, 0.44);
+		border-radius: 5px;
+		fill: #f0be5f;
+		color: #f0be5f;
+		font-weight: bold;
+	}
+	h3 {
+		font-family: var(--font-family-title);
+		font-style: normal;
+		font-weight: 400;
+		font-size: 32px;
+		line-height: 37px;
+		color: #ffffff;
+	}
 </style>

@@ -1,7 +1,11 @@
-import {getChapters} from "@server/GetChapters"
+import { getChapters } from "@server/GetChapters"
 
-export default async function getChaptersInfo({language}: {language: string}) {
-	const chapters = await getChapters({language})
+export default async function getChaptersInfo({
+	language
+}: {
+	language: string
+}) {
+	const chapters = await getChapters({ language })
 
 	return chapters.map((chapter, i) => ({
 		name: chapter.name,

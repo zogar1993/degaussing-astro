@@ -1,8 +1,11 @@
 import fs from "fs"
 import path from "path"
-import {fetchEntries} from "@server/FetchEntries"
+import { fetchEntries } from "@server/FetchEntries"
 
-export async function getEntries<T>(type: string, locale?: string): Promise<ReadonlyArray<T>> {
+export async function getEntries<T>(
+	type: string,
+	locale?: string
+): Promise<ReadonlyArray<T>> {
 	const cachePath = path.resolve(`.cache/${type}_${locale}`)
 	try {
 		const entries = readFile(cachePath)

@@ -1,46 +1,51 @@
 ---
-import Header from '@web/components/Header.astro';
-import ResetCss from '@web/styles/ResetCss.astro';
-import FontsCss from '@web/styles/FontsCss.astro';
-import VariablesCss from '@web/styles/VariablesCss.astro';
-import { HeadHrefLangs } from "astro-i18next/components";
+import Header from "@web/components/Header.astro"
+import ResetCss from "@web/styles/ResetCss.astro"
+import FontsCss from "@web/styles/FontsCss.astro"
+import VariablesCss from "@web/styles/VariablesCss.astro"
+import { HeadHrefLangs } from "astro-i18next/components"
 
 export interface Props {
-	title: string;
-	type: string;
+	title: string
+	type: string
 }
 
-const { title, type } = Astro.props;
+const { title, type } = Astro.props
 ---
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-	    <title>{title}</title>
-	    <link rel="icon" href="/favicon.ico"/>
-	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	    <ResetCss/>
-	    <FontsCss/>
-	    <VariablesCss/>
-	    <HeadHrefLangs/>
+		<title>{title}</title>
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<ResetCss />
+		<FontsCss />
+		<VariablesCss />
+		<HeadHrefLangs />
 	</head>
 	<body>
-    	<Header type={type}/>
-    	<div class="dynamic-content">
-    		<slot/>
+		<Header type={type} />
+		<div class="dynamic-content">
+			<slot />
 		</div>
+		<style>
+			body {
+				display: flex;
+				flex-direction: column;
+				align-items: stretch;
+			}
+
+			.dynamic-content {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				background-image: linear-gradient(
+					to bottom,
+					var(--background-1),
+					var(--background-2)
+				);
+			}
+		</style>
 	</body>
 </html>
-<style>
-    body {
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .dynamic-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background-image: linear-gradient(to bottom, var(--background-1), var(--background-2));
-    }
-</style>

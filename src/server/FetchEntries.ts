@@ -5,7 +5,10 @@ const client = contentful.createClient({
 	accessToken: import.meta.env.CONTENTFUL_ACCESS_TOKEN!
 })
 
-export async function fetchEntries<T>(type: string, locale?: string): Promise<ReadonlyArray<T>> {
+export async function fetchEntries<T>(
+	type: string,
+	locale?: string
+): Promise<ReadonlyArray<T>> {
 	//These are the max values for both limit and include at the time
 	const response = await client.getEntries({
 		content_type: type,
@@ -17,7 +20,7 @@ export async function fetchEntries<T>(type: string, locale?: string): Promise<Re
 }
 
 function contentfulToPlainObject(obj: any) {
-	const result = {...obj.fields}
+	const result = { ...obj.fields }
 	for (const [key, value] of Object.entries(result)) {
 		result[key] = Array.isArray(value)
 			? contentfulToArrayOfPlainObjects(value)
@@ -27,7 +30,7 @@ function contentfulToPlainObject(obj: any) {
 }
 
 function contentfulToArrayOfPlainObjects(arr: ReadonlyArray<any>) {
-	return arr.map(x => unwrap(x))
+	return arr.map((x) => unwrap(x))
 }
 
 function unwrap(value: any) {

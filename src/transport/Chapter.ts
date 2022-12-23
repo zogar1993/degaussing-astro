@@ -5,4 +5,4 @@ export type Chapter = {
 	number: number
 }
 
-type Page = { name: string, image: string, createdAt: string }
+type Page = { name: string; image: string; createdAt: string }

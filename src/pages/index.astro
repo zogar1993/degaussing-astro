@@ -8,6 +8,7 @@ changeLanguage("en-US");
 
 const info = await getLastPage({ language: i18next.language });
 ---
+
 <StripAsideLayout title="Degaussing Comic" info={info}>
-   <ComicStrip image={info.image} />
+	<ComicStrip image={info.image} />
 </StripAsideLayout>

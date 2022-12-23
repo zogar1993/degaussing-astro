@@ -1,88 +1,95 @@
 ---
-import { localizePath } from "astro-i18next";
-import MainLayout from '@web/layouts/MainLayout.astro'
-import LastUpdate from '@web/components/aside/LastUpdate.astro'
-import Characters from '@web/components/aside/Characters.astro'
-import ThankYou from '@web/components/aside/ThankYou.astro'
-import StickyNavBar from '@web/components/StickyNavBar.astro'
-import Comments from '@web/components/Comments.astro'
+import { localizePath } from "astro-i18next"
+import MainLayout from "@web/layouts/MainLayout.astro"
+import LastUpdate from "@web/components/aside/LastUpdate.astro"
+import Characters from "@web/components/aside/Characters.astro"
+import ThankYou from "@web/components/aside/ThankYou.astro"
+import StickyNavBar from "@web/components/StickyNavBar.astro"
+import Comments from "@web/components/Comments.astro"
 
 export interface Props {
-    title: string;
-	info: any;
-	type: string;
+	title: string
+	info: any
+	type: string
 }
 
-const { title, info, type } = Astro.props;
-const { backward, forward } = info;
-const previous = backward ? localizePath(`/chapters/${backward.one.chapter}/pages/${backward.one.page}`) + "#strip" : null;
-const next = forward ? localizePath(`/chapters/${forward.one.chapter}/pages/${forward.one.page}`) + "#strip" : null;
+const { title, info, type } = Astro.props
+const { backward, forward } = info
+const previous = backward
+	? localizePath(
+			`/chapters/${backward.one.chapter}/pages/${backward.one.page}`
+	  ) + "#strip"
+	: null
+const next = forward
+	? localizePath(`/chapters/${forward.one.chapter}/pages/${forward.one.page}`) +
+	  "#strip"
+	: null
 ---
 
 <MainLayout title={title} type={type}>
-    <div class="grid">
-        <main>
-            <slot/>
-        </main>
-        <LastUpdate/>
-        <Characters/>
-        <ThankYou/>
-        <StickyNavBar info={info} />
-        <Comments/>
-    </div>
+	<div class="grid">
+		<main>
+			<slot />
+		</main>
+		<LastUpdate />
+		<Characters />
+		<ThankYou />
+		<StickyNavBar info={info} />
+		<Comments />
+	</div>
 </MainLayout>
 <script define:vars={{ previous, next }}>
-    const handleOnKeyDown = (e) => {
-        switch (e.key) {
-            case "ArrowLeft":
-                if (previous) {
-                    window.location.href = previous
-                    e.preventDefault()
-                }
-                break
-            case "ArrowRight":
-                if (next) {
-                    window.location.href = next
-                    e.preventDefault()
-                }
-                break
-        }
-    }
+	const handleOnKeyDown = (e) => {
+		switch (e.key) {
+			case "ArrowLeft":
+				if (previous) {
+					window.location.href = previous
+					e.preventDefault()
+				}
+				break
+			case "ArrowRight":
+				if (next) {
+					window.location.href = next
+					e.preventDefault()
+				}
+				break
+		}
+	}
 
-    document.body.addEventListener("keydown", handleOnKeyDown)
+	document.body.addEventListener("keydown", handleOnKeyDown)
 </script>
 <style>
-    main {
-        grid-area: main;
-        display: flex;
-        position: relative;
-    }
+	main {
+		grid-area: main;
+		display: flex;
+		position: relative;
+	}
 
-    .grid {
-        display: grid;
-        grid-template-columns: var(--strip-width) 208px;
-        gap: 18px;
+	.grid {
+		display: grid;
+		grid-template-columns: var(--strip-width) 208px;
+		gap: 18px;
 
-        padding: 30px 0;
+		padding: 30px 0;
 
-        grid-template-areas:
-            "main last-update"
-            "main characters"
-            "main thank-you"
-            "sticky-bar nothing"
-            "comments comments";
-    }
+		grid-template-areas:
+			"main last-update"
+			"main characters"
+			"main thank-you"
+			"sticky-bar nothing"
+			"comments comments";
+	}
 
-    @media (max-width: 992px) {
-        .grid {
-            grid-template-columns: 1fr;
-            grid-template-areas:
-                "main"
-                "last-update"
-                "characters"
-                "thank-you"
-                "sticky-bar"
-                "comments";
-        }
-    }
+	@media (max-width: 992px) {
+		.grid {
+			grid-template-columns: 1fr;
+			grid-template-areas:
+				"main"
+				"last-update"
+				"characters"
+				"thank-you"
+				"sticky-bar"
+				"comments";
+		}
+	}
 </style>

@@ -8,80 +8,88 @@ changeLanguage("en-US");
 
 const characters = await getCharactersInfo({ language: i18next.language });
 for (const character of characters) {
-    const { src } = await getImage({ src: character.portrait, width: "222", height: "313", format: "avif" });
+    const { src } = await getImage({
+        src: character.portrait,
+        width: "222",
+        height: "313",
+        format: "avif"
+    });
     character.portrait = src;
 }
 ---
+
 <MainLayout title="Degaussing Comic">
-    <main>
-        <section>
-            {characters.map((character) =>
-                <article id={character.slug}>
-                    <img src={character.portrait} alt={character.name} />
-                    <div class="text-container">
-                        <h4>{character.name}</h4>
-                        <p>{character.description}</p>
-                    </div>
-                </article>
-            )}
-        </section>
-    </main>
+	<main>
+		<section>
+			{
+				characters.map((character) => (
+					<article id={character.slug}>
+						<img src={character.portrait} alt={character.name} />
+						<div class="text-container">
+							<h4>{character.name}</h4>
+							<p>{character.description}</p>
+						</div>
+					</article>
+				))
+			}
+		</section>
+	</main>
 </MainLayout>
 <style>
-    main {
-        width: min(862px, 100vw);
-        margin: 30px 0;
+	main {
+		width: min(862px, 100vw);
+		margin: 30px 0;
 
-        background-color: var(--background-color-comments);
-        border-radius: var(--border-radius);
+		background-color: var(--background-color-comments);
+		border-radius: var(--border-radius);
 
-        padding: 25px 32px 32px 32px;
-    }
+		padding: 25px 32px 32px 32px;
+	}
 
-    section {
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
+	section {
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
 
-        background: #FFFFFF;
-        border: 1px solid #1D1D1B;
-        border-radius: var(--border-radius);
-    }
+		background: #ffffff;
+		border: 1px solid #1d1d1b;
+		border-radius: var(--border-radius);
+	}
 
-    article {
-        display: flex;
-        gap: 15px;
-    }
+	article {
+		display: flex;
+		gap: 15px;
+	}
 
-    article:nth-child(even) {
-        flex-direction: row-reverse;
-        margin-left: 40px;
-    }
+	article:nth-child(even) {
+		flex-direction: row-reverse;
+		margin-left: 40px;
+	}
 
-    article:nth-child(odd) {
-        margin-right: 40px;
-    }
+	article:nth-child(odd) {
+		margin-right: 40px;
+	}
 
-    img {
-        width: 239px;
-        height: 338px;
-    }
+	img {
+		width: 239px;
+		height: 338px;
+	}
 
-    h4 {
-        font-family: var(--font-family-title);
-        font-size: 80px;
-        line-height: 93px;
-        color: var(--color-title);
-    }
+	h4 {
+		font-family: var(--font-family-title);
+		font-size: 80px;
+		line-height: 93px;
+		color: var(--color-title);
+	}
 
-    p {
-        font-family: var(--font-family-text);
-        font-size: 16px;
-        line-height: 22px;
-    }
+	p {
+		font-family: var(--font-family-text);
+		font-size: 16px;
+		line-height: 22px;
+	}
 
-    .text-container {
-        display: flex;
-        flex-direction: column;
-    }
+	.text-container {
+		display: flex;
+		flex-direction: column;
+	}
 </style>
