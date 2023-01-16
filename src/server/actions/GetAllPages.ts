@@ -4,7 +4,6 @@ import getPageInfo from "@server/GetPageInfo"
 export default async function getAllPages({ language }: { language: string }) {
 	const chapters = await getChapters({ language })
 
-	//const locales = ["en-US", "es"]
 	const chapterNumbers = chapters.flatMap((chapter, i) => [
 		{ chapter: i + 1, page: 0 },
 		...chapter.pages.map((_, j) => ({ chapter: i + 1, page: j + 1 }))
@@ -19,6 +18,6 @@ export default async function getAllPages({ language }: { language: string }) {
 			props
 		}
 	})
-	//const localized = paths.flatMap(path => locales.map(locale => ({...path, locale})))
+
 	return paths
 }
