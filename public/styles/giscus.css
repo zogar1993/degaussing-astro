@@ -42,7 +42,6 @@ main {
 	--color-btn-primary-border: rgb(27 31 36 / 15%);
 	--color-btn-primary-shadow: 0 1px 0 rgb(27 31 36 / 10%);
 	--color-btn-primary-inset-shadow: inset 0 1px 0 rgb(255 255 255 / 3%);
-	--color-btn-primary-hover-bg: #2c974b;
 	--color-btn-primary-hover-border: rgb(27 31 36 / 15%);
 	--color-btn-primary-selected-bg: hsl(137deg 55% 36% / 100%);
 	--color-btn-primary-selected-shadow: inset 0 1px 0 rgb(0 45 17 / 20%);
@@ -77,13 +76,14 @@ main {
 	--color-btn-primary-disabled-border: transparent;
 	--color-btn-primary-disabled-text: #3c3c3bbb;
 
+	--color-btn-primary-hover-bg: #f0be5f;
 	--color-btn-primary-bg: #f0be5f;
 	--color-btn-primary-text: #3c3c3b;
 
 	--color-fg-default: #ffffff;
 	--color-fg-muted: #dddddd;
 
-	--color-canvas-default: #036363;
+	--color-canvas-default: #273D5F;
 	--color-canvas-inset: #ffffff;
 }
 
@@ -168,4 +168,12 @@ main .gsc-loading-image {
 
 .gsc-comment-replies-count {
 	display: none;
+}
+
+.gsc-comment-reactions > button:first-child {
+	display: none;
+}
+
+.btn-primary:disabled {
+	cursor: not-allowed;
 }
