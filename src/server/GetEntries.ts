@@ -8,9 +8,7 @@ export async function getEntries<T>(
 ): Promise<ReadonlyArray<T>> {
 	const cachePath = path.resolve(`.cache/${type}_${locale}`)
 	try {
-		const entries = readFile(cachePath)
-		console.log(`Using cache for ${type}`)
-		return entries
+		return readFile(cachePath)
 	} catch (error) {
 		console.log(`Could not use cache for ${type}`)
 	}
