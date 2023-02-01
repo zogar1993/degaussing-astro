@@ -2,8 +2,8 @@
 import i18next from "i18next"
 const language = i18next.language
 import KeepInTouch from "@web/components/KeepInTouch.astro"
-//data-theme={`${/*Astro.url.origin*/ "https://www.degaussingcomic.com"}/styles/giscus.css`}
-console.log("astro url", Astro.url.origin)
+const protocol = import.meta.env.PROTOCOL!
+const domain = import.meta.env.DOMAIN!
 ---
 
 <aside>
@@ -20,7 +20,7 @@ console.log("astro url", Astro.url.origin)
 		data-reactions-enabled="0"
 		data-emit-metadata="0"
 		data-input-position="top"
-		data-theme={`${Astro.url.origin}/styles/giscus.css`}
+		data-theme={`${protocol}://${domain}/styles/giscus.css`}
 		data-lang={language === "es" ? "es" : "en"}
 		data-loading="lazy"
 		crossorigin="anonymous"
