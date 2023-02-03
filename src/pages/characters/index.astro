@@ -29,15 +29,15 @@ for (const character of characters) {
 							<h4>{character.name}</h4>
 							<dl>
 								<div class="key-value">
-									<dt>Age:&nbsp;</dt>
+									<dt>Age</dt>
 									<dd>{character.age} years old.</dd>
 								</div>
 								<div class="key-value">
-									<dt>Likes:&nbsp;</dt>
+									<dt>Likes</dt>
 									<dd>{character.likes.join(", ")}.</dd>
 								</div>
 								<div class="key-value">
-									<dt>Dislikes:&nbsp;</dt>
+									<dt>Dislikes</dt>
 									<dd>{character.dislikes.join(", ")}.</dd>
 								</div>
 							</dl>
@@ -68,25 +68,23 @@ for (const character of characters) {
 		background: #ffffff;
 		border: 1px solid #1d1d1b;
 		border-radius: var(--border-radius);
+
+		padding: 24px;
 	}
 
 	article {
 		display: flex;
-		gap: 15px;
+		gap: 20px;
 	}
 
 	article:nth-child(even) {
 		flex-direction: row-reverse;
-		margin-left: 40px;
-	}
-
-	article:nth-child(odd) {
-		margin-right: 40px;
 	}
 
 	img {
 		width: 239px;
 		height: 338px;
+		border-radius: var(--border-radius);
 	}
 
 	h4 {
@@ -100,11 +98,14 @@ for (const character of characters) {
 		font-family: var(--font-family-text);
 		font-size: 16px;
 		line-height: 22px;
+		margin-top: 4px;
 	}
 
 	.text-container {
 		display: flex;
 		flex-direction: column;
+		padding-left: 4px;
+		padding-right: 4px;
 	}
 
 	.key-value {
@@ -112,6 +113,10 @@ for (const character of characters) {
 	}
 
 	dl {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+
 		font-family: var(--font-family-text);
 		line-height: 22px;
 		font-size: 16px;
@@ -123,14 +128,10 @@ for (const character of characters) {
 	}
 
 	dt::after {
-		content: " ";
+		content:":\00a0";
 	}
 
-	dl {
-
-	}
-
-	dd:first-letter {
+	dd::first-letter {
     	text-transform: uppercase;
 	}
 </style>
