@@ -27,6 +27,20 @@ for (const character of characters) {
 						<img src={character.portrait} alt={character.name} />
 						<div class="text-container">
 							<h4>{character.name}</h4>
+							<dl>
+								<div class="key-value">
+									<dt>Age:&nbsp;</dt>
+									<dd>{character.age} years old.</dd>
+								</div>
+								<div class="key-value">
+									<dt>Likes:&nbsp;</dt>
+									<dd>{character.likes.join(", ")}.</dd>
+								</div>
+								<div class="key-value">
+									<dt>Dislikes:&nbsp;</dt>
+									<dd>{character.dislikes.join(", ")}.</dd>
+								</div>
+							</dl>
 							<p>{character.description}</p>
 						</div>
 					</article>
@@ -91,5 +105,32 @@ for (const character of characters) {
 	.text-container {
 		display: flex;
 		flex-direction: column;
+	}
+
+	.key-value {
+		display: flex;
+	}
+
+	dl {
+		font-family: var(--font-family-text);
+		line-height: 22px;
+		font-size: 16px;
+	}
+
+	dt {
+		color: var(--color-title);
+		font-weight: 600;
+	}
+
+	dt::after {
+		content: " ";
+	}
+
+	dl {
+
+	}
+
+	dd:first-letter {
+    	text-transform: uppercase;
 	}
 </style>
