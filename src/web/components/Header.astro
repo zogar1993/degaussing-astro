@@ -66,4 +66,14 @@ const pathname = Astro.url.pathname
 		width: 29px;
 		height: 29px;
 	}
+
+	@media (max-width: 992px) {
+		a {
+			display: none;
+		}
+
+		a.selected {
+			display: flex;
+		}
+	}
 </style>
