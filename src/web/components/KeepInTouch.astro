@@ -23,10 +23,12 @@ const links = await getSocialLinks()
 		display: flex;
 		justify-content: space-between;
 	}
+
 	.buttons {
 		display: flex;
 		gap: 9px;
 	}
+
 	a {
 		display: flex;
 		justify-content: center;
@@ -40,6 +42,7 @@ const links = await getSocialLinks()
 		color: #f0be5f;
 		font-weight: bold;
 	}
+
 	h3 {
 		font-family: var(--font-family-title);
 		font-style: normal;
@@ -47,5 +50,17 @@ const links = await getSocialLinks()
 		font-size: 32px;
 		line-height: 37px;
 		color: #ffffff;
+	}
+
+	@media (max-width: 992px) {
+		header {
+			flex-direction: column;
+			gap: 24px;
+		}
+
+		h3 {
+			font-size: 24px;
+			line-height: 28px;
+		}
 	}
 </style>
