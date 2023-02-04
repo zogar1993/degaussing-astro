@@ -12,21 +12,21 @@ const pathname = Astro.url.pathname
 <header>
 	<Logo />
 	<nav>
-		<a href={localizePath("/")} class={pathname === "/" && "selected"}
+		<a href={localizePath("/")} class={pathname === "/" ? "selected" : ""}
 			>{t("menu.home")}</a
 		>
 		<a
 			href={localizePath("/chapters")}
-			class={pathname === "/chapters/" && "selected"}>{t("menu.chapters")}</a
+			class={pathname === "/chapters/" ? "selected" : ""}>{t("menu.chapters")}</a
 		>
 		<a
 			href={localizePath("/characters")}
-			class={pathname === "/characters/" && "selected"}
+			class={pathname === "/characters/" ? "selected" : ""}
 			>{t("menu.characters")}</a
 		>
 		<a
 			href={localizePath("/about")}
-			class={pathname === "/about/" && "selected"}>{t("menu.about")}</a
+			class={pathname === "/about/" ? "selected" : ""}>{t("menu.about")}</a
 		>
 		<a
 			href={localizePath(pathname, i18next.language === "es" ? "en-US" : "es")}
