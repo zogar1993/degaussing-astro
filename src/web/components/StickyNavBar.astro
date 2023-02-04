@@ -43,7 +43,7 @@ const {
 			)
 		}
 	</div>
-	<div>
+	<div class="text">
 		{t("strip.chapter")}
 		{chapter} | {page === 0 ? t("strip.cover") : `${t("strip.page")} ${page}`}
 	</div>
@@ -113,5 +113,29 @@ const {
 
 	a {
 		color: var(--color-primary);
+	}
+
+	@media (max-width: 992px) {
+		.sticky-bar {
+			padding: 0 32px;
+		width: calc(100% - 32px);
+			height: 40px;
+		}
+
+		.navigation-arrows {
+			display: flex;
+			width: 36px;
+			justify-content: space-between;
+		}
+
+		a {
+			font-size: 16px;
+			line-height: 19px;
+		}
+
+		.text {
+			font-size: 20px;
+			line-height: 23px;
+		}
 	}
 </style>
