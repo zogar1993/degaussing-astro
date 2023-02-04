@@ -17,12 +17,16 @@ const { src } = await getImage({
 ---
 
 <Aside grid-area="last-update">
-	<Title>{t("strip.last-update")}:</Title>
-	<span class="important">{date}</span>
-	<span class="normal"
-		>{t("strip.chapter")} {chapter} | {t("strip.page")} {page}</span
-	>
-	<img src={src} alt="wea" />
+	<div class="container">
+		<div class="text-container">
+			<Title>{t("strip.last-update")}:</Title>
+			<span class="important">{date}</span>
+			<span class="normal">
+				{t("strip.chapter")} {chapter} | {t("strip.page")} {page}
+			</span>
+		</div>
+		<img src={src} alt="wea" />
+	</div>
 </Aside>
 <style>
 	.important {
@@ -44,5 +48,29 @@ const { src } = await getImage({
 		width: 161px;
 		height: 227px;
 		border-radius: var(--border-radius);
+	}
+
+	.text-container {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.container {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		flex-grow: 1;
+	}
+
+	@media (max-width: 992px) {
+		img {
+			width: 97px;
+			height: 137px;
+		}
+
+		.container {
+			flex-direction: row;
+		}
 	}
 </style>

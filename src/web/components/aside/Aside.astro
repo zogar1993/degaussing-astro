@@ -7,14 +7,18 @@ const area = Astro.props["grid-area"]
 </aside>
 <style>
 	aside {
+		display: flex;
+
 		background-color: var(--background-color-primary);
 		border-radius: var(--border-radius);
 		border: var(--border);
 
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-
 		padding: 24px;
+	}
+
+	@media (max-width: 992px) {
+		aside {
+			padding: 14px;
+		}
 	}
 </style>

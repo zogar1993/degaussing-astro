@@ -19,15 +19,19 @@ for (const character of characters) {
 ---
 
 <Aside grid-area="characters">
-	<Title>{t("strip.characters")}</Title>
-	{
-		characters.map((character) => (
-			<a href={localizePath("/characters") + `#${character.slug}`}>
-				<img src={character.portrait} alt="" />
-				<span>{character.name}</span>
-			</a>
-		))
-	}
+	<div class="container">
+		<Title>{t("strip.characters")}</Title>
+		<div class="links">
+			{
+				characters.map((character) => (
+					<a href={localizePath("/characters") + `#${character.slug}`}>
+						<img src={character.portrait} alt="" />
+						<span>{character.name}</span>
+					</a>
+				))
+			}
+		</div>
+	</div>
 </Aside>
 <style>
 	a {
@@ -49,5 +53,31 @@ for (const character of characters) {
 		font-family: var(--font-family-text);
 		font-size: 14px;
 		line-height: 23px;
+	}
+
+	.container {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		flex-grow: 1;
+
+		gap: 14px;
+	}
+
+	.links {
+		display: flex;
+		flex-direction: column;
+	}
+
+	@media (max-width: 992px) {
+		.links {
+			flex-direction: row;
+			justify-content: space-evenly;
+		}
+
+		img {
+			width: 71px;
+			height: 71px;
+		}
 	}
 </style>
