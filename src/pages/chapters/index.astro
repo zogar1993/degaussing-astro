@@ -1,5 +1,5 @@
 ---
-import i18next, { changeLanguage } from "i18next";
+import i18next, { changeLanguage, t } from "i18next";
 import { localizePath } from "astro-i18next";
 import { getImage } from "@astrojs/image";
 import MainLayout from "@web/layouts/MainLayout.astro";
@@ -22,7 +22,7 @@ for (const chapter of chapters) {
 <MainLayout title="Degaussing Comic">
 	<main>
 		{
-			chapters.map((chapter) => (
+			chapters.map((chapter, i) => (
 				<article>
 					<a
 						href={
@@ -31,8 +31,8 @@ for (const chapter of chapters) {
 					>
 						<img src={chapter.cover} alt="wea" />
 					</a>
-					<h4>{chapter.name}</h4>
-					<span>{chapter.pagesAmount} pages</span>
+					<h4>{t("chapters.chapter")} {i + 1}</h4>
+					<span>{chapter.pagesAmount} {t("chapters.pages")}</span>
 				</article>
 			))
 		}

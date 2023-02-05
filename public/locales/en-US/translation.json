@@ -1,20 +1,24 @@
 {
-	"menu": {
-		"home": "Home",
-		"chapters": "Chapter",
-		"characters": "Characters",
-		"about": "About",
-		"language": "Change Language"
-	},
-	"strip": {
-		"last-update": "Last Update",
-		"characters": "Characters",
-		"thank-you": "Thank you!",
-		"page": "Page",
-		"chapter": "Chapter",
-		"cover": "Cover"
-	},
-	"comments": {
-		"title": "Thanks for visiting us! Let's keep in touch!"
-	}
+  "menu": {
+    "home": "Home",
+    "chapters": "Chapter",
+    "characters": "Characters",
+    "about": "About",
+    "language": "Change Language"
+  },
+  "strip": {
+    "last-update": "Last Update",
+    "characters": "Characters",
+    "thank-you": "Thank you!",
+    "page": "Page",
+    "chapter": "Chapter",
+    "cover": "Cover"
+  },
+  "chapters": {
+    "chapter": "Chapter",
+    "pages": "pages"
+  },
+  "comments": {
+    "title": "Thanks for visiting us! Let's keep in touch!"
+  }
 }
