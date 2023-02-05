@@ -47,8 +47,6 @@ main {
 	--color-btn-primary-selected-shadow: inset 0 1px 0 rgb(0 45 17 / 20%);
 	--color-fg-subtle: #6e7781;
 	--color-canvas-overlay: #fff;
-	--color-canvas-subtle: #f6f8fa;
-	--color-border-default: #d0d7de;
 	--color-border-muted: hsl(210deg 18% 87% / 100%);
 	--color-neutral-muted: rgb(175 184 193 / 20%);
 	--color-neutral-subtle: rgb(234 238 242 / 50%);
@@ -65,7 +63,6 @@ main {
 	--color-danger-subtle: #ffebe9;
 	--color-primer-shadow-focus: 0 0 0 3px rgb(9 105 218 / 30%);
 	--color-primer-shadow-inset: inset 0 1px 0 rgb(208 215 222 / 20%);
-	--color-scale-gray-1: #eaeef2;
 	--color-scale-blue-1: #b6e3ff;
 
 	/*! Extensions from @primer/css/alerts/flash.scss */
@@ -85,6 +82,11 @@ main {
 
 	--color-canvas-default: #273D5F;
 	--color-canvas-inset: #ffffff;
+	--color-canvas-subtle: rgba(128,128,128,0.44);
+	--color-scale-gray-1: rgba(128,128,128,0.44);
+
+
+	--color-border-default: transparent;
 }
 
 main .pagination-loader-container {
@@ -176,4 +178,12 @@ main .gsc-loading-image {
 
 .btn-primary:disabled {
 	cursor: not-allowed;
+}
+
+.octicon-smiley {
+	fill: #f0be5f;
+}
+
+.gsc-social-reaction-summary-item {
+	background-color: rgba(128,128,128,0.44);
 }
