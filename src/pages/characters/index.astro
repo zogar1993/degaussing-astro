@@ -134,4 +134,14 @@ for (const character of characters) {
 	dd::first-letter {
     	text-transform: uppercase;
 	}
+
+	@media (max-width: 992px) {
+		article {
+			flex-direction: column;
+		}
+
+		article:nth-child(even) {
+			flex-direction: column;
+		}
+	}
 </style>
