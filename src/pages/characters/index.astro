@@ -40,7 +40,7 @@ for (const character of characters) {
 </MainLayout>
 <style>
 	main {
-		width: min(862px, 100vw);
+		width: 862px;
 		margin: 30px 0;
 
 		background-color: var(--background-color-secondary);
@@ -72,7 +72,7 @@ for (const character of characters) {
 
 	img {
 		width: 239px;
-		height: 338px;
+		aspect-ratio: 239 / 338;
 		border-radius: var(--border-radius);
 	}
 
@@ -109,6 +109,24 @@ for (const character of characters) {
 
 		article:nth-child(even) {
 			flex-direction: column;
+		}
+
+		main {
+			padding: 0;
+			width: 100%;
+		}
+
+		section {
+			border: var(--border);
+			gap: 72px;
+		}
+
+		article {
+			gap: 16px;
+		}
+
+		img {
+			width: 100%;
 		}
 	}
 </style>
