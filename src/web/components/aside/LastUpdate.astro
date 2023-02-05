@@ -5,7 +5,7 @@ import getLastUpdate from "@server/actions/GetLastUpdate"
 import Aside from "@web/components/aside/Aside.astro"
 import Title from "@web/components/aside/Title.astro"
 
-const { image, chapter, page, date } = await getLastUpdate({
+const { image, chapter, date } = await getLastUpdate({
 	language: i18next.language
 })
 const { src } = await getImage({
@@ -22,7 +22,7 @@ const { src } = await getImage({
 			<Title>{t("strip.last-update")}:</Title>
 			<span class="important">{date}</span>
 			<span class="normal">
-				{t("strip.chapter")} {chapter} | {t("strip.page")} {page}
+				{t("strip.chapter")} {chapter}
 			</span>
 		</div>
 		<img src={src} alt="wea" />
