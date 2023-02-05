@@ -27,20 +27,9 @@ for (const character of characters) {
 						<img src={character.portrait} alt={character.name} />
 						<div class="text-container">
 							<h4>{character.name}</h4>
-							<dl>
-								<div class="key-value">
-									<dt>{t("characters.age")}</dt>
-									<dd>{character.age} {t("characters.years-old")}.</dd>
-								</div>
-								<div class="key-value">
-									<dt>{t("characters.likes")}</dt>
-									<dd>{character.likes.join(", ")}.</dd>
-								</div>
-								<div class="key-value">
-									<dt>{t("characters.dislikes")}</dt>
-									<dd>{character.dislikes.join(", ")}.</dd>
-								</div>
-							</dl>
+							<p><span>{t("characters.age")}: </span>{character.age} {t("characters.years-old")}.</p>
+							<p><span>{t("characters.likes")}: </span>{character.likes.join(", ")}.</p>
+							<p><span>{t("characters.dislikes")}: </span>{character.dislikes.join(", ")}.</p>
 							<p>{character.description}</p>
 						</div>
 					</article>
@@ -98,7 +87,6 @@ for (const character of characters) {
 		font-family: var(--font-family-text);
 		font-size: 16px;
 		line-height: 22px;
-		margin-top: 4px;
 	}
 
 	.text-container {
@@ -106,33 +94,12 @@ for (const character of characters) {
 		flex-direction: column;
 		padding-left: 4px;
 		padding-right: 4px;
-	}
-
-	.key-value {
-		display: flex;
-	}
-
-	dl {
-		display: flex;
-		flex-direction: column;
 		gap: 4px;
-
-		font-family: var(--font-family-text);
-		line-height: 22px;
-		font-size: 16px;
 	}
 
-	dt {
+	span {
 		color: var(--color-title);
 		font-weight: 600;
-	}
-
-	dt::after {
-		content:":\00a0";
-	}
-
-	dd::first-letter {
-    	text-transform: uppercase;
 	}
 
 	@media (max-width: 992px) {
