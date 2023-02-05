@@ -187,3 +187,12 @@ main .gsc-loading-image {
 .gsc-social-reaction-summary-item {
 	background-color: rgba(128,128,128,0.44);
 }
+
+.gsc-comments-count-separator {
+	display: none;
+}
+
+.gsc-replies-count {
+	display: none;
+}
+
