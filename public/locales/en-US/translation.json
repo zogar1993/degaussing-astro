@@ -18,6 +18,12 @@
     "chapter": "Chapter",
     "pages": "pages"
   },
+  "characters": {
+    "age": "Age",
+    "likes": "Likes",
+    "dislikes": "Dislikes",
+    "years-old": "years old"
+  },
   "comments": {
     "title": "Thanks for visiting us! Let's keep in touch!"
   }

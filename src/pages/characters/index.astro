@@ -1,5 +1,5 @@
 ---
-import i18next, { changeLanguage } from "i18next";
+import i18next, { changeLanguage, t } from "i18next";
 import { getImage } from "@astrojs/image";
 import MainLayout from "@web/layouts/MainLayout.astro";
 import getCharactersInfo from "@server/actions/GetCharactersInfo";
@@ -29,15 +29,15 @@ for (const character of characters) {
 							<h4>{character.name}</h4>
 							<dl>
 								<div class="key-value">
-									<dt>Age</dt>
-									<dd>{character.age} years old.</dd>
+									<dt>{t("characters.age")}</dt>
+									<dd>{character.age} {t("characters.years-old")}.</dd>
 								</div>
 								<div class="key-value">
-									<dt>Likes</dt>
+									<dt>{t("characters.likes")}</dt>
 									<dd>{character.likes.join(", ")}.</dd>
 								</div>
 								<div class="key-value">
-									<dt>Dislikes</dt>
+									<dt>{t("characters.dislikes")}</dt>
 									<dd>{character.dislikes.join(", ")}.</dd>
 								</div>
 							</dl>
