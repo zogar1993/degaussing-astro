@@ -36,7 +36,7 @@ const { title, type } = Astro.props
     body {
         display: flex;
         flex-direction: column;
-        align-items: stretch;
+        min-height: 100vh;
     }
 
     .dynamic-content {
@@ -47,5 +47,7 @@ const { title, type } = Astro.props
 
         padding-left: 20px;
         padding-right: 20px;
+
+        flex-grow: 1;
     }
 </style>
