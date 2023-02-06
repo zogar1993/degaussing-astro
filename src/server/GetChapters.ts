@@ -6,9 +6,8 @@ export async function getChapters({
 }: {
 	language: string
 }): Promise<ReadonlyArray<Chapter>> {
-	const chapters = await getEntries<Chapter>("chapter", language)
-	return Array.from(
-		Array(chapters.length),
-		(_, i) => chapters.find((x) => x.number === i + 1)!
-	)
+	const chapters = (await getEntries<any>("list", language)).find(
+		(links) => links.name === "chapters"
+	).items as Array<Chapter>
+	return chapters.map((chapter, i) => ({...chapter, number: i + 1}))
 }
