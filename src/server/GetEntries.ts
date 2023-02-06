@@ -15,15 +15,35 @@ export async function getEntries<T>(
 
 	const entries = await fetchEntries(type, locale)
 
-	try {
-		writeFile(cachePath, entries)
-		console.log(`Wrote to ${type} cache`)
-	} catch (error) {
-		console.log(`ERROR WRITING ${type.toUpperCase()} CACHE TO FILE`)
-		console.log(error)
-	}
+	attemptToWriteFile(cachePath, entries)
 
 	return entries as ReadonlyArray<T>
+}
+
+export async function getList<T>(name: string, locale?: string): Promise<ReadonlyArray<T>> {
+	const cachePath = path.resolve(`.cache/list_${name}` + (locale ? `_${locale}` : ""))
+	try {
+		return readFile(cachePath)
+	} catch (error) {
+		console.log(`Could not use cache for list ${name}`)
+	}
+
+	const entries = await fetchEntries("list", locale) as any
+	const list = entries.find((links: any) => links.name === name).items as Array<T>
+
+	attemptToWriteFile(cachePath, list)
+
+	return list as ReadonlyArray<T>
+}
+
+function attemptToWriteFile(path: string, data: any) {
+	try {
+		writeFile(path, data)
+		console.log(`Wrote to ${path} cache`)
+	} catch (error) {
+		console.log(`ERROR WRITING ${path} CACHE TO FILE`)
+		console.log(error)
+	}
 }
 
 const readFile = (path: string) => JSON.parse(fs.readFileSync(path, "utf8"))
