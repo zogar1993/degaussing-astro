@@ -6,7 +6,10 @@ import Logo from "@web/components/Logo.astro"
 const pathname = Astro.url.pathname
 	.split("/")
 	.filter((part, i) => !(i === 1 && part === i18next.language))
-	.join("/")
+	.join("/") || "/"
+
+	console.log(pathname)
+	console.log(Astro.url.pathname)
 ---
 
 <header>
@@ -17,16 +20,16 @@ const pathname = Astro.url.pathname
 		>
 		<a
 			href={localizePath("/chapters")}
-			class={pathname === "/chapters/" ? "selected" : ""}>{t("menu.chapters")}</a
+			class={pathname === "/chapters" ? "selected" : ""}>{t("menu.chapters")}</a
 		>
 		<a
 			href={localizePath("/characters")}
-			class={pathname === "/characters/" ? "selected" : ""}
+			class={pathname === "/characters" ? "selected" : ""}
 			>{t("menu.characters")}</a
 		>
 		<a
 			href={localizePath("/about")}
-			class={pathname === "/about/" ? "selected" : ""}>{t("menu.about")}</a
+			class={pathname === "/about" ? "selected" : ""}>{t("menu.about")}</a
 		>
 		<a
 			href={localizePath(pathname, i18next.language === "es" ? "en" : "es")}
