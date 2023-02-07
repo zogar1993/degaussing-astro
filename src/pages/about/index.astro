@@ -5,7 +5,7 @@ import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 import MainLayout from "@web/layouts/MainLayout.astro";
 import getAbout from "@server/actions/GetAbout";
 
-changeLanguage("en-US");
+changeLanguage("en");
 
 const { title, banner, synopsis } = await getAbout({
     language: i18next.language

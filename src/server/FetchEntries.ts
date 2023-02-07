@@ -7,8 +7,10 @@ const client = contentful.createClient({
 
 export async function fetchEntries<T>(
 	type: string,
-	locale?: string
+	language?: string
 ): Promise<ReadonlyArray<T>> {
+	const locale = language === "en" ? "en-US" : language
+
 	//These are the max values for both limit and include at the time
 	const response = await client.getEntries({
 		content_type: type,

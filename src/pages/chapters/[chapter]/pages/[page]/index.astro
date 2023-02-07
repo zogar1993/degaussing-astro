@@ -4,7 +4,7 @@ import StripAsideLayout from "@web/layouts/StripAsideLayout.astro";
 import ComicStrip from "@web/components/ComicStrip.astro";
 import getAllPages from "@server/actions/GetAllPages";
 
-changeLanguage("en-US");
+changeLanguage("en");
 
 export async function getStaticPaths() {
     return await getAllPages({ language: i18next.language });

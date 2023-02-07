@@ -2,33 +2,30 @@ import fs from "fs"
 import path from "path"
 import { fetchEntries } from "@server/FetchEntries"
 
-export async function getEntries<T>(
-	type: string,
-	locale?: string
-): Promise<ReadonlyArray<T>> {
-	const cachePath = path.resolve(`.cache/${type}_${locale}`)
+export async function getEntries<T>(type: string, language?: string): Promise<ReadonlyArray<T>> {
+	const cachePath = path.resolve(`.cache/${type}_${language}`)
 	try {
 		return readFile(cachePath)
 	} catch (error) {
 		console.log(`Could not use cache for ${type}`)
 	}
 
-	const entries = await fetchEntries(type, locale)
+	const entries = await fetchEntries(type, language)
 
 	attemptToWriteFile(cachePath, entries)
 
 	return entries as ReadonlyArray<T>
 }
 
-export async function getList<T>(name: string, locale?: string): Promise<ReadonlyArray<T>> {
-	const cachePath = path.resolve(`.cache/list_${name}` + (locale ? `_${locale}` : ""))
+export async function getList<T>(name: string, language?: string): Promise<ReadonlyArray<T>> {
+	const cachePath = path.resolve(`.cache/list_${name}` + (language ? `_${language}` : ""))
 	try {
 		return readFile(cachePath)
 	} catch (error) {
 		console.log(`Could not use cache for list ${name}`)
 	}
 
-	const entries = await fetchEntries("list", locale) as any
+	const entries = await fetchEntries("list", language) as any
 	const list = entries.find((links: any) => links.name === name).items as Array<T>
 
 	attemptToWriteFile(cachePath, list)

@@ -4,7 +4,7 @@ import StripAsideLayout from "@web/layouts/StripAsideLayout.astro";
 import ComicStrip from "@web/components/ComicStrip.astro";
 import getLastPage from "@server/actions/GetLastPage";
 
-changeLanguage("en-US");
+changeLanguage("en");
 
 const info = await getLastPage({ language: i18next.language });
 ---

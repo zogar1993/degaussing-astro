@@ -4,7 +4,7 @@ import { getImage } from "@astrojs/image";
 import MainLayout from "@web/layouts/MainLayout.astro";
 import getCharactersInfo from "@server/actions/GetCharactersInfo";
 
-changeLanguage("en-US");
+changeLanguage("en");
 
 const characters = await getCharactersInfo({ language: i18next.language });
 for (const character of characters) {

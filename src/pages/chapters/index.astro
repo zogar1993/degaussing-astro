@@ -5,7 +5,7 @@ import { getImage } from "@astrojs/image";
 import MainLayout from "@web/layouts/MainLayout.astro";
 import getChaptersInfo from "@server/actions/GetChaptersInfo";
 
-changeLanguage("en-US");
+changeLanguage("en");
 
 const chapters = await getChaptersInfo({ language: i18next.language });
 for (const chapter of chapters) {
