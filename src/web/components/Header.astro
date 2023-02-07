@@ -7,9 +7,6 @@ const pathname = Astro.url.pathname
 	.split("/")
 	.filter((part, i) => !(i === 1 && part === i18next.language))
 	.join("/") || "/"
-
-	console.log(pathname)
-	console.log(Astro.url.pathname)
 ---
 
 <header>
