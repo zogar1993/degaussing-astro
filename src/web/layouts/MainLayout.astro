@@ -1,22 +1,19 @@
 ---
 import Header from "@web/components/header/Header.astro"
+import Title from "@web/components/header/Title.astro"
 import ResetCss from "@web/styles/ResetCss.astro"
 import FontsCss from "@web/styles/FontsCss.astro"
 import VariablesCss from "@web/styles/VariablesCss.astro"
 import { HeadHrefLangs } from "astro-i18next/components"
+import type {RelatedPages} from "@server/Utils"
 
-export interface Props {
-title: string
-type: string
-}
-
-const { title, type } = Astro.props
+export interface Props { info?: RelatedPages }
+const { info } = Astro.props
 ---
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>{title}</title>
+        <Title info={info}/>
         <link rel="icon" href="/favicon.ico"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <ResetCss/>
@@ -25,7 +22,7 @@ const { title, type } = Astro.props
         <HeadHrefLangs/>
     </head>
     <body>
-        <Header type={type}/>
+        <Header/>
         <div class="dynamic-content">
             <slot/>
         </div>

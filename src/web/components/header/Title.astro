@@ -1,0 +1,9 @@
+---
+import getTitle from "@server/actions/GetTitle"
+import type {RelatedPages} from "@server/Utils"
+export interface Props { info?: RelatedPages }
+const { info } = Astro.props
+
+const parts = ["Degaussing Comic", ...getTitle({path: Astro.url.pathname, info})]
+---
+<title>{parts.filter(part => part !== "Home").join(" | ")}</title>

@@ -1,17 +1,16 @@
 ---
-import i18next, { t } from "i18next"
-import { localizePath } from "astro-i18next"
+//import i18next, { t } from "i18next"
+//import { localizePath } from "astro-i18next"
 import getMenuItems from "@server/actions/GetMenuItems"
-const items = getMenuItems({path: Astro.url.pathname, language: i18next.language, localizePath, t})
-
+const items = getMenuItems({path: Astro.url.pathname})
 const item = items.find(item => item.selected)
 
+//const {info} = Astro.props
 
-
-
+//    {info && `${t("strip.chapter")} ${info.current.chapter} | ${page === 0 ? t("strip.cover") : `${t("strip.page")} ${info.current.page}`}`}
 ---
 <h1>
-    {item?.text}
+    {item && item.text}
 </h1>
 <style>
     h1 {
@@ -20,7 +19,8 @@ const item = items.find(item => item.selected)
 
     @media (max-width: 992px) {
         h1 {
-            display: block;
+            display: flex;
+            align-items: center;
             padding: 11px 28px;
             font-size: 32px;
             font-family: var(--font-family-title);
