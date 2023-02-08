@@ -5,5 +5,6 @@ export interface Props { info?: RelatedPages }
 const { info } = Astro.props
 
 const parts = ["Degaussing Comic", ...getTitle({path: Astro.url.pathname, info})]
+//TODO parts excluded by part text is fishy
 ---
-<title>{parts.filter(part => part !== "Home").join(" | ")}</title>
+<title>{parts.filter(part => part !== "Home" && part !== "Inicio").join(" | ")}</title>
