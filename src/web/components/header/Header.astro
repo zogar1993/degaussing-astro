@@ -2,6 +2,10 @@
 import Logo from "@web/components/header/Logo.astro"
 import DesktopNavBar from "@web/components/header/DesktopNavBar.astro"
 import MobileTitle from "@web/components/header/MobileTitle.astro"
+import type {RelatedPages} from "@server/Utils"
+
+export interface Props { info?: RelatedPages }
+const { info } = Astro.props
 ---
 <header>
 	<div class="row-logo">
@@ -9,7 +13,7 @@ import MobileTitle from "@web/components/header/MobileTitle.astro"
 	</div>
 	<div class="row-menu">
 		<DesktopNavBar />
-		<MobileTitle />
+		<MobileTitle info={info}/>
 	</div>
 </header>
 <style>

@@ -22,7 +22,7 @@ const { info } = Astro.props
         <HeadHrefLangs/>
     </head>
     <body>
-        <Header/>
+        <Header info={info}/>
         <div class="dynamic-content">
             <slot/>
         </div>

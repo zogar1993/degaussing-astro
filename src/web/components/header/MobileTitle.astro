@@ -1,16 +1,13 @@
 ---
-//import i18next, { t } from "i18next"
-//import { localizePath } from "astro-i18next"
-import getMenuItems from "@server/actions/GetMenuItems"
-const items = getMenuItems({path: Astro.url.pathname})
-const item = items.find(item => item.selected)
+import getTitle from "@server/actions/GetTitle"
+import type {RelatedPages} from "@server/Utils"
+export interface Props { info?: RelatedPages }
+const { info } = Astro.props
 
-//const {info} = Astro.props
-
-//    {info && `${t("strip.chapter")} ${info.current.chapter} | ${page === 0 ? t("strip.cover") : `${t("strip.page")} ${info.current.page}`}`}
+const title = getTitle({path: Astro.url.pathname, info})
 ---
 <h1>
-    {item && item.text}
+    {title.join(" | ")}
 </h1>
 <style>
     h1 {
