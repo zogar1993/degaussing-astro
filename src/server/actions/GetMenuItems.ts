@@ -39,12 +39,8 @@ export default function getMenuItems({path}: { path: string }): Array<MenuItem> 
 	]
 }
 
-export function pathnameWithoutLocale({path, language}: { path: string, language: string }) {
-	return path
-		.split("/")
-		.filter((part, i) => !(i === 1 && part === language))
-		.join("/") || "/"
-}
+const pathnameWithoutLocale = ({path, language}: { path: string, language: string }) =>
+	path.split("/").filter((part, i) => !(i === 1 && part === language)).join("/") || "/"
 
 type MenuItem = {
 	href: string
