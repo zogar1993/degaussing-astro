@@ -2,21 +2,39 @@
 import i18next, { t } from "i18next"
 import { localizePath } from "astro-i18next"
 import getMenuItems from "@server/actions/GetMenuItems"
-const items = getMenuItems({path: Astro.url.pathname, langauge: i18next.language, localizePath, t})
+const items = getMenuItems({path: Astro.url.pathname, language: i18next.language, localizePath, t})
 ---
 <nav>
     <ul>
         {items.map(item =>
             <li>
-                <a href={item.href} class={item.selected ? "selected" : ""}>
-                    {item.text}
+                <a
+                    href={item.href}
+                    class={item.selected ? "selected" : ""}
+                    title={item.desktop === "icon" ? item.text : undefined}
+                >
+                    {item.desktop === "text" && item.text}
+                    {item.desktop === "icon" && <img src={item.icon} alt={item.text}/>}
                 </a>
             </li>
         )}
     </ul>
 </nav>
 <style>
+    nav {
+        display: flex;
+    }
+
+    ul {
+        display: flex;
+    }
+
     li {
+        display: flex;
+        align-items: center;
+    }
+
+    a {
         display: flex;
         padding: 11px 28px;
         font-size: 32px;
@@ -24,17 +42,13 @@ const items = getMenuItems({path: Astro.url.pathname, langauge: i18next.language
         color: var(--color-primary);
     }
 
-    ul {
-        display: flex;
-        justify-content: center;
-        height: 59px;
-        background-color: var(--background-color-secondary);
-        box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.25);
-    }
-
     img {
         width: 29px;
         height: 29px;
+    }
+
+    .selected {
+        color: var(--color-title);
     }
 
     @media (max-width: 992px) {
@@ -45,9 +59,5 @@ const items = getMenuItems({path: Astro.url.pathname, langauge: i18next.language
         a.selected {
             display: flex;
         }
-    }
-
-    .selected {
-        color: var(--color-title);
     }
 </style>

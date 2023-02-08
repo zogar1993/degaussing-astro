@@ -19,25 +19,25 @@ export default function getMenuItems({
 			desktop: "text"
 		},
 		{
-			path: localizePath("/chapters"),
+			href: localizePath("/chapters"),
 			selected: pathname === "/chapters",
 			text: t("menu.chapters"),
 			desktop: "text"
 		},
 		{
-			path: localizePath("/characters"),
+			href: localizePath("/characters"),
 			selected: pathname === "/characters",
 			text: t("menu.characters"),
 			desktop: "text"
 		},
 		{
-			path: localizePath("/about"),
+			href: localizePath("/about"),
 			selected: pathname === "/about",
 			text: t("menu.about"),
 			desktop: "text"
 		},
 		{
-			path: localizePath(pathname, language === "es" ? "en" : "es"),
+			href: localizePath(pathname, language === "es" ? "en" : "es"),
 			selected: false,
 			text: t("menu.language"),
 			icon: "/world.svg",

@@ -1,0 +1,43 @@
+---
+import Logo from "@web/components/header/Logo.astro"
+import DesktopNavBar from "@web/components/header/DesktopNavBar.astro"
+---
+
+<header>
+	<div class="row-logo">
+		<Logo />
+	</div>
+	<div class="row-menu">
+		<DesktopNavBar />
+	</div>
+</header>
+<style>
+	.row-logo {
+		position: relative;
+		display: flex;
+		justify-content: center;
+		background-color: var(--background-color-secondary);
+		background: var(--background-header);
+		padding: 33px 0;
+	}
+
+	.row-menu {
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
+        background-color: var(--background-color-secondary);
+        height: 59px;
+        box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.25);
+	}
+
+	header {
+		display: flex;
+		flex-direction: column;
+	}
+
+	@media (max-width: 992px) {
+		.row-logo {
+			padding: 0 48px;
+		}
+	}
+</style>
