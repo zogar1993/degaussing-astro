@@ -1,8 +1,6 @@
 ---
-import i18next, { t } from "i18next"
-import { localizePath } from "astro-i18next"
 import getMenuItems from "@server/actions/GetMenuItems"
-const items = getMenuItems({path: Astro.url.pathname, language: i18next.language, localizePath, t})
+const items = getMenuItems({path: Astro.url.pathname})
 ---
 <nav>
     <ul>
