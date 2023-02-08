@@ -1,0 +1,53 @@
+---
+import i18next, { t } from "i18next"
+import { localizePath } from "astro-i18next"
+import getMenuItems from "@server/actions/GetMenuItems"
+const items = getMenuItems({path: Astro.url.pathname, langauge: i18next.language, localizePath, t})
+---
+<nav>
+    <ul>
+        {items.map(item =>
+            <li>
+                <a href={item.href} class={item.selected ? "selected" : ""}>
+                    {item.text}
+                </a>
+            </li>
+        )}
+    </ul>
+</nav>
+<style>
+    li {
+        display: flex;
+        padding: 11px 28px;
+        font-size: 32px;
+        font-family: var(--font-family-title);
+        color: var(--color-primary);
+    }
+
+    ul {
+        display: flex;
+        justify-content: center;
+        height: 59px;
+        background-color: var(--background-color-secondary);
+        box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.25);
+    }
+
+    img {
+        width: 29px;
+        height: 29px;
+    }
+
+    @media (max-width: 992px) {
+        a {
+            display: none;
+        }
+
+        a.selected {
+            display: flex;
+        }
+    }
+
+    .selected {
+        color: var(--color-title);
+    }
+</style>

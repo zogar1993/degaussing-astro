@@ -1,79 +1,17 @@
 ---
-import i18next, { t } from "i18next"
-import { localizePath } from "astro-i18next"
 import Logo from "@web/components/Logo.astro"
-
-const pathname = Astro.url.pathname
-	.split("/")
-	.filter((part, i) => !(i === 1 && part === i18next.language))
-	.join("/") || "/"
+import DesktopNavBar from "@web/components/DesktopNavBar.astro"
 ---
 
 <header>
 	<Logo />
-	<nav>
-		<a href={localizePath("/")} class={pathname === "/" ? "selected" : ""}
-			>{t("menu.home")}</a
-		>
-		<a
-			href={localizePath("/chapters")}
-			class={pathname === "/chapters" ? "selected" : ""}>{t("menu.chapters")}</a
-		>
-		<a
-			href={localizePath("/characters")}
-			class={pathname === "/characters" ? "selected" : ""}
-			>{t("menu.characters")}</a
-		>
-		<a
-			href={localizePath("/about")}
-			class={pathname === "/about" ? "selected" : ""}>{t("menu.about")}</a
-		>
-		<a
-			href={localizePath(pathname, i18next.language === "es" ? "en" : "es")}
-			title={t("menu.language")}
-		>
-			<img src="/world.svg" alt={t("menu.language")} />
-		</a>
-	</nav>
+	<DesktopNavBar/>
 </header>
 <style>
-	.selected {
-		color: var(--color-title);
-	}
-
 	header {
 		display: flex;
 		flex-direction: column;
-	}
 
-	a {
-		display: flex;
-		padding: 11px 28px;
-		font-size: 32px;
-		font-family: var(--font-family-title);
-		color: var(--color-primary);
-	}
-
-	nav {
-		display: flex;
-		justify-content: center;
-		height: 59px;
-		background-color: var(--background-color-secondary);
-		box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.25);
-	}
-
-	img {
-		width: 29px;
-		height: 29px;
-	}
-
-	@media (max-width: 992px) {
-		a {
-			display: none;
-		}
-
-		a.selected {
-			display: flex;
-		}
+		position: relative;
 	}
 </style>
