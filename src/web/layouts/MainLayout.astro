@@ -42,9 +42,14 @@ const { info } = Astro.props
         align-items: center;
         background: var(--background-main);
 
-        padding-left: 20px;
-        padding-right: 20px;
+        padding: 30px 20px;
 
         flex-grow: 1;
+    }
+
+    @media (max-width: 992px) {
+        .dynamic-content {
+            padding: 16px;
+        }
     }
 </style>
