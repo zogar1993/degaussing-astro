@@ -33,7 +33,7 @@ const { info } = Astro.props
         justify-content: center;
         align-items: stretch;
         background-color: var(--background-color-secondary);
-        height: 59px;
+        height: 60px;
         box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.25);
 	}
 
@@ -44,7 +44,12 @@ const { info } = Astro.props
 
 	@media (max-width: 992px) {
 		.row-logo {
-			padding: 0 48px;
+			padding: 16px 48px;
+			height: 112px;
+		}
+
+		.row-menu {
+			height: 52px;
 		}
 	}
 </style>
