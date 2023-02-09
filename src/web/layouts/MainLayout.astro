@@ -36,6 +36,10 @@ const { info } = Astro.props
         min-height: 100vh;
     }
 
+    body:has(#hamburger-menu:target) {
+        overflow-y: hidden;
+    }
+
     .dynamic-content {
         display: flex;
         flex-direction: column;
