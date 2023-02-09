@@ -9,31 +9,35 @@ export default function getMenuItems({path}: { path: string }): Array<MenuItem> 
 			href: localizePath("/"),
 			selected: pathname === "/",
 			text: t("menu.home"),
+			icon: "/icons/home.svg",
 			desktop: "text"
 		},
 		{
 			href: localizePath("/chapters"),
 			selected: pathname === "/chapters",
 			text: t("menu.chapters"),
+			icon: "/icons/book.svg",
 			desktop: "text"
 		},
 		{
 			href: localizePath("/characters"),
 			selected: pathname === "/characters",
 			text: t("menu.characters"),
+			icon: "/icons/person.svg",
 			desktop: "text"
 		},
 		{
 			href: localizePath("/about"),
 			selected: pathname === "/about",
 			text: t("menu.about"),
+			icon: "/icons/world.svg",
 			desktop: "text"
 		},
 		{
 			href: localizePath(pathname, i18next.language === "es" ? "en" : "es"),
 			selected: false,
 			text: t("menu.language"),
-			icon: "/world.svg",
+			icon: "/icons/world.svg",
 			desktop: "icon"
 		}
 	]
@@ -46,6 +50,6 @@ type MenuItem = {
 	href: string
 	selected: boolean
 	text: string
-	icon?: string
+	icon: string
 	desktop: "text" | "icon"
 }

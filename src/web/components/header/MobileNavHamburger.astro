@@ -1,0 +1,117 @@
+---
+import getMenuItems from "@server/actions/GetMenuItems"
+const items = getMenuItems({path: Astro.url.pathname})
+---
+<div class="dropdown" id="hamburger-menu">
+    <a
+        id="open-hamburger"
+        href="#hamburger-menu"
+        role="button"
+    >
+        <img src="/icons/hamburger.svg" alt=""/>
+    </a>
+    <a
+        id="close-hamburger"
+        href="#"
+        role="button"
+    >
+        <img src="/icons/hamburger.svg" alt=""/>
+    </a>
+    <ul id="dropdown-list">
+        {items.map(item =>
+        <li>
+            <a
+                href={item.href}
+                class={item.selected ? "selected" : ""}
+            >
+                <img src={item.icon} alt=""/>
+                {item.text}
+            </a>
+        </li>
+        )}
+    </ul>
+</div>
+<div class="background"></div>
+<style>
+    .dropdown {
+        display: none;
+        flex-direction: column;
+
+        position: absolute;
+        left: 0;
+        top: 0;
+        padding-top: 8px;
+
+        border-bottom-right-radius: var(--border-radius);
+
+        z-index: 100;
+    }
+
+    ul {
+        display: none;
+        flex-direction: column;
+        gap: 8px;
+        padding: 8px 80px 80px 0;
+    }
+
+    a {
+        padding: 16px;
+    }
+
+    li > a {
+        color: var(--color-primary);
+        font-family: var(--font-family-title);
+        font-size: 20px;
+        display: grid;
+        grid-template-columns: 50px 1fr;
+        align-items: center;
+    }
+
+    li > a.selected {
+        color: var(--color-title);
+    }
+
+    #close-hamburger {
+        display: none;
+    }
+
+    #hamburger-menu:target {
+        background-color: var(--background-color-secondary);
+    }
+
+    #hamburger-menu:target > ul {
+        display: flex;
+    }
+
+    #hamburger-menu:target > #close-hamburger {
+        display: flex;
+    }
+
+    #hamburger-menu:target > #open-hamburger {
+        display: none;
+    }
+
+    .background {
+        display: none;
+    }
+
+    #hamburger-menu:target + .background {
+        display: flex;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100vw;
+        height: 100vh;
+
+        background-color: #000000;
+        opacity: 0.75;
+
+        z-index: 99;
+    }
+
+    @media (max-width: 992px) {
+        .dropdown {
+            display: flex;
+        }
+    }
+</style>

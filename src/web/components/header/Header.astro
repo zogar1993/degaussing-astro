@@ -1,6 +1,7 @@
 ---
 import Logo from "@web/components/header/Logo.astro"
 import DesktopNavBar from "@web/components/header/DesktopNavBar.astro"
+import MobileNavHamburger from "@web/components/header/MobileNavHamburger.astro"
 import MobileTitle from "@web/components/header/MobileTitle.astro"
 import type {RelatedPages} from "@server/Utils"
 
@@ -10,6 +11,7 @@ const { info } = Astro.props
 <header>
 	<div class="row-logo">
 		<Logo />
+		<MobileNavHamburger />
 	</div>
 	<div class="row-menu">
 		<DesktopNavBar />
