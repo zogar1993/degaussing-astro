@@ -7,7 +7,6 @@ export interface Props { info?: RelatedPages }
 const {info} = Astro.props
 const {current: { chapter, page }, backward, forward} = info
 ---
-
 <nav class="sticky-bar">
 	<div class="navigation-arrows">
 		{
@@ -109,8 +108,9 @@ const {current: { chapter, page }, backward, forward} = info
 
 	@media (max-width: 992px) {
 		.sticky-bar {
+			position: static;
 			padding: 0 32px;
-		width: calc(100% - 32px);
+			width: calc(100% - 32px);
 			height: 40px;
 		}
 
