@@ -1,6 +1,9 @@
 ---
+import {localizePath} from "astro-i18next"
 ---
-<img src="/logo_degaussing.svg" alt="Degaussing Logo" />
+<a href={localizePath("/")}>
+    <img src="/logo_degaussing.svg" alt="Degaussing Logo" />
+</a>
 <style>
 	img {
 		width: 613px;
