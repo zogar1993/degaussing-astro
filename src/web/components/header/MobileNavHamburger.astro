@@ -4,34 +4,35 @@ const items = getMenuItems({path: Astro.url.pathname})
 ---
 <div class="dropdown" id="hamburger-menu">
     <a
-        id="open-hamburger"
-        href="#hamburger-menu"
-        role="button"
+            id="open-hamburger"
+            href="#hamburger-menu"
+            role="button"
     >
         <img src="/icons/hamburger.svg" alt=""/>
     </a>
-    <a
-        id="close-hamburger"
-        href="#"
-        role="button"
-    >
-        <img src="/icons/hamburger.svg" alt=""/>
-    </a>
-    <ul id="dropdown-list">
-        {items.map(item =>
-        <li>
-            <a
-                href={item.href}
-                class={item.selected ? "selected" : ""}
-            >
+    <div id="dropdown-list">
+        <a
+                id="close-hamburger"
+                href="#"
+                role="button"
+        >
+            <img src="/icons/close.svg" alt=""/>
+        </a>
+        <ul>
+            {items.map(item =>
+            <li>
+                <a
+                        href={item.href}
+                        class={item.selected ? "selected" : ""}
+                >
                 <img src={item.icon} alt=""/>
-                {item.text}
-            </a>
-        </li>
-        )}
-    </ul>
+                <span>{item.text}</span>
+                </a>
+            </li>
+            )}
+        </ul>
+    </div>
 </div>
-<div class="background"></div>
 <style>
     .dropdown {
         display: none;
@@ -43,17 +44,46 @@ const items = getMenuItems({path: Astro.url.pathname})
 
         border-bottom-right-radius: var(--border-radius);
 
-        z-index: 100;
+        width: 100vw;
+        height: 100vh;
+    }
+
+    #dropdown-list {
+        top: -100%;
+
+        display: flex;
+        position: absolute;
+        background-color: var(--background-color-secondary);
+
+        width: 100vw;
+        height: 100vh;
+
+        z-index: 50;
+        transition: 0.50s ease-in-out;
+    }
+
+    #hamburger-menu:target > #dropdown-list {
+        top: 0;
     }
 
     ul {
-        display: none;
+        display: flex;
         flex-direction: column;
-        gap: 8px;
-        padding: 8px 80px 80px 0;
+        gap: 32px;
+        padding-top: 96px;
+        padding-left: 32px;
+
     }
 
-    a {
+    #open-hamburger {
+        padding: 16px;
+    }
+
+    #close-hamburger {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+
         padding: 16px;
     }
 
@@ -61,51 +91,23 @@ const items = getMenuItems({path: Astro.url.pathname})
         color: var(--color-primary);
         font-family: var(--font-family-title);
         font-size: 20px;
-        display: grid;
-        grid-template-columns: 50px 1fr;
+        display: flex;
+        gap: 16px;
         align-items: center;
+
+        padding: 16px;
     }
 
     li > a.selected {
         color: var(--color-title);
     }
 
-    #close-hamburger {
-        display: none;
-    }
-
-    #hamburger-menu:target {
-        background-color: var(--background-color-secondary);
-    }
-
-    #hamburger-menu:target > ul {
+    img {
         display: flex;
-    }
-
-    #hamburger-menu:target > #close-hamburger {
-        display: flex;
-    }
-
-    #hamburger-menu:target > #open-hamburger {
-        display: none;
-    }
-
-    .background {
-        display: none;
-    }
-
-    #hamburger-menu:target + .background {
-        display: flex;
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 100vw;
-        height: 100vh;
-
-        background-color: #000000;
-        opacity: 0.75;
-
-        z-index: 99;
+        justify-content: center;
+        align-items: center;
+        height: 24px;
+        width: 24px;
     }
 
     @media (max-width: 992px) {
