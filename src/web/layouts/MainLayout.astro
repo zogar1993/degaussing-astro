@@ -24,9 +24,7 @@ const { info } = Astro.props
     <body>
         <Header info={info}/>
         <div class="main-background">
-            <main tabindex="-1" id="main">
-                <slot/>
-            </main>
+            <slot/>
         </div>
     </body>
 </html>

@@ -19,13 +19,13 @@ const { src } = await getImage({
 });
 ---
 <MainLayout>
-	<div class="container">
+	<main id="main" tabindex="-1">
 		<h2>{title}</h2>
 		<Fragment set:html={synopsisHtml} />
-	</div>
+	</main>
 </MainLayout>
 <style>
-	.container {
+	main {
 		display: flex;
 		flex-direction: column;
 		gap: 12px;
@@ -59,7 +59,7 @@ const { src } = await getImage({
 	}
 
 	@media (max-width: 992px) {
-		.container {
+		main {
 			width: 100%;
 			padding: 24px 20px;
 		}

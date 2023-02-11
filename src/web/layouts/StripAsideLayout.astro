@@ -19,9 +19,9 @@ const next = forward ? getLocalizedLinkToComicStrip(forward.one) : null
 
 <MainLayout info={info}>
 	<div class="grid">
-		<div class="container">
+		<main id="main" tabindex="-1">
 			<slot />
-		</div>
+		</main>
 		<LastUpdate />
 		<Characters />
 		<ThankYou />
@@ -75,7 +75,7 @@ const next = forward ? getLocalizedLinkToComicStrip(forward.one) : null
 	});
 </script>
 <style>
-	.container {
+	main {
 		grid-area: main;
 		display: flex;
 		position: relative;

@@ -4,7 +4,7 @@ import { localizePath } from "astro-i18next";
 import { getImage } from "@astrojs/image";
 import MainLayout from "@web/layouts/MainLayout.astro";
 import getChaptersInfo from "@server/actions/GetChaptersInfo";
-import getLocalizedLinkToComicStrip from "@server/actions/GetLocalizedLinkToComicStrip"
+import getLocalizedLinkToComicStrip from "@server/actions/GetLocalizedLinkToComicStrip";
 
 changeLanguage("en");
 
@@ -20,7 +20,7 @@ for (const chapter of chapters) {
 }
 ---
 <MainLayout>
-	<div class="container">
+	<main id="main" tabindex="-1">
 		{
 			chapters.map((chapter, i) => (
 				<article>
@@ -32,10 +32,10 @@ for (const chapter of chapters) {
 				</article>
 			))
 		}
-	</div>
+	</main>
 </MainLayout>
 <style>
-	.container {
+	main {
 		display: grid;
 		grid-template-columns: auto auto auto;
 		justify-content: space-between;
@@ -73,7 +73,7 @@ for (const chapter of chapters) {
 	}
 
 	@media (max-width: 992px) {
-		.container {
+		main {
 			grid-template-columns: 1fr;
 			width: 100%;
 

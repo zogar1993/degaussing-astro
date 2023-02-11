@@ -18,7 +18,7 @@ for (const character of characters) {
 }
 ---
 <MainLayout>
-	<div class="container">
+	<main id="main" tabindex="-1">
 		<section>
 			{
 				characters.map((character) => (
@@ -35,10 +35,10 @@ for (const character of characters) {
 				))
 			}
 		</section>
-	</div>
+	</main>
 </MainLayout>
 <style>
-	.container {
+	main {
 		width: 862px;
 
 		background-color: var(--background-color-secondary);
@@ -100,7 +100,7 @@ for (const character of characters) {
 	}
 
 	@media (max-width: 992px) {
-		.container {
+		main {
 			padding: 0;
 			width: 100%;
 		}
