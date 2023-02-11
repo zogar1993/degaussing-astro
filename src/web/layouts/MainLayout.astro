@@ -1,4 +1,5 @@
 ---
+import i18next from "i18next";
 import Header from "@web/components/header/Header.astro"
 import Title from "@web/components/header/Title.astro"
 import ResetCss from "@web/styles/ResetCss.astro"
@@ -11,7 +12,7 @@ export interface Props { info?: RelatedPages }
 const { info } = Astro.props
 ---
 <!DOCTYPE html>
-<html lang="en">
+<html lang={i18next.language}>
     <head>
         <Title info={info}/>
         <link rel="icon" href="/favicon.ico"/>
