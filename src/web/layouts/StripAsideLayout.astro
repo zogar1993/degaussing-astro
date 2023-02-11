@@ -54,6 +54,31 @@ const next = forward
 	}
 
 	document.body.addEventListener("keydown", handleOnKeyDown)
+
+	const main = document.querySelector("main");
+	const MOVE_THRESHOLD = 100;
+
+	let initialX = 0;
+	let moveX = 0;
+
+	main.addEventListener("touchstart", e => {
+    	initialX = e.touches[0].pageX;
+	});
+
+	main.addEventListener("touchmove", e => {
+		const currentX = e.touches[0].pageX;
+		moveX = currentX - initialX;
+	});
+
+	main.addEventListener("touchend", () => {
+		if (moveX < MOVE_THRESHOLD * Math.sign(moveX) && next) {
+			window.location.href = next
+		} else if (moveX > MOVE_THRESHOLD * Math.sign(moveX) && previous) {
+			window.location.href = previous
+		}
+
+		moveX = 0;
+	});
 </script>
 <style>
 	main {
