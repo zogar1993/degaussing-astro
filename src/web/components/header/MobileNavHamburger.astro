@@ -33,6 +33,30 @@ const items = getMenuItems({path: Astro.url.pathname})
         </ul>
     </div>
 </div>
+<script>
+	const div = document.querySelector("#dropdown-list");
+	const MOVE_THRESHOLD = 100;
+
+	let initialY = 0;
+	let moveY = 0;
+
+	div.addEventListener("touchstart", e => {
+    	initialY = e.touches[0].pageY;
+	});
+
+	div.addEventListener("touchmove", e => {
+		const currentY = e.touches[0].pageY;
+		moveY = currentY - initialY;
+	});
+
+	div.addEventListener("touchend", () => {
+		if (moveY < MOVE_THRESHOLD * Math.sign(moveY)) {
+			window.location.href = "#"
+		}
+
+		moveY = 0;
+	});
+</script>
 <style>
     .dropdown {
         display: none;
