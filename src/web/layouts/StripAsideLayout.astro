@@ -25,9 +25,9 @@ const next = forward
 
 <MainLayout info={info}>
 	<div class="grid">
-		<main>
+		<div class="container">
 			<slot />
-		</main>
+		</div>
 		<LastUpdate />
 		<Characters />
 		<ThankYou />
@@ -81,7 +81,7 @@ const next = forward
 	});
 </script>
 <style>
-	main {
+	.container {
 		grid-area: main;
 		display: flex;
 		position: relative;

@@ -1,0 +1,28 @@
+---
+import {t} from "i18next"
+---
+<a href="#main">
+    {t("accessibility.skip-to-main")}
+</a>
+<style>
+
+    a {
+        top: -100%;
+
+        display: flex;
+        position: absolute;
+
+        padding: 8px;
+
+        color: var(--color-primary);
+        background-color: var(--background-color-secondary);
+        font-family: var(--font-family-title);
+
+        z-index: 50;
+        transition: 0.50s ease-in-out;
+    }
+
+    a:focus {
+        top: 0;
+    }
+</style>

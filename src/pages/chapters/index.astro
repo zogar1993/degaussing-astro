@@ -19,7 +19,7 @@ for (const chapter of chapters) {
 }
 ---
 <MainLayout>
-	<main>
+	<div class="container">
 		{
 			chapters.map((chapter, i) => (
 				<article>
@@ -35,10 +35,10 @@ for (const chapter of chapters) {
 				</article>
 			))
 		}
-	</main>
+	</div>
 </MainLayout>
 <style>
-	main {
+	.container {
 		display: grid;
 		grid-template-columns: auto auto auto;
 		justify-content: space-between;
@@ -76,7 +76,7 @@ for (const chapter of chapters) {
 	}
 
 	@media (max-width: 992px) {
-		main {
+		.container {
 			grid-template-columns: 1fr;
 			width: 100%;
 

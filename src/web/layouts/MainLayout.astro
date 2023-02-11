@@ -23,8 +23,10 @@ const { info } = Astro.props
     </head>
     <body>
         <Header info={info}/>
-        <div class="dynamic-content">
-            <slot/>
+        <div class="main-background">
+            <main tabindex="-1" id="main">
+                <slot/>
+            </main>
         </div>
     </body>
 </html>
@@ -40,7 +42,7 @@ const { info } = Astro.props
         overflow-y: hidden;
     }
 
-    .dynamic-content {
+    .main-background {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -52,7 +54,7 @@ const { info } = Astro.props
     }
 
     @media (max-width: 992px) {
-        .dynamic-content {
+        .main-background {
             padding: 16px;
         }
     }

@@ -1,5 +1,6 @@
 ---
 import Logo from "@web/components/header/Logo.astro"
+import SkipToMainContent from "@web/components/header/SkipToMainContent.astro"
 import DesktopNavBar from "@web/components/header/DesktopNavBar.astro"
 import MobileNavHamburger from "@web/components/header/MobileNavHamburger.astro"
 import MobileTitle from "@web/components/header/MobileTitle.astro"
@@ -9,6 +10,7 @@ export interface Props { info?: RelatedPages }
 const { info } = Astro.props
 ---
 <header>
+	<SkipToMainContent />
 	<div class="row-logo">
 		<Logo />
 		<MobileNavHamburger />

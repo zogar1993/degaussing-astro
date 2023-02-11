@@ -1,4 +1,7 @@
 {
+  "accessibility": {
+    "skip-to-main": "Skip to main content"
+  },
   "menu": {
     "home": "Home",
     "chapters": "Chapter",

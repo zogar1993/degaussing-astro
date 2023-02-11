@@ -1,4 +1,7 @@
 {
+  "accessibility": {
+    "skip-to-main": "Saltar al contenido principal"
+  },
   "menu": {
     "home": "Inicio",
     "chapters": "Capitulos",
