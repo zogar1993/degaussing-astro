@@ -1,6 +1,7 @@
 ---
 import { t } from "i18next"
 import { localizePath } from "astro-i18next"
+import getLocalizedLinkToComicStrip from "@server/actions/GetLocalizedLinkToComicStrip"
 
 //TODO text here may be abstracted
 export interface Props { info?: RelatedPages }
@@ -12,22 +13,10 @@ const {current: { chapter, page }, backward, forward} = info
 		{
 			backward && (
 				<>
-					<a
-						href={
-							localizePath(
-								`/chapters/${backward.all.chapter}/pages/${backward.all.page}`
-							) + "#strip"
-						}
-					>
+					<a href={getLocalizedLinkToComicStrip(backward.all)}>
 						&lt;&lt;
 					</a>
-					<a
-						href={
-							localizePath(
-								`/chapters/${backward.one.chapter}/pages/${backward.one.page}`
-							) + "#strip"
-						}
-					>
+					<a href={getLocalizedLinkToComicStrip(backward.one)}>
 						&lt;
 					</a>
 				</>
@@ -42,22 +31,10 @@ const {current: { chapter, page }, backward, forward} = info
 		{
 			forward && (
 				<>
-					<a
-						href={
-							localizePath(
-								`/chapters/${forward.one.chapter}/pages/${forward.one.page}`
-							) + "#strip"
-						}
-					>
+					<a href={getLocalizedLinkToComicStrip(forward.one)}>
 						&gt;
 					</a>
-					<a
-						href={
-							localizePath(
-								`/chapters/${forward.all.chapter}/pages/${forward.all.page}`
-							) + "#strip"
-						}
-					>
+					<a href={getLocalizedLinkToComicStrip(forward.all)}>
 						&gt;&gt;
 					</a>
 				</>

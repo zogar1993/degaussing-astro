@@ -81,3 +81,4 @@ export type RelatedPages = {
 	current: PageCoordinates
 	forward: NavigablePages | null
 }
+

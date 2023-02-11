@@ -6,21 +6,15 @@ import Characters from "@web/components/aside/Characters.astro"
 import ThankYou from "@web/components/aside/ThankYou.astro"
 import StickyNavBar from "@web/components/StickyNavBar.astro"
 import Comments from "@web/components/Comments.astro"
+import getLocalizedLinkToComicStrip from "@server/actions/GetLocalizedLinkToComicStrip"
 import type {RelatedPages} from "@server/Utils"
 
 export interface Props { info: RelatedPages }
 
 const { info } = Astro.props
 const { backward, forward } = info
-const previous = backward
-	? localizePath(
-			`/chapters/${backward.one.chapter}/pages/${backward.one.page}`
-	  ) + "#strip"
-	: null
-const next = forward
-	? localizePath(`/chapters/${forward.one.chapter}/pages/${forward.one.page}`) +
-	  "#strip"
-	: null
+const previous = backward ? getLocalizedLinkToComicStrip(backward.one) : null
+const next = forward ? getLocalizedLinkToComicStrip(forward.one) : null
 ---
 
 <MainLayout info={info}>
