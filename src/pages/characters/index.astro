@@ -16,6 +16,8 @@ for (const character of characters) {
     });
     character.portrait = src;
 }
+
+const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
 ---
 <MainLayout>
 	<main id="main" tabindex="-1">
@@ -27,8 +29,8 @@ for (const character of characters) {
 						<div class="text-container">
 							<h4>{character.name}</h4>
 							<p><span>{t("characters.age")}: </span>{character.age} {t("characters.years-old")}.</p>
-							<p><span>{t("characters.likes")}: </span>{character.likes.join(", ")}.</p>
-							<p><span>{t("characters.dislikes")}: </span>{character.dislikes.join(", ")}.</p>
+							<p><span>{t("characters.likes")}: </span>{capitalize(character.likes.join(", "))}.</p>
+							<p><span>{t("characters.dislikes")}: </span>{capitalize(character.dislikes.join(", "))}.</p>
 							<p>{character.description}</p>
 						</div>
 					</article>
@@ -75,6 +77,15 @@ for (const character of characters) {
 		border-radius: var(--border-radius);
 	}
 
+	.text-container {
+		display: flex;
+		flex-direction: column;
+		padding-top: 16px;
+		padding-left: 4px;
+		padding-right: 4px;
+		gap: 4px;
+	}
+
 	h4 {
 		font-family: var(--font-family-title);
 		font-size: 64px;
@@ -85,15 +96,6 @@ for (const character of characters) {
 		font-family: var(--font-family-text);
 		font-size: 16px;
 		line-height: 22px;
-	}
-
-	.text-container {
-		display: flex;
-		flex-direction: column;
-		padding-top: 16px;
-		padding-left: 4px;
-		padding-right: 4px;
-		gap: 4px;
 	}
 
 	span {
