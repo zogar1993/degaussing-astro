@@ -75,36 +75,37 @@ const {current: { chapter, page }, backward, forward} = info
 
 	.navigation-arrows {
 		display: flex;
-		width: 82px;
-		justify-content: space-between;
+		gap: 24px;
 	}
 
 	a {
+		display: flex;
+		justify-content: center;
+
 		color: var(--color-primary);
+		font-size: 40px;
+		min-width: 36px;
 	}
 
 	@media (max-width: 992px) {
 		.sticky-bar {
 			position: static;
-			padding: 0 32px;
-			width: calc(100% - 32px);
+			padding: 0 8px;
+			width: 100%;
 			height: 40px;
 		}
 
 		.navigation-arrows {
-			display: flex;
-			width: 36px;
-			justify-content: space-between;
-		}
-
-		a {
-			font-size: 16px;
-			line-height: 19px;
+			gap: 8px;
 		}
 
 		.text {
 			font-size: 20px;
-			line-height: 23px;
+		}
+
+		a {
+			color: var(--color-primary);
+			font-size: 32px;
 		}
 	}
 </style>
