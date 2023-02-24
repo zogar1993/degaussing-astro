@@ -16,28 +16,28 @@ export default function getMenuItems({path}: { path: string }): Array<MenuItem> 
 			href: localizePath("/chapters"),
 			selected: pathname === "/chapters",
 			text: t("menu.chapters"),
-			icon: "/icons/book.svg",
+			icon: "/icons/chapters.svg",
 			desktop: "text"
 		},
 		{
 			href: localizePath("/characters"),
 			selected: pathname === "/characters",
 			text: t("menu.characters"),
-			icon: "/icons/person.svg",
+			icon: "/icons/characters.svg",
 			desktop: "text"
 		},
 		{
 			href: localizePath("/about"),
 			selected: pathname === "/about",
 			text: t("menu.about"),
-			icon: "/icons/world.svg",
+			icon: "/icons/about.svg",
 			desktop: "text"
 		},
 		{
 			href: localizePath(pathname, i18next.language === "es" ? "en" : "es"),
 			selected: false,
 			text: t("menu.language"),
-			icon: "/icons/world.svg",
+			icon: "/icons/language.svg",
 			desktop: "icon"
 		}
 	]
