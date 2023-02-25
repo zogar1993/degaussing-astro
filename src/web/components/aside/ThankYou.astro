@@ -35,7 +35,7 @@ const links = await getContributionLinks()
 		align-items: center;
 		padding: 0 16px;
 
-		background: #f0be5f;
+		background-color: #f0be5f;
 		border: 1px solid #432918;
 		border-radius: 5px;
 		height: 62px;
@@ -43,6 +43,10 @@ const links = await getContributionLinks()
 		font-family: var(--font-family-text);
 		color: var(--color-text-aside);
 		font-size: 14px;
+	}
+
+	a:hover {
+		background-color: var(--color-hover);
 	}
 
 	.container {
