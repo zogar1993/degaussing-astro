@@ -11,7 +11,7 @@ const {current: { chapter, page }, backward, forward} = info
 <nav class="sticky-bar">
 	<div class="navigation-arrows">
 		{
-			backward && (
+			backward ? (
 				<>
 					<a href={getLocalizedLinkToComicStrip(backward.all)}>
 						&lt;&lt;
@@ -19,6 +19,11 @@ const {current: { chapter, page }, backward, forward} = info
 					<a href={getLocalizedLinkToComicStrip(backward.one)}>
 						&lt;
 					</a>
+				</>
+			) : (
+				<>
+					<a href="javascript:void(0)" class="disabled" tabindex="-1">&lt;&lt;</a>
+					<a href="javascript:void(0)" class="disabled" tabindex="-1">&lt;</a>
 				</>
 			)
 		}
@@ -29,7 +34,7 @@ const {current: { chapter, page }, backward, forward} = info
 	</div>
 	<div class="navigation-arrows">
 		{
-			forward && (
+			forward ? (
 				<>
 					<a href={getLocalizedLinkToComicStrip(forward.one)}>
 						&gt;
@@ -37,6 +42,11 @@ const {current: { chapter, page }, backward, forward} = info
 					<a href={getLocalizedLinkToComicStrip(forward.all)}>
 						&gt;&gt;
 					</a>
+				</>
+			) : (
+				<>
+					<a href="javascript:void(0)" class="disabled" tabindex="-1">&gt;</a>
+					<a href="javascript:void(0)" class="disabled" tabindex="-1">&gt;&gt;</a>
 				</>
 			)
 		}
@@ -76,7 +86,6 @@ const {current: { chapter, page }, backward, forward} = info
 	.navigation-arrows {
 		display: flex;
 		gap: 24px;
-		width: 100px;
 	}
 
 	a {
@@ -86,6 +95,15 @@ const {current: { chapter, page }, backward, forward} = info
 		color: var(--color-primary);
 		font-size: 40px;
 		min-width: 36px;
+	}
+
+	a:hover {
+		color: var(--color-hover);
+	}
+
+	.disabled {
+		pointer-events: none;
+		color: var(--color-muted);
 	}
 
 	@media (max-width: 992px) {
@@ -98,7 +116,6 @@ const {current: { chapter, page }, backward, forward} = info
 
 		.navigation-arrows {
 			gap: 8px;
-			width: 80px;
 		}
 
 		.text {
