@@ -38,9 +38,14 @@ const links = await getSocialLinks()
 		height: 31px;
 		background-color: rgba(128, 128, 128, 0.44);
 		border-radius: 5px;
-		fill: #f0be5f;
-		color: #f0be5f;
-		font-weight: bold;
+	}
+
+	a:hover {
+		background-color: rgba(233, 126, 27, 0.2);
+	}
+
+	a:hover > img {
+		filter: saturate(20);
 	}
 
 	h3 {
