@@ -54,17 +54,20 @@ const next = forward ? getLocalizedLinkToComicStrip(forward.one) : null
 
 	let initialX = 0;
 	let initialY = 0;
+	let initialScrollPosition = 0;
 
 	main.addEventListener("touchstart", e => {
 		const touch = e.touches[0]
     	initialX = touch.pageX;
     	initialY = touch.pageY;
+    	initialScrollPosition = document.documentElement.scrollTop
 	});
 
 	main.addEventListener("touchend", e => {
 		const touch = e.changedTouches[0]
 		const xDisplacement = touch.pageX - initialX
-		const yDisplacement = touch.pageY - initialY
+		const scrollDisplacement = document.documentElement.scrollTop - initialScrollPosition
+		const yDisplacement = touch.pageY - initialY + scrollDisplacement
 
 		//Non horizontal swipes are ignored
 		if (Math.abs(yDisplacement) > MOVE_THRESHOLD) return
