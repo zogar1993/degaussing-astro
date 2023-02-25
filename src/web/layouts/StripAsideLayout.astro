@@ -53,25 +53,27 @@ const next = forward ? getLocalizedLinkToComicStrip(forward.one) : null
 	const MOVE_THRESHOLD = 100;
 
 	let initialX = 0;
-	let moveX = 0;
+	let initialY = 0;
 
 	main.addEventListener("touchstart", e => {
-    	initialX = e.touches[0].pageX;
+		const touch = e.touches[0]
+    	initialX = touch.pageX;
+    	initialY = touch.pageY;
 	});
 
-	main.addEventListener("touchmove", e => {
-		const currentX = e.touches[0].pageX;
-		moveX = currentX - initialX;
-	});
+	main.addEventListener("touchend", e => {
+		const touch = e.changedTouches[0]
+		const xDisplacement = touch.pageX - initialX
+		const yDisplacement = touch.pageY - initialY
 
-	main.addEventListener("touchend", () => {
-		if (moveX < MOVE_THRESHOLD * Math.sign(moveX) && next) {
+		//Non horizontal swipes are ignored
+		if (Math.abs(yDisplacement) > MOVE_THRESHOLD) return
+
+		if (xDisplacement < -MOVE_THRESHOLD && next) {
 			window.location.href = next
-		} else if (moveX > MOVE_THRESHOLD * Math.sign(moveX) && previous) {
+		} else if (xDisplacement > MOVE_THRESHOLD && previous) {
 			window.location.href = previous
 		}
-
-		moveX = 0;
 	});
 </script>
 <style>
