@@ -25,7 +25,7 @@ const { src } = await getImage({
 				{t("strip.chapter")} {chapter}
 			</span>
 		</div>
-		<img src={src} alt="wea" />
+		<img src={src} alt={`${t("strip.chapter")} ${chapter}`} />
 	</div>
 </Aside>
 <style>
