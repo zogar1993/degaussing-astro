@@ -25,6 +25,7 @@ const items = getMenuItems({path: Astro.url.pathname})
 
     ul {
         display: flex;
+        gap: 36px;
     }
 
     li {
@@ -34,10 +35,20 @@ const items = getMenuItems({path: Astro.url.pathname})
 
     a {
         display: flex;
-        padding: 11px 28px;
+        padding: 8px 12px;
         font-size: 32px;
         font-family: var(--font-family-title);
         color: var(--color-primary);
+        border-radius: var(--border-radius);
+    }
+
+    a:hover {
+        color: var(--color-hover);
+        background-color: var(--background-color-hover);
+    }
+
+    a:hover > img {
+        filter: saturate(20);
     }
 
     img {
