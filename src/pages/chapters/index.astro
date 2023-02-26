@@ -23,18 +23,25 @@ for (const chapter of chapters) {
 	<main id="main" tabindex="-1">
 		{
 			chapters.map((chapter, i) => (
-				<article>
-					<a href={getLocalizedLinkToComicStrip({chapter: chapter.number, page: 0})}>
-						<img src={chapter.cover} alt={`${t("chapters.chapter")} ${i + 1}`} />
-					</a>
+				<a href={getLocalizedLinkToComicStrip({chapter: chapter.number, page: 0})}>
+					<img src={chapter.cover} alt={`${t("chapters.chapter")} ${i + 1}`} />
 					<h4>{t("chapters.chapter")} {i + 1}</h4>
 					<span>{chapter.pagesAmount} {t("chapters.pages")}</span>
-				</article>
+				</a>
 			))
 		}
 	</main>
 </MainLayout>
 <style>
+	a {
+		padding: 16px;
+		border-radius: var(--border-radius);
+	}
+
+	a:hover {
+		background-color: #ECECEC;
+	}
+
 	main {
 		display: grid;
 		grid-template-columns: auto auto auto;
@@ -46,7 +53,7 @@ for (const chapter of chapters) {
 		border-radius: var(--border-radius);
 		border: var(--border);
 
-		padding: 24px 32px 32px 32px;
+		padding: 16px;
 	}
 
 	img {
@@ -64,12 +71,14 @@ for (const chapter of chapters) {
 		font-size: 24px;
 
 		margin-bottom: 10px;
+		user-select: none;
 	}
 
 	span {
 		color: var(--color-muted);
 		font-family: var(--font-family-text);
 		font-size: 14px;
+		user-select: none;
 	}
 
 	@media (max-width: 992px) {
