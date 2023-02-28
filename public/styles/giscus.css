@@ -43,14 +43,12 @@ main {
 	--color-btn-primary-shadow: 0 1px 0 rgb(27 31 36 / 10%);
 	--color-btn-primary-inset-shadow: inset 0 1px 0 rgb(255 255 255 / 3%);
 	--color-btn-primary-hover-border: rgb(27 31 36 / 15%);
-	--color-btn-primary-selected-bg: hsl(137deg 55% 36% / 100%);
 	--color-btn-primary-selected-shadow: inset 0 1px 0 rgb(0 45 17 / 20%);
 	--color-fg-subtle: #6e7781;
 	--color-canvas-overlay: #fff;
 	--color-border-muted: hsl(210deg 18% 87% / 100%);
 	--color-neutral-muted: rgb(175 184 193 / 20%);
 	--color-neutral-subtle: rgb(234 238 242 / 50%);
-	--color-accent-fg: #0969da;
 	--color-accent-emphasis: #0969da;
 	--color-accent-muted: rgb(84 174 255 / 40%);
 	--color-accent-subtle: #ddf4ff;
@@ -85,6 +83,8 @@ main {
 	--color-canvas-subtle: rgba(128,128,128,0.44);
 	--color-scale-gray-1: rgba(128,128,128,0.44);
 
+	--color-accent-fg: #E97E1B;
+	--color-btn-primary-selected-bg: #E97E1B;
 
 	--color-border-default: transparent;
 }
@@ -104,6 +104,9 @@ main .gsc-loading-image {
 
 .gsc-comment-box {
 	border-width: 0 !important;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
 }
 
 .gsc-comment {
@@ -148,7 +151,7 @@ main .gsc-loading-image {
 }
 
 .gsc-comment-box-markdown-hint {
-	display: none;
+	display: none !important;
 }
 
 .gsc-replies {
@@ -194,5 +197,21 @@ main .gsc-loading-image {
 
 .gsc-replies-count {
 	display: none;
+}
+
+.gsc-social-reaction-summary-item-count {
+	color: white;
+}
+
+.has-reacted > .gsc-social-reaction-summary-item-count {
+	color: #0969da;
+}
+
+.gsc-comment-box-write {
+	box-shadow: none !important;
+}
+
+.gsc-comment-box-textarea {
+	color: black !important;
 }
 
