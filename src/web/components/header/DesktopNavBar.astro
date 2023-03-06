@@ -40,6 +40,12 @@ const items = getMenuItems({path: Astro.url.pathname})
         font-family: var(--font-family-title);
         color: var(--color-primary);
         border-radius: var(--border-radius);
+
+		transition: var(--transition-hover);
+    }
+
+    a > img {
+		transition: var(--transition-hover);
     }
 
     a:hover {
