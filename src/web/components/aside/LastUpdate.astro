@@ -3,7 +3,7 @@ import i18next, { t } from "i18next"
 import { getImage } from "@astrojs/image"
 import getLastUpdate from "@server/actions/GetLastUpdate"
 import Aside from "@web/components/aside/Aside.astro"
-import Title from "@web/components/aside/Title.astro"
+import Heading from "@web/components/aside/Heading.astro"
 
 const { image, chapter, date } = await getLastUpdate({
 	language: i18next.language
@@ -19,7 +19,7 @@ const { src } = await getImage({
 <Aside grid-area="last-update">
 	<div class="container">
 		<div class="text-container">
-			<Title>{t("strip.last-update")}:</Title>
+			<Heading>{t("strip.last-update")}:</Heading>
 			<span class="important">{date}</span>
 			<span class="normal">
 				{t("strip.chapter")} {chapter}

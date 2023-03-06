@@ -3,7 +3,7 @@ import i18next, { t } from "i18next"
 import { getImage } from "@astrojs/image"
 import { localizePath } from "astro-i18next"
 import Aside from "@web/components/aside/Aside.astro"
-import Title from "@web/components/aside/Title.astro"
+import Heading from "@web/components/aside/Heading.astro"
 import getCharactersInfo from "@server/actions/GetCharactersInfo"
 
 const characters = await getCharactersInfo({ language: i18next.language })
@@ -20,7 +20,7 @@ for (const character of characters) {
 
 <Aside grid-area="characters">
 	<div class="container">
-		<Title>{t("strip.characters")}</Title>
+		<Heading>{t("strip.characters")}</Heading>
 		<div class="links">
 			{
 				characters.map((character) => (

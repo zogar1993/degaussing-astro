@@ -1,7 +1,7 @@
 ---
 import { t } from "i18next"
 import Aside from "@web/components/aside/Aside.astro"
-import Title from "@web/components/aside/Title.astro"
+import Heading from "@web/components/aside/Heading.astro"
 import { getContributionLinks } from "@server/actions/GetContributionLinks"
 
 const links = await getContributionLinks()
@@ -9,7 +9,7 @@ const links = await getContributionLinks()
 
 <Aside grid-area="thank-you">
 	<div class="container">
-		<Title>{t("strip.thank-you")}</Title>
+		<Heading>{t("strip.thank-you")}</Heading>
 		<div class="buttons">
 			{
 				links.map((link) => (
