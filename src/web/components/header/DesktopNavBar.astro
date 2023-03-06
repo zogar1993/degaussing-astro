@@ -42,10 +42,12 @@ const items = getMenuItems({path: Astro.url.pathname})
         border-radius: var(--border-radius);
 
 		transition: var(--transition-hover);
+		transition-property: color, background-color;
     }
 
     a > img {
 		transition: var(--transition-hover);
+		transition-property: filter;
     }
 
     a:hover {
