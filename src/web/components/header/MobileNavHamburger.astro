@@ -34,6 +34,14 @@ const items = getMenuItems({path: Astro.url.pathname})
     </div>
 </div>
 <script>
+	const handleOnKeyDown = (e) => {
+	    if (e.key === "Escape") {
+            window.location.href = "#"
+            e.preventDefault()
+        }
+	}
+
+	document.body.addEventListener("keydown", handleOnKeyDown)
 </script>
 <style>
     .dropdown {
