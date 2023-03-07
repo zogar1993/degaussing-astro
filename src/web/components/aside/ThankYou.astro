@@ -10,35 +10,40 @@ const links = await getContributionLinks()
 <Aside grid-area="thank-you">
 	<div class="container">
 		<Heading>{t("strip.thank-you")}</Heading>
-		<div class="buttons">
+		<ul>
 			{
 				links.map((link) => (
-					<a href={link.href} target="_blank" rel="noopener">
-						<img src={link.icon} alt="" />
-						<span>{link.text}</span>
-					</a>
+					<li>
+						<a href={link.href} target="_blank" rel="noopener">
+							<img src={link.icon} alt="" />
+							<span>{link.text}</span>
+						</a>
+					</li>
 				))
 			}
-		</div>
+		</ul>
 	</div>
 </Aside>
 <style>
-	.buttons {
+	ul {
 		display: grid;
-		grid-template-columns: 1fr;
-		gap: 20px;
+		grid-template-columns: 1fr 1fr;
+		gap: 8px;
 	}
 
 	a {
 		display: grid;
-		grid-template-columns: 58px 1fr;
+		grid-template-columns: 1fr;
+		grid-template-rows: 1fr 14px;
+		justify-items: center;
 		align-items: center;
-		padding: 0 16px;
+		padding: 8px;
+		height: 72px;
+		width: 72px;
 
 		background-color: #f0be5f;
 		border: 1px solid #432918;
 		border-radius: 5px;
-		height: 62px;
 
 		font-family: var(--font-family-text);
 		color: var(--color-text-aside);
@@ -61,14 +66,21 @@ const links = await getContributionLinks()
 	}
 
 	@media (max-width: 992px) {
-		.buttons {
-			grid-template-columns: 1fr 1fr;
+		ul {
 			gap: 8px;
 			padding: 14px;
 		}
 
 		a {
 			grid-template-columns: 46px 1fr;
+			grid-template-rows: none;
+			padding: 0 16px;
+			height: 62px;
+			width: auto;
+		}
+
+		img {
+			justify-self: center;
 		}
 
 		span {
