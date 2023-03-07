@@ -32,9 +32,9 @@ function getEnglishDate(date: Date) {
 function getSpanishDate(date: Date) {
 	const year = date.getUTCFullYear()
 	const month = date.toLocaleString("es", {
-		month: "2-digit",
+		month: "long",
 		timeZone: "UTC"
 	})
-	const day = date.toLocaleString("es", { day: "2-digit", timeZone: "UTC" })
-	return `${day}/${month}/${year}`
+	const day = date.getUTCDate()
+	return `${day} de ${month}, ${year}`
 }
