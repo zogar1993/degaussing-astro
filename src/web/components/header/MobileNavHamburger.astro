@@ -34,23 +34,6 @@ const items = getMenuItems({path: Astro.url.pathname})
     </div>
 </div>
 <script>
-	const div = document.querySelector("#dropdown-list");
-	const MOVE_THRESHOLD = 100;
-
-	let initialY = 0;
-
-	div.addEventListener("touchstart", e => {
-    	initialY = e.touches[0].pageY;
-	});
-
-	div.addEventListener("touchend", e => {
-		const touch = e.changedTouches[0]
-		const yDisplacement = touch.pageY - initialY
-
-		if (yDisplacement < -MOVE_THRESHOLD) {
-			window.location.href = "#"
-		}
-	});
 </script>
 <style>
     .dropdown {
