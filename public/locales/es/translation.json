@@ -29,5 +29,14 @@
   },
   "comments": {
     "title": "Gracias por visitarnos! Mantengámonos en contacto!"
+  },
+  "landmarks": {
+    "navigation-page": "Navegación de la página",
+    "navigation-comic": "Navegación del comic",
+    "last-update": "Última actualización",
+    "characters": "Personajes",
+    "donations": "Donaciones",
+    "navigation-social": "Navegación social",
+    "comments": "Comentarios"
   }
 }

@@ -8,7 +8,7 @@ export interface Props { info?: RelatedPages }
 const {info} = Astro.props
 const {current: { chapter, page }, backward, forward} = info
 ---
-<nav class="sticky-bar">
+<nav class="sticky-bar" aria-label={t("landmarks.navigation-comic")}>
 	<div class="navigation-arrows">
 		{
 			backward ? (

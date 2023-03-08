@@ -1,34 +1,35 @@
 ---
-import i18next from "i18next"
+import i18next, { t } from "i18next"
 const language = i18next.language
 import KeepInTouch from "@web/components/KeepInTouch.astro"
 const protocol = import.meta.env.PROTOCOL!
 const domain = import.meta.env.DOMAIN!
 ---
-
-<aside>
+<section>
 	<KeepInTouch />
-	<script
-		src="https://giscus.app/client.js"
-		data-repo="zogar1993/degaussing-astro"
-		data-repo-id="R_kgDOIaWmTA"
-		data-category="General"
-		data-category-id="DIC_kwDOIaWmTM4CS02J"
-		data-mapping="specific"
-		data-term={language}
-		data-strict="0"
-		data-reactions-enabled="0"
-		data-emit-metadata="0"
-		data-input-position="top"
-		data-theme={`${protocol}://${domain}/styles/giscus.css`}
-		data-lang={language}
-		data-loading="lazy"
-		crossorigin="anonymous"
-		async
-	></script>
-</aside>
+	<aside aria-label={t("landmarks.comments")}>
+		<script
+			src="https://giscus.app/client.js"
+			data-repo="zogar1993/degaussing-astro"
+			data-repo-id="R_kgDOIaWmTA"
+			data-category="General"
+			data-category-id="DIC_kwDOIaWmTM4CS02J"
+			data-mapping="specific"
+			data-term={language}
+			data-strict="0"
+			data-reactions-enabled="0"
+			data-emit-metadata="0"
+			data-input-position="top"
+			data-theme={`${protocol}://${domain}/styles/giscus.css`}
+			data-lang={language}
+			data-loading="lazy"
+			crossorigin="anonymous"
+			async
+		></script>
+	</aside>
+</section>
 <style>
-	aside {
+	section {
 		grid-area: comments;
 
 		display: flex;
@@ -43,7 +44,7 @@ const domain = import.meta.env.DOMAIN!
 	}
 
 	@media (max-width: 992px) {
-		aside {
+		section {
 			padding: 26px 14px;
 		}
 	}

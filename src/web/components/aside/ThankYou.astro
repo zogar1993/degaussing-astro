@@ -7,7 +7,7 @@ import { getContributionLinks } from "@server/actions/GetContributionLinks"
 const links = await getContributionLinks()
 ---
 
-<Aside grid-area="thank-you">
+<Aside grid-area="thank-you" aria-label={t("landmarks.donations")}>
 	<div class="container">
 		<Heading>{t("strip.thank-you")}</Heading>
 		<ul>

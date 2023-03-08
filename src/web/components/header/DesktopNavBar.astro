@@ -1,8 +1,9 @@
 ---
+import { t } from "i18next"
 import getMenuItems from "@server/actions/GetMenuItems"
 const items = getMenuItems({path: Astro.url.pathname})
 ---
-<nav>
+<nav aria-label={t("landmarks.navigation-page")}>
     <ul>
         {items.map(item =>
             <li>

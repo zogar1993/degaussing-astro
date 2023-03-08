@@ -1,8 +1,8 @@
 ---
 const area = Astro.props["grid-area"]
+const name = Astro.props["aria-label"]
 ---
-
-<aside style={`grid-area: ${area}`}>
+<aside style={`grid-area: ${area}`} aria-label={name}>
 	<slot />
 </aside>
 <style>
