@@ -15,7 +15,8 @@
     "thank-you": "Gracias!",
     "page": "Página",
     "chapter": "Capítulo",
-    "cover": "Portada"
+    "cover": "Portada",
+    "heading-main": "Página del comic"
   },
   "chapters": {
     "chapter": "Capítulo",
@@ -28,7 +29,8 @@
     "years-old": "años"
   },
   "comments": {
-    "title": "Gracias por visitarnos! Mantengámonos en contacto!"
+    "thanks": "Gracias por visitarnos!",
+    "heading": "Mantengámonos en contacto!"
   },
   "landmarks": {
     "navigation-page": "Navegación de la página",
