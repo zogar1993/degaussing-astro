@@ -6,22 +6,22 @@ const { info } = Astro.props
 
 const title = getTitleParts({path: Astro.url.pathname, info})
 ---
-<h1>
+<span>
     {title.join(" | ")}
-</h1>
+</span>
 <style>
-    h1 {
+    span {
         display: none;
     }
 
     @media (max-width: 992px) {
-        h1 {
+        span {
             display: flex;
             align-items: center;
             padding: 11px 28px;
             font-size: 30px;
             font-family: var(--font-family-title);
-            color: var(--color-title);
+            color: var(--color-hover);
         }
     }
 </style>
