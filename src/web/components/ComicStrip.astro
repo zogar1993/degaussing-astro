@@ -2,6 +2,16 @@
 import { t } from "i18next"
 import { getImage } from "@astrojs/image"
 const { image } = Astro.props
+
+const {src: webp} = await getImage({
+	src: image,
+	width: "900",
+	height: "1273",
+	format: "webp",
+	quality: 100
+})
+
+
 const { src: src900w } = await getImage({
 	src: image,
 	width: "900",
@@ -18,14 +28,16 @@ const { src: src568w } = await getImage({
 //This strip is a little hacky because chrome likes to add a white line inside the borders of the image.
 //This means that on normal strips, we do not notice the issue, but on covers it shows wrongly.
 //Having tried all internet options available, best I could think of was an extra div that does the border.
+
+
+//		srcset={`${src568w} 568w, ${src900w} 900w`}
+//	  sizes="(max-width: 600px) 568px,
+//			 900px"
 ---
 <h2>{t("strip.heading-main")}</h2>
 <a href={image} target="_blank" rel="noreferrer noopener">
 	<img
-		srcset={`${src568w} 568w, ${src900w} 900w`}
-	  sizes="(max-width: 600px) 568px,
-			 900px"
-		src={src900w}
+		src={webp}
 		alt="wea"
 	/>
 </a>
