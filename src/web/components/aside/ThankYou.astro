@@ -9,14 +9,15 @@ const links = await getContributionLinks()
 
 <Aside grid-area="thank-you" aria-label={t("landmarks.donations")}>
 	<div class="container">
-		<Heading>{t("strip.thank-you")}</Heading>
+		<h2>{t("landmarks.donations")}</h2>
+		<span class="heading">{t("strip.thank-you")}</span>
 		<ul>
 			{
 				links.map((link) => (
 					<li>
 						<a href={link.href} target="_blank" rel="noopener">
 							<img src={link.icon} alt="" />
-							<span>{link.text}</span>
+							<span class="name">{link.text}</span>
 						</a>
 					</li>
 				))
@@ -25,6 +26,17 @@ const links = await getContributionLinks()
 	</div>
 </Aside>
 <style>
+	h2 {
+		position: absolute;
+		z-index: -1;
+	}
+
+	.heading {
+		font-family: var(--font-family-title);
+		font-size: 30px;
+		color: var(--color-title);
+	}
+
 	ul {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
@@ -83,7 +95,7 @@ const links = await getContributionLinks()
 			justify-self: center;
 		}
 
-		span {
+		.name {
 			justify-self: center;
 		}
 	}
