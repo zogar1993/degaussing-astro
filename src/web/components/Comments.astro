@@ -5,7 +5,7 @@ import KeepInTouch from "@web/components/KeepInTouch.astro"
 const protocol = import.meta.env.PROTOCOL!
 const domain = import.meta.env.DOMAIN!
 ---
-<section>
+<section aria-label={t("landmarks.social")}>
 	<KeepInTouch />
 	<aside aria-label={t("landmarks.comments")}>
 		<script
