@@ -5,4 +5,8 @@ export type Chapter = {
 	number: number
 }
 
-type Page = { name: string; image: string; createdAt: string }
+export type Page = {
+	image: string;
+	createdAt: string
+	characters: Array<{name: string, image: string}>
+}

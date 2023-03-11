@@ -8,7 +8,7 @@ export default async function getAllPages({ language }: { language: string }) {
 		{ chapter: i + 1, page: 0 },
 		...chapter.pages.map((_, j) => ({ chapter: i + 1, page: j + 1 }))
 	])
-	const paths = chapterNumbers.map((params) => {
+	return chapterNumbers.map((params) => {
 		const props = getPageInfo({ ...params, chapters })
 		return {
 			params: {
@@ -18,6 +18,4 @@ export default async function getAllPages({ language }: { language: string }) {
 			props
 		}
 	})
-
-	return paths
 }

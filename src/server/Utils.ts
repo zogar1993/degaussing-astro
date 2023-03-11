@@ -36,10 +36,18 @@ export function getPreviousAndFirst({
 	}
 }
 
-export function getImage({chapters, chapter, page}: PageFunctionProps) {
+export function getPage({chapters, chapter, page}: PageFunctionProps) {
 	const current = chapters[chapter - 1]
-	const path = page === 0 ? current.cover.image : current.pages[page - 1].image
-	return `https:${path}`
+	return page === 0 ? current.cover : current.pages[page - 1]
+}
+
+export function imageToUrl(image: string) {
+	return `https:${image}`
+}
+
+export function getImage({chapters, chapter, page}: PageFunctionProps) {
+	const current = getPage({chapters, chapter, page})
+	return imageToUrl(current.image)
 }
 
 function last<T>(list: ReadonlyArray<T>): T {

@@ -23,7 +23,7 @@ const next = forward ? getLocalizedLinkToComicStrip(forward.one) : null
 			<slot />
 		</main>
 		<LastUpdate />
-		<Characters />
+		<Characters info={info}/>
 		<ThankYou />
 		<StickyNavBar info={info} />
 		<Comments />
@@ -97,6 +97,8 @@ const next = forward ? getLocalizedLinkToComicStrip(forward.one) : null
 			"main thank-you"
 			"sticky-bar nothing"
 			"comments comments";
+
+		grid-template-rows: auto 1fr auto;
 	}
 
 	@media (max-width: 992px) {

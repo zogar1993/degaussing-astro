@@ -6,10 +6,13 @@ import Aside from "@web/components/aside/Aside.astro"
 import Heading from "@web/components/aside/Heading.astro"
 import getCharactersInfo from "@server/actions/GetCharactersInfo"
 
-const characters = await getCharactersInfo({ language: i18next.language })
+export interface Props { info: { characters: Array<{name: string, image: string}>} }
+const { info } = Astro.props
+const { characters } = info
+
 for (const character of characters) {
 	const { src } = await getImage({
-		src: character.portrait,
+		src: character.image,
 		width: "111",
 		height: "111",
 		format: "avif"
@@ -17,24 +20,23 @@ for (const character of characters) {
 	character.portrait = src
 }
 ---
-
-<Aside grid-area="characters" aria-label={t("landmarks.characters")}>
+<Aside grid-area="characters" aria-label={t("landmarks.characters")} grow={true}>
 	<div class="container">
 		<Heading>{t("strip.characters")}</Heading>
-		<div class="links">
+		<div class="characters">
 			{
 				characters.map((character) => (
-					<a href={localizePath("/characters") + `#${character.slug}`}>
-						<img src={character.portrait} alt="" />
+					<div class="character">
+						<img src={character.image} alt="" />
 						<span>{character.name}</span>
-					</a>
+					</div>
 				))
 			}
 		</div>
 	</div>
 </Aside>
 <style>
-	a {
+	.character {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -63,14 +65,14 @@ for (const character of characters) {
 		gap: 14px;
 	}
 
-	.links {
+	.characters {
 		display: flex;
 		flex-direction: column;
 		gap: 11px;
 	}
 
 	@media (max-width: 992px) {
-		.links {
+		.characters {
 			flex-direction: row;
 			justify-content: space-evenly;
 		}
