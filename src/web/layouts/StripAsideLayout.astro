@@ -5,6 +5,7 @@ import LastUpdate from "@web/components/aside/LastUpdate.astro"
 import Characters from "@web/components/aside/Characters.astro"
 import ThankYou from "@web/components/aside/ThankYou.astro"
 import StickyNavBar from "@web/components/StickyNavBar.astro"
+import ComicStrip from "@web/components/ComicStrip.astro";
 import Comments from "@web/components/Comments.astro"
 import getLocalizedLinkToComicStrip from "@server/actions/GetLocalizedLinkToComicStrip"
 import type {RelatedPages} from "@server/Utils"
@@ -16,11 +17,10 @@ const { backward, forward } = info
 const previous = backward ? getLocalizedLinkToComicStrip(backward.one) : null
 const next = forward ? getLocalizedLinkToComicStrip(forward.one) : null
 ---
-
 <MainLayout info={info}>
 	<div class="grid">
 		<main id="main" tabindex="-1">
-			<slot />
+			<ComicStrip info={info} />
 		</main>
 		<LastUpdate />
 		<Characters info={info}/>

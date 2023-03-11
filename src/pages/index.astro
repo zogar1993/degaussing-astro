@@ -1,13 +1,10 @@
 ---
 import i18next, { changeLanguage } from "i18next";
 import StripAsideLayout from "@web/layouts/StripAsideLayout.astro";
-import ComicStrip from "@web/components/ComicStrip.astro";
 import getLastPage from "@server/actions/GetLastPage";
 
 changeLanguage("en");
 
 const info = await getLastPage({ language: i18next.language });
 ---
-<StripAsideLayout info={info}>
-	<ComicStrip image={info.image} description={info.description} />
-</StripAsideLayout>
+<StripAsideLayout info={info} />
