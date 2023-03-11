@@ -56,14 +56,14 @@ const items = getMenuItems({path: Astro.url.pathname})
     }
 
     #dropdown-list {
-        top: -100vh;
+        top: min(-100vh, -512px);
 
         display: flex;
         position: absolute;
         background-color: var(--background-color-secondary);
 
         width: 100vw;
-        height: 100vh;
+        height: max(100vh, 512px);
 
         z-index: 50;
         transition: 0.50s ease-in-out;
