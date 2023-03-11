@@ -7,10 +7,8 @@ const links = await getSocialLinks()
 ---
 
 <header>
-	<div>
-		<span>{t("comments.thanks")}</span>
-		<h2>{t("comments.heading")}</h2>
-	</div>
+	<h2>{t("comments.heading")}</h2>
+	<span>{t("comments.thanks")} {t("comments.heading")}</span>
 	<nav aria-label={t("landmarks.navigation-social")}>
 		<ul>
 			{
@@ -31,9 +29,9 @@ const links = await getSocialLinks()
 		justify-content: space-between;
 	}
 
-	div {
-		display: flex;
-		gap: 8px;
+	h2 {
+		position: absolute;
+		z-index: -1;
 	}
 
 	nav {
@@ -74,7 +72,7 @@ const links = await getSocialLinks()
 		filter: saturate(20);
 	}
 
-	h2, span {
+	span {
 		font-family: var(--font-family-title);
 		font-style: normal;
 		font-weight: 400;
@@ -89,7 +87,7 @@ const links = await getSocialLinks()
 			gap: 24px;
 		}
 
-		h2, span {
+		span {
 			font-size: 24px;
 			line-height: 28px;
 		}
