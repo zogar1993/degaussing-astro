@@ -34,9 +34,8 @@ for (const character of characters) {
 			}
 			{
 				[...Array(3 - characters.length)].map(() => (
-					<div class="character">
+					<div class="character no-one">
 						<img src="/images/shadowed.png" alt=""/>
-						<div class="no-name"></div>
 					</div>
 				))
 			}
@@ -48,7 +47,7 @@ for (const character of characters) {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 7px;
+		gap: 8px;
 		color: var(--color-text-aside);
 	}
 
@@ -76,24 +75,23 @@ for (const character of characters) {
 	.characters {
 		display: flex;
 		flex-direction: column;
-		justify-content: space-evenly;
+		justify-content: space-around;
 
 		flex-grow: 1;
-	}
-
-	.no-name {
-		height: 23px;
 	}
 
 	@media (max-width: 992px) {
 		.characters {
 			flex-direction: row;
-			justify-content: space-evenly;
 		}
 
 		img {
 			width: 71px;
 			height: 71px;
+		}
+
+		.no-one {
+			display: none;
 		}
 	}
 </style>
