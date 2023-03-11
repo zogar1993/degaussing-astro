@@ -4,17 +4,17 @@ const items = getMenuItems({path: Astro.url.pathname})
 ---
 <div class="dropdown" id="hamburger-menu">
     <a
-            id="open-hamburger"
-            href="#hamburger-menu"
-            role="button"
+        id="open-hamburger"
+        href="#hamburger-menu"
+        role="button"
     >
         <img src="/icons/hamburger.svg" alt=""/>
     </a>
     <div id="dropdown-list">
         <a
-                id="close-hamburger"
-                href="#"
-                role="button"
+            id="close-hamburger"
+            href="#"
+            role="button"
         >
             <img src="/icons/close.svg" alt=""/>
         </a>
@@ -22,11 +22,11 @@ const items = getMenuItems({path: Astro.url.pathname})
             {items.map(item =>
             <li>
                 <a
-                        href={item.href}
-                        class={item.selected ? "selected" : ""}
+                    href={item.href}
+                    class={item.selected ? "selected" : ""}
                 >
-                <img src={item.icon} alt=""/>
-                <span>{item.text}</span>
+                    <img src={item.icon} alt=""/>
+                    <span>{item.text}</span>
                 </a>
             </li>
             )}
@@ -108,7 +108,11 @@ const items = getMenuItems({path: Astro.url.pathname})
     }
 
     li > a.selected {
-        color: var(--color-title);
+        color: var(--color-selected);
+    }
+
+    li > a.selected > img {
+        filter: var(--filter-image-hover);
     }
 
     img {

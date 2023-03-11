@@ -52,12 +52,12 @@ const items = getMenuItems({path: Astro.url.pathname})
     }
 
     a:hover {
-        color: var(--color-hover);
+        color: var(--color-selected);
         background-color: var(--background-color-hover);
     }
 
     a:hover > img {
-        filter: saturate(20);
+        filter: var(--filter-image-hover);
     }
 
     img {
