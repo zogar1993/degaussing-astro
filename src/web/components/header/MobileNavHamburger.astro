@@ -56,17 +56,19 @@ const items = getMenuItems({path: Astro.url.pathname})
     }
 
     #dropdown-list {
-        top: min(-100vh, -512px);
+        top: -100vh;
 
         display: flex;
         position: absolute;
         background-color: var(--background-color-secondary);
 
         width: 100vw;
-        height: max(100vh, 512px);
+        height: 100vh;
 
         z-index: 50;
         transition: 0.50s ease-in-out;
+
+        overflow-y: auto;
     }
 
     #hamburger-menu:target > #dropdown-list {
