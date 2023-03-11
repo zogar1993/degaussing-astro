@@ -53,13 +53,13 @@ const { src } = await getImage({
 	.text-container {
 		display: flex;
 		flex-direction: column;
-		gap: 8px;
+		gap: 12px;
 	}
 
 	.container {
 		display: flex;
 		flex-direction: column;
-		justify-content: space-between;
+		gap: 24px;
 		flex-grow: 1;
 	}
 
@@ -71,6 +71,11 @@ const { src } = await getImage({
 
 		.container {
 			flex-direction: row;
+			justify-content: space-between;
+		}
+
+		.text-container {
+			gap: 16px
 		}
 	}
 </style>
