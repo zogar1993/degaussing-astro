@@ -1,5 +1,6 @@
-import {getImage, getNextAndLast, getPage, getPreviousAndFirst, imageToUrl, RelatedPages} from "@server/Utils"
-import type {Chapter, Page} from "@transport/Chapter"
+import {getNextAndLast, getPage, getPreviousAndFirst, imageToUrl, RelatedPages} from "@server/Utils"
+import type {Chapter} from "@transport/Chapter"
+import type {Strip} from "@transport/Strip"
 
 export default function getPageInfo({
 	chapter,
@@ -9,13 +10,14 @@ export default function getPageInfo({
 	chapter: number
 	page: number
 	chapters: ReadonlyArray<Chapter>
-}): RelatedPages & {image: string, characters: Page["characters"]} {
+}): RelatedPages & {image: string, characters: Strip["characters"], description: Strip["description"]} {
 	const current = getPage({ chapters, chapter, page })
 	return {
 		image: imageToUrl(current.image),
 		backward: getPreviousAndFirst({ chapters, chapter, page }),
 		current: { chapter: chapter, page: page },
 		forward: getNextAndLast({ chapters, chapter, page }),
-		characters: current.characters || []
+		characters: current.characters,
+		description: current.description
 	}
 }

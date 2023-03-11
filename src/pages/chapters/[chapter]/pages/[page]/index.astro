@@ -12,5 +12,5 @@ export async function getStaticPaths() {
 const info = Astro.props;
 ---
 <StripAsideLayout info={info}>
-	<ComicStrip image={info.image} />
+	<ComicStrip image={info.image} description={info.description} />
 </StripAsideLayout>
