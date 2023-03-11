@@ -14,10 +14,11 @@ export default function getMenuItems({path}: { path: string }): Array<MenuItem> 
 		},
 		{
 			href: localizePath("/chapters"),
-			selected: pathname === "/chapters",
+			selected: pathname.startsWith("/chapters"),
 			text: t("menu.chapters"),
 			icon: "/icons/chapters.svg",
-			desktop: "text"
+			desktop: "text",
+			isSubPage: pathname.startsWith("/chapters") && pathname !== "/chapters"
 		},
 		{
 			href: localizePath("/characters"),
@@ -52,4 +53,5 @@ type MenuItem = {
 	text: string
 	icon: string
 	desktop: "text" | "icon"
+	isSubPage?: boolean
 }
