@@ -8,7 +8,7 @@ import getCharactersInfo from "@server/actions/GetCharactersInfo"
 
 export interface Props { info: { characters: Array<{name: string, image: string}>} }
 const { info } = Astro.props
-const { characters } = info
+const characters = info.characters.slice(0, 3)
 
 for (const character of characters) {
 	const { src } = await getImage({
@@ -20,7 +20,7 @@ for (const character of characters) {
 	character.portrait = src
 }
 ---
-<Aside grid-area="characters" aria-label={t("landmarks.characters")} grow={true}>
+<Aside grid-area="characters" aria-label={t("landmarks.characters")}>
 	<div class="container">
 		<Heading>{t("strip.characters")}</Heading>
 		<div class="characters">
@@ -29,6 +29,14 @@ for (const character of characters) {
 					<div class="character">
 						<img src={character.image} alt="" />
 						<span>{character.name}</span>
+					</div>
+				))
+			}
+			{
+				[...Array(3 - characters.length)].map(() => (
+					<div class="character">
+						<img src="/images/shadowed.png" alt=""/>
+						<div class="no-name"></div>
 					</div>
 				))
 			}
@@ -68,7 +76,13 @@ for (const character of characters) {
 	.characters {
 		display: flex;
 		flex-direction: column;
-		gap: 11px;
+		justify-content: space-evenly;
+
+		flex-grow: 1;
+	}
+
+	.no-name {
+		height: 23px;
 	}
 
 	@media (max-width: 992px) {

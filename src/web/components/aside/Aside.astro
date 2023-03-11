@@ -1,16 +1,11 @@
 ---
 const area = Astro.props["grid-area"]
 const name = Astro.props["aria-label"]
-const grow = Astro.props.grow
 ---
-<aside style={`grid-area: ${area}; flex-grow: ${grow ? 1 : 0};`} aria-label={name}>
+<aside style={`grid-area: ${area};`} aria-label={name}>
 	<slot />
 </aside>
 <style>
-	.grow {
-		flex-grow: 1;
-	}
-
 	aside {
 		display: flex;
 

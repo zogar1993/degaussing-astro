@@ -39,5 +39,5 @@ function unwrap(value: any) {
 	if (!value.hasOwnProperty("sys")) return value
 	if (value.sys.type === "Asset") return value.fields.file.url
 	if (value.sys.type === "Entry") return contentfulToPlainObject(value)
-	throw `Cannot handle type '${value.sys.type}'`
+	throw new Error(`Cannot handle type '${value.sys.type}'`)
 }
