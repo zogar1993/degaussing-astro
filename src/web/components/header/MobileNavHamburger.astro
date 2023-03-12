@@ -3,21 +3,13 @@ import getMenuItems from "@server/actions/GetMenuItems"
 const items = getMenuItems({path: Astro.url.pathname})
 ---
 <div class="dropdown" id="hamburger-menu">
-    <a
-        id="open-hamburger"
-        href="#hamburger-menu"
-        role="button"
-    >
+    <button id="hamburger-opener">
         <img src="/icons/hamburger.svg" alt=""/>
-    </a>
-    <div id="dropdown-list">
-        <a
-            id="close-hamburger"
-            href="#"
-            role="button"
-        >
+    </button>
+    <dialog id="dropdown-list">
+        <button id="hamburger-closer">
             <img src="/icons/close.svg" alt=""/>
-        </a>
+        </button>
         <ul>
             {items.map(item =>
             <li>
@@ -31,17 +23,24 @@ const items = getMenuItems({path: Astro.url.pathname})
             </li>
             )}
         </ul>
-    </div>
+    </dialog>
 </div>
 <script>
-	const handleOnKeyDown = (e) => {
-	    if (e.key === "Escape") {
-            window.location.href = "#"
-            e.preventDefault()
-        }
-	}
+    //fix naming conventions here
+    const content = document.querySelector("#content-container")
+	const opener = document.querySelector("#hamburger-opener");
+	const closer = document.querySelector("#hamburger-closer");
+	const dialog = document.querySelector("dialog");
 
-	document.body.addEventListener("keydown", handleOnKeyDown)
+    opener.addEventListener('click', () => {
+        content.setAttribute("inert", "");
+        dialog.showModal();
+    });
+
+    closer.addEventListener('click', () => {
+        content.removeAttribute("inert");
+        dialog.close();
+    });
 </script>
 <style>
     .dropdown {
@@ -55,9 +54,15 @@ const items = getMenuItems({path: Astro.url.pathname})
         border-bottom-right-radius: var(--border-radius);
     }
 
-    #dropdown-list {
-        top: -100vh;
+    dialog[open] {
+        top: 0;
+    }
 
+    dialog:not([open]) {
+        top: -100vh;
+    }
+
+    #dropdown-list {
         display: flex;
         position: absolute;
         background-color: var(--background-color-secondary);
@@ -71,10 +76,6 @@ const items = getMenuItems({path: Astro.url.pathname})
         overflow-y: auto;
     }
 
-    #hamburger-menu:target > #dropdown-list {
-        top: 0;
-    }
-
     ul {
         display: flex;
         flex-direction: column;
@@ -84,11 +85,11 @@ const items = getMenuItems({path: Astro.url.pathname})
 
     }
 
-    #open-hamburger {
+    #hamburger-opener {
         padding: 16px;
     }
 
-    #close-hamburger {
+    #hamburger-closer {
         position: absolute;
         top: 8px;
         right: 8px;
