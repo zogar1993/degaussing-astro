@@ -1,6 +1,8 @@
 {
   "accessibility": {
-    "skip-to-main": "Skip to main content"
+    "skip-to-main": "Skip to main content",
+    "main-menu": "Main menu",
+    "close": "Close"
   },
   "menu": {
     "home": "Home",
