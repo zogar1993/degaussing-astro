@@ -6,7 +6,7 @@ const items = getMenuItems({path: Astro.url.pathname})
     <button id="hamburger-opener">
         <img src="/icons/hamburger.svg" alt=""/>
     </button>
-    <dialog id="dropdown-list">
+    <dialog id="dropdown-list" inert>
         <button id="hamburger-closer">
             <img src="/icons/close.svg" alt=""/>
         </button>
@@ -26,20 +26,27 @@ const items = getMenuItems({path: Astro.url.pathname})
     </dialog>
 </div>
 <script>
-    //fix naming conventions here
+    const body = document.querySelector("body")
     const content = document.querySelector("#content-container")
 	const opener = document.querySelector("#hamburger-opener");
 	const closer = document.querySelector("#hamburger-closer");
 	const dialog = document.querySelector("dialog");
 
     opener.addEventListener('click', () => {
-        content.setAttribute("inert", "");
-        dialog.showModal();
+        content.setAttribute("aria-hidden", "true")
+        body.setAttribute("class", "no-scroll")//TODO this can be changed to a has() selector once fully supported
+        dialog.removeAttribute("inert")
+        dialog.showModal()
     });
 
     closer.addEventListener('click', () => {
-        content.removeAttribute("inert");
         dialog.close();
+    });
+
+    dialog.addEventListener('close', () => {
+        content.removeAttribute("aria-hidden")
+        body.classList.remove("class", "no-scroll")
+        dialog.setAttribute("inert", "")
     });
 </script>
 <style>

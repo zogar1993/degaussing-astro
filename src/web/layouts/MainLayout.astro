@@ -14,17 +14,17 @@ const { info } = Astro.props
 <!DOCTYPE html>
 <html lang={i18next.language}>
     <head>
-        <Title info={info}/>
-        <link rel="icon" href="/favicon.ico"/>
+        <Title info={info} />
+        <link rel="icon" href="/favicon.ico" />
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <ResetCss/>
         <FontsCss/>
         <VariablesCss/>
         <HeadHrefLangs/>
     </head>
     <body tabindex="-1">
-        <Header info={info}/>
+        <Header info={info} />
         <div id="content-container">
             <slot/>
         </div>
@@ -40,7 +40,7 @@ const { info } = Astro.props
         min-height: 100vh;
     }
 
-    body:has(#content-container[inert]) {
+    body.no-scroll {
         overflow-y: hidden;
     }
 
