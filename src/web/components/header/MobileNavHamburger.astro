@@ -5,7 +5,7 @@ import getMenuItems from "@server/actions/GetMenuItems"
 const items = getMenuItems({path: Astro.url.pathname})
 ---
 <nav aria-label={t("accesibility.main-menu")} >
-    <button id="hamburger-opener" aria-expanded="false" aria-controls="hamburger-dropdown">
+    <button id="hamburger-opener" aria-expanded="false" aria-controls="hamburger-dropdown" aria-label={t("accesibility.open")}>
         <img src="/icons/hamburger.svg" alt=""/>
     </button>
     <dialog id="hamburger-dropdown" role="menu" inert>

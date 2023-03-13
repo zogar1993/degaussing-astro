@@ -2,7 +2,9 @@
   "accessibility": {
     "skip-to-main": "Skip to main content",
     "main-menu": "Main menu",
-    "close": "Close"
+    "close": "Close",
+    "open": "Open Menu",
+    "strip-link": "Open image in new tab"
   },
   "menu": {
     "home": "Home",
