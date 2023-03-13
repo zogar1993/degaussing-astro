@@ -19,6 +19,8 @@ for (const character of characters) {
 	})
 	character.portrait = src
 }
+
+const { src: shadowed } = await getImage({src: "/images/shadowed.png", width: "111", height: "111", format: "webp"})
 ---
 <Aside grid-area="characters" aria-label={t("landmarks.characters")}>
 	<div class="container">
@@ -35,7 +37,7 @@ for (const character of characters) {
 			{
 				[...Array(3 - characters.length)].map(() => (
 					<div class="character no-one">
-						<img src="/images/shadowed.png" alt=""/>
+						<img src={shadowed} alt=""/>
 					</div>
 				))
 			}
