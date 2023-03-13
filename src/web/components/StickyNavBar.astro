@@ -2,23 +2,18 @@
 import { t } from "i18next"
 import { localizePath } from "astro-i18next"
 import getLocalizedLinkToComicStrip from "@server/actions/GetLocalizedLinkToComicStrip"
+import getStripNameParts from "@server/actions/GetStripNameParts"
 
-//TODO text here may be abstracted
-export interface Props { info?: RelatedPages }
-const {info} = Astro.props
-const {current: { chapter, page }, backward, forward} = info
+export interface Props { info: RelatedPages }
+const {info: {current, backward, forward}} = Astro.props
 ---
 <nav class="sticky-bar" aria-label={t("landmarks.navigation-comic")}>
 	<div class="navigation-arrows">
 		{
 			backward ? (
 				<>
-					<a href={getLocalizedLinkToComicStrip(backward.all)}>
-						&lt;&lt;
-					</a>
-					<a href={getLocalizedLinkToComicStrip(backward.one)}>
-						&lt;
-					</a>
+					<a href={getLocalizedLinkToComicStrip(backward.all)}>&lt;&lt;</a>
+					<a href={getLocalizedLinkToComicStrip(backward.one)}>&lt;</a>
 				</>
 			) : (
 				<>
@@ -29,19 +24,14 @@ const {current: { chapter, page }, backward, forward} = info
 		}
 	</div>
 	<div class="text">
-		{t("strip.chapter")}
-		{chapter} | {page === 0 ? t("strip.cover") : `${t("strip.page")} ${page}`}
+		{getStripNameParts(current).join(" | ")}
 	</div>
 	<div class="navigation-arrows">
 		{
 			forward ? (
 				<>
-					<a href={getLocalizedLinkToComicStrip(forward.one)}>
-						&gt;
-					</a>
-					<a href={getLocalizedLinkToComicStrip(forward.all)}>
-						&gt;&gt;
-					</a>
+					<a href={getLocalizedLinkToComicStrip(forward.one)}>&gt;</a>
+					<a href={getLocalizedLinkToComicStrip(forward.all)}>&gt;&gt;</a>
 				</>
 			) : (
 				<>

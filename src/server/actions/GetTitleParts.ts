@@ -7,6 +7,6 @@ export default function getTitleParts({path, info}: { path: string, info?: Relat
 	const item = items.find(item => item.selected)
 
 	if (item && !item.isSubPage) return [item.text]
-	if (info) return getStripNameParts({info})
+	if (info) return getStripNameParts(info.current)
 	throw Error(`No title for page ${path}`)
 }

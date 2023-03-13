@@ -1,8 +1,7 @@
-import type {RelatedPages} from "@server/Utils"
+import type {PageCoordinates, RelatedPages} from "@server/Utils"
 import {t} from "i18next"
 
-export default function getStripNameParts({info}: { info: RelatedPages }) {
-		const {chapter, page} = info.current
+export default function getStripNameParts({chapter, page}: PageCoordinates) {
 		return [
 			`${t("strip.chapter")} ${chapter}`,
 			`${page === 0 ? t("strip.cover") : `${t("strip.page")} ${page}`}`
