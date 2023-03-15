@@ -22,10 +22,10 @@ const next = forward ? getLocalizedLinkToComicStrip(forward.one) : null
 		<main id="main" tabindex="-1">
 			<ComicStrip info={info} />
 		</main>
+		<StickyNavBar info={info} />
 		<LastUpdate />
 		<Characters info={info}/>
 		<ThankYou />
-		<StickyNavBar info={info} />
 		<Comments />
 	</div>
 </MainLayout>
