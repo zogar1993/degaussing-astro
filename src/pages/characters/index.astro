@@ -7,16 +7,16 @@ import getCharactersInfo from "@server/actions/GetCharactersInfo";
 changeLanguage("en");
 
 const characters = await getCharactersInfo({ language: i18next.language });
-for (const character of characters) {
-    const { src } = await getImage({
-        src: character.portrait,
-        width: "239",
-        height: "338",
-        format: "webp",
-        quality: 100
-    });
-    character.portrait = src;
-}
+//for (const character of characters) {
+//    const { src } = await getImage({
+//        src: character.portrait,
+//        width: "239",
+//        height: "338",
+//        format: "webp",
+//        quality: 100
+//    });
+//    character.portrait = src;
+//}
 const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 ---
 <MainLayout>
