@@ -10,9 +10,10 @@ const characters = await getCharactersInfo({ language: i18next.language });
 for (const character of characters) {
     const { src } = await getImage({
         src: character.portrait,
-        width: "222",
-        height: "313",
-        format: "webp"
+        width: "239",
+        height: "338",
+        format: "webp",
+        quality: 100
     });
     character.portrait = src;
 }
