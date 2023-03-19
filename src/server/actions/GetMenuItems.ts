@@ -1,3 +1,4 @@
+import pathnameWithoutLocale from "@server/GetPathnameWithoutLocale"
 import i18next, {t} from "i18next"
 import {localizePath} from "astro-i18next"
 
@@ -44,8 +45,6 @@ export default function getMenuItems({path}: { path: string }): Array<MenuItem> 
 	]
 }
 
-const pathnameWithoutLocale = ({path, language}: { path: string, language: string }) =>
-	"/" + path.split("/").filter(x => x).filter((part, i) => !(i === 0 && part === language)).join("/")
 
 type MenuItem = {
 	href: string

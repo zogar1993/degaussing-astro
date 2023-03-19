@@ -1,15 +1,19 @@
 ---
-import i18next from "i18next";
+import i18next, { t } from "i18next";
 import Header from "@web/components/header/Header.astro"
 import Title from "@web/components/header/Title.astro"
 import ResetCss from "@web/styles/ResetCss.astro"
 import FontsCss from "@web/styles/FontsCss.astro"
 import VariablesCss from "@web/styles/VariablesCss.astro"
+import pathnameWithoutLocale from "@server/GetPathnameWithoutLocale"
 import { HeadHrefLangs } from "astro-i18next/components"
 import type {RelatedPages} from "@server/Utils"
 
 export interface Props { info?: RelatedPages }
 const { info } = Astro.props
+
+const pathname = pathnameWithoutLocale({path: Astro.url.pathname, language: i18next.language})
+const isHomepage = pathname === "/"
 ---
 <!DOCTYPE html>
 <html lang={i18next.language}>
@@ -18,6 +22,7 @@ const { info } = Astro.props
         <link rel="icon" href="/favicon.ico" />
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        {isHomepage && <meta name="description" content={t("seo.description")} />}
         <ResetCss/>
         <FontsCss/>
         <VariablesCss/>
