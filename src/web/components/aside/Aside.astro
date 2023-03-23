@@ -1,13 +1,13 @@
 ---
 const area = Astro.props["grid-area"]
 const name = Astro.props["aria-label"]
+const className = Astro.props["class"]
 ---
-<aside style={`grid-area: ${area};`} aria-label={name}>
+<aside style={`grid-area: ${area};`} aria-label={name} class={className}>
 	<slot />
 </aside>
 <style>
 	aside {
-		display: flex;
 		padding: 1.5em;
 		border: var(--border-wide);
 

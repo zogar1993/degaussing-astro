@@ -22,73 +22,68 @@ for (const character of characters) {
 
 const { src: shadowed } = await getImage({src: "/images/shadowed.png", width: "111", height: "111", format: "webp"})
 ---
-<Aside grid-area="characters" aria-label={t("landmarks.characters")}>
-	<div class="container">
-		<Heading>{t("strip.characters")}</Heading>
-		<div class="characters">
-			{
-				characters.map((character) => (
-					<div class="character">
-						<img src={character.portrait} alt="" />
-						<span>{character.name}</span>
-					</div>
-				))
-			}
-			{
-				[...Array(3 - characters.length)].map(() => (
-					<div class="character no-one">
-						<img src={shadowed} alt=""/>
-					</div>
-				))
-			}
-		</div>
+<Aside grid-area="characters" aria-label={t("landmarks.characters")} class="aside-characters">
+	<Heading>{t("strip.characters")}</Heading>
+	<div class="characters">
+		{
+			characters.map((character) => (
+				<div class="character">
+					<img src={character.portrait} alt="" />
+					<span>{character.name}</span>
+				</div>
+			))
+		}
+		{
+			[...Array(3 - characters.length)].map(() => (
+				<div class="character no-one">
+					<img src={shadowed} alt=""/>
+				</div>
+			))
+		}
 	</div>
 </Aside>
 <style>
+	:global(.aside-characters) {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		gap: 1.5rem;
+	}
+
 	.character {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 8px;
+		gap: .5rem;
+
 		color: var(--color-text-aside);
 	}
 
 	img {
-		width: 111px;
+		width: 7rem;
 		aspect-ratio: 1/1;
 		border-radius: 50%;
 	}
 
 	span {
 		font-family: var(--font-family-text);
-		font-size: 16px;
-	}
-
-	.container {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		flex-grow: 1;
-
-		gap: 24px;
+		font-size: 1rem;
 	}
 
 	.characters {
 		display: flex;
 		flex-direction: column;
 		justify-content: space-around;
-
 		flex-grow: 1;
 	}
 
-	@media (max-width: 992px) {
+	@media (max-width: 60em) {
 		.characters {
 			flex-direction: row;
 		}
 
 		img {
-			width: 71px;
-			height: 71px;
+			width: 4.5rem;
 		}
 
 		.no-one {
