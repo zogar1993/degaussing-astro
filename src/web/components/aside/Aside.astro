@@ -8,17 +8,16 @@ const name = Astro.props["aria-label"]
 <style>
 	aside {
 		display: flex;
+		padding: 1.5em;
+		border: var(--border-wide);
 
-		background-color: var(--background-color-primary);
 		border-radius: var(--border-radius);
-		border: var(--border);
-
-		padding: 24px;
+		background-color: var(--background-color-primary);
 	}
 
-	@media (max-width: 992px) {
+	@media (max-width: 60em) {
 		aside {
-			padding: 14px;
+			padding: 1em;
 		}
 	}
 </style>
