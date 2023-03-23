@@ -18,86 +18,78 @@ const previous = backward ? getLocalizedLinkToComicStrip(backward.one) : null
 const next = forward ? getLocalizedLinkToComicStrip(forward.one) : null
 ---
 <MainLayout info={info}>
-	<div class="grid">
-		<main id="main" tabindex="-1">
-			<ComicStrip info={info} />
-		</main>
-		<StickyNavBar info={info} />
-		<LastUpdate />
-		<Characters info={info}/>
-		<ThankYou />
-		<Comments />
-	</div>
+    <div class="grid">
+        <ComicStrip info={info}/>
+        <StickyNavBar info={info}/>
+        <LastUpdate/>
+        <Characters info={info}/>
+        <ThankYou/>
+        <Comments/>
+    </div>
 </MainLayout>
 <script define:vars={{ previous, next }}>
-	const handleOnKeyDown = (e) => {
-		switch (e.key) {
-			case "ArrowLeft":
-				if (previous) {
-					window.location.href = previous
-					e.preventDefault()
-				}
-				break
-			case "ArrowRight":
-				if (next) {
-					window.location.href = next
-					e.preventDefault()
-				}
-				break
-		}
-	}
+    const handleOnKeyDown = (e) => {
+        switch (e.key) {
+            case "ArrowLeft":
+                if (previous) {
+                    window.location.href = previous
+                    e.preventDefault()
+                }
+                break
+            case "ArrowRight":
+                if (next) {
+                    window.location.href = next
+                    e.preventDefault()
+                }
+                break
+        }
+    }
 
-	document.body.addEventListener("keydown", handleOnKeyDown)
+    document.body.addEventListener("keydown", handleOnKeyDown)
 
-	const main = document.querySelector("main");
-	const MOVE_THRESHOLD = 100;
+    const main = document.querySelector("main");
+    const MOVE_THRESHOLD = 100;
 
-	let initialX = 0;
-	let initialY = 0;
-	let initialScrollPosition = 0;
+    let initialX = 0;
+    let initialY = 0;
+    let initialScrollPosition = 0;
 
-	main.addEventListener("touchstart", e => {
-		const touch = e.touches[0]
-    	initialX = touch.pageX;
-    	initialY = touch.pageY;
-    	initialScrollPosition = document.documentElement.scrollTop
-	});
+    main.addEventListener("touchstart", e => {
+        const touch = e.touches[0]
+        initialX = touch.pageX;
+        initialY = touch.pageY;
+        initialScrollPosition = document.documentElement.scrollTop
+    });
 
-	main.addEventListener("touchend", e => {
-		const touch = e.changedTouches[0]
-		const xDisplacement = touch.pageX - initialX
-		const scrollDisplacement = document.documentElement.scrollTop - initialScrollPosition
-		const yDisplacement = touch.pageY - initialY + scrollDisplacement
+    main.addEventListener("touchend", e => {
+        const touch = e.changedTouches[0]
+        const xDisplacement = touch.pageX - initialX
+        const scrollDisplacement = document.documentElement.scrollTop - initialScrollPosition
+        const yDisplacement = touch.pageY - initialY + scrollDisplacement
 
-		//Non horizontal swipes are ignored
-		if (Math.abs(yDisplacement) > MOVE_THRESHOLD) return
+        //Non horizontal swipes are ignored
+        if (Math.abs(yDisplacement) > MOVE_THRESHOLD) return
 
-		if (xDisplacement < -MOVE_THRESHOLD && next) {
-			window.location.href = next
-		} else if (xDisplacement > MOVE_THRESHOLD && previous) {
-			window.location.href = previous
-		}
-	});
+        if (xDisplacement < -MOVE_THRESHOLD && next) {
+            window.location.href = next
+        } else if (xDisplacement > MOVE_THRESHOLD && previous) {
+            window.location.href = previous
+        }
+    });
 </script>
 <style>
-	main {
-		grid-area: main;
-		display: flex;
-		position: relative;
-	}
-
-	.grid {
-		display: grid;
-		grid-template-columns: var(--strip-width) 13rem;
-		grid-template-rows: auto 1fr auto;
-		grid-template-areas:
-			"main last-update"
-			"main characters"
-			"main thank-you"
-			"sticky-bar nothing"
-			"comments comments";
+    .grid {
+        display: grid;
+        grid-template-columns: var(--strip-width) 13rem;
+        grid-template-rows: auto 1fr auto auto auto;
+        grid-template-areas:
+				"main last-update"
+				"main characters"
+				"main thank-you"
+				"sticky-bar nothing"
+				"comments comments";
 		gap: 1.25rem;
-	}
+    }
 
 	@media (max-width: 60em) {
 		.grid {

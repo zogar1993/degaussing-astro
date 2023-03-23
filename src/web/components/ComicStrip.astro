@@ -31,15 +31,21 @@ const { src: src568w } = await getImage({
 //	  sizes="(max-width: 600px) 568px,
 //			 900px"
 ---
-<h2>{t("strip.heading-main")}</h2>
-<a href={image} target="_blank" rel="noreferrer noopener" aria-label={t("accessibility.strip-link")}>
-	<img
-		src={src900w}
-		alt={description}
-	/>
-</a>
-<div class="border"></div>
+<main id="main" tabindex="-1">
+	<h2>{t("strip.heading-main")}</h2>
+	<a href={image} target="_blank" rel="noreferrer noopener" aria-label={t("accessibility.strip-link")}>
+		<img
+			src={src900w}
+			alt={description}
+		/>
+	</a>
+</main>
 <style>
+	main {
+		grid-area: main;
+		position: relative;
+	}
+
 	h2 {
 		position: absolute;
 		z-index: -1;
@@ -47,23 +53,15 @@ const { src: src568w } = await getImage({
 		left: 50%;
 	}
 
-	a {
-		width: 100%;
-	}
-
 	img {
-		width: 100%;
+		display: block;
+		/* TODO this width is not too convincing */
+		width: min(var(--strip-width), calc(100vw - 2em));
 		aspect-ratio: var(--strip-aspect-ratio);
 		background-color: white;
-		border-radius: calc(var(--border-radius) + 1px);
-	}
-
-	.border {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		border: var(--border);
 		border-radius: var(--border-radius);
-		pointer-events: none;
+
+		/* TODO this border may be a class */
+		border: var(--border);
 	}
 </style>
