@@ -40,12 +40,10 @@ const isHomepage = pathname === "/"
 
 <style>
     :root {
-        scroll-padding-top: 1.25em;
+        scroll-padding-top: 1.25rem;
     }
 
     body {
-        display: flex;
-        flex-direction: column;
         min-height: 100vh;
     }
 
@@ -59,14 +57,12 @@ const isHomepage = pathname === "/"
         align-items: center;
         background: var(--background-main);
 
-        padding: 30px 20px;
-
-        flex-grow: 1;
+        padding: 2rem 1.25rem;
     }
 
-    @media (max-width: 992px) {
-        .main-background {
-            padding: 16px;
+    @media (max-width: 60em) {
+        #content-container {
+            padding: 1rem;
         }
     }
 </style>
