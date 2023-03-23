@@ -88,20 +88,18 @@ const next = forward ? getLocalizedLinkToComicStrip(forward.one) : null
 
 	.grid {
 		display: grid;
-		grid-template-columns: var(--strip-width) 208px;
-		gap: 18px;
-
+		grid-template-columns: var(--strip-width) 13rem;
+		grid-template-rows: auto 1fr auto;
 		grid-template-areas:
 			"main last-update"
 			"main characters"
 			"main thank-you"
 			"sticky-bar nothing"
 			"comments comments";
-
-		grid-template-rows: auto 1fr auto;
+		gap: 1.25rem;
 	}
 
-	@media (max-width: 992px) {
+	@media (max-width: 60em) {
 		.grid {
 			grid-template-columns: 1fr;
 			grid-template-areas:
@@ -111,8 +109,6 @@ const next = forward ? getLocalizedLinkToComicStrip(forward.one) : null
 				"characters"
 				"thank-you"
 				"comments";
-
-			width: 100%;
 		}
 	}
 </style>
