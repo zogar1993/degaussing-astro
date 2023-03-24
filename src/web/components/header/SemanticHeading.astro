@@ -6,10 +6,4 @@ const { info } = Astro.props
 
 const title = getTitle({path: Astro.url.pathname, info})
 ---
-<h1>{title}</h1>
-<style>
-	h1 {
-		position: absolute;
-		z-index: -1;
-	}
-</style>
+<h1 class="semantic-only">{title}</h1>

@@ -7,59 +7,59 @@ import { getContributionLinks } from "@server/actions/GetContributionLinks"
 const links = await getContributionLinks()
 ---
 
-<Aside grid-area="thank-you" aria-label={t("landmarks.donations")}>
-	<div class="container">
-		<h2>{t("landmarks.donations")}</h2>
-		<span class="heading">{t("strip.thank-you")}</span>
-		<ul>
-			{
-				links.map((link) => (
-					<li>
-						<a href={link.href} target="_blank" rel="noopener">
-							<img src={link.icon} alt="" />
-							<span class="name">{link.text}</span>
-						</a>
-					</li>
-				))
-			}
-		</ul>
-	</div>
+<Aside class="aside-thank-you" grid-area="thank-you" aria-label={t("landmarks.donations")}>
+	<h2 class="semantic-only">{t("landmarks.donations")}</h2>
+	<span class="heading">{t("strip.thank-you")}</span>
+	<ul>
+		{
+			links.map((link) => (
+				<li>
+					<a href={link.href} target="_blank" rel="noopener">
+						<img src={link.icon} alt="" />
+						<span class="name">{link.text}</span>
+					</a>
+				</li>
+			))
+		}
+	</ul>
 </Aside>
 <style>
-	h2 {
-		position: absolute;
-		z-index: -1;
+	:global(.aside-thank-you) {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		gap: 1.25rem;
 	}
 
 	.heading {
 		font-family: var(--font-family-title);
-		font-size: 30px;
+		font-size: 1.875rem;;
 		color: var(--color-title);
 	}
 
 	ul {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-		gap: 8px;
+		gap: .5rem;
 	}
 
 	a {
 		display: grid;
 		grid-template-columns: 1fr;
-		grid-template-rows: 1fr 14px;
+		grid-template-rows: 1fr 1rem;
 		justify-items: center;
 		align-items: center;
-		padding: 8px;
-		height: 72px;
-		width: 72px;
+		padding: .5rem;
+		height: 4.5rem;
+		width: 4.5rem;
 
-		background-color: #f0be5f;
-		border: 1px solid #432918;
-		border-radius: 5px;
+		background-color: var(--color-primary);
+		border: 1px solid var(--color-button-border);
+		border-radius: var(--border-radius);
 
 		font-family: var(--font-family-text);
 		color: var(--color-text-aside);
-		font-size: 14px;
+		font-size: .875rem;
 
 		transition: var(--transition-hover);
 		transition-property: background-color;
@@ -69,38 +69,22 @@ const links = await getContributionLinks()
 		background-color: var(--color-hover);
 	}
 
-	.container {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		flex-grow: 1;
-		gap: 20px;
-	}
+	@media (max-width: 60em) {
+		:global(.aside-thank-you) {
+			gap: .25rem;
+		}
 
-	@media (max-width: 992px) {
 		ul {
-			gap: 8px;
-			padding: 14px;
+			gap: .5rem;
+			padding: 1rem;;
 		}
 
 		a {
-			grid-template-columns: 46px 1fr;
-			grid-template-rows: none;
-			padding: 0 16px;
-			height: 62px;
+			height: 4rem;
 			width: auto;
-		}
-
-		img {
-			justify-self: center;
-		}
-
-		.name {
-			justify-self: center;
-		}
-
-		.container {
-			gap: 4px;
+			grid-template-columns: 3rem 1fr;
+			grid-template-rows: none;
+			padding: 0 1rem;
 		}
 	}
 </style>

@@ -32,7 +32,7 @@ const { src: src568w } = await getImage({
 //			 900px"
 ---
 <main id="main" tabindex="-1">
-	<h2>{t("strip.heading-main")}</h2>
+	<h2 class="semantic-only">{t("strip.heading-main")}</h2>
 	<a href={image} target="_blank" rel="noreferrer noopener" aria-label={t("accessibility.strip-link")}>
 		<img
 			src={src900w}
@@ -45,13 +45,6 @@ const { src: src568w } = await getImage({
 		grid-area: main;
 		position: relative;
 		max-width: 100%;
-	}
-
-	h2 {
-		position: absolute;
-		z-index: -1;
-		top: 50%;
-		left: 50%;
 	}
 
 	img {
