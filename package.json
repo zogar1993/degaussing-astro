@@ -11,16 +11,16 @@
 		"localize": "yarn astro-i18next generate"
 	},
 	"dependencies": {
-		"@astrojs/image": "0.16.0",
-		"@contentful/rich-text-html-renderer": "16.0.2",
-		"astro": "2.1.2",
+		"@astrojs/image": "0.16.2",
+		"@contentful/rich-text-html-renderer": "16.0.3",
+		"astro": "2.1.6",
 		"astro-i18next": "1.0.0-beta.21",
-		"contentful": "9.3.3",
+		"contentful": "9.3.5",
 		"sharp": "0.31.3"
 	},
 	"devDependencies": {
-		"@types/node": "18.15.0",
-		"prettier": "2.8.4",
+		"@types/node": "18.15.6",
+		"prettier": "2.8.6",
 		"prettier-plugin-astro": "0.8.0"
 	}
 }
