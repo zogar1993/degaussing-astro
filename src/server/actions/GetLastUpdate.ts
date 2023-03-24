@@ -14,9 +14,10 @@ export default async function getLastUpdate({
 	const lastUpdate = new Date(current.pages[page - 1].createdAt)
 	const date =
 		language === "es" ? getSpanishDate(lastUpdate) : getEnglishDate(lastUpdate)
+	const datetime = getDatetime(lastUpdate)
 
 	const image = current.cover.image
-	return { chapter, page, image, date }
+	return { chapter, page, image, date, datetime }
 }
 
 function getEnglishDate(date: Date) {
@@ -37,4 +38,11 @@ function getSpanishDate(date: Date) {
 	})
 	const day = date.getUTCDate()
 	return `${day} de ${month}, ${year}`
+}
+
+function getDatetime(date: Date) {
+	const year = date.getUTCFullYear()
+	const month = (date.getUTCMonth() + 1).toString().padStart(2, "0")
+	const day = date.getUTCDate().toString().padStart(2, "0")
+	return `${year}-${month}-${day}`
 }

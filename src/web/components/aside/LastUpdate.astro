@@ -5,7 +5,7 @@ import getLastUpdate from "@server/actions/GetLastUpdate"
 import Aside from "@web/components/aside/Aside.astro"
 import Heading from "@web/components/aside/Heading.astro"
 
-const { image, chapter, date } = await getLastUpdate({
+const { image, chapter, date, datetime } = await getLastUpdate({
 	language: i18next.language
 })
 const { src } = await getImage({
@@ -16,66 +16,62 @@ const { src } = await getImage({
 })
 ---
 
-<Aside grid-area="last-update" aria-label={t("landmarks.last-update")}>
-	<div class="container">
-		<div class="text-container">
-			<Heading>{t("strip.last-update")}</Heading>
-			<span class="important">{date}</span>
-			<span class="normal">
-				{t("strip.chapter")} {chapter}
-			</span>
-		</div>
-		<img src={src} alt={`${t("strip.chapter")} ${chapter}`} />
+<Aside class="aside-last-update" grid-area="last-update" aria-label={t("landmarks.last-update")}>
+	<div class="text-container">
+		<Heading>{t("strip.last-update")}</Heading>
+		<time datetime={datetime}>{date}</time>
+		<span>{t("strip.chapter")} {chapter}</span>
 	</div>
+	<img src={src} alt={`${t("strip.chapter")} ${chapter}`} />
 </Aside>
 <style>
-	.important {
+	:global(.aside-last-update) {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+	}
+
+	.text-container {
+		display: flex;
+		flex-direction: column;
+		gap: .75rem;
+	}
+
+	time {
 		font-family: var(--font-family-text);
 		font-weight: 600;
-		font-size: 16px;
-		line-height: 24px;
+		font-size: 1rem;
+		line-height: 1.5rem;
 		color: var(--color-text-aside);
 	}
 
-	.normal {
+	span {
 		font-family: var(--font-family-text);
-		font-size: 14px;
-		line-height: 24px;
+		font-size: .875rem;;
+		line-height: 1.5rem;
 		color: var(--color-text-aside);
 	}
 
 	img {
 		width: 100%;
 		aspect-ratio: var(--strip-aspect-ratio);
+
 		border-radius: var(--border-radius);
 	}
 
-	.text-container {
-		display: flex;
-		flex-direction: column;
-		gap: 12px;
-	}
-
-	.container {
-		display: flex;
-		flex-direction: column;
-		gap: 24px;
-		flex-grow: 1;
-	}
-
-	@media (max-width: 992px) {
-		img {
-			width: 97px;
-			height: 137px;
-		}
-
-		.container {
+	@media (max-width: 60em) {
+		:global(.aside-last-update) {
 			flex-direction: row;
 			justify-content: space-between;
 		}
 
 		.text-container {
-			gap: 16px
+			gap: 1rem
+		}
+
+		img {
+			width: 6rem;
+			height: 8.5rem;
 		}
 	}
 </style>
