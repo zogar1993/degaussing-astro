@@ -14,12 +14,12 @@ const title = getTitleParts({path: Astro.url.pathname, info})
         display: none;
     }
 
-    @media (max-width: 992px) {
+    @media (max-width: 60em) {
         span {
             display: flex;
             align-items: center;
-            padding: 11px 28px;
-            font-size: 30px;
+            padding: .75rem 1.75rem;
+            font-size: 1.875rem;
             font-family: var(--font-family-title);
             color: var(--color-selected);
         }

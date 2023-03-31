@@ -26,7 +26,7 @@ const items = getMenuItems({path: Astro.url.pathname})
 
     ul {
         display: flex;
-        gap: 36px;
+        gap: 2rem;
     }
 
     li {
@@ -36,8 +36,8 @@ const items = getMenuItems({path: Astro.url.pathname})
 
     a {
         display: flex;
-        padding: 8px 12px;
-        font-size: 32px;
+        padding: 0.5rem 0.75rem;
+        font-size: 2rem;
         font-family: var(--font-family-title);
         color: var(--color-primary);
         border-radius: var(--border-radius);
@@ -61,15 +61,15 @@ const items = getMenuItems({path: Astro.url.pathname})
     }
 
     img {
-        width: 29px;
-        height: 29px;
+        width: 1.75rem;
+        height: 1.75rem;
     }
 
     .selected {
         color: var(--color-hover);
     }
 
-    @media (max-width: 992px) {
+    @media (max-width: 60em) {
         nav {
             display: none;
         }

@@ -29,7 +29,7 @@ const { info } = Astro.props
 		justify-content: center;
 		background-color: var(--background-color-secondary);
 		background: var(--background-header);
-		padding: 33px 0;
+		padding: 2rem 0;
 	}
 
 	.row-menu {
@@ -37,7 +37,7 @@ const { info } = Astro.props
         justify-content: center;
         align-items: stretch;
         background-color: var(--background-color-secondary);
-        height: 60px;
+        height: 3.75rem;
         box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.25);
 	}
 
@@ -46,14 +46,14 @@ const { info } = Astro.props
 		flex-direction: column;
 	}
 
-	@media (max-width: 992px) {
+	@media (max-width: 60em) {
 		.row-logo {
-			padding: 16px 48px;
-			height: 112px;
+			padding: 1rem 3rem;
+			height: 7rem;
 		}
 
 		.row-menu {
-			height: 52px;
+			height: 3.25rem;
 		}
 	}
 </style>

@@ -51,30 +51,30 @@ const {info: {current, backward, forward}} = Astro.props
 		justify-content: space-between;
 		align-items: center;
 
-		width: 656px;
-		height: 59px;
+		width: 41rem;
+		height: 3.75rem;
 
 		background-color: var(--background-color-secondary);
 		border: 1px solid #000000;
 		box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.25);
 		border-radius: 10px;
 
-		padding: 0 72px;
+		padding: 0 4.5rem;
 
 		font-family: var(--font-family-title);
 		font-style: normal;
 		font-weight: 400;
-		font-size: 32px;
+		font-size: 2rem;
 
 		color: var(--color-text-comment);
-		bottom: 10px;
+		bottom: .75rem;
 
 		justify-self: center;
 	}
 
 	.navigation-arrows {
 		display: flex;
-		gap: 24px;
+		gap: 1.5rem;
 	}
 
 	a {
@@ -82,8 +82,8 @@ const {info: {current, backward, forward}} = Astro.props
 		justify-content: center;
 
 		color: var(--color-primary);
-		font-size: 40px;
-		min-width: 36px;
+		font-size: 2.5rem;
+		min-width: 2.25rem;
 
 		transition: var(--transition-hover);
 		transition-property: color;
@@ -98,25 +98,25 @@ const {info: {current, backward, forward}} = Astro.props
 		color: var(--color-disabled);
 	}
 
-	@media (max-width: 992px) {
+	@media (max-width: 60em) {
 		.sticky-bar {
 			position: static;
-			padding: 0 8px;
+			padding: 0 0.5rem;
 			width: 100%;
-			height: 40px;
+			height: 2.5rem;
 		}
 
 		.navigation-arrows {
-			gap: 8px;
+			gap: .5rem;
 		}
 
 		.text {
-			font-size: 20px;
+			font-size: 1.25rem;
 		}
 
 		a {
 			color: var(--color-primary);
-			font-size: 32px;
+			font-size: 2rem;
 		}
 	}
 </style>
