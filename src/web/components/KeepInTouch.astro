@@ -37,7 +37,7 @@ const links = await getSocialLinks()
 	ul {
 		display: flex;
 		align-items: center;
-		gap: 9px;
+		gap: .5rem;
 	}
 
 	a {
@@ -45,8 +45,8 @@ const links = await getSocialLinks()
 		justify-content: center;
 		align-items: center;
 
-		width: 32px;
-		height: 32px;
+		width: 2rem;
+		height: 2rem;
 		background-color: rgba(128, 128, 128, 0.44);
 		border-radius: var(--border-radius);
 
@@ -71,20 +71,20 @@ const links = await getSocialLinks()
 		font-family: var(--font-family-title);
 		font-style: normal;
 		font-weight: 400;
-		font-size: 32px;
-		line-height: 37px;
+		font-size: 2rem;
+		line-height: 2.5rem;
 		color: white;
 	}
 
-	@media (max-width: 992px) {
+	@media (max-width: 60em) {
 		header {
 			flex-direction: column;
-			gap: 24px;
+			gap: 1.5rem;
 		}
 
 		span {
-			font-size: 24px;
-			line-height: 28px;
+			font-size: 1.5rem;
+			line-height: 1.75rem;
 		}
 	}
 </style>

@@ -28,7 +28,7 @@ const { src } = await getImage({
 	main {
 		display: flex;
 		flex-direction: column;
-		gap: 12px;
+		gap: .75rem;
 
 		width: 862px;
 
@@ -36,18 +36,18 @@ const { src } = await getImage({
 		color: var(--color-text-comment);
 		border-radius: var(--border-radius);
 
-		padding: 40px 64px;
+		padding: 2.5rem 4rem;
 	}
 
 	h2 {
 		font-family: var(--font-family-title);
-        font-size: 32px;
+        font-size: 2rem;
 	}
 
 	main :global(p) {
 		font-family: var(--font-family-text);
-        font-size: 18px;
-        line-height: 26px;
+        font-size: 1.25rem;
+        line-height: 1.5em;
 	}
 
 	main :global(i) {
@@ -58,14 +58,14 @@ const { src } = await getImage({
 		font-weight: bold;
 	}
 
-	@media (max-width: 992px) {
+	@media (max-width: 60em) {
 		main {
 			width: 100%;
-			padding: 24px 20px;
+			padding: 1.5rem 1.25rem;
 		}
 
         main :global(p) {
-            font-size: 16px;
+            font-size: 1rem;
         }
 
         h2 {

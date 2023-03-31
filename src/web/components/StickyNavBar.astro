@@ -51,8 +51,10 @@ const {info: {current, backward, forward}} = Astro.props
 		justify-content: space-between;
 		align-items: center;
 
-		width: 41rem;
+		margin-inline: calc(5.5rem + var(--border-wide-width));
+		justify-self: stretch;
 		height: 3.75rem;
+
 
 		background-color: var(--background-color-secondary);
 		border: 1px solid #000000;
@@ -68,8 +70,6 @@ const {info: {current, backward, forward}} = Astro.props
 
 		color: var(--color-text-comment);
 		bottom: .75rem;
-
-		justify-self: center;
 	}
 
 	.navigation-arrows {

@@ -46,24 +46,24 @@ const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 		background-color: var(--background-color-secondary);
 		border-radius: var(--border-radius);
 
-		padding: 25px 32px 32px 32px;
+		padding: 1.5rem 1rem 1rem 1rem;
 	}
 
 	section {
 		display: flex;
 		flex-direction: column;
-		gap: 2px;
+		gap: .125rem;
 
 		background-color: white;
 		border: 1px solid #1d1d1b;
 		border-radius: var(--border-radius);
 
-		padding: 24px;
+		padding: 1.5rem;
 	}
 
 	article {
 		display: flex;
-		gap: 20px;
+		gap: 1.25rem;
 	}
 
 	article:nth-child(even) {
@@ -80,22 +80,22 @@ const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 	.text-container {
 		display: flex;
 		flex-direction: column;
-		padding-top: 16px;
-		padding-left: 4px;
-		padding-right: 4px;
-		gap: 4px;
+		padding-top: 1rem;
+		padding-left: .25rem;
+		padding-right: .25rem;
+		gap: .25rem;
 	}
 
 	h4 {
 		font-family: var(--font-family-title);
-		font-size: 64px;
+		font-size: 4rem;
 		color: var(--color-title);
 	}
 
 	p {
 		font-family: var(--font-family-text);
-		font-size: 16px;
-		line-height: 22px;
+		font-size: 1rem;
+		line-height: 1.5em;
 	}
 
 	span {
@@ -103,7 +103,7 @@ const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 		font-weight: 600;
 	}
 
-	@media (max-width: 992px) {
+	@media (max-width: 60em) {
 		main {
 			padding: 0;
 			width: 100%;
@@ -119,11 +119,11 @@ const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 
 		section {
 			border: var(--border-wide);
-			gap: 72px;
+			gap: 4.5rem;
 		}
 
 		article {
-			gap: 16px;
+			gap: 1rem;
 		}
 
 		img {
