@@ -40,11 +40,10 @@ export default function getMenuItems({path}: { path: string }): Array<MenuItem> 
 			selected: false,
 			text: t("menu.language"),
 			icon: "/icons/language.svg",
-			desktop: "icon"
+			desktop: "text"
 		}
 	]
 }
-
 
 type MenuItem = {
 	href: string
