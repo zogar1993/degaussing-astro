@@ -34,7 +34,7 @@ for (const chapter of chapters) {
 </MainLayout>
 <style>
 	a {
-		padding: 16px;
+		padding: 1rem;
 		border-radius: var(--border-radius);
 
 		transition: var(--transition-hover);
@@ -47,7 +47,7 @@ for (const chapter of chapters) {
 
 	main {
 		display: grid;
-		grid-template-columns: auto auto auto;
+		grid-template-columns: repeat(3, auto);
 		justify-content: space-between;
 
 		width: var(--main-desktop-width);
@@ -56,14 +56,14 @@ for (const chapter of chapters) {
 		border-radius: var(--border-radius);
 		border: var(--border-wide);
 
-		padding: 16px;
+		padding: 1rem;
 	}
 
 	img {
 		width: 239px;
 		aspect-ratio: var(--strip-aspect-ratio);
 
-		margin-bottom: 20px;
+		margin-bottom: 1.25rem;
 
 		border-radius: var(--border-radius);
 	}
@@ -71,16 +71,16 @@ for (const chapter of chapters) {
 	h4 {
 		color: var(--color-title);
 		font-family: var(--font-family-title);
-		font-size: 24px;
+		font-size: 2rem;
 
-		margin-bottom: 10px;
+		margin-bottom: .5rem;
 		user-select: none;
 	}
 
 	span {
 		color: var(--color-muted);
 		font-family: var(--font-family-text);
-		font-size: 14px;
+		font-size: .875rem;
 		user-select: none;
 	}
 
@@ -89,8 +89,8 @@ for (const chapter of chapters) {
 			grid-template-columns: 1fr;
 			width: 100%;
 
-			padding: 16px 16px 42px 16px;
-			gap: 42px;
+			padding: 1rem 1rem 2.5rem 1rem;
+			gap: 2.5rem;
 		}
 
 		img {
