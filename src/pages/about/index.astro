@@ -17,8 +17,6 @@ const { src } = await getImage({
     height: "386",
     format: "webp"
 });
-//TODO line heights
-//TODO width: 862px;
 ---
 <MainLayout>
 	<main id="main" tabindex="-1">
@@ -32,7 +30,7 @@ const { src } = await getImage({
 		flex-direction: column;
 		gap: .75rem;
 
-		width: 862px;
+		width: var(--main-desktop-width);
 
 		background-color: var(--background-color-secondary);
 		color: var(--color-text-comment);
