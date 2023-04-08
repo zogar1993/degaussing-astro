@@ -12,8 +12,8 @@ const {info: {current, backward, forward}} = Astro.props
 		{
 			backward ? (
 				<>
-					<a href={getLocalizedLinkToComicStrip(backward.all)}>&lt;&lt;</a>
-					<a href={getLocalizedLinkToComicStrip(backward.one)}>&lt;</a>
+					<a href={getLocalizedLinkToComicStrip(backward.all)} aria-label={t("secondary-nav.first")} title={t("secondary-nav.first")}>&lt;&lt;</a>
+					<a href={getLocalizedLinkToComicStrip(backward.one)} aria-label={t("secondary-nav.previous")} title={t("secondary-nav.previous")}>&lt;</a>
 				</>
 			) : (
 				<>
@@ -30,8 +30,8 @@ const {info: {current, backward, forward}} = Astro.props
 		{
 			forward ? (
 				<>
-					<a href={getLocalizedLinkToComicStrip(forward.one)}>&gt;</a>
-					<a href={getLocalizedLinkToComicStrip(forward.all)}>&gt;&gt;</a>
+					<a href={getLocalizedLinkToComicStrip(forward.one)} aria-label={t("secondary-nav.next")} title={t("secondary-nav.next")}>&gt;</a>
+					<a href={getLocalizedLinkToComicStrip(forward.all)} aria-label={t("secondary-nav.last")} title={t("secondary-nav.last")}>&gt;&gt;</a>
 				</>
 			) : (
 				<>
