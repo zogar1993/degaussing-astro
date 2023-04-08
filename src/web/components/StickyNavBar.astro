@@ -17,8 +17,8 @@ const {info: {current, backward, forward}} = Astro.props
 				</>
 			) : (
 				<>
-					<a href="javascript:void(0)" class="disabled" tabindex="-1">&lt;&lt;</a>
-					<a href="javascript:void(0)" class="disabled" tabindex="-1">&lt;</a>
+					<a href="javascript:void(0)" class="disabled" tabindex="-1" aria-hidden="true">&lt;&lt;</a>
+					<a href="javascript:void(0)" class="disabled" tabindex="-1" aria-hidden="true">&lt;</a>
 				</>
 			)
 		}
@@ -35,8 +35,8 @@ const {info: {current, backward, forward}} = Astro.props
 				</>
 			) : (
 				<>
-					<a href="javascript:void(0)" class="disabled" tabindex="-1">&gt;</a>
-					<a href="javascript:void(0)" class="disabled" tabindex="-1">&gt;&gt;</a>
+					<a href="javascript:void(0)" class="disabled" tabindex="-1" aria-hidden="true">&gt;</a>
+					<a href="javascript:void(0)" class="disabled" tabindex="-1" aria-hidden="true">&gt;&gt;</a>
 				</>
 			)
 		}
