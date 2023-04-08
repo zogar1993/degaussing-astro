@@ -8,7 +8,7 @@ const links = await getSocialLinks()
 
 <header>
 	<h2 class="semantic-only">{t("comments.heading")}</h2>
-	<span>{t("comments.thanks")} {t("comments.heading")}</span>
+	<div class="heading">{t("comments.thanks")} <span aria-hidden="true">{t("comments.heading")}</span></div>
 	<nav aria-label={t("landmarks.navigation-social")}>
 		<ul>
 			{
@@ -67,7 +67,7 @@ const links = await getSocialLinks()
 		filter: var(--filter-image-hover);
 	}
 
-	span {
+	.heading {
 		font-family: var(--font-family-title);
 		font-style: normal;
 		font-weight: 400;
