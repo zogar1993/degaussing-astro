@@ -215,3 +215,10 @@ main .gsc-loading-image {
 	color: black !important;
 }
 
+button[type=submit]:focus-visible {
+	outline: auto 1px rgb(0, 95, 204);
+}
+
+a.btn-primary:focus-visible {
+	outline: auto 1px rgb(0, 95, 204);
+}
