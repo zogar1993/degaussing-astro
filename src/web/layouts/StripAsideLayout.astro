@@ -28,24 +28,24 @@ const next = forward ? getLocalizedLinkToComicStrip(forward.one) : null
     </div>
 </MainLayout>
 <script define:vars={{ previous, next }}>
-    const handleOnKeyDown = (e) => {
-        switch (e.key) {
-            case "ArrowLeft":
-                if (previous) {
-                    window.location.href = previous
-                    e.preventDefault()
-                }
-                break
-            case "ArrowRight":
-                if (next) {
-                    window.location.href = next
-                    e.preventDefault()
-                }
-                break
-        }
-    }
+    //const handleOnKeyDown = (e) => {
+    //    switch (e.key) {
+    //        case "ArrowLeft":
+    //            if (previous) {
+    //                window.location.href = previous
+    //                e.preventDefault()
+    //            }
+    //            break
+    //        case "ArrowRight":
+    //            if (next) {
+    //                window.location.href = next
+    //                e.preventDefault()
+    //            }
+    //            break
+    //    }
+    //}
 
-    document.body.addEventListener("keydown", handleOnKeyDown)
+    //document.body.addEventListener("keydown", handleOnKeyDown)
 
     const main = document.querySelector("main");
     const MOVE_THRESHOLD = 100;
