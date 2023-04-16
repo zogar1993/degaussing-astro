@@ -222,3 +222,7 @@ button[type=submit]:focus-visible {
 a.btn-primary:focus-visible {
 	outline: auto 1px rgb(0, 95, 204);
 }
+
+textarea::placeholder {
+	color: #797676;
+}
