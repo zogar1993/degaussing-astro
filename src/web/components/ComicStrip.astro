@@ -1,11 +1,12 @@
 ---
 import { t } from "i18next"
 import { getImage } from "@astrojs/image"
+import getStripNameParts from "@server/actions/GetStripNameParts"
 
 export interface Props { info: RelatedPages }
 
 const { info } = Astro.props
-const { image, description } = info
+const { image, description, current } = info
 
 const {src: src900w} = await getImage({
 	src: image,
@@ -30,9 +31,10 @@ const { src: src568w } = await getImage({
 //		srcset={`${src568w} 568w, ${src900w} 900w`}
 //	  sizes="(max-width: 600px) 568px,
 //			 900px"
+const heading = [t("strip.heading-main"),...getStripNameParts(current)].join(" | ")
 ---
 <main id="main" tabindex="-1">
-	<h2 class="semantic-only">{t("strip.heading-main")}</h2>
+	<h2 class="semantic-only">{heading}</h2>
 	<a href={image} target="_blank" rel="noreferrer noopener">
 		<img
 			src={src900w}
