@@ -24,7 +24,7 @@ for (const chapter of chapters) {
 		{
 			chapters.map((chapter, i) => (
 				<a href={getLocalizedLinkToComicStrip({chapter: chapter.number, page: 0})}>
-					<img src={chapter.cover} alt={`${t("chapters.chapter")} ${i + 1}`} />
+					<img src={chapter.cover} alt="" />
 					<h4>{t("chapters.chapter")} {i + 1}</h4>
 					<span>{chapter.pagesAmount} {t("chapters.pages")}</span>
 				</a>
