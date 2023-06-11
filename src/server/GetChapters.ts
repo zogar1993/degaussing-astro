@@ -1,9 +1,9 @@
-import type { Chapter } from "@transport/Chapter"
+import type {Chapter} from "@transport/Chapter"
 import {getList} from "@server/GetEntries"
 
 export async function getChapters({
-	language
-}: {
+																		language
+																	}: {
 	language: string
 }): Promise<ReadonlyArray<Chapter>> {
 	const chapters = await getList<Chapter>("chapters", language)

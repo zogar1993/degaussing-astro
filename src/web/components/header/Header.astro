@@ -1,5 +1,4 @@
 ---
-import getTitle from "@server/actions/GetTitle"
 import Logo from "@web/components/header/Logo.astro"
 import SkipToMainContent from "@web/components/header/SkipToMainContent.astro"
 import SemanticHeading from "@web/components/header/SemanticHeading.astro"
@@ -8,52 +7,54 @@ import MobileNavHamburger from "@web/components/header/MobileNavHamburger.astro"
 import MobileHeaderText from "@web/components/header/MobileHeaderText.astro"
 import type {RelatedPages} from "@server/Utils"
 
-export interface Props { info?: RelatedPages }
-const { info } = Astro.props
+export interface Props {
+	info?: RelatedPages
+}
+const {info} = Astro.props
 ---
 <header>
-	<SkipToMainContent />
-	<SemanticHeading info={info}/>
-	<MobileNavHamburger />
-	<div class="row-logo">
-		<Logo />
-	</div>
-	<div class="row-menu">
-		<DesktopNavBar />
-		<MobileHeaderText info={info}/>
-	</div>
+    <SkipToMainContent/>
+    <SemanticHeading info={info}/>
+    <MobileNavHamburger/>
+    <div class="row-logo">
+        <Logo/>
+    </div>
+    <div class="row-menu">
+        <DesktopNavBar/>
+        <MobileHeaderText info={info}/>
+    </div>
 </header>
 <style>
-	.row-logo {
-		display: flex;
-		justify-content: center;
-		background-color: var(--background-color-secondary);
-		background: var(--background-header);
-		padding: 2rem 0;
-	}
+    .row-logo {
+        display: flex;
+        justify-content: center;
+        background-color: var(--background-color-secondary);
+        background: var(--background-header);
+        padding: 2rem 0;
+    }
 
-	.row-menu {
+    .row-menu {
         display: flex;
         justify-content: center;
         align-items: stretch;
         background-color: var(--background-color-secondary);
         height: 3.75rem;
         box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.25);
-	}
+    }
 
-	header {
-		display: flex;
-		flex-direction: column;
-	}
+    header {
+        display: flex;
+        flex-direction: column;
+    }
 
-	@media (max-width: 60em) {
-		.row-logo {
-			padding: 1rem 3rem;
-			height: 7rem;
-		}
+    @media (max-width: 60em) {
+        .row-logo {
+            padding: 1rem 3rem;
+            height: 7rem;
+        }
 
-		.row-menu {
-			height: 3.25rem;
-		}
-	}
+        .row-menu {
+            height: 3.25rem;
+        }
+    }
 </style>

@@ -1,12 +1,15 @@
 ---
-import { t } from "i18next"
-import { getImage } from "@astrojs/image"
+import {t} from "i18next"
+import {getImage} from "@astrojs/image"
 import getStripNameParts from "@server/actions/GetStripNameParts"
+import {RelatedPages} from "@server/Utils"
 
-export interface Props { info: RelatedPages }
+export interface Props {
+	info: RelatedPages
+}
 
-const { info } = Astro.props
-const { image, description, current } = info
+const {info} = Astro.props
+const {image, description, current} = info
 
 const {src: src900w} = await getImage({
 	src: image,
@@ -16,7 +19,7 @@ const {src: src900w} = await getImage({
 	quality: 100
 })
 
-const { src: src568w } = await getImage({
+const {src: src568w} = await getImage({
 	src: image,
 	width: "568",
 	height: "804",
@@ -31,30 +34,30 @@ const { src: src568w } = await getImage({
 //		srcset={`${src568w} 568w, ${src900w} 900w`}
 //	  sizes="(max-width: 600px) 568px,
 //			 900px"
-const heading = [t("strip.heading-main"),...getStripNameParts(current)].join(" | ")
+const heading = [t("strip.heading-main"), ...getStripNameParts(current)].join(" | ")
 ---
 <main id="main" tabindex="-1">
-	<h2 class="semantic-only">{heading}</h2>
-	<a href={image} target="_blank" rel="noreferrer noopener">
-		<img
-			src={src900w}
-			alt={description}
-		/>
-	</a>
+    <h2 class="semantic-only">{heading}</h2>
+    <a href={image} target="_blank" rel="noreferrer noopener">
+        <img
+                src={src900w}
+                alt={description}
+        />
+    </a>
 </main>
 <style>
-	main {
-		grid-area: main;
-		position: relative;
-		max-width: 100%;
-	}
+    main {
+        grid-area: main;
+        position: relative;
+        max-width: 100%;
+    }
 
-	img {
-		display: block;
-		width: 100%;
-		aspect-ratio: var(--strip-aspect-ratio);
-		background-color: white;
-		border-radius: var(--border-radius);
-		border: var(--border-wide);
-	}
+    img {
+        display: block;
+        width: 100%;
+        aspect-ratio: var(--strip-aspect-ratio);
+        background-color: white;
+        border-radius: var(--border-radius);
+        border: var(--border-wide);
+    }
 </style>

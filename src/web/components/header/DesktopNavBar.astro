@@ -1,22 +1,22 @@
 ---
-import { t } from "i18next"
+import {t} from "i18next"
 import getMenuItems from "@server/actions/GetMenuItems"
 const items = getMenuItems({path: Astro.url.pathname})
 ---
 <nav aria-label={t("landmarks.navigation-page")}>
     <ul>
-        {items.map(item =>
-            <li>
-                <a
-                    href={item.href}
-                    class={item.selected ? "selected" : ""}
-                    title={item.desktop === "icon" ? item.text : undefined}
-                >
-                    {item.desktop === "text" && item.text}
-                    {item.desktop === "icon" && <img src={item.icon} alt={item.text}/>}
-                </a>
-            </li>
-        )}
+			{items.map(item =>
+              <li>
+                  <a
+                          href={item.href}
+                          class={item.selected ? "selected" : ""}
+                          title={item.desktop === "icon" ? item.text : undefined}
+                  >
+										{item.desktop === "text" && item.text}
+										{item.desktop === "icon" && <img src={item.icon} alt={item.text}/>}
+                  </a>
+              </li>
+			)}
     </ul>
 </nav>
 <style>
@@ -42,13 +42,13 @@ const items = getMenuItems({path: Astro.url.pathname})
         color: var(--color-primary);
         border-radius: var(--border-radius);
 
-		transition: var(--transition-hover);
-		transition-property: color, background-color;
+        transition: var(--transition-hover);
+        transition-property: color, background-color;
     }
 
     a > img {
-		transition: var(--transition-hover);
-		transition-property: filter;
+        transition: var(--transition-hover);
+        transition-property: filter;
     }
 
     a:hover {

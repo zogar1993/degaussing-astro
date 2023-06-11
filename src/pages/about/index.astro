@@ -1,68 +1,68 @@
 ---
-import i18next, { changeLanguage } from "i18next";
-import { getImage } from "@astrojs/image";
-import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
-import MainLayout from "@web/layouts/MainLayout.astro";
-import getAbout from "@server/actions/GetAbout";
+import i18next, {changeLanguage} from "i18next"
+import {getImage} from "@astrojs/image"
+import {documentToHtmlString} from "@contentful/rich-text-html-renderer"
+import MainLayout from "@web/layouts/MainLayout.astro"
+import getAbout from "@server/actions/GetAbout"
 
-changeLanguage("en");
+changeLanguage("en")
 
-const { title, banner, synopsis } = await getAbout({
-    language: i18next.language
-});
-const synopsisHtml = documentToHtmlString(synopsis);
-const { src } = await getImage({
-    src: banner,
-    width: "798",
-    height: "386",
-    format: "webp"
-});
+const {title, banner, synopsis} = await getAbout({
+	language: i18next.language
+})
+const synopsisHtml = documentToHtmlString(synopsis)
+const {src} = await getImage({
+	src: banner,
+	width: "798",
+	height: "386",
+	format: "webp"
+})
 ---
 <MainLayout>
-	<main id="main" tabindex="-1">
-		<h2>{title}</h2>
-		<Fragment set:html={synopsisHtml} />
-	</main>
+    <main id="main" tabindex="-1">
+        <h2>{title}</h2>
+        <Fragment set:html={synopsisHtml}/>
+    </main>
 </MainLayout>
 <style>
-	main {
-		display: flex;
-		flex-direction: column;
-		gap: .75rem;
+    main {
+        display: flex;
+        flex-direction: column;
+        gap: .75rem;
 
-		width: var(--main-desktop-width);
+        width: var(--main-desktop-width);
 
-		background-color: var(--background-color-secondary);
-		color: var(--color-text-comment);
-		border-radius: var(--border-radius);
+        background-color: var(--background-color-secondary);
+        color: var(--color-text-comment);
+        border-radius: var(--border-radius);
 
-		padding: 2.5rem 4rem;
-	}
+        padding: 2.5rem 4rem;
+    }
 
-	h2 {
-		font-family: var(--font-family-title);
+    h2 {
+        font-family: var(--font-family-title);
         font-size: 2rem;
-	}
+    }
 
-	main :global(p) {
-		font-family: var(--font-family-text);
+    main :global(p) {
+        font-family: var(--font-family-text);
         font-size: 1.125rem;
         line-height: 1.5em;
-	}
+    }
 
-	main :global(i) {
-		font-style: italic;
-	}
+    main :global(i) {
+        font-style: italic;
+    }
 
-	main :global(b) {
-		font-weight: bold;
-	}
+    main :global(b) {
+        font-weight: bold;
+    }
 
-	@media (max-width: 60em) {
-		main {
-			width: 100%;
-			padding: 1.5rem 1.25rem;
-		}
+    @media (max-width: 60em) {
+        main {
+            width: 100%;
+            padding: 1.5rem 1.25rem;
+        }
 
         main :global(p) {
             font-size: 1rem;
@@ -71,5 +71,5 @@ const { src } = await getImage({
         h2 {
             display: none;
         }
-	}
+    }
 </style>

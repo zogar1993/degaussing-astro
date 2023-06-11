@@ -1,19 +1,20 @@
 ---
-import { localizePath } from "astro-i18next"
 import MainLayout from "@web/layouts/MainLayout.astro"
 import LastUpdate from "@web/components/aside/LastUpdate.astro"
 import Characters from "@web/components/aside/Characters.astro"
 import ThankYou from "@web/components/aside/ThankYou.astro"
 import StickyNavBar from "@web/components/StickyNavBar.astro"
-import ComicStrip from "@web/components/ComicStrip.astro";
+import ComicStrip from "@web/components/ComicStrip.astro"
 import Comments from "@web/components/Comments.astro"
 import getLocalizedLinkToComicStrip from "@server/actions/GetLocalizedLinkToComicStrip"
 import type {RelatedPages} from "@server/Utils"
 
-export interface Props { info: RelatedPages }
+export interface Props {
+	info: RelatedPages
+}
 
-const { info } = Astro.props
-const { backward, forward } = info
+const {info} = Astro.props
+const {backward, forward} = info
 const previous = backward ? getLocalizedLinkToComicStrip(backward.one) : null
 const next = forward ? getLocalizedLinkToComicStrip(forward.one) : null
 ---
@@ -27,55 +28,55 @@ const next = forward ? getLocalizedLinkToComicStrip(forward.one) : null
         <Comments/>
     </div>
 </MainLayout>
-<script define:vars={{ previous, next }}>
-    //const handleOnKeyDown = (e) => {
-    //    switch (e.key) {
-    //        case "ArrowLeft":
-    //            if (previous) {
-    //                window.location.href = previous
-    //                e.preventDefault()
-    //            }
-    //            break
-    //        case "ArrowRight":
-    //            if (next) {
-    //                window.location.href = next
-    //                e.preventDefault()
-    //            }
-    //            break
-    //    }
-    //}
+<script define:vars={{previous, next}}>
+	//const handleOnKeyDown = (e) => {
+	//    switch (e.key) {
+	//        case "ArrowLeft":
+	//            if (previous) {
+	//                window.location.href = previous
+	//                e.preventDefault()
+	//            }
+	//            break
+	//        case "ArrowRight":
+	//            if (next) {
+	//                window.location.href = next
+	//                e.preventDefault()
+	//            }
+	//            break
+	//    }
+	//}
 
-    //document.body.addEventListener("keydown", handleOnKeyDown)
+	//document.body.addEventListener("keydown", handleOnKeyDown)
 
-    const main = document.querySelector("main");
-    const MOVE_THRESHOLD = 100;
+	const main = document.querySelector("main")
+	const MOVE_THRESHOLD = 100
 
-    let initialX = 0;
-    let initialY = 0;
-    let initialScrollPosition = 0;
+	let initialX = 0
+	let initialY = 0
+	let initialScrollPosition = 0
 
-    main.addEventListener("touchstart", e => {
-        const touch = e.touches[0]
-        initialX = touch.pageX;
-        initialY = touch.pageY;
-        initialScrollPosition = document.documentElement.scrollTop
-    });
+	main.addEventListener("touchstart", e => {
+		const touch = e.touches[0]
+		initialX = touch.pageX
+		initialY = touch.pageY
+		initialScrollPosition = document.documentElement.scrollTop
+	})
 
-    main.addEventListener("touchend", e => {
-        const touch = e.changedTouches[0]
-        const xDisplacement = touch.pageX - initialX
-        const scrollDisplacement = document.documentElement.scrollTop - initialScrollPosition
-        const yDisplacement = touch.pageY - initialY + scrollDisplacement
+	main.addEventListener("touchend", e => {
+		const touch = e.changedTouches[0]
+		const xDisplacement = touch.pageX - initialX
+		const scrollDisplacement = document.documentElement.scrollTop - initialScrollPosition
+		const yDisplacement = touch.pageY - initialY + scrollDisplacement
 
-        //Non horizontal swipes are ignored
-        if (Math.abs(yDisplacement) > MOVE_THRESHOLD) return
+		//Non horizontal swipes are ignored
+		if (Math.abs(yDisplacement) > MOVE_THRESHOLD) return
 
-        if (xDisplacement < -MOVE_THRESHOLD && next) {
-            window.location.href = next
-        } else if (xDisplacement > MOVE_THRESHOLD && previous) {
-            window.location.href = previous
-        }
-    });
+		if (xDisplacement < -MOVE_THRESHOLD && next) {
+			window.location.href = next
+		} else if (xDisplacement > MOVE_THRESHOLD && previous) {
+			window.location.href = previous
+		}
+	})
 </script>
 <style>
     .grid {
@@ -88,19 +89,19 @@ const next = forward ? getLocalizedLinkToComicStrip(forward.one) : null
 				"main thank-you"
 				"sticky-bar nothing"
 				"comments comments";
-		gap: 1.25rem;
+        gap: 1.25rem;
     }
 
-	@media (max-width: 60em) {
-		.grid {
-			grid-template-columns: 1fr;
-			grid-template-areas:
+    @media (max-width: 60em) {
+        .grid {
+            grid-template-columns: 1fr;
+            grid-template-areas:
 				"main"
 				"sticky-bar"
 				"last-update"
 				"characters"
 				"thank-you"
 				"comments";
-		}
-	}
+        }
+    }
 </style>

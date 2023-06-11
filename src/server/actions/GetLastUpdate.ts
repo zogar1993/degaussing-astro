@@ -1,11 +1,11 @@
-import { getChapters } from "@server/GetChapters"
+import {getChapters} from "@server/GetChapters"
 
 export default async function getLastUpdate({
-	language
-}: {
+																							language
+																						}: {
 	language: string
 }) {
-	const chapters = await getChapters({ language })
+	const chapters = await getChapters({language})
 
 	const chapter = chapters.length
 	const current = chapters[chapters.length - 1]
@@ -17,7 +17,7 @@ export default async function getLastUpdate({
 	const datetime = getDatetime(lastUpdate)
 
 	const image = current.cover.image
-	return { chapter, page, image, date, datetime }
+	return {chapter, page, image, date, datetime}
 }
 
 function getEnglishDate(date: Date) {

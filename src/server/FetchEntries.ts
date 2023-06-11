@@ -22,7 +22,7 @@ export async function fetchEntries<T>(
 }
 
 function contentfulToPlainObject(obj: any) {
-	const result = { ...obj.fields }
+	const result = {...obj.fields}
 	for (const [key, value] of Object.entries(result)) {
 		result[key] = Array.isArray(value)
 			? contentfulToArrayOfPlainObjects(value)
