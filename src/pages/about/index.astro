@@ -1,22 +1,15 @@
 ---
-import i18next, {changeLanguage} from "i18next"
-import {getImage} from "@astrojs/image"
-import {documentToHtmlString} from "@contentful/rich-text-html-renderer"
-import MainLayout from "@web/layouts/MainLayout.astro"
-import getAbout from "@server/actions/GetAbout"
+import i18next, { changeLanguage } from "i18next";
+import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
+import MainLayout from "@web/layouts/MainLayout.astro";
+import getAbout from "@server/actions/GetAbout";
 
-changeLanguage("en")
+changeLanguage("en");
 
-const {title, banner, synopsis} = await getAbout({
-	language: i18next.language
-})
-const synopsisHtml = documentToHtmlString(synopsis)
-const {src} = await getImage({
-	src: banner,
-	width: "798",
-	height: "386",
-	format: "webp"
-})
+const { title, synopsis } = await getAbout({
+    language: i18next.language
+});
+const synopsisHtml = documentToHtmlString(synopsis);
 ---
 <MainLayout>
     <main id="main" tabindex="-1">

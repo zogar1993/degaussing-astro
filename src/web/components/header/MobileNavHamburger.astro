@@ -4,8 +4,9 @@ import getMenuItems from "@server/actions/GetMenuItems"
 
 const items = getMenuItems({path: Astro.url.pathname})
 ---
-<nav aria-label={t("accesibility.main-menu")} >
-    <button id="hamburger-opener" aria-expanded="false" aria-controls="hamburger-dropdown" aria-label={t("accesibility.open")}>
+<nav aria-label={t("accesibility.main-menu")}>
+    <button id="hamburger-opener" aria-expanded="false" aria-controls="hamburger-dropdown"
+            aria-label={t("accesibility.open")}>
         <img src="/icons/hamburger.svg" alt=""/>
     </button>
     <dialog id="hamburger-dropdown" role="menu" inert>
@@ -13,47 +14,44 @@ const items = getMenuItems({path: Astro.url.pathname})
             <img src="/icons/close.svg" alt=""/>
         </button>
         <ul>
-            {items.map(item =>
-            <li>
-                <a
-                    href={item.href}
-                    class={item.selected ? "selected" : ""}
-                >
-                    <img src={item.icon} alt=""/>
-                    <span>{item.text}</span>
-                </a>
-            </li>
-            )}
+					{items.map(item =>
+                  <li>
+                      <a href={item.href} class={item.selected ? "selected" : ""}>
+                          <img src={item.icon} alt=""/>
+                          <span>{item.text}</span>
+                      </a>
+                  </li>
+					)}
         </ul>
     </dialog>
 </nav>
 <script>
-    const body = document.querySelector("body")
-    const content = document.querySelector("#content-container")
-	const opener = document.querySelector("#hamburger-opener");
-	const closer = document.querySelector("#hamburger-closer");
-	const dialog = document.querySelector("dialog");
+	const body = document.querySelector("body")
+	const content = document.querySelector("#content-container")
+	const opener = document.querySelector("#hamburger-opener")
+	const closer = document.querySelector("#hamburger-closer")
+	const dialog = document.querySelector("dialog")
 
-    opener.addEventListener('click', () => {
-        content.setAttribute("aria-hidden", "true")
-        body.setAttribute("class", "no-scroll")//TODO this can be changed to a has() selector once fully supported
-        dialog.removeAttribute("inert")
+	opener.addEventListener("click", () => {
+		content.setAttribute("aria-hidden", "true")
+		body.setAttribute("class", "no-scroll")//TODO this can be changed to a has() selector once fully supported
+		nvm.removeAttribute("inert")
 
-        opener.setAttribute("aria-expanded", "true")
+		opener.setAttribute("aria-expanded", "true")
 
-        dialog.showModal()
-    });
+		dialog.showModal()
+	})
 
-    closer.addEventListener('click', () => {
-        dialog.close();
-    });
+	closer.addEventListener("click", () => {
+		dialog.close()
+	})
 
-    dialog.addEventListener('close', () => {
-        content.removeAttribute("aria-hidden")
-        body.classList.remove("class", "no-scroll")
-        dialog.setAttribute("inert", "")
-        opener.setAttribute("aria-expanded", "false")
-    });
+	dialog.addEventListener("close", () => {
+		content.removeAttribute("aria-hidden")
+		body.classList.remove("class", "no-scroll")
+		dialog.setAttribute("inert", "")
+		opener.setAttribute("aria-expanded", "false")
+	})
 </script>
 <style>
     nav {

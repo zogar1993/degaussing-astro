@@ -1,13 +1,13 @@
 ---
-import i18next, {changeLanguage} from "i18next"
-import StripAsideLayout from "@web/layouts/StripAsideLayout.astro"
-import getAllPages from "@server/actions/GetAllPages"
+import i18next, { changeLanguage } from "i18next";
+import StripAsideLayout from "@web/layouts/StripAsideLayout.astro";
+import getAllPages from "@server/actions/GetAllPages";
 
-changeLanguage("en")
+changeLanguage("en");
 
 export async function getStaticPaths() {
-	return await getAllPages({language: i18next.language})
+    return await getAllPages({ language: i18next.language });
 }
-const info = Astro.props
+const info = Astro.props;
 ---
 <StripAsideLayout info={info}/>

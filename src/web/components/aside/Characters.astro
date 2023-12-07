@@ -1,15 +1,13 @@
 ---
-import i18next, { t } from "i18next"
-import { getImage } from "@astrojs/image"
-import { localizePath } from "astro-i18next"
+import { t } from "i18next"
 import Aside from "@web/components/aside/Aside.astro"
 import Heading from "@web/components/aside/Heading.astro"
-import getCharactersInfo from "@server/actions/GetCharactersInfo"
 
 export interface Props { info: { characters: Array<{name: string, image: string}>} }
 const { info } = Astro.props
 const characters = info.characters.slice(0, 3)
 
+/*
 for (const character of characters) {
 	const { src } = await getImage({
 		src: character.image,
@@ -19,8 +17,9 @@ for (const character of characters) {
 	})
 	character.portrait = src
 }
+*/
 
-const { src: shadowed } = await getImage({src: "/images/shadowed.png", width: "111", height: "111", format: "webp"})
+// const { src: shadowed } = await getImage({src: "/images/shadowed.png", width: "111", height: "111", format: "webp"})
 ---
 <Aside grid-area="characters" aria-label={t("landmarks.characters")} class="aside-characters">
 	<Heading>{t("strip.characters")}</Heading>
@@ -28,7 +27,7 @@ const { src: shadowed } = await getImage({src: "/images/shadowed.png", width: "1
 		{
 			characters.map((character) => (
 				<div class="character">
-					<img src={character.portrait} alt="" />
+					<img src={character.image} alt="" />
 					<span>{character.name}</span>
 				</div>
 			))
@@ -36,7 +35,7 @@ const { src: shadowed } = await getImage({src: "/images/shadowed.png", width: "1
 		{
 			[...Array(3 - characters.length)].map(() => (
 				<div class="character no-one">
-					<img src={shadowed} alt=""/>
+					<img src={""} alt=""/>
 				</div>
 			))
 		}
