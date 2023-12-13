@@ -1,4 +1,5 @@
 import {getChapters} from "@server/GetChapters"
+import {imageToUrl} from "@server/Utils"
 
 export default async function getChaptersInfo({
 																								language
@@ -8,7 +9,7 @@ export default async function getChaptersInfo({
 	const chapters = await getChapters({language})
 
 	return chapters.map((chapter, i) => ({
-		cover: chapter.cover.image,
+		cover: imageToUrl(chapter.cover.image),
 		number: i + 1,
 		pagesAmount: chapter.pages.length
 	}))

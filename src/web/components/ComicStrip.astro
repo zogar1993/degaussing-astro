@@ -1,5 +1,6 @@
 ---
 import {t} from "i18next"
+import {Image} from "astro:assets"
 import getStripNameParts from "@server/actions/GetStripNameParts"
 import {RelatedPages} from "@server/Utils"
 
@@ -9,27 +10,16 @@ export interface Props {
 
 const {info} = Astro.props
 const {image, description, current} = info
-/*
-const {src: src900w} = await getImage({
-	src: image,
-	width: "900",
-	height: "1273",
-	format: "webp",
-	quality: 100
-})
-
-const {src: src568w} = await getImage({
-	src: image,
-	width: "568",
-	height: "804",
-	format: "webp"
-})
-*/
 //This strip is a little hacky because chrome likes to add a white line inside the borders of the image.
 //This means that on normal strips, we do not notice the issue, but on covers it shows wrongly.
 //Having tried all internet options available, best I could think of was an extra div that does the border.
 
 
+
+	//src: image,
+	//width: "568",
+	//height: "804",
+	//format: "webp"
 //		srcset={`${src568w} 568w, ${src900w} 900w`}
 //	  sizes="(max-width: 600px) 568px,
 //			 900px"
@@ -38,17 +28,7 @@ const heading = [t("strip.heading-main"), ...getStripNameParts(current)].join(" 
 <main id="main" tabindex="-1">
     <h2 class="semantic-only">{heading}</h2>
     <a href={image} target="_blank" rel="noreferrer noopener">
-        {
-        /* TODO uncoment
-        <img
-                src={src900w}
-                alt={description}
-        />
-
-         */
-        }
-
-
+        <Image src={image} alt={description} loading="eager" width={900} height={1273} quality="max" />
     </a>
 </main>
 <style>

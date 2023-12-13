@@ -18,6 +18,6 @@ export default function getPageInfo({
 		current: {chapter: chapter, page: page},
 		forward: getNextAndLast({chapters, chapter, page}),
 		characters: current.characters,
-		description: current.description
+		description: current.description || "" //TODO remove once we have all alt text
 	}
 }

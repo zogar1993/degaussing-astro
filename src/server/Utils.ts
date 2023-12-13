@@ -45,11 +45,6 @@ export function imageToUrl(image: string) {
 	return `https:${image}`
 }
 
-export function getImage({chapters, chapter, page}: PageFunctionProps) {
-	const current = getPage({chapters, chapter, page})
-	return imageToUrl(current.image)
-}
-
 function last<T>(list: ReadonlyArray<T>): T {
 	return list[list.length - 1]
 }

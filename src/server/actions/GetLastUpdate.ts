@@ -1,4 +1,5 @@
 import {getChapters} from "@server/GetChapters"
+import {imageToUrl} from "@server/Utils"
 
 export default async function getLastUpdate({
 																							language
@@ -16,7 +17,7 @@ export default async function getLastUpdate({
 		language === "es" ? getSpanishDate(lastUpdate) : getEnglishDate(lastUpdate)
 	const datetime = getDatetime(lastUpdate)
 
-	const image = current.cover.image
+	const image = imageToUrl(current.cover.image)
 	return {chapter, page, image, date, datetime}
 }
 

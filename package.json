@@ -11,15 +11,15 @@
 		"localize": "yarn astro-i18next generate"
 	},
 	"dependencies": {
-		"@contentful/rich-text-html-renderer": "16.0.3",
+		"@contentful/rich-text-html-renderer": "16.3.0",
 		"astro": "4.0.3",
 		"astro-i18next": "1.0.0-beta.21",
-		"contentful": "9.3.5",
-		"sharp": "0.31.3"
+		"contentful": "10.6.14",
+		"sharp": "0.33.0"
 	},
 	"devDependencies": {
-		"@types/node": "18.15.6",
-		"prettier": "2.8.6",
-		"prettier-plugin-astro": "0.8.0"
+		"@types/node": "20.10.4",
+		"prettier": "3.1.0",
+		"prettier-plugin-astro": "0.12.2"
 	}
 }

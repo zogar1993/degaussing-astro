@@ -1,4 +1,4 @@
-import type {PageCoordinates, RelatedPages} from "@server/Utils"
+import type {PageCoordinates} from "@server/Utils"
 import {t} from "i18next"
 
 export default function getStripNameParts({chapter, page}: PageCoordinates) {
