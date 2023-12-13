@@ -10,11 +10,6 @@ export interface Props {
 
 const {info} = Astro.props
 const {image, description, current} = info
-//This strip is a little hacky because chrome likes to add a white line inside the borders of the image.
-//This means that on normal strips, we do not notice the issue, but on covers it shows wrongly.
-//Having tried all internet options available, best I could think of was an extra div that does the border.
-
-
 
 	//src: image,
 	//width: "568",
@@ -23,6 +18,8 @@ const {image, description, current} = info
 //		srcset={`${src568w} 568w, ${src900w} 900w`}
 //	  sizes="(max-width: 600px) 568px,
 //			 900px"
+
+//TODO check that strip size is correct
 const heading = [t("strip.heading-main"), ...getStripNameParts(current)].join(" | ")
 ---
 <main id="main" tabindex="-1">
