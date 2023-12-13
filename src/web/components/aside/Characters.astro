@@ -1,92 +1,83 @@
 ---
-import { t } from "i18next"
+import {t} from "i18next"
+import {Image} from "astro:assets"
 import Aside from "@web/components/aside/Aside.astro"
 import Heading from "@web/components/aside/Heading.astro"
 
-export interface Props { info: { characters: Array<{name: string, image: string}>} }
-const { info } = Astro.props
+export interface Props {
+	info: { characters: Array<{ name: string, image: string }> }
+}
+const {info} = Astro.props
 const characters = info.characters.slice(0, 3)
 
-/*
-for (const character of characters) {
-	const { src } = await getImage({
-		src: character.image,
-		width: "111",
-		height: "111",
-		format: "webp"
-	})
-	character.portrait = src
-}
-*/
-
-// const { src: shadowed } = await getImage({src: "/images/shadowed.png", width: "111", height: "111", format: "webp"})
+//TODO check all alt texts thata are ""
 ---
 <Aside grid-area="characters" aria-label={t("landmarks.characters")} class="aside-characters">
-	<Heading>{t("strip.characters")}</Heading>
-	<div class="characters">
-		{
-			characters.map((character) => (
-				<div class="character">
-					<img src={character.image} alt="" />
-					<span>{character.name}</span>
-				</div>
-			))
-		}
-		{
-			[...Array(3 - characters.length)].map(() => (
-				<div class="character no-one">
-					<img src={""} alt=""/>
-				</div>
-			))
-		}
-	</div>
+    <Heading>{t("strip.characters")}</Heading>
+    <div class="characters">
+			{
+				characters.map((character) => (
+                <div class="character">
+                    <Image src={character.image} alt="" width={111} height={111}/>
+                    <span>{character.name}</span>
+                </div>
+				))
+			}
+			{
+				[...Array(3 - characters.length)].map(() => (
+                <div class="character no-one">
+                    <img src="/images/shadowed.png" alt="" width={111} height={111}/>
+                </div>
+				))
+			}
+    </div>
 </Aside>
 <style>
-	:global(.aside-characters) {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		gap: 1.5rem;
-	}
+    :global(.aside-characters) {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 1.5rem;
+    }
 
-	.character {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: .5rem;
+    .character {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: .5rem;
 
-		color: var(--color-text-aside);
-	}
+        color: var(--color-text-aside);
+    }
 
-	img {
-		width: 7rem;
-		aspect-ratio: 1/1;
-		border-radius: 50%;
-	}
+    img {
+        width: 7rem;
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+    }
 
-	span {
-		font-family: var(--font-family-text);
-		font-size: 1rem;
-	}
+    span {
+        font-family: var(--font-family-text);
+        font-size: 1rem;
+    }
 
-	.characters {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-around;
-		flex-grow: 1;
-	}
+    .characters {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        flex-grow: 1;
+    }
 
-	@media (max-width: 60em) {
-		.characters {
-			flex-direction: row;
-		}
+    @media (max-width: 60em) {
+        .characters {
+            flex-direction: row;
+        }
 
-		img {
-			width: 4.5rem;
-		}
+        img {
+            width: 4.5rem;
+        }
 
-		.no-one {
-			display: none;
-		}
-	}
+        .no-one {
+            display: none;
+        }
+    }
 </style>

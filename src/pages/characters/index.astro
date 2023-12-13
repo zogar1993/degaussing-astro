@@ -1,21 +1,12 @@
 ---
 import i18next, { changeLanguage, t } from "i18next";
+import {Image} from "astro:assets"
 import MainLayout from "@web/layouts/MainLayout.astro";
 import getCharactersInfo from "@server/actions/GetCharactersInfo";
 
 changeLanguage("en");
 
 const characters = await getCharactersInfo({ language: i18next.language });
-//for (const character of characters) {
-//    const { src } = await getImage({
-//        src: character.portrait,
-//        width: "239",
-//        height: "338",
-//        format: "webp",
-//        quality: 100
-//    });
-//    character.portrait = src;
-//}
 const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 ---
 <MainLayout>
@@ -24,7 +15,7 @@ const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 			{
 				characters.map((character) => (
 					<article id={character.slug}>
-						<img src={character.portrait} alt={character.name} />
+						<Image src={character.portrait} alt={character.name} width={239} height={338} quality="max" />
 						<div class="text-container">
 							<h4>{character.name}</h4>
 							<p><span>{t("characters.age")}: </span>{character.age} {t("characters.years-old")}.</p>
