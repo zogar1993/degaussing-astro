@@ -47,6 +47,8 @@ const isHomepage = pathname === "/"
     }
 
     body {
+        display: flex;
+        flex-direction: column;
         min-height: 100vh;
     }
 
@@ -55,6 +57,8 @@ const isHomepage = pathname === "/"
     }
 
     #content-container {
+        flex-grow: 1;
+
         position: relative;
 
         display: flex;
