@@ -18,7 +18,7 @@ const characters = info.characters.slice(0, 3)
 			{
 				characters.map((character) => (
                 <div class="character">
-                    <Image src={character.image} alt="" width={111} height={111}/>
+                    <Image src={character.image} alt="" width={112} height={112}/>
                     <span>{character.name}</span>
                 </div>
 				))
@@ -26,7 +26,7 @@ const characters = info.characters.slice(0, 3)
 			{
 				[...Array(3 - characters.length)].map(() => (
                 <div class="character no-one">
-                    <img src="/images/shadowed.png" alt="" width={111} height={111}/>
+                    <img src="/images/shadowed.png" alt="" width={112} height={112}/>
                 </div>
 				))
 			}
