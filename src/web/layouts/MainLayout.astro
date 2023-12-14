@@ -1,41 +1,44 @@
 ---
-import i18next, { t } from "i18next";
+import i18next, {t} from "i18next"
 import Header from "@web/components/header/Header.astro"
 import Title from "@web/components/header/Title.astro"
 import ResetCss from "@web/styles/ResetCss.astro"
 import FontsCss from "@web/styles/FontsCss.astro"
 import VariablesCss from "@web/styles/VariablesCss.astro"
 import pathnameWithoutLocale from "@server/GetPathnameWithoutLocale"
-import { HeadHrefLangs } from "astro-i18next/components"
+import {HeadHrefLangs} from "astro-i18next/components"
 import type {RelatedPages} from "@server/Utils"
 
-export interface Props { info?: RelatedPages }
-const { info } = Astro.props
+export interface Props {
+	info?: RelatedPages
+}
+const {info} = Astro.props
 
 const pathname = pathnameWithoutLocale({path: Astro.url.pathname, language: i18next.language})
 const isHomepage = pathname === "/"
 ---
 <!DOCTYPE html>
 <html lang={i18next.language}>
-    <head>
-        <Title info={info} />
-        <link rel="icon" href="/favicon.ico" />
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        {isHomepage && <meta name="description" content={t("seo.description")} />}
-        <ResetCss/>
-        <FontsCss/>
-        <VariablesCss/>
-        <HeadHrefLangs/>
-    </head>
-    <body tabindex="-1">
-        <Header info={info} />
-        <div id="content-container">
-            <slot/>
-        </div>
-        <script data-goatcounter="https://jemzart.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-        <noscript><img src="https://jemzart.goatcounter.com/count?p=/test-noscript"></noscript>
-    </body>
+<head>
+    <Title info={info}/>
+    <link rel="icon" href="/favicon.ico"/>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	{isHomepage &&
+          <meta name="description" content={t("seo.description")}/>}
+    <ResetCss/>
+    <FontsCss/>
+    <VariablesCss/>
+    <HeadHrefLangs/>
+</head>
+<body tabindex="-1">
+<Header info={info}/>
+<div id="content-container">
+    <slot/>
+</div>
+<script data-goatcounter="https://jemzart.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<noscript><img src="https://jemzart.goatcounter.com/count?p=/test-noscript"></noscript>
+</body>
 </html>
 
 <style>
@@ -52,14 +55,25 @@ const isHomepage = pathname === "/"
     }
 
     #content-container {
+        position: relative;
+
         display: flex;
         flex-direction: column;
         align-items: center;
         padding: 2rem 1.25rem;
 
-        background-image: url("/images/background_body.webp");
         background-size: cover;
+        background-image: url("/images/background_body.webp");
+    }
+
+    #content-container::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        margin-top: -2rem;
         background: var(--background-main);
+        z-index: -1;
     }
 
     @media (max-width: 60em) {
