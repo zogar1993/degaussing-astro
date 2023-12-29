@@ -8,6 +8,5 @@ export default defineConfig({
 	],
 	image: {
 	    domains: ['images.ctfassets.net'],
-	},
-	prefetch: true
+	}
 })

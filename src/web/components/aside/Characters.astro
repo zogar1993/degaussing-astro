@@ -10,7 +10,7 @@ export interface Props {
 const {info} = Astro.props
 const characters = info.characters.slice(0, 3)
 
-//TODO check all alt texts thata are ""
+//TODO check all alt texts that are ""
 ---
 <Aside grid-area="characters" aria-label={t("landmarks.characters")} class="aside-characters">
     <Heading>{t("strip.characters")}</Heading>
