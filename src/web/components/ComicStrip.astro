@@ -25,7 +25,7 @@ const heading = [t("strip.heading-main"), ...getStripNameParts(current)].join(" 
 <main id="main" tabindex="-1">
     <h2 class="semantic-only">{heading}</h2>
     <a href={image} target="_blank" rel="noreferrer noopener">
-        <Image src={image} alt={description} loading="eager" width={856} height={1273} quality="max" />
+        <Image src={image} alt={description} loading="eager" width={856} height={1273} quality="max"  />
     </a>
 </main>
 <style>
@@ -38,9 +38,13 @@ const heading = [t("strip.heading-main"), ...getStripNameParts(current)].join(" 
     img {
         display: block;
         width: 100%;
-        aspect-ratio: var(--strip-aspect-ratio);
+        height: auto;
         background-color: white;
         border-radius: var(--border-radius);
         border: var(--border-wide);
+    }
+
+    a {
+        max-height: 856px;
     }
 </style>
