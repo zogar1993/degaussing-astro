@@ -3,22 +3,22 @@
 // local fonts load faster, but chrome does not chache them for some reason, Mozilla does
 // <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=GermaniaOne|Inter&display=fallback">
 // did not work
+
+//TODO check if better font-display: fallback;
 ---
 
 <style is:inline>
     @font-face {
         font-family: "Germania One";
-        src: url("/fonts/GermaniaOne.woff2") format("woff2");
+        src: local("Germania One"), local("GermaniaOne"), url("/fonts/GermaniaOne.woff2") format("woff2");
         font-weight: normal;
         font-style: normal;
-        font-display: fallback;
     }
 
     @font-face {
         font-family: "Inter";
-        src: url("/fonts/Inter.woff2") format("woff2");
+        src: local("Inter"), url("/fonts/Inter.woff2") format("woff2");
         font-weight: normal;
         font-style: normal;
-        font-display: fallback;
     }
 </style>
