@@ -13,6 +13,7 @@
 	"dependencies": {
 		"@contentful/rich-text-html-renderer": "16.3.0",
 		"astro": "4.0.4",
+		"astro-font": "^0.0.77",
 		"astro-i18next": "1.0.0-beta.21",
 		"contentful": "10.6.14"
 	},

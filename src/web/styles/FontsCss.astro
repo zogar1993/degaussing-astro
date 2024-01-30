@@ -1,24 +1,40 @@
 ---
-//TODO check for better way to handle fonts, since this is duplicative
-// local fonts load faster, but chrome does not chache them for some reason, Mozilla does
-// <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=GermaniaOne|Inter&display=fallback">
-// did not work
+import { join } from "node:path"
+import { AstroFont } from "astro-font"
 
-//TODO check if better font-display: fallback;
+const makeFontPath = (name: string) =>
+	join(process.cwd(), "public", "fonts", name)
 ---
 
-<style is:inline>
-    @font-face {
-        font-family: "Germania One";
-        src: local("Germania One"), local("GermaniaOne"), url("/fonts/GermaniaOne.woff2") format("woff2");
-        font-weight: normal;
-        font-style: normal;
-    }
-
-    @font-face {
-        font-family: "Inter";
-        src: local("Inter"), url("/fonts/Inter.woff2") format("woff2");
-        font-weight: normal;
-        font-style: normal;
-    }
-</style>
+<AstroFont
+	config={[
+		{
+			name: "Germania One",
+			src: [
+				{
+					style: "normal",
+					weight: "normal",
+					path: makeFontPath("GermaniaOne.woff2")
+				}
+			],
+			preload: false,
+			display: "swap",
+			fallback: "sans-serif",
+			cssVariable: "font-one"
+		},
+		{
+			name: "Inter",
+			src: [
+				{
+					style: "normal",
+					weight: "normal",
+					path: makeFontPath("Inter.woff2")
+				}
+			],
+			preload: false,
+			display: "swap",
+			fallback: "sans-serif",
+			cssVariable: "font-inter"
+		}
+	]}
+/>
