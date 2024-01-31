@@ -11,15 +11,6 @@ export interface Props {
 const {info} = Astro.props
 const {image, description, current} = info
 
-//src: image,
-//width: "568",
-//height: "804",
-//format: "webp"
-//		srcset={`${src568w} 568w, ${src900w} 900w`}
-//	  sizes="(max-width: 600px) 568px,
-//			 900px"
-
-//TODO check that strip size is correct
 const heading = [t("strip.heading-main"), ...getStripNameParts(current)].join(" | ")
 ---
 <main id="main" tabindex="-1">
