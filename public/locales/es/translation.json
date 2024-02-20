@@ -3,8 +3,7 @@
     "skip-to-main": "Saltar al contenido principal",
     "main-menu": "Menú principal",
     "close": "Cerrar",
-    "open": "Abir Menu",
-    "strip-link": "Abrir imagen en nueva pestaña"
+    "open": "Abir Menu"
   },
   "menu": {
     "home": "Inicio",
@@ -44,7 +43,8 @@
     "donations": "Donaciones",
     "navigation-social": "Navegación social",
     "comments": "Comentarios",
-    "social": "Social"
+    "social": "Social",
+    "strip-aside": "Information de página actual"
   },
   "seo": {
     "description": "Nuestros jovenes amigos escapan de su pueblo y emprenden un viaje a través del continente de Gaoan, ¡Pero ningún lugar es seguro! ¿Donde podría ir un mago para evitar ser perseguido? ¿Que secretos guarda la espada de Alan? Antiguos rencores no se olvidan, cruzando el mar se preparan para la guerra."

@@ -2,7 +2,6 @@
 import i18next, { t } from "i18next"
 import {Image} from "astro:assets"
 import getLastUpdate from "@server/actions/GetLastUpdate"
-import Aside from "@web/components/aside/Aside.astro"
 import Heading from "@web/components/aside/Heading.astro"
 
 const { image, chapter, date, datetime } = await getLastUpdate({
@@ -10,16 +9,16 @@ const { image, chapter, date, datetime } = await getLastUpdate({
 })
 ---
 
-<Aside class="aside-last-update" grid-area="last-update" aria-label={t("landmarks.last-update")}>
+<section aria-label={t("landmarks.last-update")}>
 	<div class="text-container">
 		<Heading>{t("strip.last-update")}</Heading>
 		<time datetime={datetime}>{date}</time>
 		<span>{t("strip.chapter")} {chapter}</span>
 	</div>
 	<Image src={image} alt={`${t("strip.chapter")} ${chapter}`} width={161} height={227} />
-</Aside>
+</section>
 <style>
-	:global(.aside-last-update) {
+	section {
 		display: flex;
 		flex-direction: column;
 		gap: 1.5rem;

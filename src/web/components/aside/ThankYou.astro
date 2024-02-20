@@ -1,13 +1,11 @@
 ---
 import { t } from "i18next"
-import Aside from "@web/components/aside/Aside.astro"
-import Heading from "@web/components/aside/Heading.astro"
 import { getContributionLinks } from "@server/actions/GetContributionLinks"
 
 const links = await getContributionLinks()
 ---
 
-<Aside class="aside-thank-you" grid-area="thank-you" aria-label={t("landmarks.donations")}>
+<section aria-label={t("landmarks.donations")}>
 	<h2 class="semantic-only">{t("landmarks.donations")}</h2>
 	<span class="heading">{t("strip.thank-you")}</span>
 	<ul>
@@ -22,9 +20,9 @@ const links = await getContributionLinks()
 			))
 		}
 	</ul>
-</Aside>
+</section>
 <style>
-	:global(.aside-thank-you) {
+	section {
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
