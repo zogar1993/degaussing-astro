@@ -11,10 +11,10 @@ const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 ---
 <MainLayout>
 	<main id="main" tabindex="-1">
-		<section>
+		<ul>
 			{
 				characters.map((character) => (
-					<article id={character.slug}>
+					<li id={character.slug}>
 						<Image src={character.portrait} alt={character.name} width={239} height={338} quality="max" />
 						<div class="text-container">
 							<h4>{character.name}</h4>
@@ -23,10 +23,10 @@ const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 							<p><span>{t("characters.dislikes")}: </span>{capitalize(character.dislikes.join(", "))}.</p>
 							<p>{character.description}</p>
 						</div>
-					</article>
+					</li>
 				))
 			}
-		</section>
+		</ul>
 	</main>
 </MainLayout>
 <style>
@@ -39,7 +39,7 @@ const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 		padding: 1.5rem 1rem 1rem 1rem;
 	}
 
-	section {
+	ul {
 		display: flex;
 		flex-direction: column;
 		gap: .125rem;
@@ -51,12 +51,12 @@ const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 		padding: 1.5rem;
 	}
 
-	article {
+	li {
 		display: flex;
 		gap: 1.25rem;
 	}
 
-	article:nth-child(even) {
+	li:nth-child(even) {
 		flex-direction: row-reverse;
 	}
 
@@ -99,20 +99,20 @@ const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 			width: 100%;
 		}
 
-		article {
+		li {
 			flex-direction: column;
 		}
 
-		article:nth-child(even) {
+		li:nth-child(even) {
 			flex-direction: column;
 		}
 
-		section {
+		ul {
 			border: var(--border-wide);
 			gap: 4.5rem;
 		}
 
-		article {
+		li {
 			gap: 1rem;
 		}
 

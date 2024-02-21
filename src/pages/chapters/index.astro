@@ -10,22 +10,29 @@ const chapters = await getChaptersInfo({ language: i18next.language });
 ---
 <MainLayout>
 	<main id="main" tabindex="-1">
-		{
-			chapters.map((chapter, i) => (
-				<a href={getLocalizedLinkToComicStrip({chapter: chapter.number, page: 0})}>
-					<img src={chapter.cover} alt="" />
-					<h4>{t("chapters.chapter")} {i + 1}</h4>
-					<span>{chapter.pagesAmount} {t("chapters.pages")}</span>
-				</a>
-			))
-		}
+		<ol>
+			{
+				chapters.map((chapter, i) => (
+					<li>
+						<a href={getLocalizedLinkToComicStrip({chapter: chapter.number, page: 0})}>
+							<img src={chapter.cover} alt="" />
+							<h4>{t("chapters.chapter")} {i + 1}</h4>
+							<span>{chapter.pagesAmount} {t("chapters.pages")}</span>
+						</a>
+					</li>
+				))
+			}
+		</ol>
 	</main>
 </MainLayout>
 <style>
 	a {
-		padding: 1rem;
-		border-radius: var(--border-radius);
+		display: flex;
+		flex-direction: column;
 
+		padding: 1rem;
+
+		border-radius: var(--border-radius);
 		transition: var(--transition-hover);
 		transition-property: background-color;
 	}
@@ -35,9 +42,6 @@ const chapters = await getChaptersInfo({ language: i18next.language });
 	}
 
 	main {
-		display: grid;
-		grid-template-columns: repeat(3, auto);
-		justify-content: space-between;
 
 		width: var(--main-desktop-width);
 
@@ -46,6 +50,12 @@ const chapters = await getChaptersInfo({ language: i18next.language });
 		border: var(--border-wide);
 
 		padding: 1rem;
+	}
+
+	ol {
+		display: grid;
+		grid-template-columns: repeat(3, auto);
+		justify-content: space-between;
 	}
 
 	img {
@@ -75,15 +85,17 @@ const chapters = await getChaptersInfo({ language: i18next.language });
 
 	@media (max-width: 60em) {
 		main {
-			grid-template-columns: 1fr;
 			width: 100%;
-
 			padding: 1rem 1rem 2.5rem 1rem;
-			gap: 2.5rem;
 		}
 
 		img {
 			width: 100%;
+		}
+
+		ol {
+			grid-template-columns: 1fr;
+			gap: 2.5rem;
 		}
 	}
 </style>
