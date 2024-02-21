@@ -226,3 +226,10 @@ a.btn-primary:focus-visible {
 textarea::placeholder {
 	color: #797676;
 }
+
+
+/* This is so that Axe accessibility tool does not do a false positive */
+
+body {
+	background-color: #273D5F;
+}
