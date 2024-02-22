@@ -1,7 +1,6 @@
 ---
 import {t} from "i18next"
 import {Image} from "astro:assets"
-import Aside from "@web/components/aside/Aside.astro"
 import Heading from "@web/components/aside/Heading.astro"
 
 export interface Props {
@@ -10,9 +9,8 @@ export interface Props {
 const {info} = Astro.props
 const characters = info.characters.slice(0, 3)
 
-//TODO check all alt texts that are ""
 ---
-<Aside grid-area="characters" aria-label={t("landmarks.characters")} class="aside-characters">
+<section aria-label={t("landmarks.characters")}>
     <Heading>{t("strip.characters")}</Heading>
     <div class="characters">
 			{
@@ -31,9 +29,9 @@ const characters = info.characters.slice(0, 3)
 				))
 			}
     </div>
-</Aside>
+</section>
 <style>
-    :global(.aside-characters) {
+    section {
         display: flex;
         flex-direction: column;
         justify-content: space-between;

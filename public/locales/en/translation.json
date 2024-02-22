@@ -3,8 +3,7 @@
     "skip-to-main": "Skip to main content",
     "main-menu": "Main menu",
     "close": "Close",
-    "open": "Open Menu",
-    "strip-link": "Open image in new tab"
+    "open": "Open Menu"
   },
   "menu": {
     "home": "Home",
@@ -20,7 +19,8 @@
     "page": "Page",
     "chapter": "Chapter",
     "cover": "Cover",
-    "heading-main": "Comic page"
+    "heading-main": "Comic page",
+    "heading-main-home": "Latest comic page"
   },
   "chapters": {
     "chapter": "Chapter",
@@ -37,14 +37,15 @@
     "heading": "Let's keep in touch!"
   },
   "landmarks": {
-    "navigation-page": "Page Navigation",
-    "navigation-comic": "Comic Navigation",
-    "last-update": "Last Update",
+    "navigation-page": "Page navigation",
+    "navigation-comic": "Comic navigation",
+    "last-update": "Last update",
     "characters": "Characters",
     "donations": "Donations",
-    "navigation-social": "Social Navigation",
+    "navigation-social": "Social navigation",
     "comments": "Comments",
-    "social": "Social"
+    "social": "Social",
+    "strip-aside": "Current page information"
   },
   "seo": {
     "description": "Our young friends escape their hometown and make a run through the continent of Gaoan, but it seems like nowhere is really safe! Where could a mage go to avoid persecution? What secrets do Alan's sword hold? Old grudges are brewing beneath the surface and war is coming from overseas."

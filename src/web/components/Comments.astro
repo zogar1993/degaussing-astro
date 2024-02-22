@@ -5,9 +5,9 @@ import KeepInTouch from "@web/components/KeepInTouch.astro"
 const protocol = import.meta.env.PROTOCOL!
 const domain = import.meta.env.DOMAIN!
 ---
-<section aria-label={t("landmarks.social")}>
+<aside aria-label={t("landmarks.social")}>
     <KeepInTouch/>
-    <aside aria-label={t("landmarks.comments")}>
+    <section aria-label={t("landmarks.comments")}>
         <script
                 src="https://giscus.app/client.js"
                 data-repo="zogar1993/degaussing-astro"
@@ -26,10 +26,10 @@ const domain = import.meta.env.DOMAIN!
                 crossorigin="anonymous"
                 async
         ></script>
-    </aside>
-</section>
+    </section>
+</aside>
 <style>
-    section {
+    aside {
         position: relative;
 
         grid-area: comments;
@@ -46,7 +46,7 @@ const domain = import.meta.env.DOMAIN!
     }
 
     @media (max-width: 60em) {
-        section {
+        aside {
             padding: 1.5rem 1rem;
         }
     }

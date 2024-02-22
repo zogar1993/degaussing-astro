@@ -1,8 +1,6 @@
 ---
 import MainLayout from "@web/layouts/MainLayout.astro"
-import LastUpdate from "@web/components/aside/LastUpdate.astro"
-import Characters from "@web/components/aside/Characters.astro"
-import ThankYou from "@web/components/aside/ThankYou.astro"
+import StripAside from "@web/components/aside/StripAside.astro"
 import StickyNavBar from "@web/components/StickyNavBar.astro"
 import ComicStrip from "@web/components/ComicStrip.astro"
 import Comments from "@web/components/Comments.astro"
@@ -22,9 +20,7 @@ const next = forward ? getLocalizedLinkToComicStrip(forward.one) : null
     <div class="grid">
         <ComicStrip info={info}/>
         <StickyNavBar info={info}/>
-        <LastUpdate/>
-        <Characters info={info}/>
-        <ThankYou/>
+        <StripAside info={info}/>
         <Comments/>
     </div>
 </MainLayout>
@@ -83,13 +79,11 @@ const next = forward ? getLocalizedLinkToComicStrip(forward.one) : null
     .grid {
         display: grid;
         grid-template-columns: var(--strip-width) 13rem;
-        grid-template-rows: auto 1fr auto auto auto;
+        grid-template-rows: auto 1fr auto;
         grid-template-areas:
-				"main last-update"
-				"main characters"
-				"main thank-you"
-				"sticky-bar nothing"
-				"comments comments";
+            "main strip-aside"
+            "sticky-bar nothing"
+            "comments comments";
         gap: 1.25rem;
     }
 
@@ -97,12 +91,10 @@ const next = forward ? getLocalizedLinkToComicStrip(forward.one) : null
         .grid {
             grid-template-columns: 1fr;
             grid-template-areas:
-				"main"
-				"sticky-bar"
-				"last-update"
-				"characters"
-				"thank-you"
-				"comments";
+                "main"
+                "sticky-bar"
+                "strip-aside"
+                "comments";
         }
     }
 </style>

@@ -1,8 +1,9 @@
 ---
-import {t} from "i18next"
+import i18next, {t} from "i18next"
 import {Image} from "astro:assets"
 import getStripNameParts from "@server/actions/GetStripNameParts"
 import {RelatedPages} from "@server/Utils"
+import getIsHomepage from "@server/GetIsHomepage"
 
 export interface Props {
 	info: RelatedPages
@@ -11,22 +12,15 @@ export interface Props {
 const {info} = Astro.props
 const {image, description, current} = info
 
-//src: image,
-//width: "568",
-//height: "804",
-//format: "webp"
-//		srcset={`${src568w} 568w, ${src900w} 900w`}
-//	  sizes="(max-width: 600px) 568px,
-//			 900px"
-
-//TODO check that strip size is correct
-const heading = [t("strip.heading-main"), ...getStripNameParts(current)].join(" | ")
+const isHomepage = getIsHomepage({path: Astro.url.pathname, language: i18next.language})
+//This is so that an accessible user can understand that he is on the latest page when he is in the homepage.
+const comicPageHeading = isHomepage ? t("strip.heading-main-home") : t("strip.heading-main")
+const heading = [comicPageHeading, ...getStripNameParts(current)].join(" | ")
 ---
 <main id="main" tabindex="-1">
     <h2 class="semantic-only">{heading}</h2>
-    <a href={image} target="_blank" rel="noreferrer noopener">
-        <Image src={image} alt={description} loading="eager" decoding="sync" width={864} height={1222} quality="max"/>
-    </a>
+    <Image src={image} alt={description} loading="eager" decoding="sync" width={864} height={1222} quality="max" tabindex="0"/>
+    <a href={image} target="_blank" rel="noreferrer noopener" aria-hidden="true" tabindex="-1"/>
 </main>
 <style>
     main {
@@ -45,6 +39,9 @@ const heading = [t("strip.heading-main"), ...getStripNameParts(current)].join(" 
     }
 
     a {
-        max-height: 856px;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
     }
 </style>
