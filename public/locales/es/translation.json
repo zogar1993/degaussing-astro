@@ -19,7 +19,8 @@
     "page": "Página",
     "chapter": "Capítulo",
     "cover": "Portada",
-    "heading-main": "Página del comic"
+    "heading-main": "Página del comic",
+    "heading-main-home": "Última página del comic"
   },
   "chapters": {
     "chapter": "Capítulo",

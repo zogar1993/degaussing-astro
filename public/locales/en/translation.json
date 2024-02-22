@@ -19,7 +19,8 @@
     "page": "Page",
     "chapter": "Chapter",
     "cover": "Cover",
-    "heading-main": "Comic page"
+    "heading-main": "Comic page",
+    "heading-main-home": "Latest comic page"
   },
   "chapters": {
     "chapter": "Chapter",

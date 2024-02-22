@@ -6,17 +6,16 @@ import ResetCss from "@web/styles/ResetCss.astro"
 import FontsCss from "@web/styles/FontsCss.astro"
 import ImagesPrefetch from "@web/performance/ImagesPreload.astro"
 import VariablesCss from "@web/styles/VariablesCss.astro"
-import pathnameWithoutLocale from "@server/GetPathnameWithoutLocale"
 import {HeadHrefLangs} from "astro-i18next/components"
 import type {RelatedPages} from "@server/Utils"
+import getIsHomepage from "@server/GetIsHomepage"
 
 export interface Props {
 	info?: RelatedPages
 }
 const {info} = Astro.props
 
-const pathname = pathnameWithoutLocale({path: Astro.url.pathname, language: i18next.language})
-const isHomepage = pathname === "/"
+const isHomepage = getIsHomepage({path: Astro.url.pathname, language: i18next.language})
 ---
 <!DOCTYPE html>
 <html lang={i18next.language}>
