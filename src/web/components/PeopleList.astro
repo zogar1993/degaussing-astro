@@ -29,7 +29,7 @@ const {people} = Astro.props as Props
 					{person.age > 0 && <p><span>{t("characters.age")}: </span>{person.age} {t("characters.years-old")}.</p>}
 					<p><span>{t("characters.likes")}: </span>{capitalize(person.likes.join(", "))}.</p>
 					<p><span>{t("characters.dislikes")}: </span>{capitalize(person.dislikes.join(", "))}.</p>
-					<p>{person.description}</p>
+					<p class="description">{person.description}</p>
 				</div>
 			</li>
 		))
@@ -68,8 +68,6 @@ const {people} = Astro.props as Props
 	}
 
 	.text-container {
-		display: flex;
-		flex-direction: column;
 		padding-top: 1rem;
 		padding-left: .25rem;
 		padding-right: .25rem;
@@ -81,12 +79,19 @@ const {people} = Astro.props as Props
 		font-family: var(--font-family-title);
 		font-size: 4rem;
 		color: var(--color-title);
+		margin-bottom: 1rem;
 	}
 
 	p {
 		font-family: var(--font-family-text);
 		font-size: 1rem;
 		line-height: 1.5em;
+
+		margin-bottom: 0.5rem;
+	}
+
+	.description {
+		margin-top: 1rem;
 	}
 
 	span {

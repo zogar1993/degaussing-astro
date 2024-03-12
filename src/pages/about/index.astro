@@ -5,19 +5,21 @@ import MainLayout from "@web/layouts/MainLayout.astro";
 import PeopleList from "@web/components/PeopleList.astro";
 import getAbout from "@server/actions/GetAbout";
 import getAuthorsInfo from "@server/actions/GetAuthorsInfo";
+import RichText from "../../web/components/RichText.astro"
 
 changeLanguage("en");
 
+//TODO organize colors
+//TODO organize sizes
 const language = i18next.language;
 const { title, synopsis } = await getAbout({ language });
-const synopsisHtml = documentToHtmlString(synopsis);
 const authors = await getAuthorsInfo({ language });
 ---
 <MainLayout>
     <main id="main" tabindex="-1">
         <section>
             <h2>{t("about.story")}</h2>
-            <Fragment set:html={synopsisHtml}/>
+            <RichText text={synopsis} />
         </section>
         <section>
             <h2>{t("about.authors")}</h2>
@@ -29,7 +31,7 @@ const authors = await getAuthorsInfo({ language });
     main {
         display: flex;
         flex-direction: column;
-        gap: .75rem;
+        gap: 1rem;
 
         width: var(--main-desktop-width);
         background-color: var(--background-color-secondary);
@@ -42,7 +44,7 @@ const authors = await getAuthorsInfo({ language });
     h2 {
         font-family: var(--font-family-title);
         font-size: 2.5rem;
-        margin-bottom: 1rem;
+        margin-bottom: 2rem;
         color: var(--color-title);
     }
 
@@ -53,36 +55,10 @@ const authors = await getAuthorsInfo({ language });
 		    border: 1px solid #1d1d1b;
     }
 
-    main :global(p) {
-        font-family: var(--font-family-text);
-        font-size: 1.125rem;
-        line-height: 1.5em;
-    }
-
-    main :global(p):not(:last-child) {
-        margin-bottom: 0.75rem;
-    }
-
-    main :global(i) {
-        font-style: italic;
-    }
-
-    main :global(b) {
-        font-weight: bold;
-    }
-
-    main :global(hr) {
-        opacity: 0;
-    }
-
     @media (max-width: 60em) {
         main {
             width: 100%;
             padding: 1.5rem 1.25rem;
-        }
-
-        main :global(p) {
-            font-size: 1rem;
         }
 
         h2 {
