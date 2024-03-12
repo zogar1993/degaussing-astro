@@ -3,9 +3,9 @@ import i18next, { changeLanguage, t } from "i18next";
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 import MainLayout from "@web/layouts/MainLayout.astro";
 import PeopleList from "@web/components/PeopleList.astro";
+import RichText from "@web/components/RichText.astro"
 import getAbout from "@server/actions/GetAbout";
 import getAuthorsInfo from "@server/actions/GetAuthorsInfo";
-import RichText from "@web/components/RichText.astro"
 
 changeLanguage("en");
 

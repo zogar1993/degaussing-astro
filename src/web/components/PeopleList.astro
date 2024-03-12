@@ -1,12 +1,13 @@
 ---
-import { t } from "i18next";
-import { Image } from "astro:assets";
-const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
+import {t} from "i18next"
+import {Image} from "astro:assets"
+const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
 
 type Person = {
 	slug: string
 	name: string
 	portrait: string
+	is_square_portrait: string
 	age: number
 	likes: Array<string>
 	dislikes: Array<string>
@@ -16,113 +17,120 @@ type Person = {
 export type Props = {
 	people: Array<Person>
 }
+
 const {people} = Astro.props as Props
-//TODO fix not using age to determine if a image is square
 ---
 <ul>
 	{
 		people.map((person) => (
 			<li id={person.slug}>
-				<Image class={person.age > 0 ? "" : "person-image--square"} src={person.portrait} alt={person.name} width={person.age > 0 ? 239 : 240} height={person.age > 0 ? 338 : 240} quality="max" />
-				<div class="text-container">
-					<h4>{person.name}</h4>
-					{person.age > 0 && <p><span>{t("characters.age")}: </span>{person.age} {t("characters.years-old")}.</p>}
-					<p><span>{t("characters.likes")}: </span>{capitalize(person.likes.join(", "))}.</p>
-					<p><span>{t("characters.dislikes")}: </span>{capitalize(person.dislikes.join(", "))}.</p>
-					<p class="description">{person.description}</p>
-				</div>
+					<Image
+						class={person.is_square_portrait ? "portrait--shape-square" : "portrait--shape-rectangular"}
+						src={person.portrait}
+						alt={person.name}
+						width={person.is_square_portrait ? 240 : 239}
+						height={person.is_square_portrait ? 240 : 338}
+						quality="max"
+					/>
+					<div class="text-container">
+						<h4>{person.name}</h4>
+						{person.age > 0 &&
+										<p><span>{t("characters.age")}: </span>{person.age} {t("characters.years-old")}.</p>}
+						<p><span>{t("characters.likes")}: </span>{capitalize(person.likes.join(", "))}.</p>
+						<p><span>{t("characters.dislikes")}: </span>{capitalize(person.dislikes.join(", "))}.</p>
+						<p class="description">{person.description}</p>
+					</div>
 			</li>
 		))
 	}
 </ul>
-
 <style>
 	ul {
-		display: flex;
-		flex-direction: column;
-		gap: .125rem;
+			display: flex;
+			flex-direction: column;
+			gap: .125rem;
 	}
 
 	li {
-		display: flex;
-		gap: 1.25rem;
+			display: flex;
+			gap: 1.25rem;
 	}
 
 	li:nth-child(even) {
-		flex-direction: row-reverse;
+			flex-direction: row-reverse;
 	}
 
-	img {
-		width: 239px;
-		height: auto;
-		min-width: 239px;
-		aspect-ratio: 239 / 338;
-		border-radius: var(--border-radius);
+	.portrait--shape-rectangle {
+			width: 239px;
+			height: auto;
+			min-width: 239px;
+			aspect-ratio: 239 / 338;
+			border-radius: var(--border-radius);
 	}
 
-	.person-image--square {
-		width: 240px;
-		height: auto;
-		min-width: 240px;
-		aspect-ratio: 1;
+	.portrait--shape-square {
+			width: 240px;
+			height: auto;
+			min-width: 240px;
+			aspect-ratio: 1;
 	}
 
 	.text-container {
-		padding-top: 1rem;
-		padding-left: .25rem;
-		padding-right: .25rem;
-		gap: .25rem;
-		flex-grow: 1;
+			padding-top: 1rem;
+			padding-left: .25rem;
+			padding-right: .25rem;
+			gap: .25rem;
+			flex-grow: 1;
 	}
 
 	h4 {
-		font-family: var(--font-family-title);
-		font-size: 4rem;
-		color: var(--color-title);
-		margin-bottom: 1rem;
+			font-family: var(--font-family-title);
+			font-size: 4rem;
+			color: var(--color-title);
+			margin-bottom: 1rem;
 	}
 
 	p {
-		font-family: var(--font-family-text);
-		font-size: 1rem;
-		line-height: 1.5em;
+			font-family: var(--font-family-text);
+			font-size: 1rem;
+			line-height: 1.5em;
 
-		margin-bottom: 0.5rem;
+			margin-bottom: 0.5rem;
 	}
 
 	.description {
-		margin-top: 1rem;
+			margin-top: 1rem;
 	}
 
 	span {
-		color: var(--color-title);
-		font-weight: 600;
+			color: var(--color-title);
+			font-weight: 600;
 	}
 
 	@media (max-width: 60em) {
-		li {
-			flex-direction: column;
-		}
+			li {
+					flex-direction: column;
+			}
 
-		li:nth-child(even) {
-			flex-direction: column;
-		}
+			li:nth-child(even) {
+					flex-direction: column;
+			}
 
-		ul {
-			border: var(--border-wide);
-			gap: 4.5rem;
-		}
+			ul {
+					border: var(--border-wide);
+					gap: 4.5rem;
+			}
 
-		li {
-			gap: 1rem;
-		}
+			li {
+					gap: 1rem;
+			}
 
-		img {
-			width: 100%;
-		}
+			img {
+					width: 100%;
+			}
 
-		.text-container {
-			padding-top: 0;
-		}
+			.text-container {
+					padding-top: 0;
+			}
 	}
 </style>
