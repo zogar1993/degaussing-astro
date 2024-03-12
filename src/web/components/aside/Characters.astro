@@ -8,7 +8,6 @@ export interface Props {
 }
 const {info} = Astro.props
 const characters = info.characters.slice(0, 3)
-
 ---
 <section aria-label={t("landmarks.characters")}>
     <Heading>{t("strip.characters")}</Heading>

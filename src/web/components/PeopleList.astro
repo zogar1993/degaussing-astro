@@ -1,0 +1,114 @@
+---
+import { t } from "i18next";
+import { Image } from "astro:assets";
+const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
+
+type Person = {
+	slug: string
+	name: string
+	portrait: string
+	age: number
+	likes: Array<string>
+	dislikes: Array<string>
+	description: string
+}
+
+export type Props = {
+	people: Array<Person>
+}
+const {people} = Astro.props as Props
+---
+<ul>
+	{
+		people.map((person) => (
+			<li id={person.slug}>
+				<Image src={person.portrait} alt={person.name} width={239} height={338} quality="max" />
+				<div class="text-container">
+					<h4>{person.name}</h4>
+					<p><span>{t("characters.age")}: </span>{person.age} {t("characters.years-old")}.</p>
+					<p><span>{t("characters.likes")}: </span>{capitalize(person.likes.join(", "))}.</p>
+					<p><span>{t("characters.dislikes")}: </span>{capitalize(person.dislikes.join(", "))}.</p>
+					<p>{person.description}</p>
+				</div>
+			</li>
+		))
+	}
+</ul>
+
+<style>
+	ul {
+		display: flex;
+		flex-direction: column;
+		gap: .125rem;
+	}
+
+	li {
+		display: flex;
+		gap: 1.25rem;
+	}
+
+	li:nth-child(even) {
+		flex-direction: row-reverse;
+	}
+
+	img {
+		width: 239px;
+		height: auto;
+		min-width: 239px;
+		aspect-ratio: 239 / 338;
+		border-radius: var(--border-radius);
+	}
+
+	.text-container {
+		display: flex;
+		flex-direction: column;
+		padding-top: 1rem;
+		padding-left: .25rem;
+		padding-right: .25rem;
+		gap: .25rem;
+	}
+
+	h4 {
+		font-family: var(--font-family-title);
+		font-size: 4rem;
+		color: var(--color-title);
+	}
+
+	p {
+		font-family: var(--font-family-text);
+		font-size: 1rem;
+		line-height: 1.5em;
+	}
+
+	span {
+		color: var(--color-title);
+		font-weight: 600;
+	}
+
+	@media (max-width: 60em) {
+		li {
+			flex-direction: column;
+		}
+
+		li:nth-child(even) {
+			flex-direction: column;
+		}
+
+		ul {
+			border: var(--border-wide);
+			gap: 4.5rem;
+		}
+
+		li {
+			gap: 1rem;
+		}
+
+		img {
+			width: 100%;
+		}
+
+		.text-container {
+			padding-top: 0;
+		}
+	}
+</style>

@@ -55,5 +55,9 @@
     "previous": "Página anterior",
     "next": "Página siguiente",
     "last": "Última página"
+  },
+  "about": {
+    "story": "Acerca de la historia",
+    "authors": "Acerca de los autores"
   }
 }
