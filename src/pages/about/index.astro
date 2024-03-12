@@ -5,12 +5,10 @@ import MainLayout from "@web/layouts/MainLayout.astro";
 import PeopleList from "@web/components/PeopleList.astro";
 import getAbout from "@server/actions/GetAbout";
 import getAuthorsInfo from "@server/actions/GetAuthorsInfo";
-import RichText from "../../web/components/RichText.astro"
+import RichText from "@web/components/RichText.astro"
 
 changeLanguage("en");
 
-//TODO organize colors
-//TODO organize sizes
 const language = i18next.language;
 const { title, synopsis } = await getAbout({ language });
 const authors = await getAuthorsInfo({ language });
@@ -52,7 +50,7 @@ const authors = await getAuthorsInfo({ language });
         background-color: white;
         padding: 1.5rem;
         border-radius: var(--border-radius);
-		    border: 1px solid #1d1d1b;
+		    border: 1px solid var(--border-color);
     }
 
     @media (max-width: 60em) {
