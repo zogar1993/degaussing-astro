@@ -8,5 +8,6 @@ export default function getTitleParts({path, info}: { path: string, info?: Relat
 
 	if (item && !item.isSubPage) return [item.text]
 	if (info) return getStripNameParts(info.current)
-	throw Error(`No title for page ${path}`)
+	//throw Error(`No title for page ${path}`)
+	return ["Untitled"]//TODO Make title system better
 }

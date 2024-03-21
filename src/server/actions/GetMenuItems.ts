@@ -50,6 +50,6 @@ type MenuItem = {
 	selected: boolean
 	text: string
 	icon: string
-	desktop: "text" | "icon"
+	desktop: "text" | "icon"//TODO icon seems to not be used anymore
 	isSubPage?: boolean
 }

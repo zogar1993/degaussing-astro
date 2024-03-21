@@ -1,8 +1,8 @@
 ---
 import i18next, { changeLanguage, t } from "i18next";
+import { localizePath } from "astro-i18next";
 import MainLayout from "@web/layouts/MainLayout.astro";
 import getChaptersInfo from "@server/actions/GetChaptersInfo";
-import getLocalizedLinkToComicStrip from "@server/actions/GetLocalizedLinkToComicStrip";
 
 changeLanguage("en");
 
@@ -14,7 +14,7 @@ const chapters = await getChaptersInfo({ language: i18next.language });
 			{
 				chapters.map((chapter, i) => (
 					<li>
-						<a href={getLocalizedLinkToComicStrip({chapter: chapter.number, page: 0})}>
+						<a href={localizePath(`/chapters/${chapter.number}/pages`)}>
 							<img src={chapter.cover} alt="" />
 							<h4>{t("chapters.chapter")} {i + 1}</h4>
 							<span>{chapter.pagesAmount} {t("chapters.pages")}</span>

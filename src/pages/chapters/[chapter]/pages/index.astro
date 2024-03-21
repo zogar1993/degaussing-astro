@@ -1,0 +1,79 @@
+---
+import i18next, { changeLanguage } from "i18next";
+import MainLayout from "@web/layouts/MainLayout.astro";
+import getLocalizedLinkToComicStrip from "@server/actions/GetLocalizedLinkToComicStrip";
+import getAllPagesOfChapter from "@server/actions/GetAllPagesOfChapter";
+
+changeLanguage("en");
+
+export async function getStaticPaths() {
+    return await getAllPagesOfChapter({ language: i18next.language });
+}
+const { chapter, pages } = Astro.props;
+---
+<MainLayout>
+    <main id="main" tabindex="-1">
+        <ol>
+					{
+						pages.map(({image, number}) => (
+                    <li>
+                        <a href={getLocalizedLinkToComicStrip({chapter, page: number})}>
+                            <img src={image} alt=""/>
+                        </a>
+                    </li>
+						))
+					}
+        </ol>
+    </main>
+</MainLayout>
+<style>
+    a {
+        display: flex;
+        flex-direction: column;
+
+        padding: 1rem;
+
+        border-radius: var(--border-radius);
+        transition: var(--transition-hover);
+        transition-property: background-color;
+    }
+
+    a:hover {
+        background-color: #ECECEC;
+    }
+
+    main {
+        width: var(--main-desktop-width);
+
+        background-color: var(--background-color-primary);
+        border-radius: var(--border-radius);
+        border: var(--border-wide);
+
+        padding: 1rem;
+    }
+
+    ol {
+        display: grid;
+        grid-template-columns: repeat(3, auto);
+        justify-content: space-between;
+    }
+
+    img {
+        width: 239px;
+        aspect-ratio: var(--strip-aspect-ratio);
+
+        border-radius: var(--border-radius);
+    }
+
+    @media (max-width: 60em) {
+        main {
+            width: 100%;
+            padding: 1rem 1rem 2.5rem 1rem;
+        }
+
+        ol {
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+        }
+    }
+</style>
