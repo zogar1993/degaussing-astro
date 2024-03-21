@@ -1,0 +1,57 @@
+---
+import i18next, {t} from "i18next"
+const language = i18next.language
+
+const {info} = Astro.props
+const {description} = info
+
+const paragraphs = description.trim().split('\n').map(p => {
+    const parts = p.split(":")
+    if (parts.length === 1) return {panel: null, description: parts[0]}
+    return {panel: parts[0], description: parts.splice(1).join(":")}
+})
+
+---
+<aside aria-label={t("landmarks.transcript")}>
+    <h2>{t("landmarks.transcript")}</h2>
+    {paragraphs.map(({panel, description}) =>
+      <p>
+          {panel && <span>{panel}:</span>}
+          {description}
+      </p>
+    )}
+</aside>
+<style>
+    aside {
+        grid-area: transcript;
+
+        background-color: white;
+        border-radius: var(--border-radius);
+        border: var(--border-wide);
+
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        padding: 2.5rem 5.5rem;
+    }
+
+    h2 {
+        font-family: var(--font-family-title);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 2rem;
+        line-height: 1.25em;
+        color: var(--color-title);
+    }
+
+    p {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+    }
+
+    span {
+        font-weight: 600;
+    }
+</style>

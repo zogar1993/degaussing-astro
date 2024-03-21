@@ -3,6 +3,7 @@ import MainLayout from "@web/layouts/MainLayout.astro"
 import StripAside from "@web/components/aside/StripAside.astro"
 import StickyNavBar from "@web/components/StickyNavBar.astro"
 import ComicStrip from "@web/components/ComicStrip.astro"
+import Transcript from "@web/components/Transcript.astro"
 import Comments from "@web/components/Comments.astro"
 import getLocalizedLinkToComicStrip from "@server/actions/GetLocalizedLinkToComicStrip"
 import type {RelatedPages} from "@server/Utils"
@@ -21,6 +22,7 @@ const next = forward ? getLocalizedLinkToComicStrip(forward.one) : null
         <ComicStrip info={info}/>
         <StickyNavBar info={info}/>
         <StripAside info={info}/>
+        <Transcript info={info}/>
         <Comments/>
     </div>
 </MainLayout>
@@ -82,7 +84,8 @@ const next = forward ? getLocalizedLinkToComicStrip(forward.one) : null
         grid-template-rows: auto 1fr auto;
         grid-template-areas:
             "main strip-aside"
-            "sticky-bar nothing"
+            "sticky-bar ."
+            "transcript transcript"
             "comments comments";
         gap: 1.25rem;
     }
