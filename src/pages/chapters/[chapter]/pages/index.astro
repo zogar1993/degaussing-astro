@@ -1,15 +1,15 @@
 ---
-import i18next, {changeLanguage} from "i18next"
-import MainLayout from "@web/layouts/MainLayout.astro"
-import getLocalizedLinkToComicStrip from "@server/actions/GetLocalizedLinkToComicStrip"
-import getAllPagesOfChapter from "@server/actions/GetAllPagesOfChapter"
+import i18next, { changeLanguage } from "i18next";
+import MainLayout from "@web/layouts/MainLayout.astro";
+import getLocalizedLinkToComicStrip from "@server/actions/GetLocalizedLinkToComicStrip";
+import getAllPagesOfChapter from "@server/actions/GetAllPagesOfChapter";
 
-changeLanguage("en")
+changeLanguage("en");
 
 export async function getStaticPaths() {
-	return await getAllPagesOfChapter({language: i18next.language})
+    return await getAllPagesOfChapter({ language: i18next.language });
 }
-const {chapter, pages} = Astro.props
+const { chapter, pages } = Astro.props;
 ---
 <MainLayout>
     <main id="main" tabindex="-1">
