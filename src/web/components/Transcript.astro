@@ -1,6 +1,12 @@
+
 ---
 import i18next, {t} from "i18next"
+import {PageInfo} from "@server/GetPageInfo"
 const language = i18next.language
+
+export interface Props {
+	info: PageInfo
+}
 
 const {info} = Astro.props
 const {description} = info

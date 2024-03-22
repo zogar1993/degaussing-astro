@@ -6,23 +6,24 @@ import ComicStrip from "@web/components/ComicStrip.astro"
 import Transcript from "@web/components/Transcript.astro"
 import Comments from "@web/components/Comments.astro"
 import getLocalizedLinkToComicStrip from "@server/actions/GetLocalizedLinkToComicStrip"
-import type {RelatedPages} from "@server/Utils"
+import type {PageInfo} from "@server/GetPageInfo"
 
 export interface Props {
-	info: RelatedPages
+	info: PageInfo
 }
 
 const {info} = Astro.props
 const {backward, forward} = info
 const previous = backward ? getLocalizedLinkToComicStrip(backward.one) : null
 const next = forward ? getLocalizedLinkToComicStrip(forward.one) : null
+//TODO remove transcription specific code
 ---
 <MainLayout info={info}>
-    <div class="grid">
+    <div class={"grid" + (info.description ? " grid--show-transcript" : "")}>
         <ComicStrip info={info}/>
         <StickyNavBar info={info}/>
+			  {info.description && <Transcript info={info}/>}
         <StripAside info={info}/>
-        <Transcript info={info}/>
         <Comments/>
     </div>
 </MainLayout>
@@ -85,9 +86,16 @@ const next = forward ? getLocalizedLinkToComicStrip(forward.one) : null
         grid-template-areas:
             "main strip-aside"
             "sticky-bar ."
-            "transcript transcript"
             "comments comments";
         gap: 1.25rem;
+    }
+
+    .grid--show-transcript {
+        grid-template-areas:
+            "main strip-aside"
+            "sticky-bar ."
+            "transcript transcript"
+            "comments comments";
     }
 
     @media (max-width: 60em) {
@@ -96,6 +104,15 @@ const next = forward ? getLocalizedLinkToComicStrip(forward.one) : null
             grid-template-areas:
                 "main"
                 "sticky-bar"
+                "strip-aside"
+                "comments";
+        }
+
+        .grid--show-transcript {
+            grid-template-areas:
+                "main"
+                "sticky-bar"
+                "transcript"
                 "strip-aside"
                 "comments";
         }

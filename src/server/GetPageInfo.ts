@@ -2,6 +2,12 @@ import {getNextAndLast, getPage, getPreviousAndFirst, imageToUrl, RelatedPages} 
 import type {Chapter} from "@transport/Chapter"
 import type {Strip} from "@transport/Strip"
 
+export type PageInfo = RelatedPages & {
+	image: string,
+	characters: Strip["characters"],
+	description: Strip["description"]
+}
+
 export default function getPageInfo({
 																			chapter,
 																			page,
@@ -10,7 +16,7 @@ export default function getPageInfo({
 	chapter: number
 	page: number
 	chapters: ReadonlyArray<Chapter>
-}): RelatedPages & { image: string, characters: Strip["characters"], description: Strip["description"] } {
+}): PageInfo {
 	const current = getPage({chapters, chapter, page})
 	return {
 		image: imageToUrl(current.image),
