@@ -23,6 +23,8 @@
     "heading-main-home": "Última página del comic"
   },
   "chapters": {
+    "cover": "Portada",
+    "page": "Página",
     "chapter": "Capítulo",
     "pages": "páginas"
   },

@@ -23,6 +23,8 @@
     "heading-main-home": "Latest comic page"
   },
   "chapters": {
+    "cover": "Cover",
+    "page": "Page",
     "chapter": "Chapter",
     "pages": "pages"
   },

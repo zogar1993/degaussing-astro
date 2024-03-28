@@ -1,5 +1,5 @@
 ---
-import i18next, { changeLanguage } from "i18next";
+import i18next, { changeLanguage, t } from "i18next";
 import MainLayout from "@web/layouts/MainLayout.astro";
 import getLocalizedLinkToComicStrip from "@server/actions/GetLocalizedLinkToComicStrip";
 import getAllPagesOfChapter from "@server/actions/GetAllPagesOfChapter";
@@ -19,6 +19,7 @@ const { chapter, pages } = Astro.props;
                     <li>
                         <a href={getLocalizedLinkToComicStrip({chapter, page: number})}>
                             <img src={image} alt=""/>
+                            <span>{number === 0 ? t("chapters.cover") : `${t("chapters.page")} ${number}`}</span>
                         </a>
                     </li>
 						))
@@ -30,6 +31,9 @@ const { chapter, pages } = Astro.props;
     a {
         display: flex;
         flex-direction: column;
+
+        align-items: center;
+        gap: 0.5rem;
 
         padding: 1rem;
 
@@ -63,6 +67,13 @@ const { chapter, pages } = Astro.props;
         aspect-ratio: var(--strip-aspect-ratio);
 
         border-radius: var(--border-radius);
+    }
+
+    span {
+        color: var(--color-muted);
+        font-family: var(--font-family-text);
+        font-size: .875rem;
+        user-select: none;
     }
 
     @media (max-width: 60em) {
