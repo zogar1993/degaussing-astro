@@ -46,7 +46,8 @@ const links = await getSocialLinks()
 
         width: 2rem;
         height: 2rem;
-        background-color: rgba(128, 128, 128, 0.44);
+        background-color: var(--color-primary);
+        border: 1px solid var(--color-button-border);
         border-radius: var(--border-radius);
 
         transition: var(--transition-hover);
@@ -55,15 +56,10 @@ const links = await getSocialLinks()
 
     a > img {
         transition: var(--transition-hover);
-        transition-property: filter;
     }
 
     a:hover {
-        background-color: var(--background-color-hover);
-    }
-
-    a:hover > img {
-        filter: var(--filter-image-hover);
+        background-color: var(--color-hover);
     }
 
     .heading {
@@ -72,7 +68,7 @@ const links = await getSocialLinks()
         font-weight: 400;
         font-size: 2rem;
         line-height: 1.25em;
-        color: white;
+        color: var(--color-title);
     }
 
     @media (max-width: 60em) {
