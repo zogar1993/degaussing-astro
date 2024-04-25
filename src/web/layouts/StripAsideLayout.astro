@@ -24,7 +24,7 @@ const next = forward ? getLocalizedLinkToComicStrip(forward.one) : null
         <StickyNavBar info={info}/>
 			  {info.description && <Transcript info={info}/>}
         <StripAside info={info}/>
-        <Comments/>
+        <Comments info={info}/>
     </div>
 </MainLayout>
 <script define:vars={{previous, next}}>

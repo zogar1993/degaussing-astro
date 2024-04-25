@@ -2,8 +2,15 @@
 import i18next, {t} from "i18next"
 const language = i18next.language
 import KeepInTouch from "@web/components/KeepInTouch.astro"
+import type {PageInfo} from "@server/GetPageInfo"
 const protocol = import.meta.env.PROTOCOL!
 const domain = import.meta.env.DOMAIN!
+
+export interface Props {
+	info: PageInfo
+}
+
+const {info} = Astro.props
 ---
 <aside aria-label={t("landmarks.social")}>
     <KeepInTouch/>
@@ -15,7 +22,7 @@ const domain = import.meta.env.DOMAIN!
                 data-category="General"
                 data-category-id="DIC_kwDOIaWmTM4CS02J"
                 data-mapping="specific"
-                data-term={language}
+                data-term={`/${language}/chapters/${info.current.chapter}/pages/${info.current.page}/`}
                 data-strict="0"
                 data-reactions-enabled="0"
                 data-emit-metadata="0"
