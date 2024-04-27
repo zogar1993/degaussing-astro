@@ -4,7 +4,7 @@ import {Image} from "astro:assets"
 import getLastUpdate from "@server/actions/GetLastUpdate"
 import Heading from "@web/components/aside/Heading.astro"
 
-const { image, chapter, date, datetime } = await getLastUpdate({
+const { image, chapter, date } = await getLastUpdate({
 	language: i18next.language
 })
 ---
@@ -12,7 +12,7 @@ const { image, chapter, date, datetime } = await getLastUpdate({
 <section aria-label={t("landmarks.last-update")}>
 	<div class="text-container">
 		<Heading>{t("strip.last-update")}</Heading>
-		<time datetime={datetime}>{date}</time>
+		<time datetime={date.datetime}>{date.localized}</time>
 		<span>{t("strip.chapter")} {chapter}</span>
 	</div>
 	<Image src={image} alt={`${t("strip.chapter")} ${chapter}`} width={161} height={227} />

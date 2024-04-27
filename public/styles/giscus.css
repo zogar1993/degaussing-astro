@@ -34,6 +34,8 @@ main {
     --color-btn-primary-selected-bg: #E97E1B;
 
     --color-border-default: transparent;
+
+    font-size: 0.875em;
 }
 /*
 main .pagination-loader-container {

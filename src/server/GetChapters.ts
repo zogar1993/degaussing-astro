@@ -7,8 +7,10 @@ export async function getChapters({language}: { language: string }): Promise<Rea
 	return chapters.map((chapter, i) => ({
 		...chapter,
 		number: i + 1,
-		pages: chapter.pages.map(page =>
-			({...page, characters: page.characters.map(character => ({...character, image: imageToUrl(character.image)}))})
+		pages: chapter.pages.map(page => ({
+				...page,
+				characters: page.characters.map(character => ({...character, image: imageToUrl(character.image)}))
+			})
 		)
 	}))
 }

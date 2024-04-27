@@ -1,6 +1,6 @@
 ---
 import {documentToHtmlString} from "@contentful/rich-text-html-renderer"
-import {RichTextDocument} from "@transport/About"
+import type {RichTextDocument} from "@transport/About"
 
 export type Props = {
 	text: RichTextDocument
@@ -15,7 +15,7 @@ const synopsisHtml = documentToHtmlString(text)
 <style>
     .rich-text :global(p) {
         font-family: var(--font-family-text);
-        font-size: 1.125rem;
+        font-size: var(--rich-text_font-size, 1.125rem);
         line-height: 1.5em;
     }
 
