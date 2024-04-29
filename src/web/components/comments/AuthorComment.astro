@@ -1,0 +1,50 @@
+---
+import {Image} from "astro:assets"
+import i18next from "i18next"
+import RichText from "@web/components/general/RichText.astro"
+import getAuthorsInfo from "@server/actions/GetAuthorsInfo"
+import getLocalizedDate from "@server/date/GetLocalizedDate"
+import type {PageInfo} from "@server/GetPageInfo"
+
+
+export interface Props {
+	info: PageInfo
+}
+
+const {info} = Astro.props
+const language = i18next.language
+
+const authors = await getAuthorsInfo({language})
+const lucy = authors.find(author => author.slug === "lucy")
+const date = getLocalizedDate({date: info.createdAt, language})
+---
+{info.author_comment &&
+    <section>
+        <div class="header">
+            <Image src={lucy.portrait} alt="" width={40} height={40}/>
+            <span>{lucy.name}</span>
+            <time class="header-date" datetime={date.datetime}>{date.localized}</time>
+        </div>
+        <RichText text={info.author_comment}/>
+    </section>
+}
+<style>
+    section {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        --rich-text_font-size: 0.875rem;
+    }
+
+    .header {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: bold;
+        font-size: 0.875rem;
+    }
+
+    .header-date {
+        color: var(--color-muted);
+    }
+</style>

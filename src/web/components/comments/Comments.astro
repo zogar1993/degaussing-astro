@@ -1,12 +1,9 @@
 ---
 import i18next, {t} from "i18next"
-import {Image} from "astro:assets"
 const language = i18next.language
-import KeepInTouch from "@web/components/KeepInTouch.astro"
-import RichText from "@web/components/RichText.astro"
-import getAuthorsInfo from "@server/actions/GetAuthorsInfo"
+import AuthorComment from "@web/components/comments/AuthorComment.astro"
+import KeepInTouch from "@web/components/comments/KeepInTouch.astro"
 import type {PageInfo} from "@server/GetPageInfo"
-import getLocalizedDate from "@server/date/GetLocalizedDate"
 const protocol = import.meta.env.PROTOCOL!
 const domain = import.meta.env.DOMAIN!
 
@@ -15,21 +12,9 @@ export interface Props {
 }
 
 const {info} = Astro.props
-const authors = await getAuthorsInfo({language})
-const lucy = authors.find(author => author.slug === "lucy")
-const date = getLocalizedDate({date: info.createdAt, language})
 ---
 <aside aria-label={t("landmarks.social")}>
-	{info.author_comment &&
-          <section class="author-comment">
-              <div class="author-comment__header">
-                  <Image src={lucy.portrait} alt="" width={40} height={40}/>
-                  <span>{lucy.name}</span>
-                  <time class="author-comment__header-date" datetime={date.datetime}>{date.localized}</time>
-              </div>
-              <RichText text={info.author_comment}/>
-          </section>
-	}
+    <AuthorComment info={info}/>
     <KeepInTouch/>
     <section aria-label={t("landmarks.comments")}>
         <script
@@ -53,24 +38,6 @@ const date = getLocalizedDate({date: info.createdAt, language})
     </section>
 </aside>
 <style>
-    .author-comment {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        --rich-text_font-size: 0.875rem;
-    }
-
-    .author-comment__header {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-weight: bold;
-        font-size: 0.875rem;
-    }
-
-    .author-comment__header-date {
-        color: var(--color-muted);
-    }
 
     aside {
         grid-area: comments;
