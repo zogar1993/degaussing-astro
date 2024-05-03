@@ -2,7 +2,8 @@
 import i18next, { changeLanguage, t } from "i18next";
 import MainLayout from "@web/layouts/MainLayout.astro";
 import PeopleList from "@web/components/PeopleList.astro";
-import RichText from "../../web/components/general/RichText.astro";
+import RichText from "@web/components/general/RichText.astro";
+import Section from "@web/components/general/Section.astro";
 import getAbout from "@server/actions/GetAbout";
 import getAuthorsInfo from "@server/actions/GetAuthorsInfo";
 
@@ -14,14 +15,14 @@ const authors = await getAuthorsInfo({ language });
 ---
 <MainLayout>
     <main id="main" tabindex="-1">
-        <section>
+        <Section>
             <h2>{t("about.story")}</h2>
             <RichText text={synopsis} />
-        </section>
-        <section>
+        </Section>
+        <Section>
             <h2>{t("about.authors")}</h2>
             <PeopleList people={authors} />
-        </section>
+        </Section>
     </main>
 </MainLayout>
 <style>
@@ -35,7 +36,7 @@ const authors = await getAuthorsInfo({ language });
 
         border-radius: var(--border-radius);
 
-		    padding: 1rem;
+        padding: 1rem;
     }
 
     h2 {
@@ -43,13 +44,6 @@ const authors = await getAuthorsInfo({ language });
         font-size: 2.5rem;
         margin-bottom: 2rem;
         color: var(--color-title);
-    }
-
-    section {
-        background-color: white;
-        padding: 1.5rem;
-        border-radius: var(--border-radius);
-		    border: 1px solid var(--border-color);
     }
 
     @media (max-width: 60em) {
