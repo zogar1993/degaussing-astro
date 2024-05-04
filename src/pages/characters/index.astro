@@ -1,41 +1,19 @@
 ---
 import i18next, { changeLanguage } from "i18next";
 import MainLayout from "@web/layouts/MainLayout.astro";
-import getCharactersInfo from "@server/actions/GetCharactersInfo";
+import Main from "@web/components/page-secondary/SecondaryPageMain.astro";
+import Section from "@web/components/page-secondary/SecondaryPageSection.astro";
 import PeopleList from "@web/components/PeopleList.astro";
+import getCharactersInfo from "@server/actions/GetCharactersInfo";
 
 changeLanguage("en");
 
 const characters = await getCharactersInfo({ language: i18next.language });
 ---
 <MainLayout>
-    <main id="main" tabindex="-1">
-        <section>
+    <Main id="main" tabindex="-1">
+        <Section>
             <PeopleList people={characters}/>
-        </section>
-    </main>
+        </Section>
+    </Main>
 </MainLayout>
-<style>
-    main {
-        width: var(--main-desktop-width);
-
-        background-color: var(--background-color-secondary);
-        border-radius: var(--border-radius);
-
-        padding: 1rem;
-    }
-
-    section {
-        background-color: white;
-        padding: 1.5rem;
-        border-radius: var(--border-radius);
-		    border: 1px solid var(--border-color);
-    }
-
-    @media (max-width: 60em) {
-        main {
-            padding: 0;
-            width: 100%;
-        }
-    }
-</style>

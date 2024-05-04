@@ -3,7 +3,8 @@ import i18next, { changeLanguage, t } from "i18next";
 import MainLayout from "@web/layouts/MainLayout.astro";
 import PeopleList from "@web/components/PeopleList.astro";
 import RichText from "@web/components/general/RichText.astro";
-import Section from "@web/components/general/Section.astro";
+import Section from "@web/components/page-secondary/SecondaryPageSection.astro";
+import Main from "@web/components/page-secondary/SecondaryPageMain.astro";
 import getAbout from "@server/actions/GetAbout";
 import getAuthorsInfo from "@server/actions/GetAuthorsInfo";
 
@@ -14,7 +15,7 @@ const { title, synopsis } = await getAbout({ language });
 const authors = await getAuthorsInfo({ language });
 ---
 <MainLayout>
-    <main id="main" tabindex="-1">
+    <Main id="main" tabindex="-1">
         <Section>
             <h2>{t("about.story")}</h2>
             <RichText text={synopsis} />
@@ -23,37 +24,13 @@ const authors = await getAuthorsInfo({ language });
             <h2>{t("about.authors")}</h2>
             <PeopleList people={authors} />
         </Section>
-    </main>
+    </Main>
 </MainLayout>
 <style>
-    main {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-
-        width: var(--main-desktop-width);
-        background-color: var(--background-color-secondary);
-
-        border-radius: var(--border-radius);
-
-        padding: 1rem;
-    }
-
     h2 {
         font-family: var(--font-family-title);
         font-size: 2.5rem;
         margin-bottom: 2rem;
         color: var(--color-title);
-    }
-
-    @media (max-width: 60em) {
-        main {
-            width: 100%;
-            padding: 1.5rem 1.25rem;
-        }
-
-        h2 {
-            display: none;
-        }
     }
 </style>
