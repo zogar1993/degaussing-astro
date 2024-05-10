@@ -2,7 +2,7 @@
 import i18next, { t } from "i18next"
 import {Image} from "astro:assets"
 import getLastUpdate from "@server/actions/GetLastUpdate"
-import Heading from "@web/components/aside/Heading.astro"
+import Heading from "./Heading.astro"
 
 const { image, chapter, date } = await getLastUpdate({
 	language: i18next.language
