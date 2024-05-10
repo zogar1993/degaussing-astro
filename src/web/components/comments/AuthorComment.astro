@@ -1,12 +1,11 @@
 ---
 import {Image} from "astro:assets"
-import i18next from "i18next"
+import i18next, {t} from "i18next"
 import RichText from "@web/components/general/RichText.astro"
-import Section from "../page-secondary/SecondaryPageSection.astro";
 import getAuthorsInfo from "@server/actions/GetAuthorsInfo"
 import getLocalizedDate from "@server/date/GetLocalizedDate"
+import {getSocialLinks} from "@server/actions/GetSocialLinks"
 import type {PageInfo} from "@server/GetPageInfo"
-
 
 export interface Props {
 	info: PageInfo
@@ -15,20 +14,36 @@ export interface Props {
 const {info} = Astro.props
 const language = i18next.language
 
+const links = await getSocialLinks()
 const authors = await getAuthorsInfo({language})
 const lucy = authors.find(author => author.slug === "lucy")
 const date = getLocalizedDate({date: info.createdAt, language})
 ---
 {info.author_comment &&
-    <Section>
-        <h2 class="heading">{"Creator"}</h2>
-        <div class="header">
+    <section>
+        <div class="heading-container">
+            <h2 class="heading">{t("landmarks.author")}</h2>
+            <nav>
+                <ul>
+                    {
+                        links.map((link) => (
+                                <li>
+                                    <a href={link.href} title={link.text} target="_blank" rel="noopener">
+                                        <img src={link.icon} alt={link.text}/>
+                                    </a>
+                                </li>
+                        ))
+                    }
+                </ul>
+            </nav>
+        </div>
+        <div class="comment-header">
             <Image src={lucy.portrait} alt="" width={48} height={48}/>
             <span>{lucy.name}</span>
-            <time class="header-date" datetime={date.datetime}>{date.localized}</time>
+            <time class="comment-header__date" datetime={date.datetime}>{date.localized}</time>
         </div>
         <RichText text={info.author_comment}/>
-    </Section>
+    </section>
 }
 <style>
     section {
@@ -39,7 +54,7 @@ const date = getLocalizedDate({date: info.createdAt, language})
         --rich-text_font-size: var(--author-comment_font-size);
     }
 
-    .header {
+    .comment-header {
         display: flex;
         align-items: center;
         gap: 0.5rem;
@@ -47,10 +62,9 @@ const date = getLocalizedDate({date: info.createdAt, language})
         font-size: var(--author-comment_font-size);
     }
 
-    .header-date {
+    .comment-header__date {
         color: var(--color-muted);
     }
-
 
     .heading {
         font-family: var(--font-family-title);
@@ -59,5 +73,51 @@ const date = getLocalizedDate({date: info.createdAt, language})
         font-size: 2rem;
         line-height: 1.25em;
         color: var(--color-title);
+    }
+
+    .heading-container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    nav {
+        display: flex;
+        align-items: center;
+    }
+
+    ul {
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+    }
+
+    a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        width: 2rem;
+        height: 2rem;
+        background-color: var(--color-primary);
+        border: 1px solid var(--color-button-border);
+        border-radius: var(--border-radius);
+
+        transition: var(--transition-hover);
+        transition-property: background-color;
+    }
+
+    a > img {
+        transition: var(--transition-hover);
+    }
+
+    a:hover {
+        background-color: var(--color-hover);
+    }
+
+    @media (max-width: 60em) {
+        .heading-container {
+            flex-direction: column;
+            gap: 1.5rem;
+        }
     }
 </style>

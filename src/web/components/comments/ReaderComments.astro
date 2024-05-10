@@ -1,0 +1,44 @@
+---
+import i18next, {t} from "i18next"
+const language = i18next.language
+import type {PageInfo} from "@server/GetPageInfo"
+const protocol = import.meta.env.PROTOCOL!
+const domain = import.meta.env.DOMAIN!
+
+export interface Props {
+    info: PageInfo
+}
+
+const {info} = Astro.props
+---
+<section aria-label={t("landmarks.comments")}>
+    <h2 class="heading">{t("landmarks.comments")}</h2>
+    <script
+            src="https://giscus.app/client.js"
+            data-repo="zogar1993/degaussing-astro"
+            data-repo-id="R_kgDOIaWmTA"
+            data-category="General"
+            data-category-id="DIC_kwDOIaWmTM4CS02J"
+            data-mapping="specific"
+            data-term={`/${language}/chapters/${info.current.chapter}/pages/${info.current.page}/`}
+            data-strict="0"
+            data-reactions-enabled="0"
+            data-emit-metadata="0"
+            data-input-position="top"
+            data-theme={`${protocol}://${domain}/styles/giscus.css`}
+            data-lang={language}
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+    ></script>
+</section>
+<style>
+    .heading {
+        font-family: var(--font-family-title);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 2rem;
+        line-height: 1.25em;
+        color: var(--color-title);
+    }
+</style>
