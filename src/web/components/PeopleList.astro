@@ -4,134 +4,133 @@ import {Image} from "astro:assets"
 const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
 
 type Person = {
-	slug: string
-	name: string
-	portrait: string
-	is_square_portrait: string
-	age: number
-	likes: Array<string>
-	dislikes: Array<string>
-	description: string
+    slug: string
+    name: string
+    portrait: string
+    is_square_portrait: string
+    age: number
+    likes: Array<string>
+    dislikes: Array<string>
+    description: string
 }
 
 export type Props = {
-	people: Array<Person>
+    people: Array<Person>
 }
 
 const {people} = Astro.props as Props
 ---
 <ul>
-	{
-		people.map((person) =>
-			<li id={person.slug}>
-					<Image
-						class={person.is_square_portrait ? "portrait--shape-square" : "portrait--shape-rectangular"}
-						src={person.portrait}
-						alt={person.name}
-						width={person.is_square_portrait ? 240 : 239}
-						height={person.is_square_portrait ? 240 : 338}
-						quality="max"
-					/>
-					<div class="text-container">
-						<h4>{person.name}</h4>
-						{person.age > 0 &&
-										<p><span>{t("characters.age")}: </span>{person.age} {t("characters.years-old")}.</p>}
+    {
+        people.map((person) =>
+                <li id={person.slug}>
+                    <Image
+                            class={person.is_square_portrait ? "portrait--shape-square" : "portrait--shape-rectangular"}
+                            src={person.portrait}
+                            alt={person.name}
+                            width={person.is_square_portrait ? 240 : 239}
+                            height={person.is_square_portrait ? 240 : 338}
+                            quality="max"
+                    />
+                    <div class="text-container">
+                        <h4>{person.name}</h4>
+                        {person.age > 0 &&
+                                <p><span>{t("characters.age")}: </span>{person.age} {t("characters.years-old")}.</p>}
 						<p><span>{t("characters.likes")}: </span>{capitalize(person.likes.join(", "))}.</p>
 						<p><span>{t("characters.dislikes")}: </span>{capitalize(person.dislikes.join(", "))}.</p>
 						<p class="description">{person.description}</p>
-					</div>
-			</li>
-		)
-	}
+                    </div>
+                </li>
+        )
+    }
 </ul>
 <style>
-	img {
-		border-radius: var(--border-radius);
-	}
+    img {
+        border-radius: var(--border-radius);
+    }
 
-	ul {
-			display: flex;
-			flex-direction: column;
-			gap: .125rem;
-	}
+    ul {
+        display: flex;
+        flex-direction: column;
+        gap: .125rem;
+    }
 
-	li {
-			display: flex;
-			gap: 1.25rem;
-	}
+    li {
+        display: flex;
+        gap: 1.25rem;
+    }
 
-	li:nth-child(even) {
-			flex-direction: row-reverse;
-	}
+    li:nth-child(even) {
+        flex-direction: row-reverse;
+    }
 
-	.portrait--shape-rectangle {
-			width: 239px;
-			height: auto;
-			min-width: 239px;
-			aspect-ratio: 239 / 338;
-			border-radius: var(--border-radius);
-	}
+    .portrait--shape-rectangle {
+        width: 239px;
+        height: auto;
+        min-width: 239px;
+        aspect-ratio: 239 / 338;
+        border-radius: var(--border-radius);
+    }
 
-	.portrait--shape-square {
-			width: 240px;
-			height: auto;
-			min-width: 240px;
-			aspect-ratio: 1;
-	}
+    .portrait--shape-square {
+        width: 240px;
+        height: auto;
+        min-width: 240px;
+        aspect-ratio: 1;
+    }
 
-	.text-container {
-			padding-top: 1rem;
-			padding-left: .25rem;
-			padding-right: .25rem;
-			gap: .25rem;
-			flex-grow: 1;
-	}
+    .text-container {
+        padding-top: 1rem;
+        padding-left: .25rem;
+        padding-right: .25rem;
+        gap: .25rem;
+        flex-grow: 1;
+    }
 
-	h4 {
-			font-family: var(--font-family-title);
-			font-size: 4rem;
-			color: var(--color-title);
-			margin-bottom: 1rem;
-	}
+    h4 {
+        font-family: var(--font-family-title);
+        font-size: 4rem;
+        color: var(--color-title);
+        margin-bottom: 1rem;
+    }
 
-	p {
-			font-family: var(--font-family-text);
-			font-size: 1rem;
-			line-height: 1.5em;
+    p {
+        font-size: 1rem;
+        line-height: 1.5em;
 
-			margin-bottom: 0.5rem;
-	}
+        margin-bottom: 0.5rem;
+    }
 
-	.description {
-			margin-top: 1rem;
-	}
+    .description {
+        margin-top: 1rem;
+    }
 
-	span {
-			color: var(--color-title);
-			font-weight: 600;
-	}
+    span {
+        color: var(--color-title);
+        font-weight: 600;
+    }
 
-	@media (max-width: 60em) {
-			ul {
-				gap: 3rem;
-			}
+    @media (max-width: 60em) {
+        ul {
+            gap: 3rem;
+        }
 
-			li {
-					gap: 1rem;
-					flex-direction: column;
-			}
+        li {
+            gap: 1rem;
+            flex-direction: column;
+        }
 
-			li:nth-child(even) {
-					flex-direction: column;
-			}
+        li:nth-child(even) {
+            flex-direction: column;
+        }
 
-			img {
-					width: 100%;
-					height: auto;
-			}
+        img {
+            width: 100%;
+            height: auto;
+        }
 
-			.text-container {
-					padding-top: 0;
-			}
-	}
+        .text-container {
+            padding-top: 0;
+        }
+    }
 </style>
