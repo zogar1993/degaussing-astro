@@ -30,12 +30,13 @@ main {
     --color-canvas-subtle: rgba(128, 128, 128, 0.44);
     --color-scale-gray-1: rgba(128, 128, 128, 0.44);
 
-    --color-accent-fg: #E97E1B;
-    --color-btn-primary-selected-bg: #E97E1B;
+    --color-accent-fg: #005FCC;
+    --color-btn-primary-selected-bg: #005FCC;
 
     --color-border-default: transparent;
 
     font-size: 0.875em;
+    accent-color: green !important;
 }
 /*
 main .pagination-loader-container {
@@ -132,14 +133,6 @@ main .gsc-loading-image {
     color: var(--text_color) !important;
     border: 1px solid var(--component_border) !important;
     border-radius: var(--component_border-radius);
-}
-
-button[type=submit]:focus-visible {
-    outline: auto 1px rgb(0, 95, 204);
-}
-
-a.btn-primary:focus-visible {
-    outline: auto 1px rgb(0, 95, 204);
 }
 
 textarea::placeholder {
