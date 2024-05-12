@@ -13,24 +13,26 @@ const {info} = Astro.props
 ---
 <section aria-label={t("landmarks.comments")}>
     <h2 class="heading">{t("landmarks.comments")}</h2>
-    <script
-            src="https://giscus.app/client.js"
-            data-repo="zogar1993/degaussing-astro"
-            data-repo-id="R_kgDOIaWmTA"
-            data-category="General"
-            data-category-id="DIC_kwDOIaWmTM4CS02J"
-            data-mapping="specific"
-            data-term={`/${language}/chapters/${info.current.chapter}/pages/${info.current.page}/`}
-            data-strict="0"
-            data-reactions-enabled="0"
-            data-emit-metadata="0"
-            data-input-position="top"
-            data-theme={`${protocol}://${domain}/styles/giscus.css`}
-            data-lang={language}
-            data-loading="lazy"
-            crossorigin="anonymous"
-            async
-    ></script>
+    <div class="iframe-container">
+        <script
+                src="https://giscus.app/client.js"
+                data-repo="zogar1993/degaussing-astro"
+                data-repo-id="R_kgDOIaWmTA"
+                data-category="General"
+                data-category-id="DIC_kwDOIaWmTM4CS02J"
+                data-mapping="specific"
+                data-term={`/${language}/chapters/${info.current.chapter}/pages/${info.current.page}/`}
+                data-strict="0"
+                data-reactions-enabled="0"
+                data-emit-metadata="0"
+                data-input-position="top"
+                data-theme={`${protocol}://${domain}/styles/giscus.css`}
+                data-lang={language}
+                data-loading="lazy"
+                crossorigin="anonymous"
+                async
+        ></script>
+    </div>
 </section>
 <style>
     .heading {
@@ -40,5 +42,12 @@ const {info} = Astro.props
         font-size: 2rem;
         line-height: 1.25em;
         color: var(--color-title);
+    }
+
+    /* adds padding to avoid browser rounding inconsistencies and leaving room for focus outlines */
+    .iframe-container {
+        --_iframe_padding: 1px;
+        width: calc(100% + var(--_iframe_padding) * 2);
+        margin-left: calc(var(--_iframe_padding) * -1);
     }
 </style>

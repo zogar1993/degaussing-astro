@@ -1,4 +1,4 @@
-main {
+:root {
     --text_color: #373737;
     --background_color: #FFFFFF;
     --component--muted_color: #808080;
@@ -34,6 +34,11 @@ main {
     --color-btn-primary-selected-bg: #005FCC;
 
     --color-border-default: transparent;
+}
+
+body {
+    /* adds padding to avoid browser rounding inconsistencies and leaving room for focus outlines */
+    margin: 0 1px;
 
     font-size: 0.875em;
     accent-color: green !important;
