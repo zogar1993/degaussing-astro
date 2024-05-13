@@ -8,7 +8,7 @@ import Main from "@web/components/page-secondary/SecondaryPageMain.astro";
 import getAbout from "@server/actions/GetAbout";
 import getAuthorsInfo from "@server/actions/GetAuthorsInfo";
 
-changeLanguage("en");
+changeLanguage("es");
 
 const language = i18next.language;
 const { title, synopsis } = await getAbout({ language });

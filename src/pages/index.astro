@@ -3,7 +3,7 @@ import i18next, { changeLanguage } from "i18next";
 import StripAsideLayout from "@web/layouts/StripAsideLayout.astro";
 import getLastPage from "@server/actions/GetLastPage";
 
-changeLanguage("en");
+changeLanguage("es");
 
 const info = await getLastPage({ language: i18next.language });
 ---

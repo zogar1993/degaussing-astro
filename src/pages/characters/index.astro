@@ -6,7 +6,7 @@ import Section from "@web/components/page-secondary/SecondaryPageSection.astro";
 import PeopleList from "@web/components/PeopleList.astro";
 import getCharactersInfo from "@server/actions/GetCharactersInfo";
 
-changeLanguage("en");
+changeLanguage("es");
 
 const characters = await getCharactersInfo({ language: i18next.language });
 ---
