@@ -26,4 +26,4 @@ pnpm-debug.log*
 *.iml
 
 #localized
-src/pages/es
+src/pages/en
