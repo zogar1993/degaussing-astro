@@ -1,16 +1,16 @@
-import type {Chapter} from "@transport/Chapter"
+import type { Chapter } from "@transport/Chapter"
 
-export function getNextAndLast({chapters, chapter, page}: PageFunctionProps) {
+export function getNextAndLast({ chapters, chapter, page }: PageFunctionProps) {
 	const lastChapter = last(chapters)
 	const isLast =
 		chapter === chapters.length && page === lastChapter.pages.length
 	if (isLast) return null
 	return {
 		one:
-			page === currentChapter({chapters, chapter}).pages.length
-				? {chapter: chapter + 1, page: 0}
-				: {chapter, page: page + 1},
-		all: {chapter: chapters.length, page: lastChapter.pages.length}
+			page === currentChapter({ chapters, chapter }).pages.length
+				? { chapter: chapter + 1, page: 0 }
+				: { chapter, page: page + 1 },
+		all: { chapter: chapters.length, page: lastChapter.pages.length }
 	}
 }
 
@@ -26,17 +26,17 @@ export function getPreviousAndFirst({
 			page === 0
 				? {
 					chapter: chapter - 1,
-					page: previousChapter({chapters, chapter}).pages.length
+					page: previousChapter({ chapters, chapter }).pages.length
 				}
 				: {
 					chapter,
 					page: page - 1
 				},
-		all: {chapter: 1, page: 0}
+		all: { chapter: 1, page: 0 }
 	}
 }
 
-export function getPage({chapters, chapter, page}: PageFunctionProps) {
+export function getPage({ chapters, chapter, page }: PageFunctionProps) {
 	const current = chapters[chapter - 1]
 	return page === 0 ? current.cover : current.pages[page - 1]
 }

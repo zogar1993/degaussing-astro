@@ -1,40 +1,41 @@
 ---
-import i18next, {t} from "i18next"
+import i18next, { t } from "i18next"
 import Header from "@web/components/header/Header.astro"
 import Title from "@web/components/header/Title.astro"
 import ResetCss from "@web/styles/ResetCss.astro"
 import FontsCss from "@web/styles/FontsCss.astro"
 import ImagesPrefetch from "@web/performance/ImagesPreload.astro"
 import VariablesCss from "@web/styles/VariablesCss.astro"
-import {HeadHrefLangs} from "astro-i18next/components"
-import type {RelatedPages} from "@server/Utils"
+import { HeadHrefLangs } from "astro-i18next/components"
+import type { RelatedPages } from "@server/Utils"
 import getIsHomepage from "@server/GetIsHomepage"
 
 export interface Props {
 	info?: RelatedPages
 }
-const {info} = Astro.props
+const { info } = Astro.props
 
-const isHomepage = getIsHomepage({path: Astro.url.pathname, language: i18next.language})
+const isHomepage = getIsHomepage({ path: Astro.url.pathname, language: i18next.language })
 ---
 <!DOCTYPE html>
 <html lang={i18next.language}>
 <head>
-    <Title info={info}/>
-    <link rel="icon" href="/favicon.ico"/>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    {isHomepage && <meta name="description" content={t("seo.description")}/>}
-    <FontsCss/>
-    <ImagesPrefetch/>
-    <ResetCss/>
-    <VariablesCss/>
-    <HeadHrefLangs/>
+	<Title info={info} />
+	<link rel="icon" href="/favicon.ico" />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	{isHomepage &&
+		<meta name="description" content={t("seo.description")} />}
+	<FontsCss />
+	<ImagesPrefetch />
+	<ResetCss />
+	<VariablesCss />
+	<HeadHrefLangs />
 </head>
 <body tabindex="-1">
-<Header info={info}/>
+<Header info={info} />
 <div id="content-container">
-    <slot/>
+	<slot />
 </div>
 <script data-goatcounter="https://jemzart.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <noscript><img src="https://jemzart.goatcounter.com/count?p=/test-noscript" alt=""></noscript>

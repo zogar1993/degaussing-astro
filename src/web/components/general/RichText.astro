@@ -1,16 +1,16 @@
 ---
-import {documentToHtmlString} from "@contentful/rich-text-html-renderer"
-import type {RichTextDocument} from "../../../transport/About"
+import { documentToHtmlString } from "@contentful/rich-text-html-renderer"
+import type { RichTextDocument } from "../../../transport/About"
 
 export type Props = {
 	text: RichTextDocument
 }
-const {text} = Astro.props as Props
+const { text } = Astro.props as Props
 
 const synopsisHtml = documentToHtmlString(text)
 ---
 <div class="rich-text">
-    <Fragment set:html={synopsisHtml}/>
+	<Fragment set:html={synopsisHtml} />
 </div>
 <style>
     .rich-text :global(p) {

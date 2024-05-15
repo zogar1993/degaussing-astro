@@ -1,4 +1,4 @@
-import type {Strip} from "@transport/Strip"
+import type { Strip } from "@transport/Strip"
 
 export type Chapter = {
 	name: string

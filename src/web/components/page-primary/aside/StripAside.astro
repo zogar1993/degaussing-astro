@@ -7,36 +7,36 @@ import ThankYou from "@web/components/page-primary/aside/ThankYou.astro"
 export interface Props {
 	info: { characters: Array<{ name: string, image: string }> }
 }
-const {info} = Astro.props
+const { info } = Astro.props
 ---
 <aside aria-label={t("landmarks.strip-aside")}>
-	<LastUpdate/>
-	<Characters info={info}/>
-	<ThankYou/>
+	<LastUpdate />
+	<Characters info={info} />
+	<ThankYou />
 </aside>
 <style>
-	aside {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr auto;
-    gap: 1.25rem;
+    aside {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr auto;
+        gap: 1.25rem;
 
-    grid-area: strip-aside;
-	}
+        grid-area: strip-aside;
+    }
 
-	aside :global(section) {
-		position: relative;
+    aside :global(section) {
+        position: relative;
 
-		padding: 1.5em;
-		border: var(--border-wide);
+        padding: 1.5em;
+        border: var(--border-wide);
 
-		border-radius: var(--border-radius);
-		background-color: var(--background-color-primary);
-	}
+        border-radius: var(--border-radius);
+        background-color: var(--background-color-primary);
+    }
 
-	@media (max-width: 60em) {
-		aside :global(section) {
-			padding: 1em;
-		}
-	}
+    @media (max-width: 60em) {
+        aside :global(section) {
+            padding: 1em;
+        }
+    }
 </style>

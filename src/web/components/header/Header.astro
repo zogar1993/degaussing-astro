@@ -5,24 +5,24 @@ import SemanticHeading from "@web/components/header/SemanticHeading.astro"
 import DesktopNavBar from "@web/components/header/DesktopNavBar.astro"
 import MobileNavHamburger from "@web/components/header/MobileNavHamburger.astro"
 import MobileHeaderText from "@web/components/header/MobileHeaderText.astro"
-import type {RelatedPages} from "@server/Utils"
+import type { RelatedPages } from "@server/Utils"
 
 export interface Props {
 	info?: RelatedPages
 }
-const {info} = Astro.props
+const { info } = Astro.props
 ---
 <header>
-    <SkipToMainContent/>
-    <SemanticHeading info={info}/>
-    <MobileNavHamburger/>
-    <div class="row-logo">
-        <Logo/>
-    </div>
-    <div class="row-menu">
-        <DesktopNavBar/>
-        <MobileHeaderText info={info}/>
-    </div>
+	<SkipToMainContent />
+	<SemanticHeading info={info} />
+	<MobileNavHamburger />
+	<div class="row-logo">
+		<Logo />
+	</div>
+	<div class="row-menu">
+		<DesktopNavBar />
+		<MobileHeaderText info={info} />
+	</div>
 </header>
 <style>
     .row-logo {

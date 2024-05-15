@@ -1,16 +1,16 @@
 ---
-import i18next, {changeLanguage} from "i18next";
-import SecondaryLayout from "@web/layouts/SecondaryLayout.astro";
-import Section from "@web/components/page-secondary/SecondaryPageSection.astro";
-import PeopleList from "@web/components/PeopleList.astro";
-import getCharactersInfo from "@server/actions/GetCharactersInfo";
+import i18next, { changeLanguage } from "i18next"
+import SecondaryLayout from "@web/layouts/SecondaryLayout.astro"
+import Section from "@web/components/page-secondary/SecondaryPageSection.astro"
+import PeopleList from "@web/components/PeopleList.astro"
+import getCharactersInfo from "@server/actions/GetCharactersInfo"
 
-changeLanguage("es");
+changeLanguage("es")
 
-const characters = await getCharactersInfo({language: i18next.language});
+const characters = await getCharactersInfo({ language: i18next.language })
 ---
 <SecondaryLayout>
-    <Section>
-        <PeopleList people={characters}/>
-    </Section>
+	<Section>
+		<PeopleList people={characters} />
+	</Section>
 </SecondaryLayout>

@@ -1,32 +1,32 @@
 ---
-import i18next, {changeLanguage, t} from "i18next";
-import SecondaryLayout from "@web/layouts/SecondaryLayout.astro";
-import Section from "@web/components/page-secondary/SecondaryPageSection.astro";
-import getLocalizedLinkToComicStrip from "@server/actions/GetLocalizedLinkToComicStrip";
-import getAllPagesOfChapter from "@server/actions/GetAllPagesOfChapter";
+import i18next, { changeLanguage, t } from "i18next"
+import SecondaryLayout from "@web/layouts/SecondaryLayout.astro"
+import Section from "@web/components/page-secondary/SecondaryPageSection.astro"
+import getLocalizedLinkToComicStrip from "@server/actions/GetLocalizedLinkToComicStrip"
+import getAllPagesOfChapter from "@server/actions/GetAllPagesOfChapter"
 
-changeLanguage("es");
+changeLanguage("es")
 
 export async function getStaticPaths() {
-    return await getAllPagesOfChapter({language: i18next.language});
+	return await getAllPagesOfChapter({ language: i18next.language })
 }
-const {chapter, pages} = Astro.props;
+const { chapter, pages } = Astro.props
 ---
 <SecondaryLayout>
-    <Section>
-        <ol>
-            {
-                pages.map(({image, number}) => (
-                        <li>
-                            <a href={getLocalizedLinkToComicStrip({chapter, page: number})}>
-                                <img src={image} alt=""/>
-                                <span>{number === 0 ? t("chapters.cover") : `${t("chapters.page")} ${number}`}</span>
-                            </a>
-                        </li>
-                ))
-            }
-        </ol>
-    </Section>
+	<Section>
+		<ol>
+			{
+				pages.map(({ image, number }) => (
+					<li>
+						<a href={getLocalizedLinkToComicStrip({ chapter, page: number })}>
+							<img src={image} alt="" />
+							<span>{number === 0 ? t("chapters.cover") : `${t("chapters.page")} ${number}`}</span>
+						</a>
+					</li>
+				))
+			}
+		</ol>
+	</Section>
 </SecondaryLayout>
 <style>
     a {

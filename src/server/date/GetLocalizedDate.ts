@@ -1,7 +1,7 @@
-export default function getLocalizedDate({date, language}: {date: Date, language: string}) {
+export default function getLocalizedDate({ date, language }: { date: Date, language: string }) {
 	const localized = language === "es" ? getSpanishDate(date) : getEnglishDate(date)
 	const datetime = getDatetime(date)
-	return {localized, datetime}
+	return { localized, datetime }
 }
 
 function getEnglishDate(date: Date) {

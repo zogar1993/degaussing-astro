@@ -1,10 +1,10 @@
 ---
-import i18next, { changeLanguage } from "i18next";
-import StripAsideLayout from "@web/layouts/PrimaryLayout.astro";
-import getLastPage from "@server/actions/GetLastPage";
+import i18next, { changeLanguage } from "i18next"
+import StripAsideLayout from "@web/layouts/PrimaryLayout.astro"
+import getLastPage from "@server/actions/GetLastPage"
 
-changeLanguage("es");
+changeLanguage("es")
 
-const info = await getLastPage({ language: i18next.language });
+const info = await getLastPage({ language: i18next.language })
 ---
 <StripAsideLayout info={info} />

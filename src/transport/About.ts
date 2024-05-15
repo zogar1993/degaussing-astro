@@ -1,5 +1,5 @@
 // @ts-ignore
-import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
+import { documentToHtmlString } from "@contentful/rich-text-html-renderer"
 
 export type About = {
 	title: string

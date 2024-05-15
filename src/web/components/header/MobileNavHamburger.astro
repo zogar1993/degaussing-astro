@@ -1,33 +1,33 @@
 ---
-import {t} from "i18next"
+import { t } from "i18next"
 import getMenuItems from "@server/actions/GetMenuItems"
 
-const items = getMenuItems({path: Astro.url.pathname})
+const items = getMenuItems({ path: Astro.url.pathname })
 ---
 <nav aria-label={t("accesibility.main-menu")}>
-    <button
-            id="hamburger-opener"
-            aria-expanded="false"
-            aria-controls="hamburger-dropdown"
-            aria-label={t("accesibility.open")}
-    >
-        <img src="/icons/hamburger.svg" alt=""/>
-    </button>
-    <dialog id="hamburger-dropdown" role="menu" inert>
-        <button id="hamburger-closer" aria-label={t("accesibility.close")} title={t("accesibility.close")}>
-            <img src="/icons/close.svg" alt=""/>
-        </button>
-        <ul>
-					{items.map(item =>
-                  <li>
-                      <a href={item.href} class={item.selected ? "selected" : ""}>
-                          <img src={item.icon} alt=""/>
-                          <span>{item.text}</span>
-                      </a>
-                  </li>
-					)}
-        </ul>
-    </dialog>
+	<button
+		id="hamburger-opener"
+		aria-expanded="false"
+		aria-controls="hamburger-dropdown"
+		aria-label={t("accesibility.open")}
+	>
+		<img src="/icons/hamburger.svg" alt="" />
+	</button>
+	<dialog id="hamburger-dropdown" role="menu" inert>
+		<button id="hamburger-closer" aria-label={t("accesibility.close")} title={t("accesibility.close")}>
+			<img src="/icons/close.svg" alt="" />
+		</button>
+		<ul>
+			{items.map(item =>
+				<li>
+					<a href={item.href} class={item.selected ? "selected" : ""}>
+						<img src={item.icon} alt="" />
+						<span>{item.text}</span>
+					</a>
+				</li>
+			)}
+		</ul>
+	</dialog>
 </nav>
 <script>
 	const content = document.querySelector("#content-container")

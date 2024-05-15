@@ -1,11 +1,11 @@
 ---
 import getTitle from "@server/actions/GetTitle"
-import type {RelatedPages} from "@server/Utils"
+import type { RelatedPages } from "@server/Utils"
 export interface Props {
 	info?: RelatedPages
 }
-const {info} = Astro.props
+const { info } = Astro.props
 
-const title = getTitle({path: Astro.url.pathname, info})
+const title = getTitle({ path: Astro.url.pathname, info })
 ---
 <title>{title}</title>

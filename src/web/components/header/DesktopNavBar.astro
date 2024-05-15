@@ -1,23 +1,23 @@
 ---
-import {t} from "i18next"
+import { t } from "i18next"
 import getMenuItems from "@server/actions/GetMenuItems"
-const items = getMenuItems({path: Astro.url.pathname})
+const items = getMenuItems({ path: Astro.url.pathname })
 ---
 <nav aria-label={t("landmarks.navigation-page")}>
-    <ul>
-			{items.map(item =>
-              <li>
-                  <a
-                          href={item.href}
-                          class={item.selected ? "selected" : ""}
-                          title={item.desktop === "icon" ? item.text : undefined}
-                  >
-										{item.desktop === "text" && item.text}
-										{item.desktop === "icon" && <img src={item.icon} alt={item.text}/>}
-                  </a>
-              </li>
-			)}
-    </ul>
+	<ul>
+		{items.map(item =>
+			<li>
+				<a
+					href={item.href}
+					class={item.selected ? "selected" : ""}
+					title={item.desktop === "icon" ? item.text : undefined}
+				>
+					{item.desktop === "text" && item.text}
+					{item.desktop === "icon" && <img src={item.icon} alt={item.text} />}
+				</a>
+			</li>
+		)}
+	</ul>
 </nav>
 <style>
     nav {

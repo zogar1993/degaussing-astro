@@ -1,33 +1,33 @@
 ---
-import {t} from "i18next"
-import {Image} from "astro:assets"
+import { t } from "i18next"
+import { Image } from "astro:assets"
 import Heading from "@web/components/page-primary/aside/Heading.astro"
 
 export interface Props {
 	info: { characters: Array<{ name: string, image: string }> }
 }
-const {info} = Astro.props
+const { info } = Astro.props
 const characters = info.characters.slice(0, 3)
 ---
 <section aria-label={t("landmarks.characters")}>
-    <Heading>{t("strip.characters")}</Heading>
-    <div class="characters">
-			{
-				characters.map((character) => (
-                <div class="character">
-                    <Image src={character.image} alt="" width={112} height={112}/>
-                    <span>{character.name}</span>
-                </div>
-				))
-			}
-			{
-				[...Array(3 - characters.length)].map(() => (
-                <div class="character no-one">
-                    <Image src="/images/shadowed.webp" alt="" width={112} height={112}/>
-                </div>
-				))
-			}
-    </div>
+	<Heading>{t("strip.characters")}</Heading>
+	<div class="characters">
+		{
+			characters.map((character) => (
+				<div class="character">
+					<Image src={character.image} alt="" width={112} height={112} />
+					<span>{character.name}</span>
+				</div>
+			))
+		}
+		{
+			[...Array(3 - characters.length)].map(() => (
+				<div class="character no-one">
+					<Image src="/images/shadowed.webp" alt="" width={112} height={112} />
+				</div>
+			))
+		}
+	</div>
 </section>
 <style>
     section {

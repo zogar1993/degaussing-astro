@@ -1,26 +1,27 @@
 ---
-import i18next, {t} from "i18next"
-import {Image} from "astro:assets"
+import i18next, { t } from "i18next"
+import { Image } from "astro:assets"
 import getStripNameParts from "@server/actions/GetStripNameParts"
-import {RelatedPages} from "@server/Utils"
+import { RelatedPages } from "@server/Utils"
 import getIsHomepage from "@server/GetIsHomepage"
 
 export interface Props {
 	info: RelatedPages
 }
 
-const {info} = Astro.props
-const {image, description, current} = info
+const { info } = Astro.props
+const { image, description, current } = info
 
-const isHomepage = getIsHomepage({path: Astro.url.pathname, language: i18next.language})
+const isHomepage = getIsHomepage({ path: Astro.url.pathname, language: i18next.language })
 //This is so that an accessible user can understand that he is on the latest page when he is in the homepage.
 const comicPageHeading = isHomepage ? t("strip.heading-main-home") : t("strip.heading-main")
 const heading = [comicPageHeading, ...getStripNameParts(current)].join(" | ")
 ---
 <main id="main" tabindex="-1">
-    <h2 class="semantic-only">{heading}</h2>
-    <Image src={image} alt={description} loading="eager" decoding="sync" width={864} height={1222} quality="max" tabindex="0"/>
-    <a href={image} target="_blank" rel="noreferrer noopener" aria-hidden="true" tabindex="-1"/>
+	<h2 class="semantic-only">{heading}</h2>
+	<Image src={image} alt={description} loading="eager" decoding="sync" width={864} height={1222} quality="max"
+				 tabindex="0" />
+	<a href={image} target="_blank" rel="noreferrer noopener" aria-hidden="true" tabindex="-1" />
 </main>
 <style>
     main {

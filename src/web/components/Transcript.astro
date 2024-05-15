@@ -1,40 +1,40 @@
 ---
-import i18next, {t} from "i18next"
-import {PageInfo} from "@server/GetPageInfo"
+import i18next, { t } from "i18next"
+import { PageInfo } from "@server/GetPageInfo"
 const language = i18next.language
 
 export interface Props {
-    info: PageInfo
+	info: PageInfo
 }
 
-const {info} = Astro.props
-const {description} = info
+const { info } = Astro.props
+const { description } = info
 
-const paragraphs = description.trim().split('\n').map(p => {
-    const parts = p.split(":")
-    if (parts.length === 1) return {panel: null, description: parts[0]}
-    return {panel: parts[0], description: parts.splice(1).join(":")}
+const paragraphs = description.trim().split("\n").map(p => {
+	const parts = p.split(":")
+	if (parts.length === 1) return { panel: null, description: parts[0] }
+	return { panel: parts[0], description: parts.splice(1).join(":") }
 })
 ---
 <aside aria-label={t("landmarks.transcript")}>
-    <div class="header-container">
-        <h2>{t("landmarks.transcript")}</h2>
-        <button class="button-expand" aria-expanded="false"/>
-    </div>
-    <div class="content">
-        {paragraphs.map(({panel, description}) =>
-                <p>
-                    {panel && <span class="strong">{panel}:</span>}
-                    {description}
-                </p>
-        )}
-    </div>
+	<div class="header-container">
+		<h2>{t("landmarks.transcript")}</h2>
+		<button class="button-expand" aria-expanded="false" />
+	</div>
+	<div class="content">
+		{paragraphs.map(({ panel, description }) =>
+			<p>
+				{panel && <span class="strong">{panel}:</span>}
+				{description}
+			</p>
+		)}
+	</div>
 </aside>
-<script define:vars={{label: t("landmarks.transcript")}}>
+<script define:vars={{ label: t("landmarks.transcript") }}>
 	const button = document.querySelector(`aside[aria-label="${label}"] button[aria-expanded]`)
 	button.addEventListener("click", () => {
-	    const isExpanded = button.getAttribute("aria-expanded") === "true"
-	//TODO make this accessible
+		const isExpanded = button.getAttribute("aria-expanded") === "true"
+		//TODO make this accessible
 		button.setAttribute("aria-expanded", isExpanded ? "false" : "true")
 	})
 </script>
@@ -104,7 +104,7 @@ const paragraphs = description.trim().split('\n').map(p => {
     }
 
     .button-expand::after {
-        transform: translateY(-50%) rotate(90deg) ;
+        transform: translateY(-50%) rotate(90deg);
     }
 
     .button-expand::before, .button-expand::after {

@@ -1,6 +1,6 @@
 ---
 import i18next, { t } from "i18next"
-import {Image} from "astro:assets"
+import { Image } from "astro:assets"
 import getLastUpdate from "@server/actions/GetLastUpdate"
 import Heading from "./Heading.astro"
 
@@ -18,51 +18,51 @@ const { image, chapter, date } = await getLastUpdate({
 	<Image src={image} alt={`${t("strip.chapter")} ${chapter}`} width={161} height={227} />
 </section>
 <style>
-	section {
-		display: flex;
-		flex-direction: column;
-		gap: 1.5rem;
-	}
+    section {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
 
-	.text-container {
-		display: flex;
-		flex-direction: column;
-		gap: .75rem;
-	}
+    .text-container {
+        display: flex;
+        flex-direction: column;
+        gap: .75rem;
+    }
 
-	time {
-		font-weight: 600;
-		font-size: 1rem;
-		line-height: 1.5em;
-		color: var(--color-text-aside);
-	}
+    time {
+        font-weight: 600;
+        font-size: 1rem;
+        line-height: 1.5em;
+        color: var(--color-text-aside);
+    }
 
-	span {
-		font-size: .875rem;
-		line-height: 1.5em;
-		color: var(--color-text-aside);
-	}
+    span {
+        font-size: .875rem;
+        line-height: 1.5em;
+        color: var(--color-text-aside);
+    }
 
-	img {
-		width: 100%;
-		height: auto;
-		aspect-ratio: var(--strip-aspect-ratio);
-		border-radius: var(--border-radius);
-	}
+    img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: var(--strip-aspect-ratio);
+        border-radius: var(--border-radius);
+    }
 
-	@media (max-width: 60em) {
-		section {
-			flex-direction: row;
-			justify-content: space-between;
-		}
+    @media (max-width: 60em) {
+        section {
+            flex-direction: row;
+            justify-content: space-between;
+        }
 
-		.text-container {
-			gap: 1rem
-		}
+        .text-container {
+            gap: 1rem
+        }
 
-		img {
-			width: 6rem;
-			height: 8.5rem;
-		}
-	}
+        img {
+            width: 6rem;
+            height: 8.5rem;
+        }
+    }
 </style>
