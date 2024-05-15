@@ -1,100 +1,94 @@
 ---
-import i18next, { changeLanguage, t } from "i18next";
-import { localizePath } from "astro-i18next";
-import MainLayout from "@web/layouts/MainLayout.astro";
+import i18next, {changeLanguage, t} from "i18next";
+import {localizePath} from "astro-i18next";
+import SecondaryLayout from "@web/layouts/SecondaryLayout.astro";
+import Section from "@web/components/page-secondary/SecondaryPageSection.astro";
+import SectionHeading from "@web/components/general/SectionHeading.astro";
 import getChaptersInfo from "@server/actions/GetChaptersInfo";
 
 changeLanguage("es");
 
-const chapters = await getChaptersInfo({ language: i18next.language });
+const chapters = await getChaptersInfo({language: i18next.language});
 ---
-<MainLayout>
-	<main id="main" tabindex="-1">
-		<ol>
-			{
-				chapters.map((chapter, i) => (
-					<li>
-						<a href={localizePath(`/chapters/${chapter.number}/pages`)}>
-							<img src={chapter.cover} alt="" />
-							<h4>{t("chapters.chapter")} {i + 1}</h4>
-							<span>{chapter.pagesAmount} {t("chapters.pages")}</span>
-						</a>
-					</li>
-				))
-			}
-		</ol>
-	</main>
-</MainLayout>
+<SecondaryLayout>
+    <Section>
+        <SectionHeading>{t("menu.chapters")}</SectionHeading>
+        <ol>
+            {
+                chapters.map((chapter, i) => (
+                        <li>
+                            <a href={localizePath(`/chapters/${chapter.number}/pages`)}>
+                                <img src={chapter.cover} alt=""/>
+                                <h4>{t("chapters.chapter")} {i + 1}</h4>
+                                <span>{chapter.pagesAmount} {t("chapters.pages")}</span>
+                            </a>
+                        </li>
+                ))
+            }
+        </ol>
+    </Section>
+</SecondaryLayout>
 <style>
-	a {
-		display: flex;
-		flex-direction: column;
+    a {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        isolation: isolate;
+    }
 
-		padding: 1rem;
+    a:before {
+        content: "";
+        position: absolute;
+        inset: -16px;
+        border-radius: var(--border-radius);
+        transition: var(--transition-hover);
+        transition-property: background-color;
+        z-index: -1;
+    }
 
-		border-radius: var(--border-radius);
-		transition: var(--transition-hover);
-		transition-property: background-color;
-	}
+    a:hover:before {
+        background-color: #ECECEC;
+    }
 
-	a:hover {
-		background-color: #ECECEC;
-	}
+    ol {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 32px;
+        margin-inline: 8px;
+    }
 
-	main {
+    img {
+        max-width: 100%;
+        aspect-ratio: var(--strip-aspect-ratio);
 
-		width: var(--main-desktop-width);
+        margin-bottom: 1.25rem;
 
-		background-color: var(--background-color-primary);
-		border-radius: var(--border-radius);
-		border: var(--border-wide);
+        border-radius: var(--border-radius);
+    }
 
-		padding: 1rem;
-	}
+    h4 {
+        color: var(--color-title);
+        font-family: var(--font-family-title);
+        font-size: 2rem;
 
-	ol {
-		display: grid;
-		grid-template-columns: repeat(3, auto);
-		justify-content: space-between;
-	}
+        margin-bottom: .5rem;
+        user-select: none;
+    }
 
-	img {
-		width: 239px;
-		aspect-ratio: var(--strip-aspect-ratio);
+    span {
+        color: var(--color-muted);
+        font-size: .875rem;
+        user-select: none;
+    }
 
-		margin-bottom: 1.25rem;
+    @media (max-width: 60em) {
+        img {
+            width: 100%;
+        }
 
-		border-radius: var(--border-radius);
-	}
-
-	h4 {
-		color: var(--color-title);
-		font-family: var(--font-family-title);
-		font-size: 2rem;
-
-		margin-bottom: .5rem;
-		user-select: none;
-	}
-
-	span {
-		color: var(--color-muted);
-		font-size: .875rem;
-		user-select: none;
-	}
-
-	@media (max-width: 60em) {
-		main {
-			width: 100%;
-			padding: 1rem 1rem 2.5rem 1rem;
-		}
-
-		img {
-			width: 100%;
-		}
-
-		ol {
-			grid-template-columns: 1fr;
-			gap: 2.5rem;
-		}
-	}
+        ol {
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+        }
+    }
 </style>

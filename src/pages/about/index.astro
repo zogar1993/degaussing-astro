@@ -1,36 +1,26 @@
 ---
-import i18next, { changeLanguage, t } from "i18next";
-import MainLayout from "@web/layouts/MainLayout.astro";
+import i18next, {changeLanguage, t} from "i18next";
+import SecondaryLayout from "@web/layouts/SecondaryLayout.astro";
 import PeopleList from "@web/components/PeopleList.astro";
 import RichText from "@web/components/general/RichText.astro";
 import Section from "@web/components/page-secondary/SecondaryPageSection.astro";
-import Main from "@web/components/page-secondary/SecondaryPageMain.astro";
 import getAbout from "@server/actions/GetAbout";
 import getAuthorsInfo from "@server/actions/GetAuthorsInfo";
+import SectionHeading from "@web/components/general/SectionHeading.astro";
 
 changeLanguage("es");
 
 const language = i18next.language;
-const { title, synopsis } = await getAbout({ language });
-const authors = await getAuthorsInfo({ language });
+const {title, synopsis} = await getAbout({language});
+const authors = await getAuthorsInfo({language});
 ---
-<MainLayout>
-    <Main id="main" tabindex="-1">
-        <Section>
-            <h2>{t("about.story")}</h2>
-            <RichText text={synopsis} />
-        </Section>
-        <Section>
-            <h2>{t("about.authors")}</h2>
-            <PeopleList people={authors} />
-        </Section>
-    </Main>
-</MainLayout>
-<style>
-    h2 {
-        font-family: var(--font-family-title);
-        font-size: 2.5rem;
-        margin-bottom: 2rem;
-        color: var(--color-title);
-    }
-</style>
+<SecondaryLayout>
+    <Section>
+        <SectionHeading>{t("about.story")}</SectionHeading>
+        <RichText text={synopsis}/>
+    </Section>
+    <Section>
+        <SectionHeading>{t("about.authors")}</SectionHeading>
+        <PeopleList people={authors}/>
+    </Section>
+</SecondaryLayout>
