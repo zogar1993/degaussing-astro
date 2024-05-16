@@ -1,7 +1,6 @@
 ---
 import i18next, { t } from "i18next"
 import Header from "@web/components/header/Header.astro"
-import Title from "@web/components/header/Title.astro"
 import ResetCss from "@web/styles/ResetCss.astro"
 import FontsCss from "@web/styles/FontsCss.astro"
 import ImagesPrefetch from "@web/performance/ImagesPreload.astro"
@@ -12,15 +11,16 @@ import getIsHomepage from "@server/GetIsHomepage"
 
 export interface Props {
 	info?: RelatedPages
+	title: string
 }
-const { info } = Astro.props
+const { info, title } = Astro.props
 
 const isHomepage = getIsHomepage({ path: Astro.url.pathname, language: i18next.language })
 ---
 <!DOCTYPE html>
 <html lang={i18next.language}>
 <head>
-	<Title info={info} />
+	<title>{title}</title>
 	<link rel="icon" href="/favicon.ico" />
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />

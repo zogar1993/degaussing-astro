@@ -14,7 +14,7 @@ const language = i18next.language
 const { title, synopsis } = await getAbout({ language })
 const authors = await getAuthorsInfo({ language })
 ---
-<SecondaryLayout>
+<SecondaryLayout title="">
 	<Section>
 		<SectionHeading>{t("about.story")}</SectionHeading>
 		<RichText text={synopsis} />

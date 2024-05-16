@@ -7,13 +7,8 @@ const items = getMenuItems({ path: Astro.url.pathname })
 	<ul>
 		{items.map(item =>
 			<li>
-				<a
-					href={item.href}
-					class={item.selected ? "selected" : ""}
-					title={item.desktop === "icon" ? item.text : undefined}
-				>
-					{item.desktop === "text" && item.text}
-					{item.desktop === "icon" && <img src={item.icon} alt={item.text} />}
+				<a href={item.href} class={item.selected ? "selected" : ""}>
+					{item.text}
 				</a>
 			</li>
 		)}

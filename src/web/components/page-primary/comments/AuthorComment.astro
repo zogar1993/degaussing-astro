@@ -3,8 +3,8 @@ import { Image } from "astro:assets"
 import i18next, { t } from "i18next"
 import RichText from "@web/components/general/RichText.astro"
 import getAuthorsInfo from "@server/actions/GetAuthorsInfo"
-import getLocalizedDate from "@server/date/GetLocalizedDate"
-import { getSocialLinks } from "@server/actions/GetSocialLinks"
+import getSocialLinks from "@server/actions/GetSocialLinks"
+import getLocalizedDate from "@server/localization/GetLocalizedDate"
 import type { PageInfo } from "@server/GetPageInfo"
 
 export interface Props {

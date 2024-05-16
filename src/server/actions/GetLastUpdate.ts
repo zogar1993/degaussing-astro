@@ -1,4 +1,4 @@
-import getLocalizedDate from "@server/date/GetLocalizedDate"
+import getLocalizedDate from "@server/localization/GetLocalizedDate"
 import { getChapters } from "@server/GetChapters"
 import { imageToUrl } from "@server/Utils"
 
