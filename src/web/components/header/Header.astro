@@ -1,7 +1,6 @@
 ---
 import Logo from "@web/components/header/Logo.astro"
 import SkipToMainContent from "@web/components/header/SkipToMainContent.astro"
-import SemanticHeading from "@web/components/header/SemanticHeading.astro"
 import DesktopNavBar from "@web/components/header/DesktopNavBar.astro"
 import MobileNavHamburger from "@web/components/header/MobileNavHamburger.astro"
 import MobileHeaderText from "@web/components/header/MobileHeaderText.astro"
@@ -14,7 +13,6 @@ const { info } = Astro.props
 ---
 <header>
 	<SkipToMainContent />
-	<SemanticHeading info={info} />
 	<MobileNavHamburger />
 	<div class="row-logo">
 		<Logo />

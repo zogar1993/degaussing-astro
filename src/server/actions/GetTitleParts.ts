@@ -1,8 +1,6 @@
-import getStripNameParts from "@server/actions/GetStripNameParts"
-import type { RelatedPages } from "@server/Utils"
 import getMenuItems from "@server/actions/GetMenuItems"
 
-export default function getTitleParts({ path, info }: { path: string, info?: RelatedPages }) {
+export default function getTitleParts({ path }: { path: string }) {
 	const items = getMenuItems({ path })
 	const item = items.find(item => item.selected)
 

@@ -1,5 +1,5 @@
 ---
-import i18next, { changeLanguage } from "i18next"
+import i18next, { changeLanguage, t } from "i18next"
 import SecondaryLayout from "@web/layouts/SecondaryLayout.astro"
 import Section from "@web/components/page-secondary/SecondaryPageSection.astro"
 import PeopleList from "@web/components/PeopleList.astro"
@@ -9,7 +9,7 @@ changeLanguage("es")
 
 const characters = await getCharactersInfo({ language: i18next.language })
 ---
-<SecondaryLayout>
+<SecondaryLayout title={t("menu.characters")}>
 	<Section>
 		<PeopleList people={characters} />
 	</Section>

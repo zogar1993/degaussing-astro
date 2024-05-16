@@ -1,9 +1,8 @@
 ---
 import MainLayout from "@web/layouts/MainLayout.astro"
 import Main from "@web/components/page-secondary/SecondaryPageMain.astro"
-import getTitle from "@server/actions/GetTitle"
 
-const title = getTitle({path: Astro.url.pathname})
+const { title } = Astro.props as { title: string }
 ---
 <MainLayout title={title}>
 	<Main id="main" tabindex="-1">

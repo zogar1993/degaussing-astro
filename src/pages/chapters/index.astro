@@ -11,7 +11,7 @@ changeLanguage("es")
 
 const chapters = await getChaptersInfo({ language: i18next.language });
 ---
-<SecondaryLayout>
+<SecondaryLayout title={t("menu.chapters")}>
 	<Section>
 		<SectionHeading>{t("menu.chapters")}</SectionHeading>
 		<ol>

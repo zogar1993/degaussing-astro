@@ -7,22 +7,19 @@ import Transcript from "@web/components/Transcript.astro"
 import Comments from "@web/components/page-primary/comments/Comments.astro"
 import getLocalizedLinkToComicStrip from "@server/actions/GetLocalizedLinkToComicStrip"
 import type { PageInfo } from "@server/GetPageInfo"
-import getLocalizedChapter from "@server/localization/GetLocalizedChapter"
-import getLocalizedPage from "@server/localization/GetLocalizedPage"
 
 export interface Props {
 	info: PageInfo
+	title: string
 }
-const { info } = Astro.props
+const { info, title } = Astro.props
 
 const { backward, forward } = info
 const previous = backward ? getLocalizedLinkToComicStrip(backward.one) : null
 const next = forward ? getLocalizedLinkToComicStrip(forward.one) : null
 
-const chapter = getLocalizedChapter(info.current.chapter)
-const page = getLocalizedPage(info.current.page)
 ---
-<MainLayout info={info} title={`${page} | ${chapter}`}>
+<MainLayout info={info} title={title}>
 	<div class="grid">
 		<ComicStrip info={info} />
 		<StickyNavBar info={info} />

@@ -1,13 +1,19 @@
 ---
 import i18next, { changeLanguage } from "i18next"
-import StripAsideLayout from "@web/layouts/PrimaryLayout.astro"
+import PrimaryLayout from "@web/layouts/PrimaryLayout.astro"
 import getAllPages from "@server/actions/GetAllPages"
+import getLocalizedChapter from "@server/localization/GetLocalizedChapter"
+import getLocalizedPage from "@server/localization/GetLocalizedPage"
+import type { PageInfo } from "@server/GetPageInfo"
 
 changeLanguage("es")
 
 export async function getStaticPaths() {
 	return await getAllPages({ language: i18next.language })
 }
-const info = Astro.props
+
+const info = Astro.props as PageInfo
+const chapter = getLocalizedChapter(info.current.chapter)
+const page = getLocalizedPage(info.current.page)
 ---
-<StripAsideLayout info={info} />
+<PrimaryLayout info={info} title={`${page} | ${chapter}`} />
