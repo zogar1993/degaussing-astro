@@ -41,23 +41,9 @@ const items = getMenuItems({ path: Astro.url.pathname })
         transition-property: color, background-color;
     }
 
-    a > img {
-        transition: var(--transition-hover);
-        transition-property: filter;
-    }
-
     a:hover {
-        color: var(--color-selected);
+        color: var(--color-primary);
         background-color: var(--background-color-hover);
-    }
-
-    a:hover > img {
-        filter: var(--filter-image-hover);
-    }
-
-    img {
-        width: 1.75rem;
-        height: 1.75rem;
     }
 
     .selected {
