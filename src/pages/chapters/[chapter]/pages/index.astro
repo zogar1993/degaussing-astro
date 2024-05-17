@@ -1,21 +1,19 @@
 ---
-import i18next, { changeLanguage, t } from "i18next"
-import SecondaryLayout from "@web/layouts/SecondaryLayout.astro"
-import Section from "@web/components/page-secondary/SecondaryPageSection.astro"
-import getLocalizedLinkToComicStrip from "@server/actions/GetLocalizedLinkToComicStrip"
-import getAllPagesOfChapter from "@server/actions/GetAllPagesOfChapter"
-import getLocalizedChapter from "@server/localization/GetLocalizedChapter"
-import getLocalizedPage from "@server/localization/GetLocalizedPage"
+import i18next, { changeLanguage, t } from "i18next";
+import SecondaryLayout from "@web/layouts/SecondaryLayout.astro";
+import Section from "@web/components/page-secondary/SecondaryPageSection.astro";
+import getLocalizedLinkToComicStrip from "@server/actions/GetLocalizedLinkToComicStrip";
+import getAllPagesOfChapter from "@server/actions/GetAllPagesOfChapter";
+import getLocalizedChapter from "@server/localization/GetLocalizedChapter";
+import getLocalizedPage from "@server/localization/GetLocalizedPage";
 
-changeLanguage("es")
+changeLanguage("es");
 
 export async function getStaticPaths() {
-	return await getAllPagesOfChapter({ language: i18next.language })
+    return await getAllPagesOfChapter({ language: i18next.language });
 }
-
-const { chapter, pages } = Astro.props as Awaited<ReturnType<typeof getAllPagesOfChapter>>[0]["props"]
-
-const chapter_localized = getLocalizedChapter(chapter)
+const { chapter, pages } = Astro.props as Awaited<ReturnType<typeof getAllPagesOfChapter>>[0]["props"];
+const chapter_localized = getLocalizedChapter(chapter);
 ---
 <SecondaryLayout title={chapter_localized}>
 	<Section>

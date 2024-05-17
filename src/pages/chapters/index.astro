@@ -7,7 +7,7 @@ import Section from "@web/components/page-secondary/SecondaryPageSection.astro";
 import SectionHeading from "@web/components/general/SectionHeading.astro";
 import getChaptersInfo from "@server/actions/GetChaptersInfo";
 
-changeLanguage("es")
+changeLanguage("es");
 
 const chapters = await getChaptersInfo({ language: i18next.language });
 ---

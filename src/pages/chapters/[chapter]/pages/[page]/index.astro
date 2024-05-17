@@ -1,19 +1,18 @@
 ---
-import i18next, { changeLanguage } from "i18next"
-import PrimaryLayout from "@web/layouts/PrimaryLayout.astro"
-import getAllPages from "@server/actions/GetAllPages"
-import getLocalizedChapter from "@server/localization/GetLocalizedChapter"
-import getLocalizedPage from "@server/localization/GetLocalizedPage"
-import type { PageInfo } from "@server/GetPageInfo"
+import i18next, { changeLanguage } from "i18next";
+import PrimaryLayout from "@web/layouts/PrimaryLayout.astro";
+import getAllPages from "@server/actions/GetAllPages";
+import getLocalizedChapter from "@server/localization/GetLocalizedChapter";
+import getLocalizedPage from "@server/localization/GetLocalizedPage";
+import type { PageInfo } from "@server/GetPageInfo";
 
-changeLanguage("es")
+changeLanguage("es");
 
 export async function getStaticPaths() {
-	return await getAllPages({ language: i18next.language })
+    return await getAllPages({ language: i18next.language });
 }
-
-const info = Astro.props as PageInfo
-const chapter = getLocalizedChapter(info.current.chapter)
-const page = getLocalizedPage(info.current.page)
+const info = Astro.props as PageInfo;
+const chapter = getLocalizedChapter(info.current.chapter);
+const page = getLocalizedPage(info.current.page);
 ---
 <PrimaryLayout info={info} title={`${page} | ${chapter}`} />

@@ -1,15 +1,22 @@
 <style is:inline>
     :root {
-        --background-color-primary: #ffffff;
-        --background-color-secondary: #273D5F;
-        --background-color-hover: #FD854C33;
+    		--color-white: #FFFFFF;
+				--color-blue: #273D5F;
+				--color-orange: #FD854C;
+				--color-black: #000000;
+    
+        --section_background-color: var(--color-white);
+        --navigation_background-color: var(--color-blue);
+        --decoration_background-color: var(--color-blue);
+
+        --header__button--hover_background-color: color-mix(in srgb, var(--color-orange) 20%, var(--color-blue));
 
         --background-header: radial-gradient(119.72% 309.84% at 50% 143.65%, #EA8867 8.37%, #7B5B8E 46.88%);
         --background-main: linear-gradient(180deg, #CC7659 10.66%, #7589A1 33%, #764A91 100%);
 
         --border-radius: 5px;
         --border-wide-width: 3px;
-        --border-color: #000000;
+        --border-color: var(--color-black);
         --border-wide: var(--border-wide-width) solid var(--border-color);
 
         --color-primary: #F0BE5F;
@@ -23,7 +30,6 @@
         --color-text-navigation: #FFFFFF;
         --color-text-aside: #373737;
         --color-button-border: #432918;
-
 
         --filter-image-hover: saturate(20);
 

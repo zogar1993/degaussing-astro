@@ -1,18 +1,18 @@
 ---
-import i18next, { changeLanguage, t } from "i18next"
-import SecondaryLayout from "@web/layouts/SecondaryLayout.astro"
-import PeopleList from "@web/components/PeopleList.astro"
-import RichText from "@web/components/general/RichText.astro"
-import Section from "@web/components/page-secondary/SecondaryPageSection.astro"
-import getAbout from "@server/actions/GetAbout"
-import getAuthorsInfo from "@server/actions/GetAuthorsInfo"
-import SectionHeading from "@web/components/general/SectionHeading.astro"
+import i18next, { changeLanguage, t } from "i18next";
+import SecondaryLayout from "@web/layouts/SecondaryLayout.astro";
+import PeopleList from "@web/components/PeopleList.astro";
+import RichText from "@web/components/general/RichText.astro";
+import Section from "@web/components/page-secondary/SecondaryPageSection.astro";
+import getAbout from "@server/actions/GetAbout";
+import getAuthorsInfo from "@server/actions/GetAuthorsInfo";
+import SectionHeading from "@web/components/general/SectionHeading.astro";
 
-changeLanguage("es")
+changeLanguage("es");
 
-const language = i18next.language
-const { title, synopsis } = await getAbout({ language })
-const authors = await getAuthorsInfo({ language })
+const language = i18next.language;
+const { title, synopsis } = await getAbout({ language });
+const authors = await getAuthorsInfo({ language });
 ---
 <SecondaryLayout title={t("menu.about")}>
 	<Section>
