@@ -93,9 +93,9 @@ const next = forward ? getLocalizedLinkToComicStrip(forward.one) : null
         gap: 1.25rem;
     }
 
-    @media (max-width: 60em) {
+    @media (max-width: 72em) {
         .grid {
-            grid-template-columns: 1fr;
+            grid-template-columns: fit-content(var(--strip-width));
             grid-template-areas:
                 "main"
                 "transcript"
