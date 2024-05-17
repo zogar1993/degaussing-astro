@@ -1,15 +1,19 @@
 ---
-import getTitleParts from "@server/actions/GetTitleParts"
+import getSelectedMenu from "@server/actions/GetSelectedMenu"
+import getLocalizedPage from "@server/localization/GetLocalizedPage";
+import getLocalizedChapter from "@server/localization/GetLocalizedChapter";
 import type { RelatedPages } from "@server/Utils"
 export interface Props {
 	info?: RelatedPages
 }
 const { info } = Astro.props
 
-const title = getTitleParts({ path: Astro.url.pathname, info })
+const heading = info ?
+	`${getLocalizedChapter(info.current.chapter)} | ${getLocalizedPage(info.current.page)}` :
+	getSelectedMenu({ path: Astro.url.pathname })
 ---
 <span>
-    {title.join(" | ")}
+    {heading}
 </span>
 <style>
     span {

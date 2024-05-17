@@ -1,6 +1,6 @@
-import pathnameWithoutLocale from "@server/GetPathnameWithoutLocale"
 import i18next, { t } from "i18next"
 import { localizePath } from "astro-i18next"
+import pathnameWithoutLocale from "@server/GetPathnameWithoutLocale"
 
 export default function getMenuItems({ path }: { path: string }): Array<MenuItem> {
 	const pathname = pathnameWithoutLocale({ path, language: i18next.language })
@@ -17,7 +17,6 @@ export default function getMenuItems({ path }: { path: string }): Array<MenuItem
 			selected: pathname.startsWith("/chapters"),
 			text: t("menu.chapters"),
 			icon: "/icons/chapters.svg",
-			isSubPage: pathname.startsWith("/chapters") && pathname !== "/chapters"
 		},
 		{
 			href: localizePath("/characters"),
@@ -45,5 +44,4 @@ type MenuItem = {
 	selected: boolean
 	text: string
 	icon: string
-	isSubPage?: boolean
 }
