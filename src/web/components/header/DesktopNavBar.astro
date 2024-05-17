@@ -34,7 +34,7 @@ const items = getMenuItems({ path: Astro.url.pathname })
         padding: 0.5rem 0.75rem;
         font-size: 2rem;
         font-family: var(--font-family-title);
-        color: var(--color-primary);
+        color: var(--link_color);
         border-radius: var(--border-radius);
 
         transition: var(--transition-hover);
@@ -42,12 +42,12 @@ const items = getMenuItems({ path: Astro.url.pathname })
     }
 
     a:hover {
-        color: var(--color-primary);
-        background-color: var(--header__button--hover_background-color);
+        color: var(--link_color);
+        background-color: var(--header__link--hover_background-color);
     }
 
     .selected {
-        color: var(--color-hover);
+        color: var(--link--hover_color);
     }
 
     @media (max-width: 60em) {

@@ -109,7 +109,7 @@ const items = getMenuItems({ path: Astro.url.pathname })
     }
 
     li > a {
-        color: var(--color-primary);
+        color: var(--link_color);
         font-family: var(--font-family-title);
         font-size: 1.25rem;
         display: flex;
@@ -120,7 +120,7 @@ const items = getMenuItems({ path: Astro.url.pathname })
     }
 
     li > a.selected {
-        color: var(--color-selected);
+        color: var(--header__link--selected_color);
     }
 
     li > a.selected > img {
