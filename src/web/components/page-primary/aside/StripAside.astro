@@ -24,10 +24,10 @@ const { info } = Astro.props
         grid-area: strip-aside;
     }
 
-    aside :global(section) {
+    aside > :global(section) {
         position: relative;
 
-        padding: 1.5em;
+        padding: var(--aside__section_padding);
         border: var(--border-wide);
 
         border-radius: var(--border-radius);
@@ -35,7 +35,7 @@ const { info } = Astro.props
     }
 
     @media (max-width: 72em) {
-        aside :global(section) {
+        aside > :global(section) {
             padding: 1em;
         }
     }

@@ -10,7 +10,7 @@ const { image, chapter, date } = await getLastUpdate({
 ---
 <section aria-label={t("landmarks.last-update")}>
 	<div class="text-container">
-		<Heading>{t("strip.last-update")}</Heading>
+		<Heading>{t("landmarks.last-update")}</Heading>
 		<time datetime={date.datetime}>{date.localized}</time>
 		<span>{t("strip.chapter")} {chapter}</span>
 	</div>
@@ -20,16 +20,17 @@ const { image, chapter, date } = await getLastUpdate({
     section {
         display: flex;
         flex-direction: column;
-        gap: 1.5rem;
+    		gap: 0.5rem;
     }
 
     .text-container {
         display: flex;
         flex-direction: column;
-        gap: .75rem;
     }
 
     time {
+    		margin-top: 0.5rem;
+
         font-weight: 600;
         font-size: 1rem;
         line-height: 1.5em;
@@ -37,7 +38,9 @@ const { image, chapter, date } = await getLastUpdate({
     }
 
     span {
-        font-size: .875rem;
+    		margin-top: 0.75rem;
+
+        font-size: 1rem;
         line-height: 1.5em;
         color: var(--color-text-aside);
     }

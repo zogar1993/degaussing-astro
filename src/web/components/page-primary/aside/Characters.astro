@@ -10,7 +10,7 @@ const { info } = Astro.props
 const characters = info.characters.slice(0, 3)
 ---
 <section aria-label={t("landmarks.characters")}>
-	<Heading>{t("strip.characters")}</Heading>
+	<Heading>{t("landmarks.characters")}</Heading>
 	<div class="characters">
 		{
 			characters.map((character) => (
