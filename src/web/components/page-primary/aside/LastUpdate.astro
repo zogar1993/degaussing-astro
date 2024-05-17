@@ -1,14 +1,13 @@
 ---
 import i18next, { t } from "i18next"
 import { Image } from "astro:assets"
-import getLastUpdate from "@server/actions/GetLastUpdate"
 import Heading from "./Heading.astro"
+import getLastUpdate from "@server/actions/GetLastUpdate"
 
 const { image, chapter, date } = await getLastUpdate({
 	language: i18next.language
 })
 ---
-
 <section aria-label={t("landmarks.last-update")}>
 	<div class="text-container">
 		<Heading>{t("strip.last-update")}</Heading>

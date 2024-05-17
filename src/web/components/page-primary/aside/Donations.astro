@@ -1,13 +1,12 @@
 ---
 import { t } from "i18next"
+import Heading from "./Heading.astro"
 import { getContributionLinks } from "@server/actions/GetContributionLinks"
 
 const links = await getContributionLinks()
 ---
-
 <section aria-label={t("landmarks.donations")}>
-	<h2 class="semantic-only">{t("landmarks.donations")}</h2>
-	<span class="heading">{t("strip.thank-you")}</span>
+	<Heading>{t("landmarks.donations")}</Heading>
 	<ul>
 		{
 			links.map((link) => (
@@ -27,12 +26,6 @@ const links = await getContributionLinks()
         flex-direction: column;
         justify-content: space-between;
         gap: 1.25rem;
-    }
-
-    .heading {
-        font-family: var(--font-family-title);
-        font-size: 1.875rem;;
-        color: var(--heading_color);
     }
 
     ul {
