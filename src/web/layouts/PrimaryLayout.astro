@@ -83,14 +83,13 @@ const next = forward ? getLocalizedLinkToComicStrip(forward.one) : null
 <style>
     .grid {
         --donations__button_size: 4.5rem;
-        --donations__gap: 0.5rem;
         --aside__section_padding: 1.5rem;
         /* using donations section as a proxy to calculate aside width */
         --aside--desktop_width: calc(
                 var(--border-wide-width) * 2 +
                 var(--aside__section_padding) * 2 +
                 var(--donations__button_size) * 2 +
-                var(--donations__gap)
+                var(--buttons_gap)
         );
 
         display: grid;
