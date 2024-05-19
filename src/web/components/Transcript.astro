@@ -53,14 +53,13 @@ const paragraphs = description.trim().split("\n").map(p => {
         overflow-y: hidden;
 
         height: 64px;
-        transition: margin 300ms linear, padding 300ms linear, height 300ms linear;
+        transition: padding 300ms linear, height 3000ms linear;
 
         padding: 10px 5.5rem 10px;
     }
 
     aside:has(.button-expand[aria-expanded=true]) {
-        margin-inline: 0;
-        padding: 2.5rem 5.5rem;
+        padding-block: 2.5rem;
         height: 100%;
     }
 
@@ -113,5 +112,15 @@ const paragraphs = description.trim().split("\n").map(p => {
         height: calc(100% - 16px);
         width: 3px;
         background-color: black;
+    }
+
+    @media (max-width: 72em) {
+        aside {
+            padding: var(--section--mobile_padding);
+        }
+
+        h2 {
+        	font-size: 1.5rem;
+        }
     }
 </style>

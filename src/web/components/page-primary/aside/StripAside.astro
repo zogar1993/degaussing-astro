@@ -16,9 +16,8 @@ const { info } = Astro.props
 </aside>
 <style>
     aside {
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: auto 1fr auto;
+        display: flex;
+        flex-direction: column;
         gap: 1.25rem;
 
         grid-area: strip-aside;
@@ -35,6 +34,12 @@ const { info } = Astro.props
     }
 
     @media (max-width: 72em) {
+        aside {
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+        grid-template-rows: auto;
+
+        }
+
         aside > :global(section) {
             padding: 1em;
         }
