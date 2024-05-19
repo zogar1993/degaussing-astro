@@ -21,10 +21,9 @@ const next = forward ? getLocalizedLinkToComicStrip(forward.one) : null
 <MainLayout info={info} title={title}>
 	<div class="grid">
 		<ComicStrip info={info} />
-		<StickyNavBar info={info} />
 		{info.description && //TODO this should be mandatory
-
 			<Transcript info={info} />}
+		<StickyNavBar info={info} />
 		<StripAside info={info} />
 		<Comments info={info} />
 	</div>
