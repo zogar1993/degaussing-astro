@@ -30,8 +30,8 @@ const { info: { current, backward, forward } } = Astro.props
 					&lt;
 				</a>
 				:
-				<span class="disabled-link" tabindex="-1" aria-hidden="true">&lt;&lt;</span>
-				<span class="disabled-link" tabindex="-1" aria-hidden="true">&lt;</span>
+				<span class="link disabled" aria-hidden="true">&lt;&lt;</span>
+				<span class="link disabled" aria-hidden="true">&lt;</span>
 
 		}
 	</div>
@@ -133,12 +133,12 @@ const { info: { current, backward, forward } } = Astro.props
         }
 
         .text {
-            font-size: 1.25rem;
+            font-size: 1rem;
         }
 
         .link {
             color: var(--link_color);
-            font-size: 2rem;
+            font-size: 1.5rem;
         }
     }
 </style>

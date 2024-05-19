@@ -53,9 +53,9 @@ const paragraphs = description.trim().split("\n").map(p => {
         overflow-y: hidden;
 
         height: 64px;
-        transition: padding 300ms linear, height 3000ms linear;
+        transition: padding 300ms linear, height 300ms linear;
 
-        padding: 10px 5.5rem 10px;
+        padding: 10px 5.5rem;
     }
 
     aside:has(.button-expand[aria-expanded=true]) {
@@ -120,7 +120,11 @@ const paragraphs = description.trim().split("\n").map(p => {
         }
 
         h2 {
-        	font-size: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        aside:has(.button-expand[aria-expanded=true]) {
+            padding: var(--section--mobile_padding);
         }
     }
 </style>
