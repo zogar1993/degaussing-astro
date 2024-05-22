@@ -19,7 +19,7 @@ const chapters = await getChaptersInfo({ language: i18next.language });
 				chapters.map((chapter, i) => (
 					<li>
 						<a href={localizePath(`/chapters/${chapter.number}/pages`)}>
-							<Image src={chapter.cover} alt="" width={234} height={331} />
+							<Image src={chapter.cover} alt="" width={282} height={399} />
 							<h4>{t("chapters.chapter")} {i + 1}</h4>
 							<span>{chapter.pagesAmount} {t("chapters.pages")}</span>
 						</a>
@@ -35,31 +35,27 @@ const chapters = await getChaptersInfo({ language: i18next.language });
         display: flex;
         flex-direction: column;
         isolation: isolate;
+        transition: transform 200ms;
     }
 
-    a:before {
-        content: "";
-        position: absolute;
-        inset: -16px;
-        border-radius: var(--border-radius);
-        transition: var(--transition-hover);
-        transition-property: background-color;
-        z-index: -1;
-    }
+		ol:has(a:hover) a:not(:hover) {
+    	transform: scale(0.95);
+		}
 
-    a:hover:before {
-        background-color: #ECECEC;
+    a:hover {
+    	transform: scale(1.05);
     }
 
     ol {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 32px;
-        margin-inline: 8px;
+				grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 0.5rem;
     }
 
     img {
-        max-width: 100%;
+        width: 100%;
+        height: auto;
         aspect-ratio: var(--strip-aspect-ratio);
 
         margin-bottom: 1.25rem;
@@ -80,16 +76,5 @@ const chapters = await getChaptersInfo({ language: i18next.language });
         color: var(--color-muted);
         font-size: .875rem;
         user-select: none;
-    }
-
-    @media (max-width: 72em) {
-        img {
-            width: 100%;
-        }
-
-        ol {
-            grid-template-columns: 1fr;
-            gap: 2.5rem;
-        }
     }
 </style>

@@ -1,5 +1,6 @@
 ---
-import i18next, { changeLanguage, t } from "i18next";
+import i18next, { changeLanguage } from "i18next";
+import { Image } from "astro:assets"
 import SecondaryLayout from "@web/layouts/SecondaryLayout.astro";
 import Section from "@web/components/page-secondary/SecondaryPageSection.astro";
 import getLocalizedLinkToComicStrip from "@server/actions/GetLocalizedLinkToComicStrip";
@@ -22,7 +23,7 @@ const chapter_localized = getLocalizedChapter(chapter);
 				pages.map(({ image, number }) => (
 					<li>
 						<a href={getLocalizedLinkToComicStrip({ chapter, page: number })}>
-							<img src={image} alt="" />
+							<Image src={image} alt="" width={282} height={399} />
 							<span>{getLocalizedPage(number)}</span>
 						</a>
 					</li>
@@ -33,32 +34,34 @@ const chapter_localized = getLocalizedChapter(chapter);
 </SecondaryLayout>
 <style>
     a {
+        position: relative;
         display: flex;
         flex-direction: column;
-
-        align-items: center;
-        gap: 0.5rem;
-
-        padding: 1rem;
-
-        border-radius: var(--border-radius);
-        transition: var(--transition-hover);
-        transition-property: background-color;
+        isolation: isolate;
+        transition: transform 200ms;
     }
 
+		ol:has(a:hover) a:not(:hover) {
+    	transform: scale(0.95);
+		}
+
     a:hover {
-        background-color: #ECECEC;
+    	transform: scale(1.05);
     }
 
     ol {
         display: grid;
-        grid-template-columns: repeat(3, auto);
-        justify-content: space-between;
+				grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 0.5rem;
     }
 
     img {
-        width: 239px;
+        width: 100%;
+        height: auto;
         aspect-ratio: var(--strip-aspect-ratio);
+
+        margin-bottom: 1.25rem;
 
         border-radius: var(--border-radius);
     }
@@ -67,16 +70,5 @@ const chapter_localized = getLocalizedChapter(chapter);
         color: var(--color-muted);
         font-size: .875rem;
         user-select: none;
-    }
-
-    @media (max-width: 72em) {
-        img {
-            width: 100%;
-        }
-
-        ol {
-            grid-template-columns: 1fr;
-            gap: 2.5rem;
-        }
     }
 </style>
