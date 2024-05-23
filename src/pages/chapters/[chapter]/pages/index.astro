@@ -1,20 +1,20 @@
 ---
-import i18next, { changeLanguage } from "i18next";
+import i18next, { changeLanguage } from "i18next"
 import { Image } from "astro:assets"
-import SecondaryLayout from "@web/layouts/SecondaryLayout.astro";
-import Section from "@web/components/page-secondary/SecondaryPageSection.astro";
-import getLocalizedLinkToComicStrip from "@server/actions/GetLocalizedLinkToComicStrip";
-import getAllPagesOfChapter from "@server/actions/GetAllPagesOfChapter";
-import getLocalizedChapter from "@server/localization/GetLocalizedChapter";
-import getLocalizedPage from "@server/localization/GetLocalizedPage";
+import SecondaryLayout from "@web/layouts/SecondaryLayout.astro"
+import Section from "@web/components/page-secondary/SecondaryPageSection.astro"
+import getLocalizedLinkToComicStrip from "@server/actions/GetLocalizedLinkToComicStrip"
+import getAllPagesOfChapter from "@server/actions/GetAllPagesOfChapter"
+import getLocalizedChapter from "@server/localization/GetLocalizedChapter"
+import getLocalizedPage from "@server/localization/GetLocalizedPage"
 
-changeLanguage("es");
+changeLanguage("es")
 
 export async function getStaticPaths() {
-    return await getAllPagesOfChapter({ language: i18next.language });
+	return await getAllPagesOfChapter({ language: i18next.language })
 }
-const { chapter, pages } = Astro.props as Awaited<ReturnType<typeof getAllPagesOfChapter>>[0]["props"];
-const chapter_localized = getLocalizedChapter(chapter);
+const { chapter, pages } = Astro.props as Awaited<ReturnType<typeof getAllPagesOfChapter>>[0]["props"]
+const chapter_localized = getLocalizedChapter(chapter)
 ---
 <SecondaryLayout title={chapter_localized}>
 	<Section>
@@ -41,17 +41,17 @@ const chapter_localized = getLocalizedChapter(chapter);
         transition: transform 200ms;
     }
 
-		ol:has(a:hover) a:not(:hover) {
-    	transform: scale(0.95);
-		}
+    ol:has(a:hover) a:not(:hover) {
+        transform: scale(0.95);
+    }
 
     a:hover {
-    	transform: scale(1.05);
+        transform: scale(1.05);
     }
 
     ol {
         display: grid;
-				grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
         gap: 1.5rem;
         margin-bottom: 0.5rem;
     }
