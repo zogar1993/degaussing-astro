@@ -55,10 +55,11 @@
     "first": "First page",
     "previous": "Previous page",
     "next": "Next page",
-    "last": "Last page"
+    "last": "Last page",
+    "back": "Back"
   },
   "about": {
     "story": "About the story",
     "authors": "About the authors"
-  }
+  },
 }

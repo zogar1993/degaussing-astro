@@ -1,28 +1,32 @@
 ---
-import i18next, { changeLanguage } from "i18next"
-import { Image } from "astro:assets"
-import SecondaryLayout from "@web/layouts/SecondaryLayout.astro"
-import Section from "@web/components/page-secondary/SecondaryPageSection.astro"
-import getLocalizedLinkToComicStrip from "@server/actions/GetLocalizedLinkToComicStrip"
-import getAllPagesOfChapter from "@server/actions/GetAllPagesOfChapter"
-import getLocalizedChapter from "@server/localization/GetLocalizedChapter"
-import getLocalizedPage from "@server/localization/GetLocalizedPage"
+import i18next, { changeLanguage, t } from "i18next";
+import { localizePath } from "astro-i18next";
+import { Image } from "astro:assets";
+import SecondaryLayout from "@web/layouts/SecondaryLayout.astro";
+import Section from "@web/components/page-secondary/SecondaryPageSection.astro";
+import SectionHeading from "@web/components/general/SectionHeading.astro";
+import getLocalizedLinkToComicStrip from "@server/actions/GetLocalizedLinkToComicStrip";
+import getAllPagesOfChapter from "@server/actions/GetAllPagesOfChapter";
+import getLocalizedChapter from "@server/localization/GetLocalizedChapter";
+import getLocalizedPage from "@server/localization/GetLocalizedPage";
 
-changeLanguage("es")
+changeLanguage("es");
 
 export async function getStaticPaths() {
-	return await getAllPagesOfChapter({ language: i18next.language })
+    return await getAllPagesOfChapter({ language: i18next.language });
 }
-const { chapter, pages } = Astro.props as Awaited<ReturnType<typeof getAllPagesOfChapter>>[0]["props"]
-const chapter_localized = getLocalizedChapter(chapter)
+const { chapter, pages } = Astro.props as Awaited<ReturnType<typeof getAllPagesOfChapter>>[0]["props"];
+const chapter_localized = getLocalizedChapter(chapter);
 ---
 <SecondaryLayout title={chapter_localized}>
 	<Section>
+		<a class="back" href={localizePath("/chapters")}>{`<- ${t("secondary-nav.back")}`}</a>
+		<SectionHeading>{chapter_localized}</SectionHeading>
 		<ol>
 			{
 				pages.map(({ image, number }) => (
 					<li>
-						<a href={getLocalizedLinkToComicStrip({ chapter, page: number })}>
+						<a class="image-link" href={getLocalizedLinkToComicStrip({ chapter, page: number })}>
 							<Image src={image} alt="" width={282} height={399} />
 							<span>{getLocalizedPage(number)}</span>
 						</a>
@@ -33,7 +37,7 @@ const chapter_localized = getLocalizedChapter(chapter)
 	</Section>
 </SecondaryLayout>
 <style>
-    a {
+    .image-link {
         position: relative;
         display: flex;
         flex-direction: column;
@@ -41,11 +45,11 @@ const chapter_localized = getLocalizedChapter(chapter)
         transition: transform 200ms;
     }
 
-    ol:has(a:hover) a:not(:hover) {
+    ol:has(.image-link:hover) .image-link:not(:hover) {
         transform: scale(0.95);
     }
 
-    a:hover {
+    .image-link:hover {
         transform: scale(1.05);
     }
 
@@ -69,5 +73,16 @@ const chapter_localized = getLocalizedChapter(chapter)
         font-size: .875rem;
         user-select: none;
         text-align: center;
+    }
+
+    .back {
+    	display: inline-block;
+    	margin-bottom: 1rem;
+			color: var(--color-text-aside);
+			transition: transform 300ms;
+    }
+
+    .back:hover {
+    	transform: scale(1.1);
     }
 </style>
