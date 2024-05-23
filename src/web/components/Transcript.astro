@@ -21,18 +21,33 @@ const paragraphs = description.trim().split("\n").map(p => {
 		<h2>{t("landmarks.transcript")}</h2>
 		<button class="button-expand" aria-expanded="false" />
 	</div>
-	<div class="content">
-		{paragraphs.map(({ panel, description }) =>
-			<p>
-				{panel && <span class="strong">{panel}:</span>}
-				{description}
-			</p>
-		)}
+	<div class="content-position">
+		<div class="content-text">
+			{paragraphs.map(({ panel, description }) =>
+				<p>
+					{panel && <span class="strong">{panel}:</span>}
+					{description}
+				</p>
+			)}
+		</div>
 	</div>
 </aside>
 <script define:vars={{ label: t("landmarks.transcript") }}>
-	const button = document.querySelector(`aside[aria-label="${label}"] button[aria-expanded]`)
+	const aside = document.querySelector(`aside[aria-label="${label}"]`)
+	const button = aside.querySelector(`button[aria-expanded]`)
+	const content = aside.querySelector(`.content-text`)
+
+	const updateTranscriptContentHeight = () => {
+		const { height } = content.getBoundingClientRect()
+		aside.style.setProperty("--transcript__content_height", `${height}px`)
+	}
+
+	window.addEventListener("resize", () => {
+		updateTranscriptContentHeight()
+	})
+
 	button.addEventListener("click", () => {
+		updateTranscriptContentHeight()
 		const isExpanded = button.getAttribute("aria-expanded") === "true"
 		//TODO make this accessible
 		button.setAttribute("aria-expanded", isExpanded ? "false" : "true")
@@ -42,25 +57,34 @@ const paragraphs = description.trim().split("\n").map(p => {
     aside {
         grid-area: transcript;
 
+        display: grid;
+        grid-template-rows: auto 0;
+
         background-color: white;
         border-radius: var(--border-radius);
         border: var(--border-wide);
 
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-
         overflow-y: hidden;
 
-        height: 64px;
-        transition: padding 300ms linear, height 300ms linear;
+        transition: padding 300ms linear, grid-template-rows 300ms ease-in-out;
 
         padding: 10px 5.5rem;
     }
 
     aside:has(.button-expand[aria-expanded=true]) {
         padding-block: 2.5rem;
-        height: 100%;
+        grid-template-rows: auto var(--transcript__content_height);
+    }
+
+    .content-position {
+        position: relative;
+    }
+
+    .content-text {
+        padding-top: 1rem;
+        position: absolute;
+        right: 0;
+        left: 0;
     }
 
     h2 {
