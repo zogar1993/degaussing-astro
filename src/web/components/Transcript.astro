@@ -42,9 +42,7 @@ const paragraphs = description.trim().split("\n").map(p => {
 		aside.style.setProperty("--transcript__content_height", `${height}px`)
 	}
 
-	window.addEventListener("resize", () => {
-		updateTranscriptContentHeight()
-	})
+	window.addEventListener("resize", updateTranscriptContentHeight)
 
 	button.addEventListener("click", () => {
 		updateTranscriptContentHeight()
