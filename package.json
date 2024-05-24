@@ -12,7 +12,8 @@
   "dependencies": {
     "@contentful/rich-text-html-renderer": "16.4.0",
     "astro": "4.9.1",
-    "contentful": "10.11.2"
+    "contentful": "10.11.2",
+    "sharp": "0.33.4"
   },
   "devDependencies": {
     "@types/node": "20.12.12",
