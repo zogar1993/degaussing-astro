@@ -9,7 +9,10 @@ import { getLangFromUrl, useTranslations, useLocalizePath, LANGUAGE_CODES } from
 export async function getStaticPaths() {
 	return Promise.all(LANGUAGE_CODES.map(async (language) => ({
 		props: { chapters: await getChaptersInfo({ language }) },
-		params: { lang: language }
+		params: {
+			lang: language,
+			chapters: useTranslations(language)("url.chapters")
+		}
 	})))
 }
 
@@ -26,7 +29,7 @@ const { chapters } = Astro.props as Awaited<ReturnType<typeof getStaticPaths>>[0
 			{
 				chapters.map((chapter, i) => (
 					<li>
-						<a href={localizePath(`/chapters/${chapter.number}/pages`)}>
+						<a href={localizePath(`/${t("url.chapters")}/${chapter.number}/${t("url.pages")}`)}>
 							<Image src={chapter.cover} alt="" width={282} height={399} />
 							<h4>{t("chapters.chapter")} {i + 1}</h4>
 							<span>{chapter.pagesAmount} {t("chapters.pages")}</span>

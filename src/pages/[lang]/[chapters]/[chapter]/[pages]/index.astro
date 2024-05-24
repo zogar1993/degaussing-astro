@@ -23,7 +23,9 @@ export async function getStaticPaths() {
 				},
 				params: {
 					lang: `${language}`,
-				chapter: `${i + 1}`
+					chapters: useTranslations(language)("url.chapters"),
+					chapter: `${i + 1}`,
+					pages: useTranslations(language)("url.pages"),
 				}
 			}
 		})
@@ -39,7 +41,7 @@ const chapter_localized = getLocalizedChapter(chapter, language)
 ---
 <SecondaryLayout title={chapter_localized}>
 	<Section>
-		<a class="back" href={localizePath("/chapters")}>{`<- ${t("secondary-nav.back")}`}</a>
+		<a class="back" href={localizePath(`/${t("url.chapters")}`)}>{`<- ${t("secondary-nav.back")}`}</a>
 		<SectionHeading>{chapter_localized}</SectionHeading>
 		<ol>
 			{

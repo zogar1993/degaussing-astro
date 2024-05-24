@@ -2,7 +2,7 @@
 import PrimaryLayout from "@web/layouts/PrimaryLayout.astro"
 import getLocalizedChapter from "@server/localization/GetLocalizedChapter"
 import getLocalizedPage from "@server/localization/GetLocalizedPage"
-import { getLangFromUrl, LANGUAGE_CODES } from "@server/i18n/utils"
+import { useTranslations, getLangFromUrl, LANGUAGE_CODES } from "@server/i18n/utils"
 import { getChapters } from "@server/GetChapters"
 import getPageInfo from "@server/GetPageInfo"
 
@@ -19,7 +19,9 @@ export async function getStaticPaths() {
 				props: getPageInfo({ chapter, page, chapters }),
 				params: {
 					lang: `${language}`,
+					chapters: useTranslations(language)("url.chapters"),
 					chapter: `${chapter}`,
+					pages: useTranslations(language)("url.pages"),
 					page: `${page}`
 				}
 			}

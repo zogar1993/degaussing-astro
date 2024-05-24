@@ -50,7 +50,12 @@ export const ui = {
 		"secondary-nav.back": "Back",
 
 		"about.story": "About the story",
-		"about.authors": "About the authors"
+		"about.authors": "About the authors",
+
+		"url.chapters": "chapters",
+		"url.pages": "pages",
+		"url.characters": "characters",
+		"url.about": "about"
 	},
 	es: {
 		"interaction.skip-to-main": "Saltar al contenido principal",
@@ -102,6 +107,18 @@ export const ui = {
 		"secondary-nav.back": "Atrás",
 
 		"about.story": "Acerca de la historia",
-		"about.authors": "Acerca de los autores"
+		"about.authors": "Acerca de los autores",
+
+		"url.chapters": "capitulos",
+		"url.pages": "paginas",
+		"url.characters": "personajes",
+		"url.about": "acerca-de"
 	}
 } as const
+
+export const URL_PARTS = [
+	{ en: ui["en"]["url.chapters"], es: ui["es"]["url.chapters"] },
+	{ en: ui["en"]["url.pages"], es: ui["es"]["url.pages"] },
+	{ en: ui["en"]["url.characters"], es: ui["es"]["url.characters"] },
+	{ en: ui["en"]["url.about"], es: ui["es"]["url.about"] }
+] as const

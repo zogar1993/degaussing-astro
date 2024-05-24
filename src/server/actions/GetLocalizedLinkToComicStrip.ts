@@ -1,7 +1,10 @@
-import { LanguageCode, useLocalizePath } from "@server/i18n/utils"
+import { LanguageCode, useLocalizePath, useTranslations } from "@server/i18n/utils"
 import type { PageCoordinates } from "@server/Utils"
 
-export default function getLocalizedLinkToComicStrip({ page, chapter, language }: PageCoordinates & {language: LanguageCode}) {
+export default function getLocalizedLinkToComicStrip(
+	{ page, chapter, language }: PageCoordinates & { language: LanguageCode }
+) {
 	const localizePath = useLocalizePath(language)
-	return localizePath(`/chapters/${chapter}/pages/${page}#main`)
+	const t = useTranslations(language)
+	return localizePath(`/${t("url.chapters")}/${chapter}/${t("url.pages")}/${page}#main`)
 }

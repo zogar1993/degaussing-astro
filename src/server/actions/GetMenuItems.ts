@@ -1,5 +1,5 @@
 import pathnameWithoutLocale from "@server/GetPathnameWithoutLocale"
-import { useTranslations, useLocalizePath, LanguageCode } from "@server/i18n/utils"
+import { useTranslations, useLocalizePath, LanguageCode, translatePath } from "@server/i18n/utils"
 
 export default function getMenuItems({ path, language }: { path: string, language: LanguageCode }): Array<MenuItem> {
 	const t = useTranslations(language)
@@ -14,25 +14,25 @@ export default function getMenuItems({ path, language }: { path: string, languag
 			icon: "/icons/home.svg"
 		},
 		{
-			href: localizePath("/chapters"),
-			selected: pathname.startsWith("/chapters"),
+			href: localizePath(`/${t("url.chapters")}`),
+			selected: pathname.startsWith(`/${t("url.chapters")}`),
 			text: t("menu.chapters"),
 			icon: "/icons/chapters.svg"
 		},
 		{
-			href: localizePath("/characters"),
-			selected: pathname === "/characters",
+			href: localizePath(`/${t("url.characters")}`),
+			selected: pathname.startsWith(`/${t("url.characters")}`),
 			text: t("menu.characters"),
 			icon: "/icons/characters.svg"
 		},
 		{
-			href: localizePath("/about"),
-			selected: pathname === "/about",
+			href: localizePath(`/${t("url.about")}`),
+			selected: pathname.startsWith(`/${t("url.about")}`),
 			text: t("menu.about"),
 			icon: "/icons/about.svg"
 		},
 		{
-			href: localizePath(pathname, language === "es" ? "en" : "es"),
+			href: translatePath({ path: pathname, from: language, to: language === "es" ? "en" : "es" }),
 			selected: false,
 			text: t("menu.language"),
 			icon: "/icons/language.svg"
@@ -46,3 +46,7 @@ type MenuItem = {
 	text: string
 	icon: string
 }
+
+const generateMenuItem = (code: string) => ({
+
+})

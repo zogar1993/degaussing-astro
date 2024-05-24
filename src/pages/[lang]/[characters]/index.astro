@@ -8,7 +8,10 @@ import { getLangFromUrl, useTranslations, LANGUAGE_CODES } from "@server/i18n/ut
 export async function getStaticPaths() {
 	return Promise.all(LANGUAGE_CODES.map(async (language) => ({
 		props: { characters: await getCharactersInfo({ language }) },
-		params: { lang: language }
+		params: {
+			lang: language,
+			characters: useTranslations(language)("url.characters")
+		}
 	})))
 }
 
