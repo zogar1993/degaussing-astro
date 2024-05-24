@@ -1,13 +1,16 @@
 ---
-import i18next, { t } from "i18next"
 import Header from "@web/components/header/Header.astro"
 import ResetCss from "@web/styles/ResetCss.astro"
 import FontsCss from "@web/styles/FontsCss.astro"
 import ImagesPrefetch from "@web/performance/ImagesPreload.astro"
 import VariablesCss from "@web/styles/VariablesCss.astro"
-import { HeadHrefLangs } from "astro-i18next/components"
-import type { RelatedPages } from "@server/Utils"
+//TODO import { HeadHrefLangs } from "astro-i18next/components" <HeadHrefLangs />
 import getIsHomepage from "@server/GetIsHomepage"
+import { getLangFromUrl, useTranslations } from "@server/i18n/utils"
+import type { RelatedPages } from "@server/Utils"
+
+const language = getLangFromUrl(Astro.url)
+const t = useTranslations(language)
 
 export interface Props {
 	info?: RelatedPages
@@ -15,10 +18,10 @@ export interface Props {
 }
 const { info, title } = Astro.props
 
-const isHomepage = getIsHomepage({ path: Astro.url.pathname, language: i18next.language })
+const isHomepage = getIsHomepage({ path: Astro.url.pathname, language })
 ---
 <!DOCTYPE html>
-<html lang={i18next.language}>
+<html lang={language}>
 <head>
 	<title>{title}</title>
 	<link rel="icon" href="/favicon.ico" />
@@ -30,7 +33,6 @@ const isHomepage = getIsHomepage({ path: Astro.url.pathname, language: i18next.l
 	<ImagesPrefetch />
 	<ResetCss />
 	<VariablesCss />
-	<HeadHrefLangs />
 </head>
 <body tabindex="-1">
 <Header info={info} />

@@ -1,40 +1,41 @@
-import i18next, { t } from "i18next"
-import { localizePath } from "astro-i18next"
 import pathnameWithoutLocale from "@server/GetPathnameWithoutLocale"
+import { useTranslations, useLocalizePath, LanguageCode } from "@server/i18n/utils"
 
-export default function getMenuItems({ path }: { path: string }): Array<MenuItem> {
-	const pathname = pathnameWithoutLocale({ path, language: i18next.language })
+export default function getMenuItems({ path, language }: { path: string, language: LanguageCode }): Array<MenuItem> {
+	const t = useTranslations(language)
+	const localizePath = useLocalizePath(language)
+	const pathname = pathnameWithoutLocale({ path, language })
 
 	return [
 		{
 			href: localizePath("/"),
 			selected: pathname === "/",
 			text: t("menu.home"),
-			icon: "/icons/home.svg",
+			icon: "/icons/home.svg"
 		},
 		{
 			href: localizePath("/chapters"),
 			selected: pathname.startsWith("/chapters"),
 			text: t("menu.chapters"),
-			icon: "/icons/chapters.svg",
+			icon: "/icons/chapters.svg"
 		},
 		{
 			href: localizePath("/characters"),
 			selected: pathname === "/characters",
 			text: t("menu.characters"),
-			icon: "/icons/characters.svg",
+			icon: "/icons/characters.svg"
 		},
 		{
 			href: localizePath("/about"),
 			selected: pathname === "/about",
 			text: t("menu.about"),
-			icon: "/icons/about.svg",
+			icon: "/icons/about.svg"
 		},
 		{
-			href: localizePath(pathname, i18next.language === "es" ? "en" : "es"),
+			href: localizePath(pathname, language === "es" ? "en" : "es"),
 			selected: false,
 			text: t("menu.language"),
-			icon: "/icons/language.svg",
+			icon: "/icons/language.svg"
 		}
 	]
 }

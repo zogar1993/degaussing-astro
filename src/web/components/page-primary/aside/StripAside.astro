@@ -1,8 +1,11 @@
 ---
-import { t } from "i18next"
 import LastUpdate from "@web/components/page-primary/aside/LastUpdate.astro"
 import Characters from "@web/components/page-primary/aside/Characters.astro"
 import Donations from "@web/components/page-primary/aside/Donations.astro"
+import { getLangFromUrl, useTranslations } from '@server/i18n/utils';
+
+const language = getLangFromUrl(Astro.url)
+const t = useTranslations(language)
 
 export interface Props {
 	info: { characters: Array<{ name: string, image: string }> }

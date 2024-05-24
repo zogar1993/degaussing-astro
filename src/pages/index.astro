@@ -1,10 +1,1 @@
----
-import i18next, { changeLanguage, t } from "i18next";
-import PrimaryLayout from "@web/layouts/PrimaryLayout.astro";
-import getLastPage from "@server/actions/GetLastPage";
-
-changeLanguage("es");
-
-const info = await getLastPage({ language: i18next.language });
----
-<PrimaryLayout info={info} title={t("menu.home")} />
+<meta http-equiv="refresh" content="0;url=/es/" />

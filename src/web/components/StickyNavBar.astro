@@ -1,8 +1,11 @@
 ---
-import { t } from "i18next"
 import getLocalizedLinkToComicStrip from "@server/actions/GetLocalizedLinkToComicStrip"
 import getStripNameParts from "@server/actions/GetStripNameParts"
-import { RelatedPages } from "@server/Utils"
+import { getLangFromUrl, useTranslations } from "@server/i18n/utils"
+import type { RelatedPages } from "@server/Utils"
+
+const language = getLangFromUrl(Astro.url)
+const t = useTranslations(language)
 
 export interface Props {
 	info: RelatedPages
@@ -15,7 +18,7 @@ const { info: { current, backward, forward } } = Astro.props
 			backward ?
 				<a
 					class="link"
-					href={getLocalizedLinkToComicStrip(backward.all)}
+					href={getLocalizedLinkToComicStrip({ ...backward.all, language })}
 					aria-label={t("secondary-nav.first")}
 					title={t("secondary-nav.first")}
 				>
@@ -23,7 +26,7 @@ const { info: { current, backward, forward } } = Astro.props
 				</a>
 				<a
 					class="link"
-					href={getLocalizedLinkToComicStrip(backward.one)}
+					href={getLocalizedLinkToComicStrip({ ...backward.one, language })}
 					aria-label={t("secondary-nav.previous")}
 					title={t("secondary-nav.previous")}
 				>
@@ -36,14 +39,14 @@ const { info: { current, backward, forward } } = Astro.props
 		}
 	</div>
 	<span class="text">
-			{getStripNameParts(current).join(" | ")}
+			{getStripNameParts({ ...current, language }).join(" | ")}
     </span>
 	<div class="navigation-arrows">
 		{
 			forward ?
 				<a
 					class="link"
-					href={getLocalizedLinkToComicStrip(forward.one)}
+					href={getLocalizedLinkToComicStrip({ ...forward.one, language })}
 					aria-label={t("secondary-nav.next")}
 					title={t("secondary-nav.next")}
 				>
@@ -51,7 +54,7 @@ const { info: { current, backward, forward } } = Astro.props
 				</a>
 				<a
 					class="link"
-					href={getLocalizedLinkToComicStrip(forward.all)}
+					href={getLocalizedLinkToComicStrip({ ...forward.all, language })}
 					aria-label={t("secondary-nav.last")}
 					title={t("secondary-nav.last")}
 				>

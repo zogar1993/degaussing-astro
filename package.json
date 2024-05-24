@@ -4,21 +4,20 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "yarn localize; astro dev",
-    "build": "yarn localize; astro build",
-    "preview": "yarn localize; astro preview",
-    "astro": "astro",
-    "localize": "yarn astro-i18next generate"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
   "dependencies": {
-    "@contentful/rich-text-html-renderer": "16.3.0",
-    "astro": "4.0.4",
-    "astro-i18next": "1.0.0-beta.21",
-    "contentful": "10.6.14"
+    "@contentful/rich-text-html-renderer": "16.4.0",
+    "astro": "4.9.1",
+    "contentful": "10.11.2",
+    "sharp": "^0.33.4"
   },
   "devDependencies": {
-    "@types/node": "20.10.4",
-    "prettier": "3.1.1",
-    "prettier-plugin-astro": "0.12.2"
+    "@types/node": "20.12.12",
+    "prettier": "3.2.5",
+    "prettier-plugin-astro": "0.13.0"
   }
 }

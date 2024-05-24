@@ -1,7 +1,10 @@
 ---
-import { t } from "i18next"
-import Heading from "./Heading.astro"
+import Heading from "@web/components/page-primary/aside/Heading.astro"
 import { getContributionLinks } from "@server/actions/GetContributionLinks"
+import { getLangFromUrl,useTranslations } from "@server/i18n/utils"
+
+const language = getLangFromUrl(Astro.url)
+const t = useTranslations(language)
 
 const links = await getContributionLinks()
 ---

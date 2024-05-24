@@ -1,7 +1,11 @@
 ---
-import { t } from "i18next"
 import getMenuItems from "@server/actions/GetMenuItems"
-const items = getMenuItems({ path: Astro.url.pathname })
+import { getLangFromUrl, useTranslations } from "@server/i18n/utils"
+
+const language = getLangFromUrl(Astro.url)
+const t = useTranslations(language)
+
+const items = getMenuItems({ path: Astro.url.pathname, language })
 ---
 <nav aria-label={t("landmarks.navigation-page")}>
 	<ul>

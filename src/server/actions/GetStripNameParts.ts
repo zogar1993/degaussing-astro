@@ -1,7 +1,8 @@
+import { LanguageCode, useTranslations } from "@server/i18n/utils"
 import type { PageCoordinates } from "@server/Utils"
-import { t } from "i18next"
 
-export default function getStripNameParts({ chapter, page }: PageCoordinates) {
+export default function getStripNameParts({ chapter, page, language }: PageCoordinates & { language: LanguageCode }) {
+	const t = useTranslations(language)
 	return [
 		`${t("strip.chapter")} ${chapter}`,
 		`${page === 0 ? t("strip.cover") : `${t("strip.page")} ${page}`}`

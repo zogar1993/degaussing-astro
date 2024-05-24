@@ -1,8 +1,11 @@
 ---
-import { t } from "i18next"
+import { getLangFromUrl, useTranslations } from "@server/i18n/utils"
+
+const language = getLangFromUrl(Astro.url)
+const t = useTranslations(language)
 ---
 <a href="#main">
-	{t("accessibility.skip-to-main")}
+	{t("interaction.skip-to-main")}
 </a>
 <style>
     a {

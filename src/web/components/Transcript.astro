@@ -1,7 +1,9 @@
 ---
-import i18next, { t } from "i18next"
+import { getLangFromUrl, useTranslations } from '@server/i18n/utils';
 import { PageInfo } from "@server/GetPageInfo"
-const language = i18next.language
+
+const language = getLangFromUrl(Astro.url);
+const t = useTranslations(language);
 
 export interface Props {
 	info: PageInfo

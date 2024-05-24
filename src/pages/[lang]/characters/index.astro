@@ -1,0 +1,23 @@
+---
+import SecondaryLayout from "@web/layouts/SecondaryLayout.astro"
+import Section from "@web/components/page-secondary/SecondaryPageSection.astro"
+import PeopleList from "@web/components/PeopleList.astro"
+import getCharactersInfo from "@server/actions/GetCharactersInfo"
+import { getLangFromUrl, useTranslations, LANGUAGE_CODES } from "@server/i18n/utils"
+
+export async function getStaticPaths() {
+	return Promise.all(LANGUAGE_CODES.map(async (language) => ({
+		props: { characters: await getCharactersInfo({ language }) },
+		params: { lang: language }
+	})))
+}
+
+const { characters } = Astro.props as Awaited<ReturnType<typeof getCharactersInfo>>
+const language = getLangFromUrl(Astro.url)
+const t = useTranslations(language)
+---
+<SecondaryLayout title={t("menu.characters")}>
+	<Section>
+		<PeopleList people={characters} />
+	</Section>
+</SecondaryLayout>

@@ -1,9 +1,12 @@
 ---
-import i18next, { t } from "i18next"
 import { Image } from "astro:assets"
 import getStripNameParts from "@server/actions/GetStripNameParts"
 import { RelatedPages } from "@server/Utils"
 import getIsHomepage from "@server/GetIsHomepage"
+import { getLangFromUrl, useTranslations } from "@server/i18n/utils"
+
+const language = getLangFromUrl(Astro.url)
+const t = useTranslations(language)
 
 export interface Props {
 	info: RelatedPages
@@ -12,10 +15,10 @@ export interface Props {
 const { info } = Astro.props
 const { image, description, current } = info
 
-const isHomepage = getIsHomepage({ path: Astro.url.pathname, language: i18next.language })
+const isHomepage = getIsHomepage({ path: Astro.url.pathname, language })
 //This is so that an accessible user can understand that he is on the latest page when he is in the homepage.
 const comicPageHeading = isHomepage ? t("strip.heading-main-home") : t("strip.heading-main")
-const heading = [comicPageHeading, ...getStripNameParts(current)].join(" | ")
+const heading = [comicPageHeading, ...getStripNameParts({ ...current, language })].join(" | ")
 ---
 <main id="main" tabindex="-1">
 	<h2 class="semantic-only">{heading}</h2>

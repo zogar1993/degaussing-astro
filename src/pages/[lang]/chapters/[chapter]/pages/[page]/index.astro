@@ -1,0 +1,35 @@
+---
+import PrimaryLayout from "@web/layouts/PrimaryLayout.astro"
+import getLocalizedChapter from "@server/localization/GetLocalizedChapter"
+import getLocalizedPage from "@server/localization/GetLocalizedPage"
+import { getLangFromUrl, LANGUAGE_CODES } from "@server/i18n/utils"
+import { getChapters } from "@server/GetChapters"
+import getPageInfo from "@server/GetPageInfo"
+
+export async function getStaticPaths() {
+	return (await Promise.all(LANGUAGE_CODES.map(async (language) => {
+		const chapters = await getChapters({ language })
+
+		const chapterNumbers = chapters.flatMap((chapter, i) => [
+			{ chapter: i + 1, page: 0 },
+			...chapter.pages.map((_, j) => ({ chapter: i + 1, page: j + 1 }))
+		])
+		return chapterNumbers.flatMap(({ chapter, page }) => {
+			return {
+				props: getPageInfo({ chapter, page, chapters }),
+				params: {
+					lang: `${language}`,
+					chapter: `${chapter}`,
+					page: `${page}`
+				}
+			}
+		})
+	}))).flatMap(x => x)
+}
+
+const language = getLangFromUrl(Astro.url)
+const info = Astro.props as Awaited<ReturnType<typeof getStaticPaths>>[0]["props"]
+const chapter = getLocalizedChapter(info.current.chapter, language)
+const page = getLocalizedPage(info.current.page, language)
+---
+<PrimaryLayout info={info} title={`${page} | ${chapter}`} />

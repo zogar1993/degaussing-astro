@@ -1,20 +1,23 @@
 ---
-import { t } from "i18next"
 import getMenuItems from "@server/actions/GetMenuItems"
+import { getLangFromUrl, useTranslations } from "@server/i18n/utils"
 
-const items = getMenuItems({ path: Astro.url.pathname })
+const language = getLangFromUrl(Astro.url);
+const t = useTranslations(language);
+
+const items = getMenuItems({ path: Astro.url.pathname, language })
 ---
-<nav aria-label={t("accesibility.main-menu")}>
+<nav aria-label={t("interaction.main-menu")}>
 	<button
 		id="hamburger-opener"
 		aria-expanded="false"
 		aria-controls="hamburger-dropdown"
-		aria-label={t("accesibility.open")}
+		aria-label={t("interaction.open")}
 	>
 		<img src="/icons/hamburger.svg" alt="" />
 	</button>
 	<dialog id="hamburger-dropdown" role="menu" inert>
-		<button id="hamburger-closer" aria-label={t("accesibility.close")} title={t("accesibility.close")}>
+		<button id="hamburger-closer" aria-label={t("interaction.close")} title={t("interaction.close")}>
 			<img src="/icons/close.svg" alt="" />
 		</button>
 		<ul>

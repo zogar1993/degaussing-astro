@@ -1,15 +1,23 @@
 ---
-import i18next, { changeLanguage, t } from "i18next";
-import { localizePath } from "astro-i18next";
-import { Image } from "astro:assets";
-import SecondaryLayout from "@web/layouts/SecondaryLayout.astro";
-import Section from "@web/components/page-secondary/SecondaryPageSection.astro";
-import SectionHeading from "@web/components/general/SectionHeading.astro";
-import getChaptersInfo from "@server/actions/GetChaptersInfo";
+import { Image } from "astro:assets"
+import SecondaryLayout from "@web/layouts/SecondaryLayout.astro"
+import Section from "@web/components/page-secondary/SecondaryPageSection.astro"
+import SectionHeading from "@web/components/general/SectionHeading.astro"
+import getChaptersInfo from "@server/actions/GetChaptersInfo"
+import { getLangFromUrl, useTranslations, useLocalizePath, LANGUAGE_CODES } from "@server/i18n/utils"
 
-changeLanguage("es");
+export async function getStaticPaths() {
+	return Promise.all(LANGUAGE_CODES.map(async (language) => ({
+		props: { chapters: await getChaptersInfo({ language }) },
+		params: { lang: language }
+	})))
+}
 
-const chapters = await getChaptersInfo({ language: i18next.language });
+const language = getLangFromUrl(Astro.url)
+const t = useTranslations(language)
+const localizePath = useLocalizePath(language)
+
+const { chapters } = Astro.props as Awaited<ReturnType<typeof getStaticPaths>>[0]["props"]
 ---
 <SecondaryLayout title={t("menu.chapters")}>
 	<Section>
@@ -38,17 +46,17 @@ const chapters = await getChaptersInfo({ language: i18next.language });
         transition: transform 200ms;
     }
 
-		ol:has(a:hover) a:not(:hover) {
-    	transform: scale(0.95);
-		}
+    ol:has(a:hover) a:not(:hover) {
+        transform: scale(0.95);
+    }
 
     a:hover {
-    	transform: scale(1.05);
+        transform: scale(1.05);
     }
 
     ol {
         display: grid;
-				grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
         gap: 1.5rem;
         margin-bottom: 0.5rem;
     }

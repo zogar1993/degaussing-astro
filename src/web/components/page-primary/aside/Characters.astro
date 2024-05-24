@@ -1,7 +1,10 @@
 ---
-import { t } from "i18next"
 import { Image } from "astro:assets"
 import Heading from "@web/components/page-primary/aside/Heading.astro"
+import { getLangFromUrl, useTranslations } from '@server/i18n/utils';
+
+const language = getLangFromUrl(Astro.url);
+const t = useTranslations(language);
 
 export interface Props {
 	info: { characters: Array<{ name: string, image: string }> }

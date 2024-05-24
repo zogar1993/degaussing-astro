@@ -1,12 +1,13 @@
 ---
-import i18next, { t } from "i18next"
 import { Image } from "astro:assets"
-import Heading from "./Heading.astro"
+import Heading from "@web/components/page-primary/aside/Heading.astro"
 import getLastUpdate from "@server/actions/GetLastUpdate"
+import { getLangFromUrl, useTranslations } from "@server/i18n/utils"
 
-const { image, chapter, date } = await getLastUpdate({
-	language: i18next.language
-})
+const language = getLangFromUrl(Astro.url)
+const t = useTranslations(language)
+
+const { image, chapter, date } = await getLastUpdate({ language })
 ---
 <section aria-label={t("landmarks.last-update")}>
 	<div class="text-container">
@@ -20,7 +21,7 @@ const { image, chapter, date } = await getLastUpdate({
     section {
         display: flex;
         flex-direction: column;
-    		gap: 0.5rem;
+        gap: 0.5rem;
     }
 
     .text-container {
@@ -29,7 +30,7 @@ const { image, chapter, date } = await getLastUpdate({
     }
 
     time {
-    		margin-top: 0.5rem;
+        margin-top: 0.5rem;
 
         font-weight: 600;
         font-size: 1rem;
@@ -38,7 +39,7 @@ const { image, chapter, date } = await getLastUpdate({
     }
 
     span {
-    		margin-top: 0.75rem;
+        margin-top: 0.75rem;
 
         font-size: 1rem;
         line-height: 1.5em;

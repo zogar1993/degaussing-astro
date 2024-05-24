@@ -1,0 +1,17 @@
+---
+import PrimaryLayout from "@web/layouts/PrimaryLayout.astro"
+import getLastPage from "@server/actions/GetLastPage"
+import { getLangFromUrl, useTranslations, LANGUAGE_CODES } from "@server/i18n/utils"
+
+export async function getStaticPaths() {
+	return Promise.all(LANGUAGE_CODES.map(async (language) => ({
+		props: await getLastPage({ language }),
+		params: { lang: language }
+	})))
+}
+
+const language = getLangFromUrl(Astro.url)
+const t = useTranslations(language)
+const info = Astro.props as Awaited<ReturnType<typeof getStaticPaths>>[0]["props"]
+---
+<PrimaryLayout info={info} title={t("menu.home")} />

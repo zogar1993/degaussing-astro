@@ -6,6 +6,7 @@ import ComicStrip from "@web/components/ComicStrip.astro"
 import Transcript from "@web/components/Transcript.astro"
 import Comments from "@web/components/page-primary/comments/Comments.astro"
 import getLocalizedLinkToComicStrip from "@server/actions/GetLocalizedLinkToComicStrip"
+import { getLangFromUrl } from "@server/i18n/utils"
 import type { PageInfo } from "@server/GetPageInfo"
 
 export interface Props {
@@ -13,10 +14,11 @@ export interface Props {
 	title: string
 }
 const { info, title } = Astro.props
+const language = getLangFromUrl(Astro.url)
 
 const { backward, forward } = info
-const previous = backward ? getLocalizedLinkToComicStrip(backward.one) : null
-const next = forward ? getLocalizedLinkToComicStrip(forward.one) : null
+const previous = backward ? getLocalizedLinkToComicStrip({ ...backward.one, language }) : null
+const next = forward ? getLocalizedLinkToComicStrip({ ...forward.one, language }) : null
 ---
 <MainLayout info={info} title={title}>
 	<div class="grid">

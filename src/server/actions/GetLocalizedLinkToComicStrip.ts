@@ -1,6 +1,7 @@
+import { LanguageCode, useLocalizePath } from "@server/i18n/utils"
 import type { PageCoordinates } from "@server/Utils"
-import { localizePath } from "astro-i18next"
 
-export default function getLocalizedLinkToComicStrip({ page, chapter }: PageCoordinates) {
+export default function getLocalizedLinkToComicStrip({ page, chapter, language }: PageCoordinates & {language: LanguageCode}) {
+	const localizePath = useLocalizePath(language)
 	return localizePath(`/chapters/${chapter}/pages/${page}#main`)
 }

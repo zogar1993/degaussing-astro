@@ -1,16 +1,18 @@
 ---
 import getSelectedMenu from "@server/actions/GetSelectedMenu"
-import getLocalizedPage from "@server/localization/GetLocalizedPage";
-import getLocalizedChapter from "@server/localization/GetLocalizedChapter";
+import getLocalizedPage from "@server/localization/GetLocalizedPage"
+import getLocalizedChapter from "@server/localization/GetLocalizedChapter"
+import { getLangFromUrl } from "@server/i18n/utils"
 import type { RelatedPages } from "@server/Utils"
 export interface Props {
 	info?: RelatedPages
 }
 const { info } = Astro.props
+const language = getLangFromUrl(Astro.url)
 
 const heading = info ?
-	`${getLocalizedChapter(info.current.chapter)} | ${getLocalizedPage(info.current.page)}` :
-	getSelectedMenu({ path: Astro.url.pathname })
+	`${getLocalizedChapter(info.current.chapter, language)} | ${getLocalizedPage(info.current.page, language)}` :
+	getSelectedMenu({ path: Astro.url.pathname, language })
 ---
 <span>
     {heading}
