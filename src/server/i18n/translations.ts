@@ -1,4 +1,4 @@
-export const ui = {
+export const translations = {
 	en: {
 		"interaction.skip-to-main": "Skip to main content",
 
@@ -117,8 +117,8 @@ export const ui = {
 } as const
 
 export const URL_PARTS = [
-	{ en: ui["en"]["url.chapters"], es: ui["es"]["url.chapters"] },
-	{ en: ui["en"]["url.pages"], es: ui["es"]["url.pages"] },
-	{ en: ui["en"]["url.characters"], es: ui["es"]["url.characters"] },
-	{ en: ui["en"]["url.about"], es: ui["es"]["url.about"] }
+	{ en: translations["en"]["url.chapters"], es: translations["es"]["url.chapters"] },
+	{ en: translations["en"]["url.pages"], es: translations["es"]["url.pages"] },
+	{ en: translations["en"]["url.characters"], es: translations["es"]["url.characters"] },
+	{ en: translations["en"]["url.about"], es: translations["es"]["url.about"] }
 ] as const
