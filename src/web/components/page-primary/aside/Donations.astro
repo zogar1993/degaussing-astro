@@ -1,5 +1,6 @@
 ---
 import Heading from "@web/components/page-primary/aside/Heading.astro"
+import Icon from "@web/components/general/Icon.astro"
 import { getContributionLinks } from "@server/actions/GetContributionLinks"
 import { getLangFromUrl,useTranslations } from "@server/i18n/utils"
 
@@ -15,7 +16,7 @@ const links = await getContributionLinks()
 			links.map((link) => (
 				<li>
 					<a href={link.href} target="_blank" rel="noopener">
-						<img src={link.icon} alt="" />
+						<Icon src={link.icon} alt="" />
 						<span class="name">{link.text}</span>
 					</a>
 				</li>

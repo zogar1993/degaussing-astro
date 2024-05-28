@@ -1,19 +1,21 @@
 ---
+import Icon from "@web/components/general/Icon.astro"
 import { getLangFromUrl, useLocalizePath } from "@server/i18n/utils"
 
 const language = getLangFromUrl(Astro.url)
 const localizePath = useLocalizePath(language)
 ---
 <a href={localizePath("/")}>
-	<img src="/logo_degaussing.svg" alt="Degaussing Logo" />
+	<Icon src="/logo_degaussing.svg" alt="Degaussing Logo"/>
 </a>
 <style>
-    img {
+    a {
+        display: flex;
         height: 150px;
     }
 
     @media (max-width: 72em) {
-        img {
+        a {
             height: 100%;
         }
     }
