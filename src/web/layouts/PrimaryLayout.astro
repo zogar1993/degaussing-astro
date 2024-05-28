@@ -62,7 +62,7 @@ const next = forward ? getLocalizedLinkToComicStrip({ ...forward.one, language }
 		initialX = touch.pageX
 		initialY = touch.pageY
 		initialScrollPosition = document.documentElement.scrollTop
-	})
+	}, { passive: true })
 
 	main.addEventListener("touchend", e => {
 		const touch = e.changedTouches[0]
@@ -78,7 +78,7 @@ const next = forward ? getLocalizedLinkToComicStrip({ ...forward.one, language }
 		} else if (xDisplacement > MOVE_THRESHOLD && previous) {
 			window.location.href = previous
 		}
-	})
+	}, { passive: true })
 </script>
 <style>
     .grid {
