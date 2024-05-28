@@ -8,7 +8,7 @@
     --component_border-radius: 5px;
 
     /*! Extensions from @primer/css/alerts/flash.scss */
-	--color-accent-subtle: #ddf4ff;
+    --color-accent-subtle: #ddf4ff;
     --color-social-reaction-bg-hover: var(--color-scale-gray-1);
     --color-social-reaction-bg-reacted-hover: var(--color-scale-blue-1);
 
@@ -43,6 +43,7 @@ body {
     font-size: 0.875em;
     accent-color: green !important;
 }
+
 /*
 main .pagination-loader-container {
     background-image: url("https://github.com/images/modules/pulls/progressive-disclosure-line.svg");
@@ -101,6 +102,7 @@ main .gsc-loading-image {
     src: url("/fonts/Inter.woff2") format("woff2");
     font-weight: normal;
     font-style: normal;
+    font-display: fallback;
 }
 
 .btn-primary:disabled {
@@ -201,4 +203,5 @@ textarea::placeholder {
 .gsc-replies-count {
     display: none;
 }
+
 /* END HIDE ZONE */
