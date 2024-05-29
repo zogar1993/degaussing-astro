@@ -1,8 +1,6 @@
 ---
 const { src } = Astro.props as { src: string }
 
-const innerHTML = src.startsWith("https:") ?
-	await (await fetch(`${src}`)).text() :
-	(await import(`${src}?raw`)).default
+const innerHTML = await (await fetch(`${src}`)).text()
 ---
 <Fragment set:html={innerHTML} />

@@ -1,12 +1,14 @@
 ---
 import Icon from "@web/components/general/Icon.astro"
+import getHeader from "@server/actions/GetHeader"
 import { getLangFromUrl, useLocalizePath } from "@server/i18n/utils"
 
 const language = getLangFromUrl(Astro.url)
 const localizePath = useLocalizePath(language)
+const header = await getHeader({ language })
 ---
 <a href={localizePath("/")} aria-label="Degaussing Logo">
-	<Icon src="/src/svg/logo_degaussing.svg"/>
+	<Icon src={header.logo} />
 </a>
 <style>
     a {
