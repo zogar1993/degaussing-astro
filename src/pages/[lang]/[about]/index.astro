@@ -25,12 +25,12 @@ const language = getLangFromUrl(Astro.url)
 const t = useTranslations(language)
 
 const props = Astro.props as Awaited<ReturnType<typeof getStaticPaths>>[0]["props"]
-const { comic: { title, synopsis }, authors } = props //TODO title is irrelevant
+const { comic, authors } = props
 ---
 <SecondaryLayout title={t("menu.about")}>
 	<Section>
 		<SectionHeading>{t("about.story")}</SectionHeading>
-		<RichText text={synopsis} />
+		<RichText text={comic.synopsis} />
 	</Section>
 	<Section>
 		<SectionHeading>{t("about.authors")}</SectionHeading>

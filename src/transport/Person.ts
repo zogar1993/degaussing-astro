@@ -1,9 +1,10 @@
-export type Character = {
-	name: string
+export type Person = {
 	slug: string
+	name: string
 	portrait: string
+	is_square_portrait: boolean
 	age: number
-	description: string
 	likes: Array<string>
 	dislikes: Array<string>
+	description: string
 }

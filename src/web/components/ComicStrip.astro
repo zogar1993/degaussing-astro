@@ -22,8 +22,16 @@ const heading = [comicPageHeading, ...getStripNameParts({ ...current, language }
 ---
 <main id="main" tabindex="-1">
 	<h2 class="semantic-only">{heading}</h2>
-	<Image src={image} alt={description} loading="eager" decoding="sync" width={864} height={1222} quality="max"
-				 tabindex="0" />
+	<Image
+		src={image}
+		alt={description}
+		loading="eager"
+		decoding="sync"
+		width={864}
+		height={1222}
+		quality="max"
+		tabindex="0"
+	/>
 	<a href={image} target="_blank" rel="noreferrer noopener" aria-hidden="true" tabindex="-1" />
 </main>
 <style>

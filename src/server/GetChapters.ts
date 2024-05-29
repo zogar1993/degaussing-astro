@@ -7,6 +7,10 @@ export async function getChapters({ language }: { language: string }): Promise<R
 	return chapters.map((chapter, i) => ({
 		...chapter,
 		number: i + 1,
+		cover: {
+			...chapter.cover,
+			characters: chapter.cover.characters.map(character => ({ ...character, image: imageToUrl(character.image) }))
+		},
 		pages: chapter.pages.map(page => ({
 				...page,
 				characters: page.characters.map(character => ({ ...character, image: imageToUrl(character.image) }))

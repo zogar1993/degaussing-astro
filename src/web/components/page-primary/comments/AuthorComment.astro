@@ -46,7 +46,7 @@ const date = getLocalizedDate({ date: info.createdAt, language })
 		</nav>
 	</div>
 	<div class="comment-header">
-		<Image src={lucy.portrait} alt="" width={48} height={48} />
+		<Image src={lucy.portrait} alt="" width={48} height={48} quality="max"/>
 		<span>{lucy.name}</span>
 		<time class="comment-header__date" datetime={date.datetime}>{date.localized}</time>
 	</div>

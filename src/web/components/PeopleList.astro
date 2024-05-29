@@ -1,21 +1,11 @@
 ---
 import { Image } from "astro:assets"
 import { getLangFromUrl, useTranslations } from "@server/i18n/utils"
+import type { Person } from "@transport/Person"
 
 const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
 const language = getLangFromUrl(Astro.url)
 const t = useTranslations(language)
-
-type Person = {
-	slug: string
-	name: string
-	portrait: string
-	is_square_portrait: string
-	age: number
-	likes: Array<string>
-	dislikes: Array<string>
-	description: string
-}
 
 export type Props = {
 	people: Array<Person>
