@@ -63,7 +63,8 @@ const chapter_localized = getLocalizedChapter(chapter, language)
         display: flex;
         flex-direction: column;
         isolation: isolate;
-        transition: transform 200ms;
+        transition: var(--link--hover_transition-timing);
+        transition-property: transform;
     }
 
     ol:has(.image-link:hover) .image-link:not(:hover) {
@@ -100,7 +101,8 @@ const chapter_localized = getLocalizedChapter(chapter, language)
         display: inline-block;
         margin-bottom: 1rem;
         color: var(--color-text-aside);
-        transition: transform 300ms;
+        transition: var(--link--hover_transition-timing);
+        transition-property: transform;
     }
 
     .back:hover {
