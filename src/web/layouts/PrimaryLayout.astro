@@ -96,7 +96,7 @@ const next = forward ? getLocalizedLinkToComicStrip({ ...forward.one, language }
 
         display: grid;
 
-        grid-template-columns: var(--strip-width) var(--aside--desktop_width);
+        grid-template-columns: var(--strip_width) var(--aside--desktop_width);
         grid-template-areas:
             "main strip-aside"
             "transcript transcript"
@@ -107,7 +107,7 @@ const next = forward ? getLocalizedLinkToComicStrip({ ...forward.one, language }
 
     @media (max-width: 72em) {
         .grid {
-            grid-template-columns: fit-content(var(--strip-width));
+            grid-template-columns: fit-content(var(--strip_width));
             grid-template-areas:
                 "main"
                 "transcript"
