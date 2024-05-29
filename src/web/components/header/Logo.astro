@@ -5,8 +5,8 @@ import { getLangFromUrl, useLocalizePath } from "@server/i18n/utils"
 const language = getLangFromUrl(Astro.url)
 const localizePath = useLocalizePath(language)
 ---
-<a href={localizePath("/")}>
-	<Icon src="/logo_degaussing.svg" alt="Degaussing Logo"/>
+<a href={localizePath("/")} aria-label="Degaussing Logo">
+	<Icon src="/logo_degaussing.svg"/>
 </a>
 <style>
     a {
