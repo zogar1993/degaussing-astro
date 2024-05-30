@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets"
 import getStripNameParts from "@server/actions/GetStripNameParts"
 import { RelatedPages } from "@server/Utils"
 import getIsHomepage from "@server/GetIsHomepage"
@@ -21,11 +22,14 @@ const heading = [comicPageHeading, ...getStripNameParts({ ...current, language }
 ---
 <main id="main" tabindex="-1">
 	<h2 class="semantic-only">{heading}</h2>
-	<img
+	<Image
 		src={image}
 		alt={description}
 		loading="eager"
 		decoding="sync"
+		width={864}
+		height={1222}
+		quality="max"
 		tabindex="0"
 	/>
 	<a href={image} target="_blank" rel="noreferrer noopener" aria-hidden="true" tabindex="-1" />
@@ -40,7 +44,7 @@ const heading = [comicPageHeading, ...getStripNameParts({ ...current, language }
     img {
         display: block;
         width: 100%;
-        height: 100%;
+        height: auto;
         background-color: white;
         border-radius: var(--border-radius);
         border: var(--border-wide);
