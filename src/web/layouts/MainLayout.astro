@@ -7,16 +7,12 @@ import VariablesCss from "@web/styles/VariablesCss.astro"
 //TODO import { HeadHrefLangs } from "astro-i18next/components" <HeadHrefLangs />
 import getIsHomepage from "@server/GetIsHomepage"
 import { getLangFromUrl, useTranslations } from "@server/i18n/utils"
-import type { RelatedPages } from "@server/Utils"
+import type { PageInfo } from "@server/GetPageInfo"
 
 const language = getLangFromUrl(Astro.url)
 const t = useTranslations(language)
 
-export interface Props {
-	info?: RelatedPages
-	title: string
-}
-const { info, title } = Astro.props
+const { info, title } = Astro.props as { info?: PageInfo, title: string }
 
 const isHomepage = getIsHomepage({ path: Astro.url.pathname, language })
 ---
@@ -30,7 +26,7 @@ const isHomepage = getIsHomepage({ path: Astro.url.pathname, language })
 	{isHomepage &&
 		<meta name="description" content={t("seo.description")} />}
 	<FontsCss />
-	<ImagesPrefetch />
+	<ImagesPrefetch info={info} />
 	<ResetCss />
 	<VariablesCss />
 </head>
