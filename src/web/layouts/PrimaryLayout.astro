@@ -1,4 +1,5 @@
 ---
+import { getImage } from "astro:assets";
 import MainLayout from "@web/layouts/MainLayout.astro"
 import StripAside from "@web/components/page-primary/aside/StripAside.astro"
 import StickyNavBar from "@web/components/StickyNavBar.astro"
@@ -16,6 +17,8 @@ export interface Props {
 const { info, title } = Astro.props
 const language = getLangFromUrl(Astro.url)
 
+info.image = (await getImage({src: info.image, width: 864, height:1222, format: 'webp', quality: "max" })).src;
+
 const { backward, forward } = info
 const previous = backward ? getLocalizedLinkToComicStrip({ ...backward.one, language }) : null
 const next = forward ? getLocalizedLinkToComicStrip({ ...forward.one, language }) : null
@@ -24,7 +27,6 @@ const next = forward ? getLocalizedLinkToComicStrip({ ...forward.one, language }
 	<div class="grid">
 		<ComicStrip info={info} />
 		{info.description && //TODO this should be mandatory
-
 			<Transcript info={info} />}
 		<StickyNavBar info={info} />
 		<StripAside info={info} />
