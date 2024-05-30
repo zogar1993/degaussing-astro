@@ -1,2 +1,7 @@
+---
+import type { PageInfo } from "@server/GetPageInfo"
+const { info } = Astro.props as { info?: PageInfo }
+---
+{info && <link rel="preload" fetchpriority="high" as="image" href={info.image} type="image/webp">}
 <link rel="preload" fetchpriority="high" as="image" href="/images/background_banner.webp" type="image/webp">
 <link rel="preload" fetchpriority="high" as="image" href="/images/background_body.webp" type="image/webp">

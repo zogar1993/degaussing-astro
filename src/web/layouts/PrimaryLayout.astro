@@ -17,6 +17,8 @@ export interface Props {
 const { info, title } = Astro.props
 const language = getLangFromUrl(Astro.url)
 
+info.image = (await getImage({src: info.image, width: 864, height:1222, format: 'webp', quality: "max" })).src;
+
 const { backward, forward } = info
 const previous = backward ? getLocalizedLinkToComicStrip({ ...backward.one, language }) : null
 const next = forward ? getLocalizedLinkToComicStrip({ ...forward.one, language }) : null
