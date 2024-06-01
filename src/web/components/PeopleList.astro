@@ -47,7 +47,7 @@ const { people } = Astro.props as Props
     ul {
         display: flex;
         flex-direction: column;
-        gap: .125rem;
+        gap: 1.5rem;
     }
 
     li {
@@ -75,7 +75,6 @@ const { people } = Astro.props as Props
     }
 
     .text-container {
-        padding-top: 1rem;
         padding-left: .25rem;
         padding-right: .25rem;
         gap: .25rem;
@@ -86,17 +85,7 @@ const { people } = Astro.props as Props
         font-family: var(--font-family-title);
         font-size: 4rem;
         color: var(--heading_color);
-        margin-bottom: 1rem;
-    }
-
-    p {
-        font-size: 1rem;
-
         margin-bottom: 0.5rem;
-    }
-
-    .description {
-        margin-top: 1rem;
     }
 
     span {
@@ -108,10 +97,6 @@ const { people } = Astro.props as Props
     		.text-container {
     			width: 220px;
     		}
-
-        ul {
-            gap: 3rem;
-        }
 
         li {
             gap: 1rem;
