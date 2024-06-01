@@ -27,7 +27,7 @@ const paragraphs = description.trim().split("\n").map(p => {
 		<div class="content-text">
 			{paragraphs.map(({ panel, description }) =>
 				<p>
-					{panel && <span class="strong">{panel}:</span>}
+					{panel && <strong>{panel}:</strong>}
 					{description}
 				</p>
 			)}
@@ -100,7 +100,7 @@ const paragraphs = description.trim().split("\n").map(p => {
         font-size: 16px;
     }
 
-    .strong {
+    strong {
         font-weight: 600;
     }
 
