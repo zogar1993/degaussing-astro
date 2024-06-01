@@ -39,9 +39,7 @@
 body {
     /* adds padding to avoid browser rounding inconsistencies and leaving room for focus outlines */
     margin: 0 1px;
-
-    font-size: 0.875em;
-    accent-color: green !important;
+    font-family: Inter, serif;
 }
 
 /*
@@ -70,6 +68,7 @@ main .gsc-loading-image {
 .gsc-comment {
     border-width: 0;
     margin: 0;
+    line-height: 1.5;
 }
 
 .gsc-comment > div {
@@ -91,10 +90,6 @@ main .gsc-loading-image {
 
 .input-contrast {
     resize: none;
-}
-
-* {
-    font-family: Inter, serif;
 }
 
 @font-face {
