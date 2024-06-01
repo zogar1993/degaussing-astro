@@ -1,5 +1,5 @@
 ---
-import { getImage } from "astro:assets";
+import { getImage } from "astro:assets"
 import MainLayout from "@web/layouts/MainLayout.astro"
 import StripAside from "@web/components/page-primary/aside/StripAside.astro"
 import StickyNavBar from "@web/components/StickyNavBar.astro"
@@ -17,7 +17,7 @@ export interface Props {
 const { info, title } = Astro.props
 const language = getLangFromUrl(Astro.url)
 
-info.image = (await getImage({src: info.image, width: 864, height:1222, format: 'webp', quality: "max" })).src;
+info.image = (await getImage({ src: info.image, width: 864, height: 1222, format: "webp", quality: "max" })).src
 
 const { backward, forward } = info
 const previous = backward ? getLocalizedLinkToComicStrip({ ...backward.one, language }) : null
@@ -25,11 +25,12 @@ const next = forward ? getLocalizedLinkToComicStrip({ ...forward.one, language }
 ---
 <MainLayout info={info} title={title}>
 	<div class="grid">
-		<ComicStrip info={info} />
-		{info.description && //TODO this should be mandatory
-			<Transcript info={info} />}
-		<StickyNavBar info={info} />
+		<div class="main">
+			<ComicStrip info={info} />
+			<Transcript info={info} />
+		</div>
 		<StripAside info={info} />
+		<StickyNavBar info={info} />
 		<Comments info={info} />
 	</div>
 </MainLayout>
@@ -98,24 +99,42 @@ const next = forward ? getLocalizedLinkToComicStrip({ ...forward.one, language }
 
         display: grid;
 
-        grid-template-columns: var(--strip_width) var(--aside--desktop_width);
-        grid-template-areas:
-            "main strip-aside"
-            "transcript transcript"
-            "sticky-bar ."
-            "comments comments";
+        grid-template-columns:
+        	[full-width-start left-start] var(--strip_width)
+        	[left-end right-start] var(--aside--desktop_width)
+        	[right-end full-width-end];
+
+        grid-template-rows:
+        	[main-start strip-start aside-start] auto
+        	[strip-end aside-end transcript-start] auto
+        	[transcript-end main-end sticky-nav-bar-start] auto
+        	[sticky-nav-bar-end comments-start] auto
+        	[comments-end];
+
         gap: 1.25rem;
+    }
+
+    .main {
+        grid-column: full-width;
+        grid-row: main;
+        display: grid;
+        grid-template-columns: subgrid;
+        grid-template-rows: subgrid;
     }
 
     @media (max-width: 72em) {
         .grid {
-            grid-template-columns: fit-content(var(--strip_width));
-            grid-template-areas:
-                "main"
-                "transcript"
-                "sticky-bar"
-                "strip-aside"
-                "comments";
+						grid-template-columns:
+							[full-width-start left-start right-start]
+							auto
+							[full-width-end left-end right-end];
+            grid-template-rows:
+							[main-start strip-start] auto
+							[strip-end transcript-start] auto
+							[transcript-end main-end sticky-nav-bar-start] auto
+							[sticky-nav-bar-end aside-start] auto
+							[aside-end comments-start] auto
+							[comments-end];
         }
     }
 </style>
