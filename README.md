@@ -1,4 +1,4 @@
-![logo_degaussing](https://user-images.githubusercontent.com/39353009/222990343-c35d2175-1ed1-4ecf-a7fd-e6a0f96b4d6a.svg)
+![logo_degaussing](https://images.ctfassets.net/29bq1vhv9b7f/4QoDE90dTdUSYqZgYDe9M9/edd710fe751284d5c8b7e06bf266cb1c/logo_degaussing.svg)
 
 ## Want to report a bug or propose an enhancement for the degaussingcomic.com website?
 
