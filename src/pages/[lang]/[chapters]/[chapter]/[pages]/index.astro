@@ -8,6 +8,7 @@ import getLocalizedChapter from "@server/localization/GetLocalizedChapter"
 import getLocalizedPage from "@server/localization/GetLocalizedPage"
 import { getLangFromUrl, useTranslations, useLocalizePath, LANGUAGE_CODES } from "@server/i18n/utils"
 import { getChapters } from "@server/GetChapters"
+import { imageToUrl } from "@server/Utils"
 
 export async function getStaticPaths() {
 	return (await Promise.all(LANGUAGE_CODES.map(async (language) => {
@@ -17,8 +18,8 @@ export async function getStaticPaths() {
 				props: {
 					chapter: i + 1,
 					pages: [
-						{ image: chapter.cover.image, number: 0 },
-						...chapter.pages.map((page, j) => ({ image: page.image, number: j + 1 }))
+						{ image: imageToUrl(chapter.cover.image), number: 0 },
+						...chapter.pages.map((page, j) => ({ image: imageToUrl(page.image), number: j + 1 }))
 					]
 				},
 				params: {
