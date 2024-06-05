@@ -1,15 +1,11 @@
 ---
-import { getLangFromUrl, useTranslations } from '@server/i18n/utils';
-import { PageInfo } from "@server/GetPageInfo"
+import { getLangFromUrl, useTranslations } from "@server/i18n/utils"
+import type { PageInfo } from "@server/GetPageInfo"
 
-const language = getLangFromUrl(Astro.url);
-const t = useTranslations(language);
+const language = getLangFromUrl(Astro.url)
+const t = useTranslations(language)
 
-export interface Props {
-	info: PageInfo
-}
-
-const { info } = Astro.props
+const { info } = Astro.props as { info: PageInfo }
 const { description } = info
 
 const paragraphs = description.trim().split("\n").map(p => {

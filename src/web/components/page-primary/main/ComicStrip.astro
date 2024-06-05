@@ -1,17 +1,14 @@
 ---
+import { ANCHORS } from "@web/Anchors"
 import getStripNameParts from "@server/actions/GetStripNameParts"
-import { RelatedPages } from "@server/Utils"
 import getIsHomepage from "@server/GetIsHomepage"
 import { getLangFromUrl, useTranslations } from "@server/i18n/utils"
+import type { RelatedPages } from "@server/Utils"
 
 const language = getLangFromUrl(Astro.url)
 const t = useTranslations(language)
 
-export interface Props {
-	info: RelatedPages
-}
-
-const { info } = Astro.props
+const { info } = Astro.props as { info: RelatedPages }
 const { image, description, current } = info
 
 const isHomepage = getIsHomepage({ path: Astro.url.pathname, language })
@@ -19,7 +16,7 @@ const isHomepage = getIsHomepage({ path: Astro.url.pathname, language })
 const comicPageHeading = isHomepage ? t("strip.heading-main-home") : t("strip.heading-main")
 const heading = [comicPageHeading, ...getStripNameParts({ ...current, language })].join(" | ")
 ---
-<main id="main" tabindex="-1">
+<div tabindex="-1">
 	<h2 class="semantic-only">{heading}</h2>
 	<img
 		src={image}
@@ -29,9 +26,9 @@ const heading = [comicPageHeading, ...getStripNameParts({ ...current, language }
 		tabindex="0"
 	/>
 	<a href={image} target="_blank" rel="noreferrer noopener" aria-hidden="true" tabindex="-1" />
-</main>
+</div>
 <style>
-    main {
+    div {
         grid-column: left;
         grid-row: strip;
         position: relative;

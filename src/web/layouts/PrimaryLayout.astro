@@ -3,18 +3,13 @@ import { getImage } from "astro:assets"
 import MainLayout from "@web/layouts/MainLayout.astro"
 import StripAside from "@web/components/page-primary/aside/StripAside.astro"
 import StickyNavBar from "@web/components/StickyNavBar.astro"
-import ComicStrip from "@web/components/ComicStrip.astro"
-import Transcript from "@web/components/Transcript.astro"
 import Comments from "@web/components/page-primary/comments/Comments.astro"
+import PrimaryPageMain from "@web/components/page-primary/main/PagePrimaryMain.astro"
 import getLocalizedLinkToComicStrip from "@server/actions/GetLocalizedLinkToComicStrip"
 import { getLangFromUrl } from "@server/i18n/utils"
 import type { PageInfo } from "@server/GetPageInfo"
 
-export interface Props {
-	info: PageInfo
-	title: string
-}
-const { info, title } = Astro.props
+const { info, title } = Astro.props as { info: PageInfo; title: string }
 const language = getLangFromUrl(Astro.url)
 
 info.image = (await getImage({ src: info.image, width: 864, height: 1222, format: "webp", quality: "max" })).src
@@ -25,10 +20,7 @@ const next = forward ? getLocalizedLinkToComicStrip({ ...forward.one, language }
 ---
 <MainLayout info={info} title={title}>
 	<div class="grid">
-		<div class="main">
-			<ComicStrip info={info} />
-			<Transcript info={info} />
-		</div>
+		<PrimaryPageMain info={info} />
 		<StickyNavBar info={info} />
 		<StripAside info={info} />
 		<Comments info={info} />
@@ -114,17 +106,9 @@ const next = forward ? getLocalizedLinkToComicStrip({ ...forward.one, language }
         gap: 1.25rem;
     }
 
-    .main {
-        grid-column: full-width;
-        grid-row: main;
-        display: grid;
-        grid-template-columns: subgrid;
-        grid-template-rows: subgrid;
-    }
-
     @media (max-width: 72em) {
         .grid {
-						grid-template-columns:
+            grid-template-columns:
 							[full-width-start left-start right-start]
 							auto
 							[full-width-end left-end right-end];

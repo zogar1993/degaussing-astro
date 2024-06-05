@@ -1,0 +1,21 @@
+---
+import { ANCHORS } from "@web/Anchors"
+import ComicStrip from "@web/components/page-primary/main/ComicStrip.astro"
+import Transcript from "@web/components/page-primary/main/Transcript.astro"
+import type { PageInfo } from "@server/GetPageInfo"
+
+const { info } = Astro.props as { info: PageInfo }
+---
+<main id={ANCHORS.MAIN}>
+	<ComicStrip info={info} />
+	<Transcript info={info} />
+</main>
+<style>
+    main {
+        grid-column: full-width;
+        grid-row: main;
+        display: grid;
+        grid-template-columns: subgrid;
+        grid-template-rows: subgrid;
+    }
+</style>

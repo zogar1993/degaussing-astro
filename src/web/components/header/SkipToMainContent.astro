@@ -1,10 +1,11 @@
 ---
+import { ANCHORS } from "@web/Anchors"
 import { getLangFromUrl, useTranslations } from "@server/i18n/utils"
 
 const language = getLangFromUrl(Astro.url)
 const t = useTranslations(language)
 ---
-<a href="#main">
+<a href=`#${ANCHORS.MAIN}`>
 	{t("interaction.skip-to-main")}
 </a>
 <style>
