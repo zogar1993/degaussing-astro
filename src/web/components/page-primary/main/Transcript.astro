@@ -14,9 +14,9 @@ const paragraphs = description.trim().split("\n").map(p => {
 	return { panel: parts[0], description: parts.splice(1).join(":") }
 })
 ---
-<aside aria-label={t("landmarks.transcript")}>
+<div id="transcript" class="transcript">
 	<div class="header-container">
-		<h2>{t("landmarks.transcript")}</h2>
+		<h3>{t("page-primary.transcript.title")}</h3>
 		<button class="button-expand" aria-expanded="false" />
 	</div>
 	<div class="content-position">
@@ -24,14 +24,14 @@ const paragraphs = description.trim().split("\n").map(p => {
 			{paragraphs.map(({ panel, description }) =>
 				<p>
 					{panel && <strong>{panel}:</strong>}
-					{description}
+					{description || t("page-primary.transcript.no-description")}
 				</p>
 			)}
 		</div>
 	</div>
-</aside>
-<script define:vars={{ label: t("landmarks.transcript") }}>
-	const aside = document.querySelector(`aside[aria-label="${label}"]`)
+</div>
+<script>
+	const aside = document.querySelector(`.transcript`)
 	const button = aside.querySelector(`button[aria-expanded]`)
 	const content = aside.querySelector(`.content-text`)
 
@@ -47,10 +47,14 @@ const paragraphs = description.trim().split("\n").map(p => {
 		const isExpanded = button.getAttribute("aria-expanded") === "true"
 		//TODO make this accessible
 		button.setAttribute("aria-expanded", isExpanded ? "false" : "true")
+
+		const parts = window.location.href
+		window.location.replace(parts[0] + "#transcript")
+
 	})
 </script>
 <style>
-    aside {
+    .transcript {
         grid-column: full-width;
         grid-row: transcript;
 
@@ -68,7 +72,7 @@ const paragraphs = description.trim().split("\n").map(p => {
         padding: 10px 5.5rem;
     }
 
-    aside:has(.button-expand[aria-expanded=true]) {
+    .transcript:has(.button-expand[aria-expanded=true]) {
         padding-block: 2.5rem;
         grid-template-rows: auto var(--transcript__content_height);
     }
@@ -84,7 +88,7 @@ const paragraphs = description.trim().split("\n").map(p => {
         left: 0;
     }
 
-    h2 {
+    h3 {
         font-family: var(--font-family-title);
         font-style: normal;
         font-weight: 400;
@@ -129,15 +133,15 @@ const paragraphs = description.trim().split("\n").map(p => {
     }
 
     @media (max-width: 72em) {
-        aside {
-            padding: var(--section--mobile_padding);
-        }
-
-        h2 {
+        h3 {
             font-size: 1.5rem;
         }
 
-        aside:has(.button-expand[aria-expanded=true]) {
+        .transcript {
+            padding: var(--section--mobile_padding);
+        }
+
+        .transcript:has(.button-expand[aria-expanded=true]) {
             padding: var(--section--mobile_padding);
         }
     }
