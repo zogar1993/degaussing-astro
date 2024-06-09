@@ -31,13 +31,13 @@ const paragraphs = description.trim().split("\n").map(p => {
 	</div>
 </div>
 <script>
-	const aside = document.querySelector(`.transcript`)
-	const button = aside.querySelector(`button[aria-expanded]`)
-	const content = aside.querySelector(`.content-text`)
+	const container = document.querySelector(`.transcript`)
+	const button = container.querySelector(`button[aria-expanded]`)
+	const content = container.querySelector(`.content-text`)
 
 	const updateTranscriptContentHeight = () => {
 		const { height } = content.getBoundingClientRect()
-		aside.style.setProperty("--transcript__content_height", `${height}px`)
+		container.style.setProperty("--transcript__content_height", `${height}px`)
 	}
 
 	window.addEventListener("resize", updateTranscriptContentHeight)
@@ -47,9 +47,7 @@ const paragraphs = description.trim().split("\n").map(p => {
 		const isExpanded = button.getAttribute("aria-expanded") === "true"
 		//TODO make this accessible
 		button.setAttribute("aria-expanded", isExpanded ? "false" : "true")
-
-		const parts = window.location.href
-		window.location.replace(parts[0] + "#transcript")
+		if (!isExpanded) container.scrollIntoView({ behavior: 'smooth' })
 
 	})
 </script>
