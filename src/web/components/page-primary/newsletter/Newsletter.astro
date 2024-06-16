@@ -1,0 +1,74 @@
+---
+import { getLangFromUrl, useTranslations } from "@server/i18n/utils"
+import type { PageInfo } from "@server/GetPageInfo"
+
+const language = getLangFromUrl(Astro.url)
+const t = useTranslations(language)
+
+export interface Props {
+	info: PageInfo
+}
+
+const { info } = Astro.props
+---
+<aside aria-label={t("landmarks.social")}>
+	<div class="ml-embedded" data-form="f2kgLo"></div>
+</aside>
+<style>
+    aside {
+        grid-column: full-width;
+        grid-row: newsletter;
+
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+
+        background-color: var(--section_background-color);
+        border-radius: var(--border-radius);
+        border: var(--border-wide);
+
+        padding: 2.5rem 5.5rem;
+    }
+
+    :global(.ml-form-embedBody) {
+        padding: 0 !important;
+    }
+
+    :global(.ml-form-embedBody) :global(*) {
+        font-family: var(--font-family-text) !important;
+    }
+
+    :global(.ml-form-embedBody) :global(h4) {
+        padding: 0 !important;
+        font-family: var(--font-family-title) !important;
+        color: var(--heading_color) !important;
+
+    }
+
+    :global(.ml-form-embedBody) :global(input[type=email]) {
+    	border-color: var(--color-button-border) !important;
+    }
+
+    :global(.ml-form-embedBody) :global(button) {
+    	position: relative;
+    	transition: var(--link--hover_transition-timing);
+    }
+
+    :global(.ml-form-embedBody) :global(button):before {
+    	content: "";
+    	position: absolute;
+    	inset: -1px;
+    	border-radius: var(--border-radius);
+    	border: 1px solid var(--color-button-border);
+    }
+
+    :global(.ml-form-embedBody) :global(button):hover {
+    	border: 1px solid var(--color-button-border) !important;
+    }
+
+    @media (max-width: 72em) {
+        aside {
+            padding: var(--section--mobile_padding);
+        }
+    }
+</style>

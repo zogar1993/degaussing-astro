@@ -4,6 +4,7 @@ import ResetCss from "@web/styles/ResetCss.astro"
 import FontsCss from "@web/styles/FontsCss.astro"
 import ImagesPrefetch from "@web/performance/ImagesPreload.astro"
 import VariablesCss from "@web/styles/VariablesCss.astro"
+import NewsletterSubscriptionScript from "@web/head/NewsletterSubscriptionScript.astro"
 //TODO import { HeadHrefLangs } from "astro-i18next/components" <HeadHrefLangs />
 import getIsHomepage from "@server/GetIsHomepage"
 import { getLangFromUrl, useTranslations } from "@server/i18n/utils"
@@ -29,6 +30,7 @@ const isHomepage = getIsHomepage({ path: Astro.url.pathname, language })
 	<ImagesPrefetch info={info} />
 	<ResetCss />
 	<VariablesCss />
+	<NewsletterSubscriptionScript />
 </head>
 <body tabindex="-1">
 <Header info={info} />

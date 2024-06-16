@@ -4,6 +4,7 @@ import MainLayout from "@web/layouts/MainLayout.astro"
 import StripAside from "@web/components/page-primary/aside/StripAside.astro"
 import StickyNavBar from "@web/components/StickyNavBar.astro"
 import Comments from "@web/components/page-primary/comments/Comments.astro"
+import Newsletter from "@web/components/page-primary/newsletter/Newsletter.astro"
 import PrimaryPageMain from "@web/components/page-primary/main/PagePrimaryMain.astro"
 import getLocalizedLinkToComicStrip from "@server/actions/GetLocalizedLinkToComicStrip"
 import { getLangFromUrl } from "@server/i18n/utils"
@@ -24,6 +25,7 @@ const next = forward ? getLocalizedLinkToComicStrip({ ...forward.one, language }
 		<StickyNavBar info={info} />
 		<StripAside info={info} />
 		<Comments info={info} />
+		<Newsletter />
 	</div>
 </MainLayout>
 <script define:vars={{ previous, next }}>
@@ -101,7 +103,8 @@ const next = forward ? getLocalizedLinkToComicStrip({ ...forward.one, language }
         	[strip-end aside-end transcript-start] auto
         	[transcript-end main-end sticky-nav-bar-start] auto
         	[sticky-nav-bar-end comments-start] auto
-        	[comments-end];
+        	[comments-end newsletter-start] auto;
+        	[newsletter-end];
 
         gap: 1.25rem;
     }
@@ -118,7 +121,8 @@ const next = forward ? getLocalizedLinkToComicStrip({ ...forward.one, language }
 							[transcript-end main-end sticky-nav-bar-start] auto
 							[sticky-nav-bar-end aside-start] auto
 							[aside-end comments-start] auto
-							[comments-end];
+							[comments-end newsletter-start] auto
+							[newsletter-end];
         }
     }
 </style>
