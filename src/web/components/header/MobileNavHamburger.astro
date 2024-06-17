@@ -65,7 +65,7 @@ const items = getMenuItems({ path: Astro.url.pathname, language })
         left: 0;
         top: 0;
 
-        border-bottom-right-radius: var(--border-radius);
+        border-bottom-right-radius: var(--component_border-radius);
     }
 
     dialog[open] {
@@ -113,7 +113,7 @@ const items = getMenuItems({ path: Astro.url.pathname, language })
 
     li > a {
         color: var(--link_color);
-        font-family: var(--font-family-title);
+        font-family: var(--heading_font-family);
         font-size: 1.25rem;
         display: flex;
         gap: 1rem;

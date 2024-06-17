@@ -87,12 +87,12 @@ const chapter_localized = getLocalizedChapter(chapter, language)
         width: 100%;
         height: auto;
         aspect-ratio: var(--strip_aspect-ratio);
-        border-radius: var(--border-radius);
+        border-radius: var(--component_border-radius);
     }
 
     span {
         margin-top: 0.5rem;
-        color: var(--color-text-aside);
+        color: var(--aside__text_color);
         font-size: .875rem;
         user-select: none;
         text-align: center;
@@ -101,7 +101,7 @@ const chapter_localized = getLocalizedChapter(chapter, language)
     .back {
         display: inline-block;
         margin-bottom: 1rem;
-        color: var(--color-text-aside);
+        color: var(--aside__text_color);
         transition: var(--link--hover_transition-timing);
         transition-property: transform;
     }

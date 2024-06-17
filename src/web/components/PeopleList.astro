@@ -41,7 +41,7 @@ const { people } = Astro.props as Props
 </ul>
 <style>
     img {
-        border-radius: var(--border-radius);
+        border-radius: var(--component_border-radius);
     }
 
     ul {
@@ -64,7 +64,7 @@ const { people } = Astro.props as Props
         height: auto;
         min-width: 239px;
         aspect-ratio: 239 / 338;
-        border-radius: var(--border-radius);
+        border-radius: var(--component_border-radius);
     }
 
     .portrait--shape-square {
@@ -82,7 +82,7 @@ const { people } = Astro.props as Props
     }
 
     h4 {
-        font-family: var(--font-family-title);
+        font-family: var(--heading_font-family);
         font-size: 4rem;
         color: var(--heading_color);
         margin-bottom: 0.5rem;

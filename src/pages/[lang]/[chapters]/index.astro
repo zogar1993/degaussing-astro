@@ -72,12 +72,12 @@ const { chapters } = Astro.props as Awaited<ReturnType<typeof getStaticPaths>>[0
 
         margin-bottom: 1.25rem;
 
-        border-radius: var(--border-radius);
+        border-radius: var(--component_border-radius);
     }
 
     h4 {
         color: var(--heading_color);
-        font-family: var(--font-family-title);
+        font-family: var(--heading_font-family);
         font-size: 2rem;
 
         margin-bottom: .5rem;
@@ -85,7 +85,7 @@ const { chapters } = Astro.props as Awaited<ReturnType<typeof getStaticPaths>>[0
     }
 
     span {
-        color: var(--color-muted);
+        color: var(--text--muted_color);
         font-size: .875rem;
         user-select: none;
     }

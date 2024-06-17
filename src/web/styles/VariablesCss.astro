@@ -1,19 +1,24 @@
 <style is:inline>
 		:root {
-    		--color--white: #FFFFFF;
-				--color--blue: #273D5F;
-				--color--orange: #FD854C;
-				--color--black: #000000;
 				--color--yellow: #F0BE5F;
+				--color--orange: #FD854C;
 				--color--dark-orange: #E94E1B;
+				--color--dark-brown: #432918;
+				--color--blue: #273D5F;
+    		--color--white: #FFFFFF;
+    		--color--grey: #B1A3A3;
+    		--color--dark-grey: #808080;
+				--color--black: #373737;
+				--color--dark-black: #000000;
 
         --section_background-color: var(--color--white);
         --navigation_background-color: var(--color--blue);
         --decoration_background-color: var(--color--blue);
 
         --link_color: var(--color--yellow);
-        --heading_color: var(--color--dark-orange);
         --link--hover_color: var(--color--orange);
+
+        --heading_color: var(--color--dark-orange);
         
         --button_background-color: var(--color--yellow);
         --button--hover_background-color: var(--color--orange);
@@ -23,32 +28,34 @@
 
         --buttons_gap: 0.5rem;
 
-        --border-radius: 5px;
+        --component_border-radius: 5px;
+        --border-color: var(--color--dark-black);
         --border-wide-width: 3px;
-        --border-color: var(--color--black);
         --border-wide: var(--border-wide-width) solid var(--border-color);
 
-        --color-muted: #808080;
-        --color-disabled: #B1A3A3;
-
-        --color-text-navigation: #FFFFFF;
-        --color-text-aside: #373737;
-        --color-button-border: #432918;
-
-        --filter-image-hover: saturate(20);
+        --text--muted_color: var(--color--dark-grey);
+        
+        --sticky-navbar__link--disabled_color: var(--color--grey);
+        --sticky-navbar__text_color: var(--color--white);
+        
+        --aside__text_color: var(--color--black);
+        --color-button-border: var(--color--dark-brown);
 
         --content--desktop_width: 54rem;
         --strip_width: calc(var(--content--desktop_width) + var(--border-wide-width) * 2);
         --strip_aspect-ratio: 940 / 1330;
 
-        --link--hover_transition-timing: .2s cubic-bezier(.3, 0, .5, 1);
 
-        --font-family-title: "Germania One", sans-serif;
-        --font-family-text: Inter, Arial;
+        --heading_font-family: "Germania One", sans-serif;
+        --text_font-family: Inter, Arial;
+
+				/* TODO fix these */
+        --link--hover_transition-timing: .2s cubic-bezier(.3, 0, .5, 1);
+        --filter-image-hover: saturate(20);
     }
 
     body {
-        font-family: var(--font-family-text);
+        font-family: var(--text_font-family);
         line-height: 1.5;
     }
 
