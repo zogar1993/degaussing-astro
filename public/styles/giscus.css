@@ -40,6 +40,21 @@ body {
     /* adds padding to avoid browser rounding inconsistencies and leaving room for focus outlines */
     margin: 0 1px;
     font-family: Inter, serif;
+    font-size: 16px;
+}
+
+.link-secondary {
+    font-size: 16px !important;
+    line-height: 1.4;
+}
+
+textarea {
+    font-size: 16px;
+    padding: 0.5rem;
+}
+
+.btn {
+    font-size: 16px;
 }
 
 /*
