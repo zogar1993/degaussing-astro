@@ -50,6 +50,10 @@ const NEWSLETTER_ID = {
         border-color: var(--button_border-color) !important;
     }
 
+    :global(.ml-form-embedBody) :global(input[type=email])::placeholder {
+    	color: var(--input--placeholder_color) !important;
+    }
+
     :global(.ml-form-embedBody) :global(button) {
         position: relative;
         transition: var(--link--hover_transition-timing);
