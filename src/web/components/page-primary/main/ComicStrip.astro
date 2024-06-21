@@ -1,5 +1,4 @@
 ---
-import { ANCHORS } from "@web/Anchors"
 import getStripNameParts from "@server/actions/GetStripNameParts"
 import getIsHomepage from "@server/GetIsHomepage"
 import { getLangFromUrl, useTranslations } from "@server/i18n/utils"
@@ -15,6 +14,7 @@ const isHomepage = getIsHomepage({ path: Astro.url.pathname, language })
 //This is so that an accessible user can understand that he is on the latest page when he is in the homepage.
 const comicPageHeading = isHomepage ? t("strip.heading-main-home") : t("strip.heading-main")
 const heading = [comicPageHeading, ...getStripNameParts({ ...current, language })].join(" | ")
+//TODO Ttabindex -1?
 ---
 <div tabindex="-1">
 	<h2 class="semantic-only">{heading}</h2>
@@ -32,8 +32,8 @@ const heading = [comicPageHeading, ...getStripNameParts({ ...current, language }
         grid-column: left;
         grid-row: strip;
         position: relative;
-        max-width: 100%;
-        height: 100%;
+        width: 100%;
+        aspect-ratio: var(--strip_aspect-ratio);
     }
 
     img {
