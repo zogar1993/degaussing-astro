@@ -1,10 +1,25 @@
 :root {
-    --text_color: #373737;
-    --background_color: #FFFFFF;
-    --component--muted_color: #808080;
-    --component-disabled_color: #B1A3A3;
-    --component_border: #432918;
-    --button_background: #f0be5f;
+    --color--yellow: #F0BE5F;
+    --color--orange: #FD854C;
+    --color--dark-orange: #E94E1B;
+    --color--dark-brown: #432918;
+    --color--blue: #273D5F;
+    --color--white: #FFFFFF;
+    --color--light-grey: #B1A3A3;
+    --color--grey: #808080;
+    --color--dark-grey: #767676;
+    --color--black: #373737;
+    --color--dark-black: #000000;
+
+    --text_color: var(--color--black);
+    --background_color: var(--color--white);
+    --component--muted_color: var(--color--grey);
+    --component-disabled_color: var(--color--light-grey);
+    --component_border: var(--color--dark-brown);
+    
+    --button--hover_background-color: var(--color--orange);
+    --button_background-color: var(--color--yellow);
+    
     --component_border-radius: 5px;
 
     /*! Extensions from @primer/css/alerts/flash.scss */
@@ -16,10 +31,10 @@
 
     --color-btn-primary-disabled-bg: #e0ae4fbb;
     --color-btn-primary-disabled-border: transparent;
-    --color-btn-primary-disabled-text: #3c3c3bbb;
+    --color-btn-primary-disabled-text: var(--color--light-grey);
 
-    --color-btn-primary-hover-bg: #E97E1B;
-    --color-btn-primary-bg: var(--button_background);
+    --color-btn-primary-hover-bg: var(--button--hover_background-color);
+    --color-btn-primary-bg: var(--button_background-color);
     --color-btn-primary-text: #3c3c3b;
 
     --color-fg-default: var(--text_color);
@@ -55,6 +70,7 @@ textarea {
 
 .btn {
     font-size: 16px;
+    padding: 10px 1rem;
 }
 
 /*
@@ -125,7 +141,7 @@ main .gsc-loading-image {
 
 .gsc-social-reaction-summary-item {
     border: 1px solid var(--component_border);
-    background-color: var(--button_background);
+    background-color: var(--button_background-color);
 }
 
 .gsc-direct-reaction-button {
