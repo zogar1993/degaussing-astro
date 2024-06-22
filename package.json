@@ -10,14 +10,14 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@contentful/rich-text-html-renderer": "16.4.0",
-    "astro": "4.9.1",
-    "contentful": "10.11.2",
+    "@contentful/rich-text-html-renderer": "16.5.2",
+    "astro": "4.11.0",
+    "contentful": "10.12.2",
     "sharp": "0.33.4"
   },
   "devDependencies": {
-    "@types/node": "20.12.12",
-    "prettier": "3.2.5",
-    "prettier-plugin-astro": "0.13.0"
+    "@types/node": "20.14.7",
+    "prettier": "3.3.2",
+    "prettier-plugin-astro": "0.14.0"
   }
 }
