@@ -18,7 +18,6 @@ const NEWSLETTER_ID = {
 	<h2>Novedades</h2>
 	<p>¡Enterate cuando salen nuevas paginas y otras noticias!</p>
 
-
 	<form
 		class="ml-block-form"
 		action="https://assets.mailerlite.com/jsonp/989761/forms/124424779064149866/subscribe"
@@ -26,30 +25,20 @@ const NEWSLETTER_ID = {
 		method="post"
 		target="_blank"
 	>
-
-
-		<input type="email" data-inputmask="" name="fields[email]" placeholder="Email" autocomplete="email" />
-		<input type="hidden" name="ml-submit" value="1" />
-
-
-		<div class="ml-mobileButton-horizontal">
-			<button type="submit" class="primary">Subscribir</button>
-			<button disabled="disabled" type="button" class="loading">
+		<div class="input-container">
+			<input type="email" data-inputmask="" name="fields[email]" placeholder="Email" autocomplete="email" />
+			<input type="hidden" name="ml-submit" value="1" />
+			<button type="submit">Subscribir</button>
+			<button disabled="disabled" type="button">
 				<span class="sr-only">Loading...</span>
 			</button>
 		</div>
 		<input type="hidden" name="anticsrf" value="true">
 	</form>
 
-	<div class="ml-form-successBody row-success" style="display: none">
-
-		<div class="ml-form-successContent">
-
-			<h4>¡Gracias!</h4>
-			<p>Te subscribiste al newsletter exitosamente.</p>
-
-		</div>
-
+	<div style="display: none">
+		<h4>¡Gracias!</h4>
+		<p>Te subscribiste al newsletter exitosamente.</p>
 	</div>
 </aside>
 <style>
@@ -57,14 +46,46 @@ const NEWSLETTER_ID = {
         grid-column: full-width;
         grid-row: newsletter;
 
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-
         background-color: var(--section_background-color);
         border-radius: var(--component_border-radius);
         border: var(--border-wide);
 
         padding: 2.5rem 5.5rem;
+    }
+
+    h2 {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 2rem;
+    }
+
+    .input-container {
+    	display: flex;
+    }
+
+    button {
+        font-size: 1rem;
+        color: var(--button_border-color);
+        background-color: var(--button_background-color);
+        border: 1px solid var(--button_border-color);
+        padding: 0.5rem 0.75rem;
+        border-radius: var(--component_border-radius);
+    }
+
+    button:hover {
+        background-color: var(--button--hover_background-color);
+    }
+
+    input[type=email] {
+        font-size: 1rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: var(--component_border-radius);
+        border: 1px solid var(--button_border-color);
+    }
+
+    @media (max-width: 72em) {
+        h2 {
+            font-size: 1.5rem;
+        }
     }
 </style>
