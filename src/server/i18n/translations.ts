@@ -37,6 +37,7 @@ export const translations = {
 		"landmarks.newsletter": "Newsletter",
 		"landmarks.strip-aside": "Current page information",
 		"landmarks.author": "Author",
+		"landmarks.newsletter": "Newsletter",
 
 		"seo.description": "Our young friends escape their hometown and make a run through the continent of Gaoan, but it seems like nowhere is really safe! Where could a mage go to avoid persecution? What secrets do Alan's sword hold? Old grudges are brewing beneath the surface and war is coming from overseas.",
 
@@ -95,6 +96,7 @@ export const translations = {
 		"landmarks.newsletter": "Novedades",
 		"landmarks.strip-aside": "Information de página actual",
 		"landmarks.author": "Autor",
+		"landmarks.newsletter": "Novedades",
 
 		"seo.description": "Nuestros jovenes amigos escapan de su pueblo y emprenden un viaje a través del continente de Gaoan, ¡Pero ningún lugar es seguro! ¿Donde podría ir un mago para evitar ser perseguido? ¿Que secretos guarda la espada de Alan? Antiguos rencores no se olvidan, cruzando el mar se preparan para la guerra.",
 
