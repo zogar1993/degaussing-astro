@@ -9,18 +9,17 @@ const { info } = Astro.props as { info: PageInfo }
 
 //TODO captcha <div class="g-recaptcha" data-sitekey="6Lf1KHQUAAAAAFNKEX1hdSWCS3mRMv4FlFaNslaD"></div>
 
-const NEWSLETTER_ID = {
-	es: "hFvILL",
-	en: "mLNIzT"
+const NEWSLETTER_URL = {
+	es: "https://assets.mailerlite.com/jsonp/989761/forms/124424779064149866/subscribe",
+	en: "https://assets.mailerlite.com/jsonp/989761/forms/124338419743590345/subscribe"
 } as const
 ---
 <aside aria-label={t("landmarks.newsletter")} id="newsletter">
 	<h2>Novedades</h2>
 	<p>¡Enterate cuando salen nuevas paginas y otras noticias!</p>
-
 	<form
 		class="ml-block-form"
-		action="https://assets.mailerlite.com/jsonp/989761/forms/124424779064149866/subscribe"
+		action={NEWSLETTER_URL}
 		data-code=""
 		method="post"
 		target="_blank"
