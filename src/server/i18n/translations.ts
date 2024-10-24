@@ -37,13 +37,14 @@ export const translations = {
 		"landmarks.navigation-social": "Social navigation",
 		"landmarks.comments": "Comments",
 		"landmarks.social": "Social",
+		"landmarks.newsletter": "Newsletter",
 		"landmarks.strip-aside": "Current page information",
 		"landmarks.author": "Author",
 
 		"seo.description": "Our young friends escape their hometown and make a run through the continent of Gaoan, but it seems like nowhere is really safe! Where could a mage go to avoid persecution? What secrets do Alan's sword hold? Old grudges are brewing beneath the surface and war is coming from overseas.",
 
 		"page-primary.transcript.title": "Transcript",
-		"page-primary.transcript.no-description": "This page hasn't been transcripted yet.",
+		"page-primary.transcript.no-description": "This page hasn't been transcribed yet.",
 
 
 		"secondary-nav.first": "First page",
@@ -97,6 +98,7 @@ export const translations = {
 		"landmarks.navigation-social": "Navegación social",
 		"landmarks.comments": "Comentarios",
 		"landmarks.social": "Social",
+		"landmarks.newsletter": "Novedades",
 		"landmarks.strip-aside": "Information de página actual",
 		"landmarks.author": "Autor",
 
