@@ -17,73 +17,24 @@ const paragraphs = description.trim().split("\n").map(p => {
 <div id="transcript" class="transcript">
 	<div class="header-container">
 		<h3>{t("page-primary.transcript.title")}</h3>
-		<button class="button-expand" aria-expanded="false" />
 	</div>
-	<div class="content-position">
-		<div class="content-text">
-			{paragraphs.map(({ panel, description }) =>
-				<p>
-					{panel && <strong>{panel}:</strong>}
-					{description || t("page-primary.transcript.no-description")}
-				</p>
-			)}
-		</div>
-	</div>
+	{paragraphs.map(({ panel, description }) =>
+		<p>
+			{panel && <strong>{panel}:</strong>}
+			{description || t("page-primary.transcript.no-description")}
+		</p>
+	)}
 </div>
-<script>
-	const container = document.querySelector(`.transcript`)
-	const button = container.querySelector(`button[aria-expanded]`)
-	const content = container.querySelector(`.content-text`)
-
-	const updateTranscriptContentHeight = () => {
-		const { height } = content.getBoundingClientRect()
-		container.style.setProperty("--transcript__content_height", `${height}px`)
-	}
-
-	window.addEventListener("resize", updateTranscriptContentHeight)
-
-	button.addEventListener("click", () => {
-		updateTranscriptContentHeight()
-		const isExpanded = button.getAttribute("aria-expanded") === "true"
-		//TODO make this accessible
-		button.setAttribute("aria-expanded", isExpanded ? "false" : "true")
-		if (!isExpanded) container.scrollIntoView({ behavior: 'smooth' })
-
-	})
-</script>
 <style>
     .transcript {
         grid-column: full-width;
         grid-row: transcript;
 
-        display: grid;
-        grid-template-rows: auto 0;
-
         background-color: white;
         border-radius: var(--component_border-radius);
         border: var(--border-wide);
 
-        overflow-y: hidden;
-
-        transition: padding 300ms linear, grid-template-rows 300ms ease-in-out;
-
-        padding: 10px 5.5rem;
-    }
-
-    .transcript:has(.button-expand[aria-expanded=true]) {
-        padding-block: 2.5rem;
-        grid-template-rows: auto var(--transcript__content_height);
-    }
-
-    .content-position {
-        position: relative;
-    }
-
-    .content-text {
-        padding-top: 1rem;
-        position: absolute;
-        right: 0;
-        left: 0;
+        padding: 2.5rem 5.5rem;
     }
 
     h3 {
@@ -92,6 +43,7 @@ const paragraphs = description.trim().split("\n").map(p => {
         font-weight: 400;
         font-size: 2rem;
         color: var(--heading_color);
+        margin-bottom: 1rem;
     }
 
     strong {
@@ -103,43 +55,13 @@ const paragraphs = description.trim().split("\n").map(p => {
         justify-content: space-between;
     }
 
-    .button-expand {
-        position: relative;
-        height: 100%;
-        aspect-ratio: 1;
-        transition: transform 500ms ease-out;
-    }
-
-    .button-expand[aria-expanded=true] {
-        transform: rotate(225deg);
-    }
-
-    .button-expand::before {
-        transform: translateY(-50%);
-    }
-
-    .button-expand::after {
-        transform: translateY(-50%) rotate(90deg);
-    }
-
-    .button-expand::before, .button-expand::after {
-        content: "";
-        position: absolute;
-        height: calc(100% - 16px);
-        width: 3px;
-        background-color: black;
-    }
-
     @media (max-width: 72em) {
         h3 {
             font-size: 1.5rem;
+            margin-bottom: 0.5rem;
         }
 
         .transcript {
-            padding: var(--section--mobile_padding);
-        }
-
-        .transcript:has(.button-expand[aria-expanded=true]) {
             padding: var(--section--mobile_padding);
         }
     }
