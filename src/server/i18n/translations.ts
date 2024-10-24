@@ -12,7 +12,6 @@ export const translations = {
 		"menu.about": "About",
 		"menu.language": "Español",
 
-
 		"strip.page": "Page",
 		"strip.chapter": "Chapter",
 		"strip.cover": "Cover",
@@ -45,7 +44,6 @@ export const translations = {
 
 		"page-primary.transcript.title": "Transcript",
 		"page-primary.transcript.no-description": "This page hasn't been transcribed yet.",
-
 
 		"secondary-nav.first": "First page",
 		"secondary-nav.previous": "Previous page",
