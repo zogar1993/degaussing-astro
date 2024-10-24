@@ -4,3 +4,8 @@
 
 I really appreciate it! Go to the [Issues sections](https://github.com/zogar1993/degaussing-astro/issues) and create a
 new issue there, I promise to take a look.
+
+## Useful commands for myself so I dont forget
+
+- pnpm run dev
+- npm open cypress
