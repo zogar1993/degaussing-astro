@@ -8,10 +8,11 @@ const language = getLangFromUrl(Astro.url)
 const t = useTranslations(language)
 
 const { image, chapter, date } = await getLastUpdate({ language })
+const split_heading = t("landmarks.last-update").split(" ")
 ---
 <section aria-label={t("landmarks.last-update")}>
 	<div class="text-container">
-		<Heading>{t("landmarks.last-update")}</Heading>
+		<Heading>{split_heading[0]}&nbsp;<br/>{split_heading[1]}</Heading>
 		<time datetime={date.datetime}>{date.localized}</time>
 		<span>{t("strip.chapter")} {chapter}</span>
 	</div>
@@ -19,6 +20,8 @@ const { image, chapter, date } = await getLastUpdate({ language })
 </section>
 <style>
     section {
+    		grid-area: last-update;
+
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
@@ -30,8 +33,6 @@ const { image, chapter, date } = await getLastUpdate({ language })
     }
 
     time {
-        margin-top: 0.5rem;
-
         font-weight: 600;
         font-size: 1rem;
         color: var(--aside__text_color);
@@ -54,16 +55,41 @@ const { image, chapter, date } = await getLastUpdate({ language })
     @media (max-width: 72em) {
         section {
             flex-direction: row;
-            justify-content: space-between;
-        }
-
-        .text-container {
-            gap: 1rem
+        		gap: 1rem;
         }
 
         img {
-            width: 6rem;
-            height: 8.5rem;
+            width: auto;
+            height: calc(1.5rem * 1.2 + var(--heading_bottom-margin) + 3rem * 2 + 0.5rem);
+        }
+    }
+
+    @media (max-width: 54em) {
+        section {
+            flex-direction: column;
+        }
+
+        img {
+            width: auto;
+            flex-grow: 1;
+        }
+
+        br {
+        	display: none;
+        }
+    }
+
+    @media (max-width: 36em) {
+        section {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        img {
+        		margin-inline: auto;
+            height: calc(1.5rem * 1.2 + var(--heading_bottom-margin) + 3rem * 2 + 0.5rem);
+            width: auto;
+            flex-grow: 0;
         }
     }
 </style>

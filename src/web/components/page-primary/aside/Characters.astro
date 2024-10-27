@@ -14,35 +14,33 @@ const characters = info.characters.slice(0, 3)
 ---
 <section aria-label={t("landmarks.characters")}>
 	<Heading>{t("landmarks.characters")}</Heading>
-	<div class="characters">
+	<ul>
 		{
 			characters.map((character) => (
-				<div class="character">
+				<li>
 					<Image src={character.image} alt="" width={112} height={112} quality="max" />
 					<span>{character.name}</span>
-				</div>
+				</li>
 			))
 		}
 		{
 			[...Array(3 - characters.length)].map(() => (
-				<div class="character no-one">
+				<li class="no-one">
 					<Image src="/images/shadowed.webp" alt="" width={112} height={112} />
-				</div>
+				</li>
 			))
 		}
-	</div>
+	</ul>
 </section>
 <style>
     section {
-    		flex-grow: 1;
+    		grid-area: characters;
 
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        gap: 1.5rem;
+    		display: flex;
+    		flex-direction: column;
     }
 
-    .character {
+    li {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -62,7 +60,7 @@ const characters = info.characters.slice(0, 3)
         font-size: 1rem;
     }
 
-    .characters {
+    ul {
         display: flex;
         flex-direction: column;
         justify-content: space-around;
@@ -70,7 +68,7 @@ const characters = info.characters.slice(0, 3)
     }
 
     @media (max-width: 72em) {
-        .characters {
+        ul {
             flex-direction: row;
         }
 

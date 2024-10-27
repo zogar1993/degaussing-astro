@@ -16,7 +16,9 @@ const links = await getContributionLinks()
 			links.map((link) => (
 				<li>
 					<a href={link.href} target="_blank" rel="noopener">
-						<Icon src={link.icon} alt="" />
+						<div>
+							<Icon src={link.icon} alt="" />
+						</div>
 						<span class="name">{link.text}</span>
 					</a>
 				</li>
@@ -26,10 +28,7 @@ const links = await getContributionLinks()
 </section>
 <style>
     section {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        gap: 1.25rem;
+    		grid-area: donations;
     }
 
     ul {
@@ -63,23 +62,23 @@ const links = await getContributionLinks()
     }
 
     @media (max-width: 72em) {
-        section {
-            gap: .25rem;
-        }
-
         ul {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+        		flex-direction: column;
             gap: .5rem;
-            padding: 1rem;
         }
 
         a {
-            height: 4rem;
-            width: auto;
+        		width: auto;
+        		font-size: 1rem;
+            height: 3rem;
             grid-template-columns: 3rem 1fr;
             grid-template-rows: none;
             padding: 0 1rem;
+        }
+
+        div > :global(svg) {
+        	margin-top: 4px; /* TODO fix svg sizes so this is not necesary */
+					transform: scale(calc(100% * 0.8));
         }
     }
 </style>
