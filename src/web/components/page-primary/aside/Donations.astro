@@ -1,5 +1,4 @@
 ---
-import Heading from "@web/components/page-primary/aside/Heading.astro"
 import Icon from "@web/components/general/Icon.astro"
 import { getContributionLinks } from "@server/actions/GetContributionLinks"
 import { getLangFromUrl,useTranslations } from "@server/i18n/utils"
@@ -10,7 +9,7 @@ const t = useTranslations(language)
 const links = await getContributionLinks()
 ---
 <section aria-label={t("landmarks.donations")}>
-	<Heading>{t("landmarks.donations")}</Heading>
+	<h2>{t("landmarks.donations")}</h2>
 	<ul>
 		{
 			links.map((link) => (

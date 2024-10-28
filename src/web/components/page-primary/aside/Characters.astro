@@ -1,6 +1,5 @@
 ---
 import { Image } from "astro:assets"
-import Heading from "@web/components/page-primary/aside/Heading.astro"
 import { getLangFromUrl, useTranslations } from '@server/i18n/utils';
 
 const language = getLangFromUrl(Astro.url);
@@ -13,7 +12,7 @@ const { info } = Astro.props
 const characters = info.characters.slice(0, 3)
 ---
 <section aria-label={t("landmarks.characters")}>
-	<Heading>{t("landmarks.characters")}</Heading>
+	<h2>{t("landmarks.characters")}</h2>
 	<ul>
 		{
 			characters.map((character) => (

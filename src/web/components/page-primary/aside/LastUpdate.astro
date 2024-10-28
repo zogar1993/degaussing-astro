@@ -1,6 +1,5 @@
 ---
 import { Image } from "astro:assets"
-import Heading from "@web/components/page-primary/aside/Heading.astro"
 import getLastUpdate from "@server/actions/GetLastUpdate"
 import { getLangFromUrl, useTranslations } from "@server/i18n/utils"
 
@@ -12,7 +11,7 @@ const split_heading = t("landmarks.last-update").split(" ")
 ---
 <section aria-label={t("landmarks.last-update")}>
 	<div class="text-container">
-		<Heading>{split_heading[0]}&nbsp;<br/>{split_heading[1]}</Heading>
+		<h2>{split_heading[0]}&nbsp;<br/>{split_heading[1]}</h2>
 		<time datetime={date.datetime}>{date.localized}</time>
 		<span>{t("strip.chapter")} {chapter}</span>
 	</div>
@@ -61,7 +60,7 @@ const split_heading = t("landmarks.last-update").split(" ")
 
         img {
             width: auto;
-            height: calc(1.5rem * 1.2 + var(--heading_bottom-margin) + 3rem * 2 + 0.5rem);
+            height: calc(1.5rem * 1.2 + var(--heading_margin-bottom) + 3rem * 2 + 0.5rem);
         }
     }
 
@@ -89,7 +88,7 @@ const split_heading = t("landmarks.last-update").split(" ")
 
         img {
         		margin-inline: auto;
-            height: calc(1.5rem * 1.2 + var(--heading_bottom-margin) + 3rem * 2 + 0.5rem);
+            height: calc(1.5rem * 1.2 + var(--heading_margin-bottom) + 3rem * 2 + 0.5rem);
             width: auto;
             flex-grow: 0;
         }

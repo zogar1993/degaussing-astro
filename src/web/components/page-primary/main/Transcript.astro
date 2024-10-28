@@ -16,7 +16,7 @@ const paragraphs = description.trim().split("\n").map(p => {
 ---
 <div id="transcript" class="transcript">
 	<div class="header-container">
-		<h3>{t("page-primary.transcript.title")}</h3>
+		<h2>{t("page-primary.transcript.title")}</h2>
 	</div>
 	{paragraphs.map(({ panel, description }) =>
 		<p>
@@ -37,15 +37,6 @@ const paragraphs = description.trim().split("\n").map(p => {
         padding: 2.5rem 5.5rem;
     }
 
-    h3 {
-        font-family: var(--heading_font-family);
-        font-style: normal;
-        font-weight: 400;
-        font-size: 2rem;
-        color: var(--heading_color);
-        margin-bottom: 1rem;
-    }
-
     strong {
         font-weight: 600;
     }
@@ -56,11 +47,6 @@ const paragraphs = description.trim().split("\n").map(p => {
     }
 
     @media (max-width: 72em) {
-        h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
         .transcript {
             padding: var(--section--mobile_padding);
         }

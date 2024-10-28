@@ -20,11 +20,11 @@
         --link--hover_color: var(--color--orange);
 
         --heading_color: var(--color--dark-orange);
-        
+
         --button_background-color: var(--color--yellow);
         --button--hover_background-color: var(--color--orange);
         --button_border-color: var(--color--dark-brown);
-				
+
         --header__link--selected_color: var(--color--orange);
         --header__link--hover_background-color: color-mix(in srgb, var(--color--orange) 20%, var(--color--blue));
 
@@ -38,21 +38,21 @@
         --text--muted_color: var(--color--grey);
 
         --input--placeholder_color: var(--color--dark-grey);
-        
+
         --sticky-navbar__link--disabled_color: var(--color--light-grey);
         --sticky-navbar__text_color: var(--color--white);
-        
+
         --aside__text_color: var(--color--black);
 
         --content--desktop_width: 54rem;
         --strip_width: calc(var(--content--desktop_width) + var(--border-wide-width) * 2);
         --strip_aspect-ratio: 940 / 1330;
 
-
         --heading_font-family: "Germania One", sans-serif;
         --text_font-family: Inter, Arial;
 
-        --heading_bottom-margin: 1rem;
+        --heading_font-size: 1.75rem;
+        --heading_margin-bottom: 1rem;
 
         --link--hover_transition-timing: .2s cubic-bezier(.3, 0, .5, 1);
 
@@ -61,7 +61,10 @@
     }
 
     @media (max-width: 72em) {
-
+        :root {
+            --heading_font-size: 1.5rem;
+            --heading_margin-bottom: 0.5rem;
+        }
     }
 
     body {
@@ -71,6 +74,10 @@
 
     h1, h2, h3, h4, h5, h6 {
         line-height: 1.2;
+        color: var(--heading_color);
+        font-size: var(--heading_font-size);
+        font-family: var(--heading_font-family);
+        margin-bottom: var(--heading_margin-bottom);
     }
 
     p:not(:last-child) {
