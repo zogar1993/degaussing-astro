@@ -113,7 +113,7 @@ const next = forward ? getLocalizedLinkToComicStrip({ ...forward.one, language }
         .grid {
             grid-template-columns:
 							[full-width-start left-start right-start]
-							auto
+							minmax(0, var(--strip_width))
 							[full-width-end left-end right-end];
             grid-template-rows:
 							[main-start strip-start] auto
