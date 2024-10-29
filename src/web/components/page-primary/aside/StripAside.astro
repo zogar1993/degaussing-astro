@@ -40,6 +40,12 @@ const { info } = Astro.props
         border-radius: var(--component_border-radius);
         background-color: var(--section_background-color);
     }
+    
+    @media (width > 72em) {
+    	aside {
+				--heading_font-size: 1.75rem;
+    	}
+    }
 
     @media (max-width: 72em) {
         aside {
