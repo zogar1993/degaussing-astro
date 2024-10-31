@@ -13,9 +13,9 @@ const split_heading = t("landmarks.last-update").split(" ")
 	<div class="text-container">
 		<h2>{split_heading[0]}&nbsp;<br/>{split_heading[1]}</h2>
 		<time datetime={date.datetime}>{date.localized}</time>
-		<span>{t("strip.chapter")} {chapter}</span>
+		<span>{t("comic.chapter.singular")} {chapter}</span>
 	</div>
-	<Image src={image} alt={`${t("strip.chapter")} ${chapter}`} width={161} height={227} />
+	<Image src={image} alt={`${t("comic.chapter.singular")} ${chapter}`} width={161} height={227} />
 </section>
 <style>
     section {
@@ -81,6 +81,10 @@ const split_heading = t("landmarks.last-update").split(" ")
     }
 
     @media (max-width: 36em) {
+        br {
+        	display: block;
+        }
+
         section {
             flex-direction: row;
             justify-content: space-between;

@@ -38,9 +38,9 @@ const { info: { current, backward, forward } } = Astro.props
 
 		}
 	</div>
-	<span class="text">
+	<span class="text hide-on-mobile">
 			{getStripNameParts({ ...current, language }).join(" | ")}
-    </span>
+	</span>
 	<div class="navigation-arrows">
 		{
 			forward ?
@@ -68,9 +68,15 @@ const { info: { current, backward, forward } } = Astro.props
 	</div>
 </nav>
 <style>
+    @media (width <= 36em) {
+        .hide-on-mobile {
+            display: none;
+        }
+    }
+
     .sticky-bar {
-    		grid-column: left;
-    		grid-row: sticky-nav-bar;
+        grid-column: left;
+        grid-row: sticky-nav-bar;
 
         position: sticky;
 
@@ -104,6 +110,10 @@ const { info: { current, backward, forward } } = Astro.props
         gap: 1.5rem;
     }
 
+    .text {
+    	font-size: 1.75rem;
+    }
+
     .link {
         display: flex;
         justify-content: center;
@@ -128,9 +138,10 @@ const { info: { current, backward, forward } } = Astro.props
     @media (max-width: 72em) {
         .sticky-bar {
             position: static;
-            padding: 0 0.5rem;
+            /* TODO move border widths to variables, 2px is the difference between border sizes */
+            padding: calc(1rem + 2px) 1rem;
             margin-inline: 0;
-            height: 2.5rem;
+            box-shadow: none;
         }
 
         .navigation-arrows {
@@ -138,12 +149,12 @@ const { info: { current, backward, forward } } = Astro.props
         }
 
         .text {
-            font-size: 1rem;
+            font-size: 1.5rem;
         }
 
         .link {
             color: var(--link_color);
-            font-size: 1.5rem;
+            font-size: 2rem;
         }
     }
 </style>

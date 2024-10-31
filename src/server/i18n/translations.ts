@@ -12,15 +12,13 @@ export const translations = {
 		"menu.about": "About",
 		"menu.language": "Español",
 
-		"strip.page": "Page",
-		"strip.chapter": "Chapter",
-		"strip.cover": "Cover",
+		"comic.chapter.singular": "Chapter",
+		"comic.page.singular": "Page",
+		"comic.cover.singular": "Cover",
+
 		"strip.heading-main": "Comic page",
 		"strip.heading-main-home": "Latest comic page",
 
-		"chapters.cover": "Cover",
-		"chapters.page": "Page",
-		"chapters.chapter": "Chapter",
 		"chapters.pages": "pages",
 
 		"characters.age": "Age",
@@ -72,15 +70,13 @@ export const translations = {
 		"menu.about": "Acerca de",
 		"menu.language": "English",
 
-		"strip.page": "Página",
-		"strip.chapter": "Capítulo",
-		"strip.cover": "Portada",
 		"strip.heading-main": "Página del comic",
 		"strip.heading-main-home": "Última página del comic",
+		
+		"comic.chapter.singular": "Capítulo",
+		"comic.page.singular": "Página",
+		"comic.cover.singular": "Portada",
 
-		"chapters.cover": "Portada",
-		"chapters.page": "Página",
-		"chapters.chapter": "Capítulo",
 		"chapters.pages": "páginas",
 
 		"characters.age": "Edad",

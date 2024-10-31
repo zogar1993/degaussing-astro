@@ -31,7 +31,7 @@ const { chapters } = Astro.props as Awaited<ReturnType<typeof getStaticPaths>>[0
 					<li>
 						<a href={localizePath(`/${t("url.chapters")}/${chapter.number}/${t("url.pages")}`)}>
 							<Image src={chapter.cover} alt="" width={282} height={399} />
-							<h4>{t("chapters.chapter")} {i + 1}</h4>
+							<h4>{t("comic.chapter.singular")} {i + 1}</h4>
 							<span>{chapter.pagesAmount} {t("chapters.pages")}</span>
 						</a>
 					</li>
