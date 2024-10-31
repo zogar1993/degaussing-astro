@@ -15,7 +15,7 @@ const split_heading = t("landmarks.last-update").split(" ")
 		<time datetime={date.datetime}>{date.localized}</time>
 		<span>{t("comic.chapter.singular")} {chapter}</span>
 	</div>
-	<Image src={image} alt={`${t("comic.chapter.singular")} ${chapter}`} width={161} height={227} />
+	<Image src={image} alt={`${t("comic.chapter.singular")} ${chapter}`} width={188} height={266} />
 </section>
 <style>
     section {
@@ -31,6 +31,10 @@ const split_heading = t("landmarks.last-update").split(" ")
         flex-direction: column;
     }
 
+    h2 {
+    		margin-bottom: 0.25em;
+    }
+
     time {
         font-weight: 600;
         font-size: 1rem;
@@ -38,7 +42,7 @@ const split_heading = t("landmarks.last-update").split(" ")
     }
 
     span {
-        margin-top: 0.75rem;
+        margin-top: 1rem;
 
         font-size: 1rem;
         color: var(--aside__text_color);
@@ -52,7 +56,7 @@ const split_heading = t("landmarks.last-update").split(" ")
         max-height: 277px;
     }
 
-    @media (max-width: 72em) {
+    @media (54em < width <= 72em) {
         section {
             flex-direction: row;
         		gap: 1rem;
@@ -60,19 +64,31 @@ const split_heading = t("landmarks.last-update").split(" ")
 
         img {
             width: auto;
+            /* TODO base this on donations */
             height: calc(1.5rem * 1.2 + var(--heading_margin-bottom) + 3rem * 2 + 0.5rem);
         }
     }
 
-    @media (max-width: 54em) {
+    @media (36em < width <= 54em) {
         section {
             flex-direction: column;
+            gap: 0;
+        }
+
+        .text-container {
+        	flex-grow: 1;
+        }
+
+        span {
+        		margin-top: auto;
+        		margin-inline: auto;
+        		margin-bottom: 0.5em;
         }
 
         img {
-            width: auto;
-            height: auto;
-            flex-grow: 1;
+        		margin-inline: auto;
+        		max-width: 167px;
+            max-height: 236px;
         }
 
         br {
@@ -80,11 +96,7 @@ const split_heading = t("landmarks.last-update").split(" ")
         }
     }
 
-    @media (max-width: 36em) {
-        br {
-        	display: block;
-        }
-
+    @media (width <= 36em) {
         section {
             flex-direction: row;
             justify-content: space-between;
@@ -94,7 +106,6 @@ const split_heading = t("landmarks.last-update").split(" ")
         		margin-inline: auto;
             height: calc(1.5rem * 1.2 + var(--heading_margin-bottom) + 3rem * 2 + 0.5rem);
             width: auto;
-            flex-grow: 0;
         }
     }
 </style>
