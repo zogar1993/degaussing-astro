@@ -24,7 +24,7 @@ const characters = info.characters.slice(0, 3)
 		}
 		{
 			[...Array(3 - characters.length)].map(() => (
-				<li class="no-one">
+				<li>
 					<Image src="/images/shadowed.webp" alt="" width={112} height={112} />
 				</li>
 			))
@@ -73,10 +73,6 @@ const characters = info.characters.slice(0, 3)
 
         img {
             width: 4.5rem;
-        }
-
-        .no-one {
-            display: none;
         }
     }
 </style>
