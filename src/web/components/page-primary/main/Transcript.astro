@@ -1,6 +1,7 @@
 ---
 import { getLangFromUrl, useTranslations } from "@server/i18n/utils"
 import type { PageInfo } from "@server/GetPageInfo"
+import { ID } from "@web/ID"
 
 const language = getLangFromUrl(Astro.url)
 const t = useTranslations(language)
@@ -14,7 +15,7 @@ const paragraphs = description.trim().split("\n").map(p => {
 	return { panel: parts[0], description: parts.splice(1).join(":") }
 })
 ---
-<div id="transcript" class="transcript">
+<div id={ID.TRANSCRIPT} class="transcript">
 	<div class="header-container">
 		<h2>{t("page-primary.transcript.title")}</h2>
 	</div>

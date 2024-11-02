@@ -1,12 +1,12 @@
 ---
-import { ANCHORS } from "@web/Anchors"
+import { ID } from "@web/ID"
 import ComicStrip from "@web/components/page-primary/main/ComicStrip.astro"
 import Transcript from "@web/components/page-primary/main/Transcript.astro"
 import type { PageInfo } from "@server/GetPageInfo"
 
 const { info } = Astro.props as { info: PageInfo }
 ---
-<main id={ANCHORS.MAIN}>
+<main id={ID.MAIN}>
 	<ComicStrip info={info} />
 	<Transcript info={info} />
 </main>

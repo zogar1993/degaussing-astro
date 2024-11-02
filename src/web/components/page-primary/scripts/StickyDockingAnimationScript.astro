@@ -1,0 +1,31 @@
+---
+import { getLangFromUrl, useTranslations } from "@server/i18n/utils"
+import { ID } from "@web/ID"
+
+const language = getLangFromUrl(Astro.url)
+const t = useTranslations(language)
+---
+<script define:vars={{
+	transcriptSelector: `#${ID.TRANSCRIPT}`,
+	stickySelector: `nav[aria-label="${t("landmarks.navigation-comic")}"`
+}}>
+	const transcriptElement = document.querySelector(transcriptSelector)
+	const stickyElement = document.querySelector(stickySelector)
+
+	const style = getComputedStyle(document.body)
+
+	const stickyHeight = parseFloat(style.getPropertyValue('--sticky-navbar_height'))
+	const primaryLayoutGap = parseFloat(style.getPropertyValue('--primary-layout_gap'))
+	const margin = `-${(stickyHeight + primaryLayoutGap) * 16}px`
+
+	const observer = new IntersectionObserver((entries) => {
+		console.log(stickyHeight, primaryLayoutGap, margin)
+		const social = entries[0]
+		if (social.isIntersecting) {
+			stickyElement.classList.add("docked")
+		} else {
+			stickyElement.classList.remove("docked")
+		}
+	}, {rootMargin: margin})
+	observer.observe(transcriptElement)
+</script>

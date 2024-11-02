@@ -1,4 +1,4 @@
-import { ANCHORS } from "@web/Anchors"
+import { ID } from "@web/ID"
 import { LanguageCode, useLocalizePath, useTranslations } from "@server/i18n/utils"
 import type { PageCoordinates } from "@server/Utils"
 
@@ -7,5 +7,5 @@ export default function getLocalizedLinkToComicStrip(
 ) {
 	const localizePath = useLocalizePath(language)
 	const t = useTranslations(language)
-	return localizePath(`/${t("url.chapters")}/${chapter}/${t("url.pages")}/${page}#${ANCHORS.MAIN}`)
+	return localizePath(`/${t("url.chapters")}/${chapter}/${t("url.pages")}/${page}#${ID.MAIN}`)
 }

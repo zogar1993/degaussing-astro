@@ -6,6 +6,7 @@ import StickyNavBar from "@web/components/StickyNavBar.astro"
 import Comments from "@web/components/page-primary/comments/Comments.astro"
 import Newsletter from "@web/components/page-primary/newsletter/Newsletter.astro"
 import PrimaryPageMain from "@web/components/page-primary/main/PagePrimaryMain.astro"
+import StickyDockingAnimationScript from "@web/components/page-primary/scripts/StickyDockingAnimationScript.astro"
 import getLocalizedLinkToComicStrip from "@server/actions/GetLocalizedLinkToComicStrip"
 import { getLangFromUrl } from "@server/i18n/utils"
 import type { PageInfo } from "@server/GetPageInfo"
@@ -28,6 +29,7 @@ const next = forward ? getLocalizedLinkToComicStrip({ ...forward.one, language }
 		<Newsletter />
 	</div>
 </MainLayout>
+<StickyDockingAnimationScript />
 <script define:vars={{ previous, next }}>
 	const handleOnKeyDown = (e) => {
 		// We only care about the character when pressed alone
@@ -78,9 +80,15 @@ const next = forward ? getLocalizedLinkToComicStrip({ ...forward.one, language }
 	}, { passive: true })
 </script>
 <style>
-    .grid {
+		/* Adding these on ":root" instead of ".grid" so it is easier to query the variables from js. */
+    :root {
+        --strip_width: calc(var(--content--desktop_width) + var(--border-wide-width) * 2);
+
         --donations__button_size: 4.5rem;
+
+        --aside__text_color: var(--color--black);
         --aside__section_padding: 1.5rem;
+
         /* using donations section as a proxy to calculate aside width */
         --aside--desktop_width: calc(
                 var(--border-wide-width) * 2 +
@@ -90,6 +98,18 @@ const next = forward ? getLocalizedLinkToComicStrip({ ...forward.one, language }
         );
 
         --section--mobile_padding: 1rem;
+
+        --primary-layout_gap: 1.25rem;
+        --primary-layout--desktop_width: calc(var(--strip_width) + var(--primary-layout_gap) + var(--aside--desktop_width));
+
+        --sticky-navbar__link--disabled_color: var(--color--light-grey);
+        --sticky-navbar__text_color: var(--color--white);
+        --sticky-navbar--desktop_margin-inline: calc(5.5rem + var(--border-wide-width));
+        --sticky-navbar--desktop_width: calc(var(--primary-layout--desktop_width) - var(--sticky-navbar--desktop_margin-inline) * 2);
+        --sticky-navbar_height: 3.75rem;
+    }
+
+    .grid {
 
         display: grid;
 
@@ -104,9 +124,9 @@ const next = forward ? getLocalizedLinkToComicStrip({ ...forward.one, language }
         	[transcript-end main-end sticky-nav-bar-start] auto
         	[sticky-nav-bar-end comments-start] auto
         	[comments-end newsletter-start] auto;
-        	[newsletter-end];
+    [ newsletter-end ];
 
-        gap: 1.25rem;
+        gap: var(--primary-layout_gap);
     }
 
     @media (max-width: 72em) {
