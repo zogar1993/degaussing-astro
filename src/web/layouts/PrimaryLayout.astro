@@ -80,7 +80,7 @@ const next = forward ? getLocalizedLinkToComicStrip({ ...forward.one, language }
 	}, { passive: true })
 </script>
 <style>
-		/* Adding these on ":root" instead of ".grid" so it is easier to query the variables from js. */
+    /* Adding these on ":root" instead of ".grid" so it is easier to query the variables from js. */
     :root {
         --strip_width: calc(var(--content--desktop_width) + var(--border-wide-width) * 2);
 
@@ -123,8 +123,8 @@ const next = forward ? getLocalizedLinkToComicStrip({ ...forward.one, language }
         	[strip-end aside-end transcript-start] auto
         	[transcript-end main-end sticky-nav-bar-start] auto
         	[sticky-nav-bar-end comments-start] auto
-        	[comments-end newsletter-start] auto;
-    [ newsletter-end ];
+        	[comments-end newsletter-start] auto
+    			[newsletter-end];
 
         gap: var(--primary-layout_gap);
     }
