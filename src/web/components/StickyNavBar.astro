@@ -71,6 +71,7 @@ const { info: { current, backward, forward } } = Astro.props
     		.sticky-bar {
 	        position: sticky;
 	        z-index: 50;
+					width: calc(var(--strip_width) - var(--sticky-navbar--desktop_margin-inline) * 2);
     		}
 
         .sticky-bar:global(.docked) {
@@ -112,7 +113,6 @@ const { info: { current, backward, forward } } = Astro.props
         color: var(--sticky-navbar__text_color);
         bottom: .75rem;
 
-				width: calc(var(--strip_width) - var(--sticky-navbar--desktop_margin-inline) * 2);
         transition: width 0.5s, box-shadow 0.5s;
     }
 
