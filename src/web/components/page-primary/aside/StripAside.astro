@@ -19,6 +19,8 @@ const { info } = Astro.props
 </aside>
 <style>
     aside {
+    		--aside-right-column__heading--margin-bottom: 1.25rem;
+
         grid-column: right;
         grid-row: aside;
 
@@ -40,23 +42,14 @@ const { info } = Astro.props
         border-radius: var(--component_border-radius);
         background-color: var(--section_background-color);
     }
-    
+
     @media (width > 72em) {
-    	aside {
-				--heading_font-size: 1.75rem;
-    	}
-    }
-
-    @media (max-width: 72em) {
         aside {
-            grid-template-columns: auto 1fr auto;
-            grid-template-rows: 1fr;
-
-            grid-template-areas: "last-update characters donations";
+            --heading_font-size: 1.75rem;
         }
     }
 
-    @media (max-width: 54em) {
+    @media (max-width: 72em) {
         aside {
             grid-template-columns: auto 1fr;
             grid-template-rows: 1fr 1fr;
@@ -64,6 +57,10 @@ const { info } = Astro.props
             grid-template-areas:
 							"last-update characters"
 							"last-update donations";
+        }
+
+        aside > :global(section) {
+            padding: var(--section--mobile_padding);
         }
     }
 

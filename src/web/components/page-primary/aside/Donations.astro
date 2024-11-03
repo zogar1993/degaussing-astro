@@ -1,7 +1,7 @@
 ---
 import Icon from "@web/components/general/Icon.astro"
 import { getContributionLinks } from "@server/actions/GetContributionLinks"
-import { getLangFromUrl,useTranslations } from "@server/i18n/utils"
+import { getLangFromUrl, useTranslations } from "@server/i18n/utils"
 
 const language = getLangFromUrl(Astro.url)
 const t = useTranslations(language)
@@ -27,12 +27,12 @@ const links = await getContributionLinks()
 </section>
 <style>
     section {
-    		grid-area: donations;
+        grid-area: donations;
     }
 
     ul {
         display: flex;
-				gap: var(--buttons_gap);
+        gap: var(--buttons_gap);
     }
 
     a {
@@ -60,15 +60,19 @@ const links = await getContributionLinks()
         background-color: var(--button--hover_background-color);
     }
 
-    @media (max-width: 72em) {
+    @media (width <= 72em) {
+        h2 {
+            margin-bottom: var(--aside-right-column__heading--margin-bottom);
+        }
+
         ul {
-        		flex-direction: column;
+            flex-direction: column;
             gap: .5rem;
         }
 
         a {
-        		width: auto;
-        		font-size: 1rem;
+            width: auto;
+            font-size: 1rem;
             height: 3rem;
             grid-template-columns: 3rem 1fr;
             grid-template-rows: none;
@@ -76,8 +80,8 @@ const links = await getContributionLinks()
         }
 
         div > :global(svg) {
-        	margin-top: 4px; /* TODO fix svg sizes so this is not necesary */
-					transform: scale(calc(100% * 0.8));
+            margin-top: 4px; /* TODO fix svg sizes so this is not necesary */
+            transform: scale(calc(100% * 0.8));
         }
     }
 </style>

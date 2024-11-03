@@ -56,20 +56,7 @@ const split_heading = t("landmarks.last-update").split(" ")
         max-height: 277px;
     }
 
-    @media (54em < width <= 72em) {
-        section {
-            flex-direction: row;
-        		gap: 1rem;
-        }
-
-        img {
-            width: auto;
-            /* TODO base this on donations */
-            height: calc(1.5rem * 1.2 + var(--heading_margin-bottom) + 3rem * 2 + 0.5rem);
-        }
-    }
-
-    @media (36em < width <= 54em) {
+    @media (36em < width <= 72em) {
         section {
             flex-direction: column;
             gap: 0;
@@ -81,14 +68,11 @@ const split_heading = t("landmarks.last-update").split(" ")
 
         span {
         		margin-top: auto;
-        		margin-inline: auto;
-        		margin-bottom: 0.5em;
+        		margin-bottom: 1em;
         }
 
         img {
         		margin-inline: auto;
-        		max-width: 167px;
-            max-height: 236px;
         }
 
         br {
