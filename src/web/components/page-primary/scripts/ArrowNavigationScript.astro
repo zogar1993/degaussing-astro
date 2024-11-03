@@ -1,0 +1,22 @@
+---
+const { previous, next } = Astro.props as { previous: string; next: string }
+---
+<script define:vars={{ previous, next }}>
+	const handleOnKeyDown = (e) => {
+		// We only care about the character when pressed alone
+		if (e.ctrlKey || e.shiftKey || e.altKey || e.metaKey) return
+
+		const navigateTo = (path) => {
+			if (!path) return
+			window.location.href = path
+			e.preventDefault()
+		}
+
+		if (["k", "K", "ArrowLeft"].includes(e.key))
+			navigateTo(previous)
+		else if (["j", "J", "ArrowRight"].includes(e.key))
+			navigateTo(next)
+	}
+
+	document.body.addEventListener("keydown", handleOnKeyDown)
+</script>

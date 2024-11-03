@@ -1,0 +1,34 @@
+---
+const { previous, next } = Astro.props as { previous: string; next: string }
+---
+<script define:vars={{ previous, next }}>
+	const main = document.querySelector("main")
+	const MOVE_THRESHOLD = 100
+
+	let initialX = 0
+	let initialY = 0
+	let initialScrollPosition = 0
+
+	main.addEventListener("touchstart", e => {
+		const touch = e.touches[0]
+		initialX = touch.pageX
+		initialY = touch.pageY
+		initialScrollPosition = document.documentElement.scrollTop
+	}, { passive: true })
+
+	main.addEventListener("touchend", e => {
+		const touch = e.changedTouches[0]
+		const xDisplacement = touch.pageX - initialX
+		const scrollDisplacement = document.documentElement.scrollTop - initialScrollPosition
+		const yDisplacement = touch.pageY - initialY + scrollDisplacement
+
+		//Non horizontal swipes are ignored
+		if (Math.abs(yDisplacement) > MOVE_THRESHOLD) return
+
+		if (xDisplacement < -MOVE_THRESHOLD && next) {
+			window.location.href = next
+		} else if (xDisplacement > MOVE_THRESHOLD && previous) {
+			window.location.href = previous
+		}
+	}, { passive: true })
+</script>

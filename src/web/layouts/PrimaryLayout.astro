@@ -7,6 +7,8 @@ import Comments from "@web/components/page-primary/comments/Comments.astro"
 import Newsletter from "@web/components/page-primary/newsletter/Newsletter.astro"
 import PrimaryPageMain from "@web/components/page-primary/main/PagePrimaryMain.astro"
 import StickyDockingAnimationScript from "@web/components/page-primary/scripts/StickyDockingAnimationScript.astro"
+import SwipeNavigationScript from "@web/components/page-primary/scripts/SwipeNavigationScript.astro"
+import ArrowNavigationScript from "@web/components/page-primary/scripts/ArrowNavigationScript.astro"
 import getLocalizedLinkToComicStrip from "@server/actions/GetLocalizedLinkToComicStrip"
 import { getLangFromUrl } from "@server/i18n/utils"
 import type { PageInfo } from "@server/GetPageInfo"
@@ -30,55 +32,8 @@ const next = forward ? getLocalizedLinkToComicStrip({ ...forward.one, language }
 	</div>
 </MainLayout>
 <StickyDockingAnimationScript />
-<script define:vars={{ previous, next }}>
-	const handleOnKeyDown = (e) => {
-		// We only care about the character when pressed alone
-		if (e.ctrlKey || e.shiftKey || e.altKey || e.metaKey) return
-
-		const navigateTo = (path) => {
-			if (!path) return
-			window.location.href = path
-			e.preventDefault()
-		}
-
-		if (["k", "K", "ArrowLeft"].includes(e.key))
-			navigateTo(previous)
-		else if (["j", "J", "ArrowRight"].includes(e.key))
-			navigateTo(next)
-	}
-
-	document.body.addEventListener("keydown", handleOnKeyDown)
-
-	const main = document.querySelector("main")
-	const MOVE_THRESHOLD = 100
-
-	let initialX = 0
-	let initialY = 0
-	let initialScrollPosition = 0
-
-	main.addEventListener("touchstart", e => {
-		const touch = e.touches[0]
-		initialX = touch.pageX
-		initialY = touch.pageY
-		initialScrollPosition = document.documentElement.scrollTop
-	}, { passive: true })
-
-	main.addEventListener("touchend", e => {
-		const touch = e.changedTouches[0]
-		const xDisplacement = touch.pageX - initialX
-		const scrollDisplacement = document.documentElement.scrollTop - initialScrollPosition
-		const yDisplacement = touch.pageY - initialY + scrollDisplacement
-
-		//Non horizontal swipes are ignored
-		if (Math.abs(yDisplacement) > MOVE_THRESHOLD) return
-
-		if (xDisplacement < -MOVE_THRESHOLD && next) {
-			window.location.href = next
-		} else if (xDisplacement > MOVE_THRESHOLD && previous) {
-			window.location.href = previous
-		}
-	}, { passive: true })
-</script>
+<SwipeNavigationScript previous={previous} next={next} />
+<ArrowNavigationScript previous={previous} next={next} />
 <style>
     /* Adding these on ":root" instead of ".grid" so it is easier to query the variables from js. */
     :root {
