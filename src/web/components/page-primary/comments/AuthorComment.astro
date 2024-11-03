@@ -22,7 +22,7 @@ const date = getLocalizedDate({ date: info.createdAt, language })
 {info.author_comment &&
 <section aria-label={t("landmarks.author")}>
 	<div class="heading-container">
-		<h2 class="heading">{t("landmarks.author")}</h2>
+		<h2>{t("landmarks.author")}</h2>
 		<SocialLinks />
 	</div>
 	<div class="comment-header">
@@ -53,22 +53,8 @@ const date = getLocalizedDate({ date: info.createdAt, language })
         color: var(--text--muted_color);
     }
 
-    .heading {
-        font-family: var(--heading_font-family);
-        font-style: normal;
-        font-weight: 400;
-        font-size: 2rem;
-        color: var(--heading_color);
-    }
-
     .heading-container {
         display: flex;
         justify-content: space-between;
-    }
-
-    @media (max-width: 72em) {
-        .heading {
-            font-size: 1.5rem;
-        }
     }
 </style>

@@ -46,24 +46,10 @@ const { info } = Astro.props
         justify-content: space-between;
     }
 
-    .heading {
-        font-family: var(--heading_font-family);
-        font-style: normal;
-        font-weight: 400;
-        font-size: 2rem;
-        color: var(--heading_color);
-    }
-
     /* adds padding to avoid browser rounding inconsistencies and leaving room for focus outlines */
     .iframe-container {
         --_iframe_padding: 1px;
         width: calc(100% + var(--_iframe_padding) * 2);
         margin-left: calc(var(--_iframe_padding) * -1);
-    }
-
-    @media (max-width: 72em) {
-        .heading {
-            font-size: 1.5rem;
-        }
     }
 </style>
