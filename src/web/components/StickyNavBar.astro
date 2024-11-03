@@ -68,15 +68,15 @@ const { info: { current, backward, forward } } = Astro.props
 </nav>
 <style>
     @media (72em < width) {
-    		.sticky-bar {
-	        position: sticky;
-	        z-index: 50;
-					width: calc(var(--strip_width) - var(--sticky-navbar--desktop_margin-inline) * 2);
-    		}
+        .sticky-bar {
+            position: sticky;
+            z-index: 50;
+            width: calc(var(--strip_width) - var(--sticky-navbar--desktop_margin-inline) * 2);
+        }
 
         .sticky-bar:global(.docked) {
-        		width: var(--sticky-navbar--desktop_width);
-        		box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+            width: var(--sticky-navbar--desktop_width);
+            box-shadow: 0 0 0 rgba(0, 0, 0, 0);
         }
     }
 
@@ -99,11 +99,11 @@ const { info: { current, backward, forward } } = Astro.props
         height: var(--sticky-navbar_height);
 
         background-color: var(--navigation_background-color);
-        border: 1px solid #000000;
+        border: var(--component_border);
         box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.25);
         border-radius: 10px;
 
-        padding: 0 4.5rem;
+        padding: 0 4rem;
 
         font-family: var(--heading_font-family);
         font-style: normal;
@@ -118,7 +118,7 @@ const { info: { current, backward, forward } } = Astro.props
 
     .navigation-arrows {
         display: flex;
-        gap: 1.5rem;
+        gap: 1rem;
     }
 
     .text {
@@ -131,7 +131,7 @@ const { info: { current, backward, forward } } = Astro.props
 
         color: var(--link_color);
         font-size: 2.5rem;
-        min-width: 2.25rem;
+        min-width: 3rem;
 
         transition: var(--link--hover_transition-timing);
         transition-property: color;
@@ -150,7 +150,10 @@ const { info: { current, backward, forward } } = Astro.props
         .sticky-bar {
             position: static;
             /* TODO move border widths to variables, 2px is the difference between border sizes */
-            padding: calc(1rem + 2px) 1rem;
+            --_min_link_size_offset: 0.5rem;
+            --_border_width_offset: calc(var(--section_border-width) - var(--component_border-width));
+            --_sticky-navbar--padding-inline: calc(var(--section--mobile_padding) + var(--_border_width_offset) - var(--_min_link_size_offset));
+            padding: var(--_sticky-navbar--padding-inline) 1rem;
             margin-inline: 0;
             box-shadow: none;
         }

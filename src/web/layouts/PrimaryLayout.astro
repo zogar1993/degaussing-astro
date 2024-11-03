@@ -37,29 +37,30 @@ const next = forward ? getLocalizedLinkToComicStrip({ ...forward.one, language }
 <style>
     /* Adding these on ":root" instead of ".grid" so it is easier to query the variables from js. */
     :root {
-        --strip_width: calc(var(--content--desktop_width) + var(--border-wide-width) * 2);
+        --strip_width: calc(var(--content--desktop_width) + var(--section_border-width) * 2);
 
         --donations__button_size: 4.5rem;
 
+        --section--mobile_padding: 1rem;
+        --section_border-width: 3px;
+        --section_border: var(--section_border-width) solid var(--component_border-color);
+
         --aside__text_color: var(--color--black);
         --aside__section_padding: 1.5rem;
-
         /* using donations section as a proxy to calculate aside width */
         --aside--desktop_width: calc(
-                var(--border-wide-width) * 2 +
+                var(--section_border-width) * 2 +
                 var(--aside__section_padding) * 2 +
                 var(--donations__button_size) * 2 +
                 var(--buttons_gap)
         );
-
-        --section--mobile_padding: 1rem;
 
         --primary-layout_gap: 1.25rem;
         --primary-layout--desktop_width: calc(var(--strip_width) + var(--primary-layout_gap) + var(--aside--desktop_width));
 
         --sticky-navbar__link--disabled_color: var(--color--light-grey);
         --sticky-navbar__text_color: var(--color--white);
-        --sticky-navbar--desktop_margin-inline: calc(5.5rem + var(--border-wide-width));
+        --sticky-navbar--desktop_margin-inline: calc(5.5rem + var(--section_border-width));
         --sticky-navbar--desktop_width: calc(var(--primary-layout--desktop_width) - var(--sticky-navbar--desktop_margin-inline) * 2);
         --sticky-navbar_height: 3.75rem;
     }

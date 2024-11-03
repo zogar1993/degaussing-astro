@@ -35,7 +35,7 @@ const { info } = Astro.props
         position: relative;
 
         padding: var(--aside__section_padding);
-        border: var(--border-wide);
+        border: var(--section_border);
 
         border-radius: var(--component_border-radius);
         background-color: var(--section_background-color);
@@ -53,10 +53,6 @@ const { info } = Astro.props
             grid-template-rows: 1fr;
 
             grid-template-areas: "last-update characters donations";
-        }
-
-        aside > :global(section) {
-            padding: 1em;
         }
     }
 
