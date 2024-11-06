@@ -125,7 +125,7 @@ main .gsc-loading-image {
 
 @font-face {
     font-family: "Inter";
-    src: url("/fonts/Inter.woff2") format("woff2");
+    src: url("/fonts/Inter-Full.woff2") format("woff2");
     font-weight: normal;
     font-style: normal;
     font-display: fallback;
