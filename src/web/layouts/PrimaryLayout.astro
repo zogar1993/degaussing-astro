@@ -9,6 +9,7 @@ import PrimaryPageMain from "@web/components/page-primary/main/PagePrimaryMain.a
 import StickyDockingAnimationScript from "@web/components/page-primary/scripts/StickyDockingAnimationScript.astro"
 import SwipeNavigationScript from "@web/components/page-primary/scripts/SwipeNavigationScript.astro"
 import ArrowNavigationScript from "@web/components/page-primary/scripts/ArrowNavigationScript.astro"
+import NewsletterSubscriptionScript from "../components/page-primary/scripts/NewsletterSubscriptionScript.astro"
 import getLocalizedLinkToComicStrip from "@server/actions/GetLocalizedLinkToComicStrip"
 import { getLangFromUrl } from "@server/i18n/utils"
 import type { PageInfo } from "@server/GetPageInfo"
@@ -34,6 +35,7 @@ const next = forward ? getLocalizedLinkToComicStrip({ ...forward.one, language }
 <StickyDockingAnimationScript />
 <SwipeNavigationScript previous={previous} next={next} />
 <ArrowNavigationScript previous={previous} next={next} />
+<NewsletterSubscriptionScript />
 <style>
     /* Adding these on ":root" instead of ".grid" so it is easier to query the variables from js. */
     :root {
@@ -41,7 +43,7 @@ const next = forward ? getLocalizedLinkToComicStrip({ ...forward.one, language }
 
         --donations__button_size: 4.5rem;
 
-        --section--mobile_padding: 1.5rem;
+        --section_padding: 2.5rem 5.5rem;
         --section_border-width: 3px;
         --section_border: var(--section_border-width) solid var(--component_border-color);
 
@@ -65,8 +67,13 @@ const next = forward ? getLocalizedLinkToComicStrip({ ...forward.one, language }
         --sticky-navbar_height: 3.75rem;
     }
 
-    .grid {
+    @media (width <= 72em) {
+        :root {
+            --section_padding: 1.5rem;
+        }
+    }
 
+    .grid {
         display: grid;
 
         grid-template-columns:

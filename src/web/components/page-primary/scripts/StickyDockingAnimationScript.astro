@@ -19,7 +19,6 @@ const t = useTranslations(language)
 	const margin = `-${(stickyHeight + primaryLayoutGap) * 16}px`
 
 	const observer = new IntersectionObserver((entries) => {
-		console.log(stickyHeight, primaryLayoutGap, margin)
 		const social = entries[0]
 		if (social.isIntersecting) {
 			stickyElement.classList.add("docked")

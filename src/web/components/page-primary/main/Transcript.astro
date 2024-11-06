@@ -35,7 +35,7 @@ const paragraphs = description.trim().split("\n").map(p => {
         border-radius: var(--component_border-radius);
         border: var(--section_border);
 
-        padding: 2.5rem 5.5rem;
+        padding: var(--section_padding);
     }
 
     strong {
@@ -45,11 +45,5 @@ const paragraphs = description.trim().split("\n").map(p => {
     .header-container {
         display: flex;
         justify-content: space-between;
-    }
-
-    @media (max-width: 72em) {
-        .transcript {
-            padding: var(--section--mobile_padding);
-        }
     }
 </style>

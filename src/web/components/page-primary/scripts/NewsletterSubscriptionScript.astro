@@ -1,0 +1,38 @@
+<script src="https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad" async defer></script>
+<script>
+	const newsletter = document.getElementById("newsletter")
+	const newsletterInput = document.getElementById("newsletter-input")
+	const newsletterButton = document.getElementById("newsletter-button")
+	const newsletterForm = document.getElementById("newsletter-form")
+
+	window.onNewsletterSubscription = () => {
+		const formData = new FormData(newsletterForm)
+
+		newsletter.dataset.state = "waiting-server-confirmation"
+		newsletterButton.disabled = true
+
+		fetch(newsletterForm.getAttribute("action"), {
+			method: "POST",
+			body: formData
+		})
+			.then(response => response.json())  // assuming server returns JSON
+			.then(data => {
+				if (data.success)
+					newsletter.dataset.state = "success"
+				else
+					newsletter.dataset.state = "error"
+			})
+			.catch(() => {
+				newsletter.dataset.state = "error"
+			})
+	}
+
+	window.onRecaptchaLoad = () => {
+		newsletterButton.disabled = true
+	}
+
+	newsletterInput.addEventListener("input", () => {
+		const isValid = newsletterInput.value.length > 0 && newsletterInput.checkValidity()
+		newsletterButton.disabled = !isValid
+	})
+</script>

@@ -149,10 +149,9 @@ const { info: { current, backward, forward } } = Astro.props
     @media (max-width: 72em) {
         .sticky-bar {
             position: static;
-            /* TODO move border widths to variables, 2px is the difference between border sizes */
             --_min_link_size_offset: 0.5rem;
             --_border_width_offset: calc(var(--section_border-width) - var(--component_border-width));
-            --_sticky-navbar--padding-inline: calc(var(--section--mobile_padding) + var(--_border_width_offset) - var(--_min_link_size_offset));
+            --_sticky-navbar--padding-inline: calc(var(--section_padding) + var(--_border_width_offset) - var(--_min_link_size_offset));
             padding: var(--_sticky-navbar--padding-inline) 1rem;
             margin-inline: 0;
             box-shadow: none;
