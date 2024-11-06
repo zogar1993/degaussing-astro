@@ -38,6 +38,13 @@ export const translations = {
 		"landmarks.strip-aside": "Current page information",
 		"landmarks.author": "Author",
 
+		"newsletter.title": "Newsletter",
+		"newsletter.description": "Subscribe for new release and other updates!",
+		"newsletter.subscribe": "Subscribe",
+		"newsletter.subscribing": "Subscribing",
+		"newsletter.success": "You have successfully joined our newsletter!",
+		"newsletter.error": "The subscription process failed. Please try again later, or add an issue to https://github.com/zogar1993/degaussing-astro/issues if the problem persists.",
+
 		"seo.description": "Our young friends escape their hometown and make a run through the continent of Gaoan, but it seems like nowhere is really safe! Where could a mage go to avoid persecution? What secrets do Alan's sword hold? Old grudges are brewing beneath the surface and war is coming from overseas.",
 
 		"page-primary.transcript.title": "Transcript",
@@ -95,6 +102,13 @@ export const translations = {
 		"landmarks.newsletter": "Novedades",
 		"landmarks.strip-aside": "Information de página actual",
 		"landmarks.author": "Autor",
+
+		"newsletter.title": "Novedades",
+		"newsletter.description": "¡Enterate cuando salen nuevas paginas y otras noticias!",
+		"newsletter.subscribe": "Subscribir",
+		"newsletter.subscribing": "Subscribiendo",
+		"newsletter.success": "¡Te subscribiste al newsletter exitosamente!",
+		"newsletter.error": "El proceso de subscripción ha fallado. Inténtelo nuevamente más tarde, o agregue un issue a https://github.com/zogar1993/degaussing-astro/issues si el problema persiste.",
 
 		"seo.description": "Nuestros jovenes amigos escapan de su pueblo y emprenden un viaje a través del continente de Gaoan, ¡Pero ningún lugar es seguro! ¿Donde podría ir un mago para evitar ser perseguido? ¿Que secretos guarda la espada de Alan? Antiguos rencores no se olvidan, cruzando el mar se preparan para la guerra.",
 

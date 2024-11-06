@@ -7,38 +7,38 @@ const t = useTranslations(language)
 
 const { info } = Astro.props as { info: PageInfo }
 
-//TODO captcha <div class="g-recaptcha" data-sitekey="6Lf1KHQUAAAAAFNKEX1hdSWCS3mRMv4FlFaNslaD"></div>
-
 const NEWSLETTER_URL = {
 	es: "https://assets.mailerlite.com/jsonp/989761/forms/124424779064149866/subscribe",
 	en: "https://assets.mailerlite.com/jsonp/989761/forms/124338419743590345/subscribe"
 } as const
 ---
-<aside aria-label={t("landmarks.newsletter")} id="newsletter">
-	<h2>Novedades</h2>
-	<p>¡Enterate cuando salen nuevas paginas y otras noticias!</p>
+<aside aria-label={t("landmarks.newsletter")} id="newsletter" data-state="idle">
+	<h2>{t("newsletter.title")}</h2>
+	<p class="visible-when-not-server-confirmed">{t("newsletter.description")}</p>
 	<form
-		class="ml-block-form"
-		action={NEWSLETTER_URL}
+		id="newsletter-form"
+		class="visible-when-not-server-confirmed"
+		action={NEWSLETTER_URL[language]}
 		data-code=""
 		method="post"
 		target="_blank"
 	>
-		<div class="input-container">
-			<input type="email" data-inputmask="" name="fields[email]" placeholder="Email" autocomplete="email" />
-			<input type="hidden" name="ml-submit" value="1" />
-			<button type="submit">Subscribir</button>
-			<button disabled="disabled" type="button">
-				<span class="sr-only">Loading...</span>
-			</button>
-		</div>
+		<input id="newsletter-input" type="email" name="fields[email]" placeholder="Email" autocomplete="email" />
+		<input type="hidden" name="ml-submit" value="1" />
+		<button
+			id="newsletter-button"
+			class="g-recaptcha"
+			data-sitekey="6LeccXQqAAAAAPGs9dstzJZHDENS23T504768yvk"
+			data-callback="onNewsletterSubscription"
+			disabled="disabled"
+		>
+			<span class="visible-when-idle">{t("newsletter.subscribe")}</span>
+			<span class="visible-when-waiting-server-confirmation">{t("newsletter.subscribing")}</span>
+		</button>
 		<input type="hidden" name="anticsrf" value="true">
 	</form>
-
-	<div style="display: none">
-		<h4>¡Gracias!</h4>
-		<p>Te subscribiste al newsletter exitosamente.</p>
-	</div>
+	<p class="visible-when-success">{t("newsletter.success")}</p>
+	<p class="visible-when-error">{t("newsletter.error")}</p>
 </aside>
 <style>
     aside {
@@ -47,19 +47,13 @@ const NEWSLETTER_URL = {
 
         background-color: var(--section_background-color);
         border-radius: var(--component_border-radius);
-        border: var(--border-wide);
+        border: var(--section_border);
 
-        padding: 2.5rem 5.5rem;
+        padding: var(--section_padding);
     }
 
-    h2 {
-        font-style: normal;
-        font-weight: 400;
-        font-size: 2rem;
-    }
-
-    .input-container {
-    	display: flex;
+    form {
+        display: flex;
     }
 
     button {
@@ -71,8 +65,14 @@ const NEWSLETTER_URL = {
         border-radius: var(--component_border-radius);
     }
 
-    button:hover {
+    button:not([disabled]):hover {
         background-color: var(--button--hover_background-color);
+    }
+
+    button[disabled] {
+        background-color: #e0ae4fbb;
+        border-color: transparent;
+        color: #B1A3A3;
     }
 
     input[type=email] {
@@ -80,6 +80,31 @@ const NEWSLETTER_URL = {
         padding: 0.5rem 0.75rem;
         border-radius: var(--component_border-radius);
         border: 1px solid var(--button_border-color);
+        margin-right: var(--buttons_gap);
+    }
+
+    aside[data-state=waiting-server-confirmation] button {
+        cursor: wait;
+    }
+
+    aside[data-state]:not(aside[data-state=idle]) .visible-when-idle {
+        display: none;
+    }
+
+    aside[data-state]:not(aside[data-state=waiting-server-confirmation]) .visible-when-waiting-server-confirmation {
+        display: none;
+    }
+
+    aside[data-state]:not(aside[data-state=success]) .visible-when-success {
+        display: none;
+    }
+
+    aside[data-state]:not(aside[data-state=error]) .visible-when-error {
+        display: none;
+    }
+
+    :is(aside[data-state=success], aside[data-state=error]) .visible-when-not-server-confirmed {
+        display: none;
     }
 
     @media (max-width: 72em) {
