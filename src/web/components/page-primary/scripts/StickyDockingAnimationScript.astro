@@ -14,8 +14,8 @@ const t = useTranslations(language)
 
 	const style = getComputedStyle(document.body)
 
-	const stickyHeight = parseFloat(style.getPropertyValue('--sticky-navbar_height'))
-	const primaryLayoutGap = parseFloat(style.getPropertyValue('--primary-layout_gap'))
+	const stickyHeight = parseFloat(style.getPropertyValue("--sticky-navbar_height"))
+	const primaryLayoutGap = parseFloat(style.getPropertyValue("--primary-layout_gap"))
 	const margin = `-${(stickyHeight + primaryLayoutGap) * 16}px`
 
 	const observer = new IntersectionObserver((entries) => {
@@ -23,8 +23,11 @@ const t = useTranslations(language)
 		if (social.isIntersecting) {
 			stickyElement.classList.add("docked")
 		} else {
+			const bcr = transcriptElement.getBoundingClientRect()
+			const isScrollingDown = bcr.bottom < window.innerHeight
+			if (isScrollingDown) return
 			stickyElement.classList.remove("docked")
 		}
-	}, {rootMargin: margin})
+	}, { rootMargin: margin })
 	observer.observe(transcriptElement)
 </script>
