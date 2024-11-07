@@ -1,29 +1,42 @@
-<script src="https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad" async defer></script>
 <script>
-	const newsletter = document.getElementById("newsletter")
+	const newsletterSection = document.getElementById("newsletter")
 	const newsletterInput = document.getElementById("newsletter-input")
 	const newsletterButton = document.getElementById("newsletter-button")
 	const newsletterForm = document.getElementById("newsletter-form")
 
+	const formObserver = new IntersectionObserver((entries) => {
+		entries.forEach(entry => {
+			if (entry.isIntersecting) {
+				const script = document.createElement("script")
+				script.src = "https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad"
+				script.async = true
+				document.head.appendChild(script)
+				formObserver.unobserve(newsletterSection)
+			}
+		})
+	})
+
+	formObserver.observe(newsletterSection)
+
 	window.onNewsletterSubscription = () => {
 		const formData = new FormData(newsletterForm)
 
-		newsletter.dataset.state = "waiting-server-confirmation"
+		newsletterSection.dataset.state = "waiting-server-confirmation"
 		newsletterButton.disabled = true
 
 		fetch(newsletterForm.getAttribute("action"), {
 			method: "POST",
 			body: formData
 		})
-			.then(response => response.json())  // assuming server returns JSON
+			.then(response => response.json())
 			.then(data => {
 				if (data.success)
-					newsletter.dataset.state = "success"
+					newsletterSection.dataset.state = "success"
 				else
-					newsletter.dataset.state = "error"
+					newsletterSection.dataset.state = "error"
 			})
 			.catch(() => {
-				newsletter.dataset.state = "error"
+				newsletterSection.dataset.state = "error"
 			})
 	}
 
