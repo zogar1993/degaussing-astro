@@ -14,7 +14,7 @@ export interface Props {
 
 const { info } = Astro.props
 ---
-<section id="reader-comments" aria-label={t("landmarks.comments")}>
+<section aria-label={t("landmarks.comments")}>
 	<div class="heading-container">
 		<h2>{t("landmarks.comments")}</h2>
 		{!info.author_comment && <SocialLinks/>}

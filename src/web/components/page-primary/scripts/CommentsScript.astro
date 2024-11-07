@@ -17,7 +17,7 @@ const term = `/${language}/chapters/${info.current.chapter}/pages/${info.current
 const theme = `${protocol}://${domain}/styles/giscus.css`
 ---
 <script define:vars={{term, theme, language}}>
-	const readerComments = document.getElementById("reader-comments")
+	const comments = document.getElementById("comments")
 	const iframeContainer = document.getElementById("reader-comments__iframe-container")
 
 	const formObserver = new IntersectionObserver((entries) => {
@@ -43,10 +43,10 @@ const theme = `${protocol}://${domain}/styles/giscus.css`
 				script.async = true
 
 				iframeContainer.appendChild(script)
-				formObserver.unobserve(readerComments)
+				formObserver.unobserve(comments)
 			}
 		})
 	})
 
-	formObserver.observe(readerComments)
+	formObserver.observe(comments)
 </script>

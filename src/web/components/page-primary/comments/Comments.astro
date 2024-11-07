@@ -13,7 +13,7 @@ export interface Props {
 
 const { info } = Astro.props
 ---
-<aside aria-label={t("landmarks.social")}>
+<aside id="comments" aria-label={t("landmarks.social")}>
 	<AuthorComment info={info} />
 	<ReaderComments info={info} />
 </aside>
