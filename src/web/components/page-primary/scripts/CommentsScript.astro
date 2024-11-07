@@ -1,0 +1,52 @@
+---
+import { getLangFromUrl, useTranslations } from "@server/i18n/utils"
+import type { PageInfo } from "@server/GetPageInfo"
+const protocol = import.meta.env.PROTOCOL!
+const domain = import.meta.env.DOMAIN!
+
+const language = getLangFromUrl(Astro.url)
+const t = useTranslations(language)
+
+export interface Props {
+	info: PageInfo
+}
+
+const { info } = Astro.props
+
+const term = `/${language}/chapters/${info.current.chapter}/pages/${info.current.page}/`
+const theme = `${protocol}://${domain}/styles/giscus.css`
+---
+<script define:vars={{term, theme, language}}>
+	const readerComments = document.getElementById("reader-comments")
+	const iframeContainer = document.getElementById("reader-comments__iframe-container")
+
+	const formObserver = new IntersectionObserver((entries) => {
+		entries.forEach(entry => {
+			if (entry.isIntersecting) {
+				const script = document.createElement("script")
+
+				script.src = "https://giscus.app/client.js"
+				script.setAttribute("data-repo", "zogar1993/degaussing-astro")
+				script.setAttribute("data-repo-id", "R_kgDOIaWmTA")
+				script.setAttribute("data-category", "General")
+				script.setAttribute("data-category-id", "DIC_kwDOIaWmTM4CS02J")
+				script.setAttribute("data-mapping", "specific")
+				script.setAttribute("data-term", term)
+				script.setAttribute("data-strict", "0")
+				script.setAttribute("data-reactions-enabled", "0")
+				script.setAttribute("data-emit-metadata", "0")
+				script.setAttribute("data-input-position", "top")
+				script.setAttribute("data-theme", theme)
+				script.setAttribute("data-lang", language)
+				script.setAttribute("data-loading", "lazy")
+				script.setAttribute("crossorigin", "anonymous")
+				script.async = true
+
+				iframeContainer.appendChild(script)
+				formObserver.unobserve(readerComments)
+			}
+		})
+	})
+
+	formObserver.observe(readerComments)
+</script>

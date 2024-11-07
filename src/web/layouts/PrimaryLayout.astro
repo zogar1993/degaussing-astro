@@ -9,7 +9,8 @@ import PrimaryPageMain from "@web/components/page-primary/main/PagePrimaryMain.a
 import StickyDockingAnimationScript from "@web/components/page-primary/scripts/StickyDockingAnimationScript.astro"
 import SwipeNavigationScript from "@web/components/page-primary/scripts/SwipeNavigationScript.astro"
 import ArrowNavigationScript from "@web/components/page-primary/scripts/ArrowNavigationScript.astro"
-import NewsletterSubscriptionScript from "../components/page-primary/scripts/NewsletterSubscriptionScript.astro"
+import CommentsScript from "@web/components/page-primary/scripts/CommentsScript.astro"
+import NewsletterSubscriptionScript from "@web/components/page-primary/scripts/NewsletterSubscriptionScript.astro"
 import getLocalizedLinkToComicStrip from "@server/actions/GetLocalizedLinkToComicStrip"
 import { getLangFromUrl } from "@server/i18n/utils"
 import type { PageInfo } from "@server/GetPageInfo"
@@ -35,6 +36,7 @@ const next = forward ? getLocalizedLinkToComicStrip({ ...forward.one, language }
 <StickyDockingAnimationScript />
 <SwipeNavigationScript previous={previous} next={next} />
 <ArrowNavigationScript previous={previous} next={next} />
+<CommentsScript info={info} />
 <NewsletterSubscriptionScript />
 <style>
     /* Adding these on ":root" instead of ".grid" so it is easier to query the variables from js. */

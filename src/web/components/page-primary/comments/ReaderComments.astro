@@ -14,30 +14,12 @@ export interface Props {
 
 const { info } = Astro.props
 ---
-<section aria-label={t("landmarks.comments")}>
+<section id="reader-comments" aria-label={t("landmarks.comments")}>
 	<div class="heading-container">
 		<h2>{t("landmarks.comments")}</h2>
 		{!info.author_comment && <SocialLinks/>}
 	</div>
-	<div class="iframe-container">
-		<script
-			src="https://giscus.app/client.js"
-			data-repo="zogar1993/degaussing-astro"
-			data-repo-id="R_kgDOIaWmTA"
-			data-category="General"
-			data-category-id="DIC_kwDOIaWmTM4CS02J"
-			data-mapping="specific"
-			data-term={`/${language}/chapters/${info.current.chapter}/pages/${info.current.page}/`}
-			data-strict="0"
-			data-reactions-enabled="0"
-			data-emit-metadata="0"
-			data-input-position="top"
-			data-theme={`${protocol}://${domain}/styles/giscus.css`}
-			data-lang={language}
-			data-loading="lazy"
-			crossorigin="anonymous"
-			async
-		></script>
+	<div id="reader-comments__iframe-container">
 	</div>
 </section>
 <style>
@@ -47,7 +29,7 @@ const { info } = Astro.props
     }
 
     /* adds padding to avoid browser rounding inconsistencies and leaving room for focus outlines */
-    .iframe-container {
+    #comments-iframe-container {
         --_iframe_padding: 1px;
         width: calc(100% + var(--_iframe_padding) * 2);
         margin-left: calc(var(--_iframe_padding) * -1);
