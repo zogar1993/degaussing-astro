@@ -12,33 +12,35 @@ const NEWSLETTER_URL = {
 	en: "https://assets.mailerlite.com/jsonp/989761/forms/124338419743590345/subscribe"
 } as const
 ---
-<aside aria-label={t("landmarks.newsletter")} id="newsletter" data-state="idle">
+<aside aria-label={t("landmarks.newsletter")} id="newsletter">
 	<h2>{t("newsletter.title")}</h2>
-	<p class="visible-when-not-server-confirmed">{t("newsletter.description")}</p>
-	<form
-		id="newsletter-form"
-		class="visible-when-not-server-confirmed"
-		action={NEWSLETTER_URL[language]}
-		data-code=""
-		method="post"
-		target="_blank"
-	>
-		<input id="newsletter-input" type="email" name="fields[email]" placeholder="Email" autocomplete="email" />
-		<input type="hidden" name="ml-submit" value="1" />
-		<button
-			id="newsletter-button"
-			class="g-recaptcha"
-			data-sitekey="6LeccXQqAAAAAPGs9dstzJZHDENS23T504768yvk"
-			data-callback="onNewsletterSubscription"
-			disabled="disabled"
+	<span id="newsletter__load-spinner" class="loader"></span>
+	<div id="newsletter__form-container" hidden>
+		<p>{t("newsletter.description")}</p>
+		<form
+			id="newsletter__form"
+			action={NEWSLETTER_URL[language]}
+			data-code=""
+			method="post"
+			target="_blank"
 		>
-			<span class="visible-when-idle">{t("newsletter.subscribe")}</span>
-			<span class="visible-when-waiting-server-confirmation">{t("newsletter.subscribing")}</span>
-		</button>
-		<input type="hidden" name="anticsrf" value="true">
-	</form>
-	<p class="visible-when-success">{t("newsletter.success")}</p>
-	<p class="visible-when-error">{t("newsletter.error")}</p>
+			<input id="newsletter__input" type="email" name="fields[email]" placeholder="Email" autocomplete="email" />
+			<input type="hidden" name="ml-submit" value="1" />
+			<button
+				id="newsletter__button"
+				class="g-recaptcha"
+				data-sitekey="6LeccXQqAAAAAPGs9dstzJZHDENS23T504768yvk"
+				data-callback="onNewsletterSubscription"
+				disabled="disabled"
+			>
+				<span>{t("newsletter.subscribe")}</span>
+			</button>
+			<span id="newsletter__submit-spinner" class="loader" hidden></span>
+			<input type="hidden" name="anticsrf" value="true">
+		</form>
+	</div>
+	<p id="newsletter__success-message" hidden>{t("newsletter.success")}</p>
+	<p id="newsletter__error-message" hidden>{t("newsletter.error")}</p>
 </aside>
 <style>
     aside {
@@ -69,10 +71,11 @@ const NEWSLETTER_URL = {
         background-color: var(--button--hover_background-color);
     }
 
-    button[disabled] {
+    button:disabled {
         background-color: #e0ae4fbb;
         border-color: transparent;
         color: #B1A3A3;
+        cursor: not-allowed;
     }
 
     input[type=email] {
@@ -83,33 +86,33 @@ const NEWSLETTER_URL = {
         margin-right: var(--buttons_gap);
     }
 
-    aside[data-state=waiting-server-confirmation] button {
-        cursor: wait;
-    }
-
-    aside[data-state]:not(aside[data-state=idle]) .visible-when-idle {
-        display: none;
-    }
-
-    aside[data-state]:not(aside[data-state=waiting-server-confirmation]) .visible-when-waiting-server-confirmation {
-        display: none;
-    }
-
-    aside[data-state]:not(aside[data-state=success]) .visible-when-success {
-        display: none;
-    }
-
-    aside[data-state]:not(aside[data-state=error]) .visible-when-error {
-        display: none;
-    }
-
-    :is(aside[data-state=success], aside[data-state=error]) .visible-when-not-server-confirmed {
-        display: none;
+    input[type=email]:disabled {
+        cursor: not-allowed;
     }
 
     @media (max-width: 72em) {
         h2 {
             font-size: 1.5rem;
+        }
+    }
+
+    .loader:not([hidden]) {
+        width: 48px;
+        height: 48px;
+        border: 5px solid var(--color--white);
+        border-bottom-color: var(--color--yellow);
+        border-radius: 50%;
+        display: inline-block;
+        box-sizing: border-box;
+        animation: rotation 1s linear infinite;
+    }
+
+    @keyframes rotation {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
         }
     }
 </style>

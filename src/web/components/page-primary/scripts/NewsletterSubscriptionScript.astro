@@ -1,8 +1,13 @@
 <script>
-	const newsletterSection = document.getElementById("newsletter")
-	const newsletterInput = document.getElementById("newsletter-input")
-	const newsletterButton = document.getElementById("newsletter-button")
-	const newsletterForm = document.getElementById("newsletter-form")
+	const section = document.getElementById("newsletter")
+	const spinnerOnLoad = document.getElementById("newsletter__load-spinner")
+	const spinnerOnSubmitting = document.getElementById("newsletter__submit-spinner")
+	const messageSuccess = document.getElementById("newsletter__success-message")
+	const messageError = document.getElementById("newsletter__error-message")
+	const formContainer = document.getElementById("newsletter__form-container")
+	const form = document.getElementById("newsletter__form")
+	const input = document.getElementById("newsletter__input")
+	const button = document.getElementById("newsletter__button")
 
 	const formObserver = new IntersectionObserver((entries) => {
 		entries.forEach(entry => {
@@ -11,41 +16,47 @@
 				script.src = "https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad"
 				script.async = true
 				document.head.appendChild(script)
-				formObserver.unobserve(newsletterSection)
+				formObserver.unobserve(section)
 			}
 		})
 	})
 
-	formObserver.observe(newsletterSection)
+	formObserver.observe(section)
 
 	window.onNewsletterSubscription = () => {
-		const formData = new FormData(newsletterForm)
+		const formData = new FormData(form)
 
-		newsletterSection.dataset.state = "waiting-server-confirmation"
-		newsletterButton.disabled = true
+		button.hidden = true
+		input.disabled = true
+		spinnerOnSubmitting.hidden = false
 
-		fetch(newsletterForm.getAttribute("action"), {
+		fetch(form.getAttribute("action"), {
 			method: "POST",
 			body: formData
 		})
 			.then(response => response.json())
 			.then(data => {
 				if (data.success)
-					newsletterSection.dataset.state = "success"
+					messageSuccess.hidden = false
 				else
-					newsletterSection.dataset.state = "error"
+					messageError.hidden = false
 			})
 			.catch(() => {
-				newsletterSection.dataset.state = "error"
+				messageError.hidden = false
+			})
+			.finally(() => {
+				formContainer.hidden = true
 			})
 	}
 
 	window.onRecaptchaLoad = () => {
-		newsletterButton.disabled = true
+		button.disabled = true
+		formContainer.hidden = false
+		spinnerOnLoad.hidden = true
 	}
 
-	newsletterInput.addEventListener("input", () => {
-		const isValid = newsletterInput.value.length > 0 && newsletterInput.checkValidity()
-		newsletterButton.disabled = !isValid
+	input.addEventListener("input", () => {
+		const isValid = input.value.length > 0 && input.checkValidity()
+		button.disabled = !isValid
 	})
 </script>
