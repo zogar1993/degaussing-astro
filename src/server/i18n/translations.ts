@@ -41,7 +41,7 @@ export const translations = {
 		"newsletter.title": "Newsletter",
 		"newsletter.description": "Subscribe for new release and other updates!",
 		"newsletter.subscribe": "Subscribe",
-		"newsletter.subscribing": "Subscribing...",
+		"newsletter.loading": "Loading",
 		"newsletter.success": "You have successfully joined our newsletter!",
 		"newsletter.error": `Something went wrong! Please try again later, or post an issue <a href="https://github.com/zogar1993/degaussing-astro/issues">here</a> if the problem persists.`,
 
@@ -106,7 +106,7 @@ export const translations = {
 		"newsletter.title": "Novedades",
 		"newsletter.description": "¡Enterate cuando salen nuevas paginas y otras noticias!",
 		"newsletter.subscribe": "Suscribir",
-		"newsletter.subscribing": "Suscribiendo...",
+		"newsletter.loading": "Cargando",
 		"newsletter.success": "¡Te suscribiste al newsletter exitosamente!",
 		"newsletter.error": "Ha ocurrido un error. Inténtelo nuevamente más tarde, o reporte el problema <a href=\"https://github.com/zogar1993/degaussing-astro/issues\">aquí</a> si este persiste.",
 

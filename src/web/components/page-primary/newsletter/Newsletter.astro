@@ -14,7 +14,7 @@ const NEWSLETTER_URL = {
 ---
 <aside aria-label={t("landmarks.newsletter")} id="newsletter">
 	<h2>{t("newsletter.title")}</h2>
-	<span id="newsletter__spinner" class="loader"></span>
+	<span id="newsletter__spinner" class="loader" aria-label={t("newsletter.loading")}></span>
 	<div id="newsletter__form-container" hidden>
 		<p>{t("newsletter.description")}</p>
 		<form
