@@ -40,7 +40,7 @@ const NEWSLETTER_URL = {
 		</form>
 	</div>
 	<p id="newsletter__success-message" hidden>{t("newsletter.success")}</p>
-	<p id="newsletter__error-message" hidden>{t("newsletter.error")}</p>
+	<p id="newsletter__error-message" hidden set:html={t("newsletter.error")}></p>
 </aside>
 <style>
     aside {
@@ -105,6 +105,10 @@ const NEWSLETTER_URL = {
         display: inline-block;
         box-sizing: border-box;
         animation: rotation 1s linear infinite;
+    }
+
+    aside :global(a) {
+    	text-decoration: underline;
     }
 
     @keyframes rotation {

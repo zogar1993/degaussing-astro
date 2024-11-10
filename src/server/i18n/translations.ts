@@ -43,7 +43,7 @@ export const translations = {
 		"newsletter.subscribe": "Subscribe",
 		"newsletter.subscribing": "Subscribing...",
 		"newsletter.success": "You have successfully joined our newsletter!",
-		"newsletter.error": "The subscription process failed. Please try again later, or add an issue to https://github.com/zogar1993/degaussing-astro/issues if the problem persists.",
+		"newsletter.error": `Something went wrong! Please try again later, or post an issue <a href="https://github.com/zogar1993/degaussing-astro/issues">here</a> if the problem persists.`,
 
 		"seo.description": "Our young friends escape their hometown and make a run through the continent of Gaoan, but it seems like nowhere is really safe! Where could a mage go to avoid persecution? What secrets do Alan's sword hold? Old grudges are brewing beneath the surface and war is coming from overseas.",
 
@@ -108,7 +108,7 @@ export const translations = {
 		"newsletter.subscribe": "Suscribir",
 		"newsletter.subscribing": "Suscribiendo...",
 		"newsletter.success": "¡Te suscribiste al newsletter exitosamente!",
-		"newsletter.error": "El proceso de suscripción ha fallado. Inténtelo nuevamente más tarde, o agregue un issue a https://github.com/zogar1993/degaussing-astro/issues si el problema persiste.",
+		"newsletter.error": "Ha ocurrido un error. Inténtelo nuevamente más tarde, o reporte el problema <a href=\"https://github.com/zogar1993/degaussing-astro/issues\">aquí</a> si este persiste.",
 
 		"seo.description": "Nuestros jovenes amigos escapan de su pueblo y emprenden un viaje a través del continente de Gaoan, ¡Pero ningún lugar es seguro! ¿Donde podría ir un mago para evitar ser perseguido? ¿Que secretos guarda la espada de Alan? Antiguos rencores no se olvidan, cruzando el mar se preparan para la guerra.",
 

@@ -15,6 +15,10 @@
 				const script = document.createElement("script")
 				script.src = "https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad"
 				script.async = true
+				script.onerror = () => {
+					spinnerOnLoad.hidden = true
+					messageError.hidden = false
+				}
 				document.head.appendChild(script)
 				formObserver.unobserve(section)
 			}
