@@ -14,7 +14,7 @@ const NEWSLETTER_URL = {
 ---
 <aside aria-label={t("landmarks.newsletter")} id="newsletter">
 	<h2>{t("newsletter.title")}</h2>
-	<span id="newsletter__load-spinner" class="loader"></span>
+	<span id="newsletter__spinner" class="loader"></span>
 	<div id="newsletter__form-container" hidden>
 		<p>{t("newsletter.description")}</p>
 		<form
@@ -35,7 +35,6 @@ const NEWSLETTER_URL = {
 			>
 				<span>{t("newsletter.subscribe")}</span>
 			</button>
-			<span id="newsletter__submit-spinner" class="loader" hidden></span>
 			<input type="hidden" name="anticsrf" value="true">
 		</form>
 	</div>
@@ -52,6 +51,10 @@ const NEWSLETTER_URL = {
         border: var(--section_border);
 
         padding: var(--section_padding);
+    }
+
+    #newsletter__form-container > p {
+        margin-bottom: 1rem;
     }
 
     form {
@@ -74,7 +77,7 @@ const NEWSLETTER_URL = {
     button:disabled {
         color: var(--button--disabled_color);
         background-color: var(--button--disabled_background-color);
-        border-width: 0;
+        border-color: transparent;
         cursor: not-allowed;
     }
 
@@ -87,29 +90,19 @@ const NEWSLETTER_URL = {
         outline-color: var(--input_outline-color);
     }
 
-    input[type=email]:disabled {
-        cursor: not-allowed;
-    }
-
-    @media (max-width: 72em) {
-        h2 {
-            font-size: 1.5rem;
-        }
-    }
-
     .loader:not([hidden]) {
-        width: 48px;
-        height: 48px;
+        width: 4rem;
+        height: 4rem;
+        margin-inline: auto;
         border: 5px solid var(--color--white);
         border-bottom-color: var(--color--yellow);
         border-radius: 50%;
-        display: inline-block;
-        box-sizing: border-box;
+        display: block;
         animation: rotation 1s linear infinite;
     }
 
     aside :global(a) {
-    	text-decoration: underline;
+        text-decoration: underline;
     }
 
     @keyframes rotation {
@@ -118,6 +111,16 @@ const NEWSLETTER_URL = {
         }
         100% {
             transform: rotate(360deg);
+        }
+    }
+
+    @media (max-width: 72em) {
+        h2 {
+            font-size: 1.5rem;
+        }
+
+        #newsletter__form-container > p {
+            margin-bottom: 0.75rem;
         }
     }
 </style>

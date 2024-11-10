@@ -1,7 +1,6 @@
 <script>
 	const section = document.getElementById("newsletter")
-	const spinnerOnLoad = document.getElementById("newsletter__load-spinner")
-	const spinnerOnSubmitting = document.getElementById("newsletter__submit-spinner")
+	const spinner = document.getElementById("newsletter__spinner")
 	const messageSuccess = document.getElementById("newsletter__success-message")
 	const messageError = document.getElementById("newsletter__error-message")
 	const formContainer = document.getElementById("newsletter__form-container")
@@ -16,7 +15,7 @@
 				script.src = "https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad"
 				script.async = true
 				script.onerror = () => {
-					spinnerOnLoad.hidden = true
+					spinner.hidden = true
 					messageError.hidden = false
 				}
 				document.head.appendChild(script)
@@ -30,9 +29,8 @@
 	window.onNewsletterSubscription = () => {
 		const formData = new FormData(form)
 
-		button.hidden = true
-		input.disabled = true
-		spinnerOnSubmitting.hidden = false
+		spinner.hidden = false
+		formContainer.hidden = true
 
 		fetch(form.getAttribute("action"), {
 			method: "POST",
@@ -49,14 +47,14 @@
 				messageError.hidden = false
 			})
 			.finally(() => {
-				formContainer.hidden = true
+				spinner.hidden = true
 			})
 	}
 
 	window.onRecaptchaLoad = () => {
 		button.disabled = true
 		formContainer.hidden = false
-		spinnerOnLoad.hidden = true
+		spinner.hidden = true
 	}
 
 	input.addEventListener("input", () => {
