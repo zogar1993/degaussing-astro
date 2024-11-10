@@ -142,8 +142,9 @@ const { info: { current, backward, forward } } = Astro.props
     }
 
     .link.disabled {
-        pointer-events: none;
+        user-select: none;
         color: var(--sticky-navbar__link--disabled_color);
+        cursor: not-allowed;
     }
 
     @media (max-width: 72em) {
