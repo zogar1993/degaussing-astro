@@ -1,4 +1,5 @@
 :root {
+    --color--desaturated-yellow: #E0AE4FBB;
     --color--yellow: #F0BE5F;
     --color--orange: #FD854C;
     --color--dark-orange: #E94E1B;
@@ -29,7 +30,7 @@
 
     --color-btn-primary-border: var(--component_border);
 
-    --color-btn-primary-disabled-bg: #e0ae4fbb;
+    --color-btn-primary-disabled-bg: var(--color--desaturated-yellow);
     --color-btn-primary-disabled-border: transparent;
     --color-btn-primary-disabled-text: var(--color--light-grey);
 
@@ -41,7 +42,7 @@
     --color-fg-muted: var(--component-muted_color);
 
     --color-canvas-default: var(--background_color);
-    --color-canvas-inset: #ffffff;
+    --color-canvas-inset: var(--color--white);
     --color-canvas-subtle: rgba(128, 128, 128, 0.44);
     --color-scale-gray-1: rgba(128, 128, 128, 0.44);
 
@@ -169,7 +170,7 @@ main .gsc-loading-image {
 }
 
 textarea::placeholder {
-    color: #767676;
+    color: var(--color--dark-grey);
 }
 
 .gsc-comment-header {
