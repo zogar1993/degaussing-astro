@@ -7,14 +7,13 @@
     --color--blue: #273D5F;
     --color--white: #FFFFFF;
     --color--light-grey: #B1A3A3;
-    --color--grey: #808080;
     --color--dark-grey: #767676;
     --color--black: #373737;
     --color--dark-black: #000000;
 
     --text_color: var(--color--black);
     --background_color: var(--color--white);
-    --component--muted_color: var(--color--grey);
+    --component--muted_color: var(--color--dark-grey);
     --component-disabled_color: var(--color--light-grey);
     --component_border: var(--color--dark-brown);
     
