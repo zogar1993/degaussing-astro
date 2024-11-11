@@ -23,6 +23,8 @@
     --component_border-radius: 5px;
 
     /*! Extensions from @primer/css/alerts/flash.scss */
+    --color-text-secondary: var(--color--dark-grey);
+
     --color-accent-subtle: #ddf4ff;
     --color-social-reaction-bg-hover: var(--color-scale-gray-1);
     --color-social-reaction-bg-reacted-hover: var(--color-scale-blue-1);
@@ -54,22 +56,17 @@
 body {
     /* adds padding to avoid browser rounding inconsistencies and leaving room for focus outlines */
     margin: 0 1px;
-    font-family: Inter, serif;
-    font-size: 16px;
+    font-family: Inter, sans-serif;
+    font-size: 1rem;
 }
 
 .link-secondary {
-    font-size: 16px !important;
+    font-size: 1rem !important;
     line-height: 1.4;
 }
 
-textarea {
-    font-size: 16px;
-    padding: 0.5rem;
-}
-
 .btn {
-    font-size: 16px;
+    font-size: 1rem;
     padding: 0.5rem 0.75rem;
 }
 
@@ -89,10 +86,21 @@ textarea {
     border-width: 0;
     margin: 0;
     line-height: 1.5;
+    font-size: 1rem;
 }
 
 .gsc-comment > div {
     border-width: 0 !important;
+}
+
+.gsc-comment-author time {
+    color: var(--color--dark-grey)
+}
+
+
+.gsc-comment-author-avatar > img {
+    width: 2.5rem;
+    height: 2.5rem;
 }
 
 .gsc-comment-box-main {
@@ -152,12 +160,19 @@ textarea {
 }
 
 .gsc-comment-box-textarea {
+    font-size: 1rem;
+    padding: 0.5rem;
     color: var(--text_color) !important;
     border: 1px solid var(--component_border) !important;
     border-radius: var(--component_border-radius);
 }
 
-textarea::placeholder {
+.gsc-comment-box-textarea:focus-visible {
+    outline: 2px solid var(--color--orange);
+    outline-offset: -1px;
+}
+
+.gsc-comment-box-textarea::placeholder {
     color: var(--color--dark-grey);
 }
 
