@@ -37,7 +37,6 @@ const date = getLocalizedDate({ date: info.createdAt, language })
     section {
         display: flex;
         flex-direction: column;
-        gap: 1rem;
         --author-comment_font-size: 1rem;
         --rich-text_font-size: var(--author-comment_font-size);
     }
@@ -47,6 +46,7 @@ const date = getLocalizedDate({ date: info.createdAt, language })
         align-items: center;
         gap: 0.5rem;
         font-size: var(--author-comment_font-size);
+        margin-bottom: 1rem;
     }
 
     .comment-header__date {
@@ -56,5 +56,12 @@ const date = getLocalizedDate({ date: info.createdAt, language })
     .heading-container {
         display: flex;
         justify-content: space-between;
+    }
+
+    @media (width <= 72em) {
+        .comment-header {
+            margin-bottom: 0.5rem;
+        }
+
     }
 </style>

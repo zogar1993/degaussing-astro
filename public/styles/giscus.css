@@ -74,17 +74,6 @@ textarea {
     padding: 0.5rem 0.75rem;
 }
 
-/*
-main .pagination-loader-container {
-    background-image: url("https://github.com/images/modules/pulls/progressive-disclosure-line.svg");
-}
-
-main .gsc-loading-image {
-    background-image: url("https://github.githubassets.com/images/mona-loading-default.gif");
-}
-*/
-
-
 .gsc-comment-box-bottom {
     justify-content: flex-end;
     margin: 0;
@@ -183,6 +172,12 @@ textarea::placeholder {
 
 .gsc-comment-reactions {
     margin-left: 0;
+}
+
+@media (width <= 72em) {
+    .gsc-comments {
+        gap: 0.75em;
+    }
 }
 
 /* BEGIN HIDE ZONE */

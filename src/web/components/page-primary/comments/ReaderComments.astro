@@ -19,8 +19,7 @@ const { info } = Astro.props
 		<h2>{t("landmarks.comments")}</h2>
 		{!info.author_comment && <SocialLinks/>}
 	</div>
-	<div id="reader-comments__iframe-container">
-	</div>
+	<div id="reader-comments__iframe-container"></div>
 </section>
 <style>
     .heading-container {
@@ -29,9 +28,13 @@ const { info } = Astro.props
     }
 
     /* adds padding to avoid browser rounding inconsistencies and leaving room for focus outlines */
-    #comments-iframe-container {
+    #reader-comments__iframe-container {
         --_iframe_padding: 1px;
         width: calc(100% + var(--_iframe_padding) * 2);
         margin-left: calc(var(--_iframe_padding) * -1);
+    }
+
+    #reader-comments__iframe-container > :global(.giscus) {
+        display: flex;
     }
 </style>
