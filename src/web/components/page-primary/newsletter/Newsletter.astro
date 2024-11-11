@@ -12,9 +12,14 @@ const NEWSLETTER_URL = {
 	en: "https://assets.mailerlite.com/jsonp/989761/forms/124338419743590345/subscribe"
 } as const
 ---
-<aside aria-label={t("landmarks.newsletter")} id="newsletter">
+<aside
+	id="newsletter"
+	aria-label={t("landmarks.newsletter")}
+	aria-live="polite"
+	aria-busy="true"
+>
 	<h2>{t("newsletter.title")}</h2>
-	<span id="newsletter__spinner" class="loader" aria-label={t("newsletter.loading")}></span>
+	<span class="loader"></span>
 	<div id="newsletter__form-container" hidden>
 		<p>{t("newsletter.description")}</p>
 		<form
@@ -90,7 +95,11 @@ const NEWSLETTER_URL = {
         outline-color: var(--input_outline-color);
     }
 
-    .loader:not([hidden]) {
+		aside[aria-busy=false] .loader {
+			display: none;
+		}
+
+    aside[aria-busy=true] .loader {
         width: 4rem;
         height: 4rem;
         margin-inline: auto;

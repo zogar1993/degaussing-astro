@@ -1,6 +1,5 @@
 <script>
 	const section = document.getElementById("newsletter")
-	const spinner = document.getElementById("newsletter__spinner")
 	const messageSuccess = document.getElementById("newsletter__success-message")
 	const messageError = document.getElementById("newsletter__error-message")
 	const formContainer = document.getElementById("newsletter__form-container")
@@ -15,7 +14,7 @@
 				script.src = "https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad"
 				script.async = true
 				script.onerror = () => {
-					spinner.hidden = true
+					section.setAttribute("aria-busy", "false")
 					messageError.hidden = false
 				}
 				document.head.appendChild(script)
@@ -29,7 +28,7 @@
 	window.onNewsletterSubscription = () => {
 		const formData = new FormData(form)
 
-		spinner.hidden = false
+		section.setAttribute("aria-busy", "true")
 		formContainer.hidden = true
 
 		fetch(form.getAttribute("action"), {
@@ -47,14 +46,14 @@
 				messageError.hidden = false
 			})
 			.finally(() => {
-				spinner.hidden = true
+				section.setAttribute("aria-busy", "false")
 			})
 	}
 
 	window.onRecaptchaLoad = () => {
 		button.disabled = true
 		formContainer.hidden = false
-		spinner.hidden = true
+		section.setAttribute("aria-busy", "false")
 	}
 
 	input.addEventListener("input", () => {
