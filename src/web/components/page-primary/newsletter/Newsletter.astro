@@ -42,6 +42,7 @@ const NEWSLETTER_URL = {
 			</button>
 			<input type="hidden" name="anticsrf" value="true">
 		</form>
+		<span class="recaptcha-policy" set:html={t("newsletter.recaptcha-policy")}></span>
 	</div>
 	<p id="newsletter__success-message" hidden>{t("newsletter.success")}</p>
 	<p id="newsletter__error-message" hidden set:html={t("newsletter.error")}></p>
@@ -64,6 +65,16 @@ const NEWSLETTER_URL = {
 
     form {
         display: flex;
+        gap: var(--buttons_gap);
+        flex-wrap: wrap;
+    }
+
+    input {
+        font-size: 1rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: var(--component_border-radius);
+        border: 1px solid var(--button_border-color);
+        outline-color: var(--input_outline-color);
     }
 
     button {
@@ -84,15 +95,6 @@ const NEWSLETTER_URL = {
         background-color: var(--button--disabled_background-color);
         border-color: transparent;
         cursor: not-allowed;
-    }
-
-    input[type=email] {
-        font-size: 1rem;
-        padding: 0.5rem 0.75rem;
-        border-radius: var(--component_border-radius);
-        border: 1px solid var(--button_border-color);
-        margin-right: var(--buttons_gap);
-        outline-color: var(--input_outline-color);
     }
 
 		aside[aria-busy=false] .loader {
@@ -123,6 +125,17 @@ const NEWSLETTER_URL = {
         }
     }
 
+    /* hide recaptcha badge */
+    #newsletter__form > :global(div:not([class])) {
+        display: none;
+    }
+
+    .recaptcha-policy {
+    		display: block;
+    		margin-top: 0.5rem;
+        font-size: 0.75rem;
+    }
+
     @media (max-width: 72em) {
         h2 {
             font-size: 1.5rem;
@@ -130,6 +143,21 @@ const NEWSLETTER_URL = {
 
         #newsletter__form-container > p {
             margin-bottom: 0.75rem;
+        }
+    }
+
+    @media (max-width: 36em) {
+        input {
+            /*
+							this is a hack so that button only grows when alone in its line.
+							We could choose any high number, but 1152px is 36rem * 2,
+							which means a flex grow of 1 would at best get less than 0.5px.
+						*/
+            flex-grow: 1152;
+        }
+
+        button {
+            flex-grow: 1;
         }
     }
 </style>

@@ -43,6 +43,7 @@ export const translations = {
 		"newsletter.subscribe": "Subscribe",
 		"newsletter.success": "You have successfully joined our newsletter!",
 		"newsletter.error": `Something went wrong! Please try again later, or <a href="https://github.com/zogar1993/degaussing-astro/issues">post an issue</a> if the problem persists.`,
+		"newsletter.recaptcha-policy": `*This form is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.`,
 
 		"seo.description": "Our young friends escape their hometown and make a run through the continent of Gaoan, but it seems like nowhere is really safe! Where could a mage go to avoid persecution? What secrets do Alan's sword hold? Old grudges are brewing beneath the surface and war is coming from overseas.",
 
@@ -107,6 +108,7 @@ export const translations = {
 		"newsletter.subscribe": "Suscribir",
 		"newsletter.success": "¡Te suscribiste al newsletter exitosamente!",
 		"newsletter.error": "Ha ocurrido un error. Inténtelo nuevamente más tarde, o <a href=\"https://github.com/zogar1993/degaussing-astro/issues\">reporte el error</a> si este persiste.",
+		"newsletter.recaptcha-policy": `*Este formulario está protegido por reCAPTCHA de Google y aplican su <a href="https://policies.google.com/privacy">Política de Privacidad</a> y sus <a href="https://policies.google.com/terms">Términos de Servicio</a>.`,
 
 		"seo.description": "Nuestros jovenes amigos escapan de su pueblo y emprenden un viaje a través del continente de Gaoan, ¡Pero ningún lugar es seguro! ¿Donde podría ir un mago para evitar ser perseguido? ¿Que secretos guarda la espada de Alan? Antiguos rencores no se olvidan, cruzando el mar se preparan para la guerra.",
 
