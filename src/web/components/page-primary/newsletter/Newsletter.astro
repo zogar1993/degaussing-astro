@@ -150,8 +150,9 @@ const NEWSLETTER_URL = {
         input {
             /*
 							this is a hack so that button only grows when alone in its line.
-							We could choose any high number, but 1152px is 36rem * 2,
-							which means a flex grow of 1 would at best get less than 0.5px.
+							We could choose any high number, but 36rem * 2 is 1152px:
+							this means "flex-grow: 1" will at most be less than 0.5px, so
+							the button will never win a pixel when it competes with the input.
 						*/
             flex-grow: 1152;
         }
