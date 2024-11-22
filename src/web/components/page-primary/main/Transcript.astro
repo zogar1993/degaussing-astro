@@ -12,6 +12,8 @@ const { description } = info
 const paragraphs = description.trim().split("\n").map(p => {
 	const parts = p.split(":")
 	if (parts.length === 1) return { panel: null, description: parts[0] }
+	if (!parts[0].toLowerCase().includes("panel"))
+		return { panel: null, description: parts.join(":") }
 	return { panel: parts[0], description: parts.splice(1).join(":") }
 })
 ---
