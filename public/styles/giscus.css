@@ -51,6 +51,14 @@
     --color-btn-primary-selected-bg: #005FCC;
 
     --color-border-default: transparent;
+
+    --link--hover_transition-timing: .2s cubic-bezier(.3, 0, .5, 1);
+}
+
+a:hover,
+button:hover {
+    transition: var(--link--hover_transition-timing);
+    transition-property: color, background-color;
 }
 
 body {
