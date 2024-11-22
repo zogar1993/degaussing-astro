@@ -65,6 +65,10 @@ body {
     line-height: 1.4;
 }
 
+.link-secondary:hover {
+    color: var(--color--orange);
+}
+
 .btn {
     font-size: 1rem;
     padding: 0.5rem 0.75rem;
