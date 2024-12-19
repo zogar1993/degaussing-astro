@@ -2,7 +2,7 @@
 import Header from "@web/components/header/Header.astro"
 import ResetCss from "@web/styles/ResetCss.astro"
 import FontsCss from "@web/styles/FontsCss.astro"
-import ImagesPrefetch from "@web/performance/ImagesPreload.astro"
+import ImagesPreload from "@web/performance/ImagesPreload.astro"
 import VariablesCss from "@web/styles/VariablesCss.astro"
 //TODO import { HeadHrefLangs } from "astro-i18next/components" <HeadHrefLangs />
 import getIsHomepage from "@server/GetIsHomepage"
@@ -26,7 +26,7 @@ const isHomepage = getIsHomepage({ path: Astro.url.pathname, language })
 	{isHomepage &&
 		<meta name="description" content={t("seo.description")} />}
 	<FontsCss />
-	<ImagesPrefetch info={info} />
+	<ImagesPreload info={info} />
 	<ResetCss />
 	<VariablesCss />
 </head>
