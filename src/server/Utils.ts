@@ -3,14 +3,14 @@ import type { Chapter } from "@transport/Chapter"
 export function getNextAndLast({ chapters, chapter, page }: PageFunctionProps) {
 	const lastChapter = last(chapters)
 	const isLast =
-		chapter === chapters.length && page === lastChapter.pages.length
+		chapter === chapters.length && page === lastChapter.pages.length - 1
 	if (isLast) return null
 	return {
 		one:
-			page === currentChapter({ chapters, chapter }).pages.length
+			page === currentChapter({ chapters, chapter }).pages.length - 1
 				? { chapter: chapter + 1, page: 0 }
 				: { chapter, page: page + 1 },
-		all: { chapter: chapters.length, page: lastChapter.pages.length }
+		all: { chapter: chapters.length, page: lastChapter.pages.length - 1 }
 	}
 }
 
@@ -26,7 +26,7 @@ export function getPreviousAndFirst({
 			page === 0
 				? {
 					chapter: chapter - 1,
-					page: previousChapter({ chapters, chapter }).pages.length
+					page: previousChapter({ chapters, chapter }).pages.length - 1
 				}
 				: {
 					chapter,
