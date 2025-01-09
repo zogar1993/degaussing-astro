@@ -11,11 +11,11 @@ export async function getChapters({ language }: { language: string }): Promise<R
 		pages: [chapter.cover, ...chapter.pages].map((page, i) => ({
 				...page,
 				createdAt: new Date(page.createdAt),
-				characters: page.characters.map(fixCharacterImageUrl),
+				characters: (page.characters || []).map(fixCharacterImageUrl),
 				number: i
 			})
-		)
-	}))
+		).filter(page => page.createdAt < Date.now())
+	})).filter(chapter => chapter.pages.length > 0)
 }
 
 const fixCharacterImageUrl = (character: { name: string, image: string }) =>
