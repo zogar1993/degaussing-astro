@@ -37,7 +37,6 @@ export function getPreviousAndFirst({
 }
 
 export function getPage({ chapters, chapter, page }: PageFunctionProps) {
-	console.log(chapter, page, chapters[chapter - 1].pages.length)
 	return chapters[chapter - 1].pages[page]
 }
 
