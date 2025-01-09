@@ -2,7 +2,8 @@ import contentful from "contentful"
 
 const client = contentful.createClient({
 	space: import.meta.env.CONTENTFUL_SPACE_ID!,
-	accessToken: import.meta.env.CONTENTFUL_ACCESS_TOKEN_DELIVERY!
+	accessToken: import.meta.env.CONTENTFUL_ACCESS_TOKEN_DELIVERY!,
+	host: "cdn.contentful.com"
 })
 
 export async function fetchEntries<T>(

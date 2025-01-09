@@ -5,7 +5,8 @@ import ResetCss from "@web/styles/ResetCss.astro"
 import VariablesCss from "@web/styles/VariablesCss.astro"
 const client = contentful.createClient({
 	space: import.meta.env.CONTENTFUL_SPACE_ID!,
-	accessToken: import.meta.env.CONTENTFUL_ACCESS_TOKEN_DELIVERY!
+	accessToken: import.meta.env.CONTENTFUL_ACCESS_TOKEN_PREVIEW!,
+	host: "preview.contentful.com"
 })
 
 async function fetchEntries(
@@ -44,8 +45,9 @@ function getEntryStatus(sys) {
 }
 
 type Day = {
-	date: string
+	date: Date
 	pages: Array<Page>
+	is_first_future_date?: boolean
 }
 
 type Page = {
@@ -74,7 +76,7 @@ for (let i = 0; i < entriesEN.length; i++) {
 		transcribed_spanish: typeof fieldsES.description === "string" && fieldsES.description !== "",
 		author_comment:
 			english_author_comment && spanish_author_comment ? "🧌🇦🇷🇬🇧" :
-				english_author_comment && !spanish_author_comment ? "🧌🇬🇧" :
+				english_author_comment && !spanish_author_comment ? "🧌🇬🇧🚫" :
 					spanish_author_comment && !english_author_comment ? "🧌🇦🇷🚫" :
 						""
 	}
@@ -82,9 +84,14 @@ for (let i = 0; i < entriesEN.length; i++) {
 	if (day)
 		day.pages.push(page)
 	else
-		days.push({ date: fieldsEN.createdAt, pages: [page] })
+		days.push({ date: fieldsEN.createdAt && new Date(fieldsEN.createdAt), pages: [page] })
 }
-// ✅🚫
+const now = new Date()
+const futureDays = days.filter(item => item.date > now) // Filter for future dates
+	.sort((a, b) => a.date.getTime() - b.date.getTime())
+
+if (futureDays.length > 0)
+	futureDays[0].is_first_future_date = true
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -100,14 +107,23 @@ for (let i = 0; i < entriesEN.length; i++) {
 <body>
 <ol>
 	{days.map(day =>
-		<li>
-			<h2>{day.date}</h2>
+		<li
+			class={
+				(day.is_first_future_date ? "first-future-date " : "") +
+				(day.pages.some(page =>
+					!page.transcribed_english ||
+					!page.transcribed_spanish ||
+					page.status != "published" ||
+					page.author_comment.includes("🚫")
+				) ? "date-not-ready " : "")}>
+			<h2>{day.date ? day.date.toISOString().split("T")[0] : ""}</h2>
 			{day.pages.map(page =>
 				<div>
 					<h3>{page.name}</h3>
 					<div class="day-content">
 						<div class="status" data-status={page.status} title={page.status}></div>
-						<div title="Transcriptions">👨🏻‍🦯{page.transcribed_spanish ? "🇦🇷" : "🚫"}{page.transcribed_english ? "🇬🇧" : "🚫"}</div>
+						<div title="Transcriptions">
+							👨🏻‍🦯{page.transcribed_spanish ? "🇦🇷" : "🚫"}{page.transcribed_english ? "🇬🇧" : "🚫"}</div>
 						{page.author_comment !== "" &&
 							<div title="Author comment">&nbsp;{page.author_comment}</div>}
 					</div>
@@ -129,11 +145,20 @@ for (let i = 0; i < entriesEN.length; i++) {
     }
 
     ol {
-        padding: 2rem;
-        background-color: white;
+        --items_spacing: 1rem;
+        padding: var(--items_spacing);
+        background-color: var(--color--blue);
 
         display: grid;
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: var(--items_spacing);
+    }
+
+    li {
+        padding: var(--items_spacing);
+        background-color: var(--color--white);
+        border: var(--component_border);
+        border-radius: var(--component_border-radius);
     }
 
     .status {
@@ -147,8 +172,8 @@ for (let i = 0; i < entriesEN.length; i++) {
         background: lightgreen;
     }
 
-    .status[data-status=chaged] {
-        background: lightblue;
+    .status[data-status=changed] {
+        background: deepskyblue;
     }
 
     .status[data-status=draft] {
@@ -168,13 +193,16 @@ for (let i = 0; i < entriesEN.length; i++) {
     }
 
     .day-content {
-    	display: flex;
-    	align-items: center;
+        display: flex;
+        align-items: center;
     }
 
-    li {
-			margin-top: 1rem;
-			padding-top: 1rem;
-    	border-top: black 1px dashed;
+    .first-future-date {
+        outline: orange 8px solid;
+        outline-offset: -4px;
+    }
+
+    .date-not-ready {
+        background-color: lightpink;
     }
 </style>
