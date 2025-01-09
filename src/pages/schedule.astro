@@ -45,7 +45,8 @@ function getEntryStatus(sys) {
 }
 
 type Day = {
-	date: Date
+	date?: Date
+	date_string?: string
 	pages: Array<Page>
 	is_first_future_date?: boolean
 }
@@ -64,7 +65,7 @@ for (let i = 0; i < entriesEN.length; i++) {
 	const { sys, fields: fieldsEN } = entriesEN[i]
 	const { fields: fieldsES } = entriesES[i]
 
-	const day = days.find(day => day.date === fieldsEN.createdAt)
+	const day = days.find(day => day.date_string === fieldsEN.createdAt)
 
 	const english_author_comment = !!fieldsEN.author_comment_lucia
 	const spanish_author_comment = !!fieldsES.author_comment_lucia
@@ -73,10 +74,15 @@ for (let i = 0; i < entriesEN.length; i++) {
 		name: fieldsEN.name,
 		status: getEntryStatus(sys),
 		transcribed_english: typeof fieldsEN.description === "string" && fieldsEN.description !== "",
-		transcribed_spanish: typeof fieldsES.description === "string" && fieldsES.description !== "",
+		transcribed_spanish:
+			typeof fieldsES.description === "string" &&
+			fieldsES.description !== "" &&
+			//This is so because english is default language so spanish is never empty when english is present
+			fieldsES.description !== fieldsEN.description,
 		author_comment:
-			english_author_comment && spanish_author_comment ? "🧌🇦🇷🇬🇧" :
-				english_author_comment && !spanish_author_comment ? "🧌🇬🇧🚫" :
+		//This is so because english is default language so spanish is never empty when english is present
+			english_author_comment && JSON.stringify(fieldsEN.author_comment_lucia) === JSON.stringify(fieldsES.author_comment_lucia) ? "🧌🇬🇧🚫" :
+				english_author_comment && spanish_author_comment ? "🧌🇦🇷🇬🇧" :
 					spanish_author_comment && !english_author_comment ? "🧌🇦🇷🚫" :
 						""
 	}
@@ -84,7 +90,11 @@ for (let i = 0; i < entriesEN.length; i++) {
 	if (day)
 		day.pages.push(page)
 	else
-		days.push({ date: fieldsEN.createdAt && new Date(fieldsEN.createdAt), pages: [page] })
+		days.push({
+			date_string: fieldsEN.createdAt,
+			date: fieldsEN.createdAt && new Date(fieldsEN.createdAt),
+			pages: [page]
+		})
 }
 const now = new Date()
 const futureDays = days.filter(item => item.date > now) // Filter for future dates
@@ -113,10 +123,10 @@ if (futureDays.length > 0)
 				(day.pages.some(page =>
 					!page.transcribed_english ||
 					!page.transcribed_spanish ||
-					page.status != "published" ||
+					page.status !== "published" ||
 					page.author_comment.includes("🚫")
 				) ? "date-not-ready " : "")}>
-			<h2>{day.date ? day.date.toISOString().split("T")[0] : ""}</h2>
+			<h2>{day.date_string || "undated"}</h2>
 			{day.pages.map(page =>
 				<div>
 					<h3>{page.name}</h3>
