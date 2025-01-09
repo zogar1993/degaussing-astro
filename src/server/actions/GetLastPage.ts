@@ -5,7 +5,7 @@ export default async function getLastPage({ language }: { language: string }) {
 	const chapters = await getChapters({ language })
 
 	const chapter = chapters.length
-	const page = chapters[chapters.length - 1].pages.length
+	const page = chapters[chapters.length - 1].pages.length - 1
 
 	return getPageInfo({ chapters, chapter, page })
 }

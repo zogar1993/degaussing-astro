@@ -37,8 +37,8 @@ export function getPreviousAndFirst({
 }
 
 export function getPage({ chapters, chapter, page }: PageFunctionProps) {
-	const current = chapters[chapter - 1]
-	return page === 0 ? current.cover : current.pages[page - 1]
+	console.log(chapter, page, chapters[chapter - 1].pages.length)
+	return chapters[chapter - 1].pages[page]
 }
 
 export function imageToUrl(image: string) {

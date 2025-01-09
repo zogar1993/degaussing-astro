@@ -2,7 +2,7 @@
 import { ID } from "@web/ID"
 import ComicStrip from "@web/components/page-primary/main/ComicStrip.astro"
 import Transcript from "@web/components/page-primary/main/Transcript.astro"
-import type { PageInfo } from "@server/GetPageInfo"
+import type { PageInfo } from "@transport/PageInfo"
 
 const { info } = Astro.props as { info: PageInfo }
 // tabindex="-1" is so that "skip to main content" button works correctly

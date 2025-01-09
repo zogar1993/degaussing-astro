@@ -1,8 +1,15 @@
-import type { Strip } from "@transport/Strip"
+import { RichTextDocument } from "./About"
 
 export type Chapter = {
 	name: string
-	cover: Strip
 	pages: Array<Strip>
+	number: number
+}
+export type Strip = {
+	image: string;
+	createdAt: Date
+	characters: Array<{ name: string, image: string }>
+	description: string
+	author_comment_lucia?: RichTextDocument
 	number: number
 }

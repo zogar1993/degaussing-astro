@@ -1,6 +1,6 @@
 ---
 import { getLangFromUrl, useTranslations } from "@server/i18n/utils"
-import type { PageInfo } from "@server/GetPageInfo"
+import type { PageInfo } from "@transport/PageInfo"
 
 const language = getLangFromUrl(Astro.url)
 const t = useTranslations(language)

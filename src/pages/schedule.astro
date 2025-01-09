@@ -1,11 +1,11 @@
 ---
 import contentful from "contentful"
-import FontsCss from "../web/styles/FontsCss.astro"
-import ResetCss from "../web/styles/ResetCss.astro"
-import VariablesCss from "../web/styles/VariablesCss.astro"
+import FontsCss from "@web/styles/FontsCss.astro"
+import ResetCss from "@web/styles/ResetCss.astro"
+import VariablesCss from "@web/styles/VariablesCss.astro"
 const client = contentful.createClient({
 	space: import.meta.env.CONTENTFUL_SPACE_ID!,
-	accessToken: import.meta.env.CONTENTFUL_ACCESS_TOKEN_PREVIEW!
+	accessToken: import.meta.env.CONTENTFUL_ACCESS_TOKEN_DELIVERY!
 })
 
 async function fetchEntries(

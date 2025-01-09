@@ -1,5 +1,5 @@
 ---
-import type { PageInfo } from "@server/GetPageInfo"
+import type { PageInfo } from "@transport/PageInfo"
 const { info } = Astro.props as { info?: PageInfo }
 ---
 {info && <link rel="preload" fetchpriority="high" as="image" href={info.image} type="image/webp">}

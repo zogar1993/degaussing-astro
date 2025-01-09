@@ -13,7 +13,7 @@ import CommentsScript from "@web/components/page-primary/scripts/CommentsScript.
 import NewsletterSubscriptionScript from "@web/components/page-primary/scripts/NewsletterSubscriptionScript.astro"
 import getLocalizedLinkToComicStrip from "@server/actions/GetLocalizedLinkToComicStrip"
 import { getLangFromUrl } from "@server/i18n/utils"
-import type { PageInfo } from "@server/GetPageInfo"
+import type { PageInfo } from "@transport/PageInfo"
 
 const { info, title } = Astro.props as { info: PageInfo; title: string }
 const language = getLangFromUrl(Astro.url)

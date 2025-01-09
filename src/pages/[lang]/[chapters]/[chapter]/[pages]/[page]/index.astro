@@ -10,10 +10,11 @@ export async function getStaticPaths() {
 	return (await Promise.all(LANGUAGE_CODES.map(async (language) => {
 		const chapters = await getChapters({ language })
 
-		const chapterNumbers = chapters.flatMap((chapter, i) => [
-			{ chapter: i + 1, page: 0 },
-			...chapter.pages.map((_, j) => ({ chapter: i + 1, page: j + 1 }))
-		])
+		const chapterNumbers = chapters.flatMap((chapter, i) => chapter.pages.map((_, j) => ({
+			chapter: chapter.number,
+			page: j
+		})))
+
 		return chapterNumbers.flatMap(({ chapter, page }) => {
 			return {
 				props: getPageInfo({ chapter, page, chapters }),

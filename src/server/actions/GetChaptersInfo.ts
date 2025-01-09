@@ -8,9 +8,9 @@ export default async function getChaptersInfo({
 }) {
 	const chapters = await getChapters({ language })
 
-	return chapters.map((chapter, i) => ({
-		cover: imageToUrl(chapter.cover.image),
-		number: i + 1,
-		pagesAmount: chapter.pages.length
+	return chapters.map(chapter => ({
+		cover: chapter.pages[0].image,
+		number: chapter.number,
+		pagesAmount: chapter.pages.length - 1
 	}))
 }

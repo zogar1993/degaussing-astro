@@ -1,15 +1,6 @@
-import { getNextAndLast, getPage, getPreviousAndFirst, imageToUrl, RelatedPages } from "@server/Utils"
-import type { RichTextDocument } from "@transport/About"
-import type { Chapter } from "@transport/Chapter"
-import type { Strip } from "@transport/Strip"
-
-export type PageInfo = RelatedPages & {
-	image: string,
-	characters: Strip["characters"],
-	description: Strip["description"],
-	author_comment?: RichTextDocument
-	createdAt: Date
-}
+import { getNextAndLast, getPage, getPreviousAndFirst } from "@server/Utils"
+import { Chapter } from "@transport/Chapter"
+import type { PageInfo } from "@transport/PageInfo"
 
 export default function getPageInfo({
 																			chapter,
@@ -22,13 +13,13 @@ export default function getPageInfo({
 }): PageInfo {
 	const current = getPage({ chapters, chapter, page })
 	return {
-		image: imageToUrl(current.image),
+		image: current.image,
 		backward: getPreviousAndFirst({ chapters, chapter, page }),
 		current: { chapter: chapter, page: page },
 		forward: getNextAndLast({ chapters, chapter, page }),
 		characters: current.characters,
-		description: current.description || "", //TODO remove once we have all alt text
+		description: current.description,
 		author_comment: current.author_comment_lucia,
-		createdAt: new Date(current.createdAt)
+		createdAt: current.createdAt
 	}
 }
