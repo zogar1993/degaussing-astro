@@ -25,5 +25,7 @@ pnpm-debug.log*
 .vscode
 *.iml
 
-#localized
-src/pages/en
+.astro/collections
+.astro/content-assets.mjs
+.astro/content-modules.mjs
+.astro/data-store.json
