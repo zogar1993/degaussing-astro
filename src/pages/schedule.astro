@@ -3,37 +3,48 @@ import contentful from "contentful"
 import FontsCss from "@web/styles/FontsCss.astro"
 import ResetCss from "@web/styles/ResetCss.astro"
 import VariablesCss from "@web/styles/VariablesCss.astro"
-const client = contentful.createClient({
+
+const clientPreview = contentful.createClient({
 	space: import.meta.env.CONTENTFUL_SPACE_ID!,
 	accessToken: import.meta.env.CONTENTFUL_ACCESS_TOKEN_PREVIEW!,
 	host: "preview.contentful.com"
 })
 
-async function fetchEntries(
-	type: string,
-	language?: string
-): Promise<any> {
+const clientDelivery = contentful.createClient({
+	space: import.meta.env.CONTENTFUL_SPACE_ID!,
+	accessToken: import.meta.env.CONTENTFUL_ACCESS_TOKEN_DELIVERY!,
+	host: "cdn.contentful.com"
+})
+
+async function fetchPreviewChapters(language?: string): Promise<any> {
 	const locale = language === "en" ? "en-US" : language
 
 	//These are the max values for both limit and include at the time
-	const response = await client.getEntries({
-		content_type: type,
+	const response = await clientPreview.getEntries({
+		content_type: "list",
 		limit: 1000,
 		include: 10,
 		locale: locale
 	})
-	return response.items
+	const chapters = response.items.find(entry => entry.fields.name === "chapters")
+	return (chapters.fields.items as any[]).flatMap(item => [item.fields.cover, ...item.fields.pages]).reverse()
 }
 
-const entriesEN = (await fetchEntries("list", "en"))
-	.find(entry => entry.fields.name === "chapters")
-	.fields.items.flatMap(item => [item.fields.cover, ...item.fields.pages])
-	.reverse()
+async function fetchDeliveryChapters(): Promise<any> {
+	//These are the max values for both limit and include at the time
+	const response = await clientDelivery.getEntries({
+		content_type: "list",
+		limit: 1000,
+		include: 10,
+		locale: "en-US"
+	})
+	const chapters = response.items.find(entry => entry.fields.name === "chapters")
+	return (chapters.fields.items as any[]).map(item => item.fields.name)
+}
 
-const entriesES = (await fetchEntries("list", "es"))
-	.find(entry => entry.fields.name === "chapters")
-	.fields.items.flatMap(item => [item.fields.cover, ...item.fields.pages])
-	.reverse()
+const entries_EN = await fetchPreviewChapters("en")
+const entries_ES = await fetchPreviewChapters("es")
+const published_chapter_numbers = (await fetchDeliveryChapters()).map(chapter => chapter.split(" ")[1])
 
 function getEntryStatus(sys) {
 	const { publishedVersion, revision, updatedAt, publishedAt } = sys
@@ -61,27 +72,29 @@ type Page = {
 
 const days: Array<Day> = []
 
-for (let i = 0; i < entriesEN.length; i++) {
-	const { sys, fields: fieldsEN } = entriesEN[i]
-	const { fields: fieldsES } = entriesES[i]
+for (let i = 0; i < entries_EN.length; i++) {
+	const { sys, fields: fields_EN } = entries_EN[i]
+	const { fields: fields_ES } = entries_ES[i]
 
-	const day = days.find(day => day.date_string === fieldsEN.createdAt)
+	const day = days.find(day => day.date_string === fields_EN.createdAt)
 
-	const english_author_comment = !!fieldsEN.author_comment_lucia
-	const spanish_author_comment = !!fieldsES.author_comment_lucia
+	const english_author_comment = !!fields_EN.author_comment_lucia
+	const spanish_author_comment = !!fields_ES.author_comment_lucia
+	const status = getEntryStatus(sys)
+	const is_chapter_list_published = fields_EN.name ? published_chapter_numbers.includes(fields_EN.name.split(" ")[0]) : false
 
 	const page = {
-		name: fieldsEN.name,
-		status: getEntryStatus(sys),
-		transcribed_english: typeof fieldsEN.description === "string" && fieldsEN.description !== "",
+		name: fields_EN.name,
+		status: status !== "published" ? status : is_chapter_list_published ? status : "unpublished-list",
+		transcribed_english: typeof fields_EN.description === "string" && fields_EN.description !== "",
 		transcribed_spanish:
-			typeof fieldsES.description === "string" &&
-			fieldsES.description !== "" &&
+			typeof fields_ES.description === "string" &&
+			fields_ES.description !== "" &&
 			//This is so because english is default language so spanish is never empty when english is present
-			fieldsES.description !== fieldsEN.description,
+			fields_ES.description !== fields_EN.description,
 		author_comment:
 		//This is so because english is default language so spanish is never empty when english is present
-			english_author_comment && JSON.stringify(fieldsEN.author_comment_lucia) === JSON.stringify(fieldsES.author_comment_lucia) ? "🧌🇬🇧🚫" :
+			english_author_comment && JSON.stringify(fields_EN.author_comment_lucia) === JSON.stringify(fields_ES.author_comment_lucia) ? "🧌🇬🇧🚫" :
 				english_author_comment && spanish_author_comment ? "🧌🇦🇷🇬🇧" :
 					spanish_author_comment && !english_author_comment ? "🧌🇦🇷🚫" :
 						""
@@ -91,8 +104,8 @@ for (let i = 0; i < entriesEN.length; i++) {
 		day.pages.push(page)
 	else
 		days.push({
-			date_string: fieldsEN.createdAt,
-			date: fieldsEN.createdAt && new Date(fieldsEN.createdAt),
+			date_string: fields_EN.createdAt,
+			date: fields_EN.createdAt && new Date(fields_EN.createdAt),
 			pages: [page]
 		})
 }
@@ -121,11 +134,18 @@ if (futureDays.length > 0)
 			class={
 				(day.is_first_future_date ? "first-future-date " : "") +
 				(day.pages.some(page =>
-					!page.transcribed_english ||
-					!page.transcribed_spanish ||
-					page.status !== "published" ||
-					page.author_comment.includes("🚫")
-				) ? "date-not-ready " : "")}>
+						!page.transcribed_english ||
+						!page.transcribed_spanish ||
+						page.status === "draft" ||
+						page.status === "unpublished-list" ||
+						page.author_comment.includes("🚫")
+					) ? "date-has-errors " :
+						(day.pages.some(page =>
+							page.status === "changed"
+						)) ? "date-is-unpublished " : ""
+				)
+
+			}>
 			<h2>{day.date_string || "undated"}</h2>
 			{day.pages.map(page =>
 				<div>
@@ -190,6 +210,10 @@ if (futureDays.length > 0)
         background: yellow;
     }
 
+    .status[data-status=unpublished-list] {
+        background: darkorange;
+    }
+
     div {
         font-size: 2rem;
     }
@@ -212,7 +236,11 @@ if (futureDays.length > 0)
         outline-offset: -4px;
     }
 
-    .date-not-ready {
+    .date-has-errors {
         background-color: lightpink;
+    }
+
+    .date-is-unpublished {
+        background-color: lightblue;
     }
 </style>
