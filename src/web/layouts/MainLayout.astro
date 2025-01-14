@@ -26,6 +26,10 @@ const isHomepage = getIsHomepage({ path: Astro.url.pathname, language })
 	{isHomepage &&
 		<meta name="description" content={t("seo.description")} />}
 	<FontsCss />
+	{info !== undefined && (
+		<script type="module" src="https://cdn.jsdelivr.net/npm/@friendlycaptcha/sdk@0.1.11/site.min.js" async defer></script>
+		<script nomodule src="https://cdn.jsdelivr.net/npm/@friendlycaptcha/sdk@0.1.11/site.compat.min.js" async defer></script>
+	)}
 	<ImagesPreload info={info} />
 	<ResetCss />
 	<VariablesCss />

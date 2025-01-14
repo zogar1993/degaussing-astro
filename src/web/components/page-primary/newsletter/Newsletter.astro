@@ -40,9 +40,9 @@ const NEWSLETTER_URL = {
 			>
 				<span>{t("newsletter.subscribe")}</span>
 			</button>
+			<div class="frc-captcha" data-sitekey="FCMTKQ9P4MKB5SEA"></div>
 			<input type="hidden" name="anticsrf" value="true">
 		</form>
-		<span class="recaptcha-policy" set:html={t("newsletter.recaptcha-policy")}></span>
 	</div>
 	<p id="newsletter__success-message" hidden>{t("newsletter.success")}</p>
 	<p id="newsletter__error-message" hidden set:html={t("newsletter.error")}></p>
@@ -123,17 +123,6 @@ const NEWSLETTER_URL = {
         100% {
             transform: rotate(360deg);
         }
-    }
-
-    /* hide recaptcha badge */
-    #newsletter__form > :global(div:not([class])) {
-        display: none;
-    }
-
-    .recaptcha-policy {
-    		display: block;
-    		margin-top: 0.5rem;
-        font-size: 0.75rem;
     }
 
     @media (max-width: 72em) {
