@@ -151,9 +151,12 @@ if (futureDays.length > 0)
 			<h2>{day.date_string || "undated"}</h2>
 			{day.pages.reverse().map(page =>
 				<div>
-					<h3>{page.name}</h3>
+					<h3>
+						<span class="status" data-status={page.status} title={page.status}></span>
+						{page.name}
+					</h3>
 					<div class="day-content">
-						<div class="status" data-status={page.status} title={page.status}></div>
+
 						<div class="content-container">
 							<div>Transcriptions</div>
 							<FlagArgentina greyed={!page.transcribed_spanish} />
@@ -200,6 +203,7 @@ if (futureDays.length > 0)
     }
 
     .status {
+    		margin-right: 0.5rem;
         height: 24px;
         aspect-ratio: 1;
         border: 1px solid black;
@@ -226,11 +230,11 @@ if (futureDays.length > 0)
         display: grid;
         grid-template-columns: 1fr 20px 20px;
         gap: 0.5rem;
-        margin-left: 1rem;
     }
 
 
     h3 {
+    		display: inline-flex;
         font-family: var(--text_font-family);
         color: black;
         margin-bottom: 0.25rem;
