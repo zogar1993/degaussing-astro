@@ -69,9 +69,10 @@ type Day = {
 type Page = {
 	name: string
 	status: string
-	transcribed_english: boolean
-	transcribed_spanish: boolean
-	author_comment?: { en: boolean, es: boolean }
+	has_characters: boolean
+	image: { en: boolean, es: boolean }
+	transcription: { en: boolean, es: boolean }
+	author_comment: { en: boolean, es: boolean }
 }
 
 const days: Array<Day> = []
@@ -90,17 +91,23 @@ for (let i = 0; i < entries_EN.length; i++) {
 
 	const status = getEntryStatus(sys)
 	const is_chapter_list_published = fields_EN.name ? published_chapter_numbers.includes(fields_EN.name.split(" ")[0]) : false
-
-	const page = {
-		name: fields_EN.name,
-		status: status !== "published" ? status : is_chapter_list_published ? status : "unpublished-list",
-		transcribed_english: typeof fields_EN.description === "string" && fields_EN.description !== "",
-		transcribed_spanish:
+	const transcribed_english = typeof fields_EN.description === "string" && fields_EN.description !== ""
+	const	transcribed_spanish =
 			typeof fields_ES.description === "string" &&
 			fields_ES.description !== "" &&
 			//This is so because english is default language so spanish is never empty when english is present
-			fields_ES.description !== fields_EN.description,
-		author_comment: { en: english_author_comment, es: spanish_author_comment }
+			fields_ES.description !== fields_EN.description
+
+  const image_english = !!fields_EN.image.fields.file
+  const image_spanish = !!fields_ES.image.fields.file
+
+	const page: Page = {
+		name: fields_EN.name,
+		status: status !== "published" ? status : is_chapter_list_published ? status : "unpublished-list",
+		author_comment: { en: english_author_comment, es: spanish_author_comment },
+		transcription: {en: transcribed_english, es: transcribed_spanish},
+		image: {en: image_english, es: image_spanish},
+		has_characters: !!fields_EN.characters
 	}
 
 	if (day)
@@ -137,8 +144,11 @@ if (futureDays.length > 0)
 			class={
 				(day.is_first_future_date ? "first-future-date " : "") +
 				(day.pages.some(page =>
-						!page.transcribed_english ||
-						!page.transcribed_spanish ||
+						!page.transcription.en ||
+						!page.transcription.es ||
+						!page.image.en ||
+						!page.image.es ||
+						!page.has_characters ||
 						page.status === "draft" ||
 						page.status === "unpublished-list" ||
 						page.author_comment.es !== page.author_comment.en
@@ -158,13 +168,23 @@ if (futureDays.length > 0)
 					<div class="day-content">
 
 						<div class="content-container">
-							<div>Transcriptions</div>
-							<FlagArgentina greyed={!page.transcribed_spanish} />
-							<FlagUnitedKingdom greyed={!page.transcribed_english} />
+							{(!page.image.en || !page.image.es) &&
+								<div>Image</div>
+								<FlagArgentina greyed={!page.image.es} />
+								<FlagUnitedKingdom greyed={!page.image.en} />
+							}
+							{(!page.transcription.en || !page.transcription.es) &&
+								<div>Transcriptions</div>
+								<FlagArgentina greyed={!page.transcription.es} />
+								<FlagUnitedKingdom greyed={!page.transcription.en} />
+							}
 							{(page.author_comment.en || page.author_comment.es) &&
 								<div>Author</div>
 								<FlagArgentina greyed={!page.author_comment.es} />
 								<FlagUnitedKingdom greyed={!page.author_comment.en} />
+							}
+							{!page.has_characters &&
+								<div>Characters</div>
 							}
 						</div>
 					</div>
