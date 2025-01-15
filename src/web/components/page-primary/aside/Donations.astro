@@ -57,6 +57,15 @@ const links = await getContributionLinks()
         background-color: var(--button--hover_background-color);
     }
 
+    div {
+    	display: flex;
+    }
+
+    div > :global(svg) {
+    		/* TODO fix svg sizes so this is not necesary */
+        transform: scale(0.8);
+    }
+
     @media (width <= 72em) {
         h2 {
             margin-bottom: var(--aside-right-column__heading--margin-bottom);
@@ -74,11 +83,6 @@ const links = await getContributionLinks()
             grid-template-columns: 3rem 1fr;
             grid-template-rows: none;
             padding: 0 1rem;
-        }
-
-        div > :global(svg) {
-            margin-top: 4px; /* TODO fix svg sizes so this is not necesary */
-            transform: scale(calc(100% * 0.8));
         }
     }
 </style>
