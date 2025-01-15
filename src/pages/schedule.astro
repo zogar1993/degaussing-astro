@@ -27,7 +27,9 @@ async function fetchPreviewChapters(language?: string): Promise<any> {
 		locale: locale
 	})
 	const chapters = response.items.find(entry => entry.fields.name === "chapters")
-	return (chapters.fields.items as any[]).flatMap(item => [item.fields.cover, ...item.fields.pages]).reverse()
+	return (chapters.fields.items as any[]).flatMap(item =>
+		[...(item.fields.cover ? [item.fields.cover] : []), ...(item.fields.pages ?? [])]
+	).reverse()
 }
 
 async function fetchDeliveryChapters(): Promise<any> {
@@ -67,7 +69,7 @@ type Page = {
 	status: string
 	transcribed_english: boolean
 	transcribed_spanish: boolean
-	author_comment: string
+	author_comment?: { en: boolean, es: boolean }
 }
 
 const days: Array<Day> = []
@@ -79,7 +81,11 @@ for (let i = 0; i < entries_EN.length; i++) {
 	const day = days.find(day => day.date_string === fields_EN.createdAt)
 
 	const english_author_comment = !!fields_EN.author_comment_lucia
-	const spanish_author_comment = !!fields_ES.author_comment_lucia
+	const spanish_author_comment =
+		(!!fields_ES.author_comment_lucia && !english_author_comment) ||
+		//This is so because english is default language so spanish is never empty when english is present
+		(english_author_comment && JSON.stringify(fields_EN.author_comment_lucia) !== JSON.stringify(fields_ES.author_comment_lucia))
+
 	const status = getEntryStatus(sys)
 	const is_chapter_list_published = fields_EN.name ? published_chapter_numbers.includes(fields_EN.name.split(" ")[0]) : false
 
@@ -92,12 +98,7 @@ for (let i = 0; i < entries_EN.length; i++) {
 			fields_ES.description !== "" &&
 			//This is so because english is default language so spanish is never empty when english is present
 			fields_ES.description !== fields_EN.description,
-		author_comment:
-		//This is so because english is default language so spanish is never empty when english is present
-			english_author_comment && JSON.stringify(fields_EN.author_comment_lucia) === JSON.stringify(fields_ES.author_comment_lucia) ? "🧌🇬🇧🚫" :
-				english_author_comment && spanish_author_comment ? "🧌🇦🇷🇬🇧" :
-					spanish_author_comment && !english_author_comment ? "🧌🇦🇷🚫" :
-						""
+		author_comment: { en: english_author_comment, es: spanish_author_comment }
 	}
 
 	if (day)
@@ -138,7 +139,7 @@ if (futureDays.length > 0)
 						!page.transcribed_spanish ||
 						page.status === "draft" ||
 						page.status === "unpublished-list" ||
-						page.author_comment.includes("🚫")
+						page.author_comment.es !== page.author_comment.en
 					) ? "date-has-errors " :
 						(day.pages.some(page =>
 							page.status === "changed"
@@ -152,10 +153,49 @@ if (futureDays.length > 0)
 					<h3>{page.name}</h3>
 					<div class="day-content">
 						<div class="status" data-status={page.status} title={page.status}></div>
-						<div title="Transcriptions">
-							👨🏻‍🦯{page.transcribed_spanish ? "🇦🇷" : "🚫"}{page.transcribed_english ? "🇬🇧" : "🚫"}</div>
-						{page.author_comment !== "" &&
-							<div title="Author comment">&nbsp;{page.author_comment}</div>}
+						<div class="content-container">
+							<div>Transcriptions</div>
+							<div class="flag" data-missing={String(!page.transcribed_spanish)}>
+								<div class="stripe light-blue"></div>
+								<div class="stripe white">
+									<div class="sun"></div>
+								</div>
+								<div class="stripe light-blue"></div>
+							</div>
+							<div class="uk-flag" data-missing={String(!page.transcribed_english)}>
+								<div class="background"></div>
+								<div class="white-diagonal top-left"></div>
+								<div class="white-diagonal top-right"></div>
+								<div class="red-diagonal top-left"></div>
+								<div class="red-diagonal top-right"></div>
+								<div class="white-cross horizontal"></div>
+								<div class="white-cross vertical"></div>
+								<div class="red-cross horizontal"></div>
+								<div class="red-cross vertical"></div>
+							</div>
+							{(page.author_comment.en || page.author_comment.es) &&
+								<div>
+									Author
+								</div>
+									<div class="flag" data-missing={String(!page.author_comment.es)}>
+										<div class="stripe light-blue"></div>
+										<div class="stripe white">
+											<div class="sun"></div>
+										</div>
+										<div class="stripe light-blue"></div>
+									</div>
+									<div class="uk-flag" data-missing={String(!page.author_comment.en)}>
+										<div class="white-diagonal top-left"></div>
+										<div class="white-diagonal top-right"></div>
+										<div class="red-diagonal top-left"></div>
+										<div class="red-diagonal top-right"></div>
+										<div class="white-cross horizontal"></div>
+										<div class="white-cross vertical"></div>
+										<div class="red-cross horizontal"></div>
+										<div class="red-cross vertical"></div>
+									</div>
+							}
+						</div>
 					</div>
 				</div>
 			)}
@@ -214,14 +254,18 @@ if (futureDays.length > 0)
         background: darkorange;
     }
 
-    div {
-        font-size: 2rem;
+    .content-container {
+        display: grid;
+        grid-template-columns: 1fr 20px 20px;
+        gap: 0.5rem;
+        margin-left: 1rem;
     }
+
 
     h3 {
         font-family: var(--text_font-family);
         color: black;
-        margin-bottom: 0;
+        margin-bottom: 0.25rem;
         margin-top: 0.5rem;
         font-size: 20px;
     }
@@ -242,5 +286,135 @@ if (futureDays.length > 0)
 
     .date-is-unpublished {
         background-color: lightblue;
+    }
+
+    .flag[data-missing=true] {
+        filter: grayscale(100%);
+    }
+
+    .uk-flag[data-missing=true] {
+        filter: grayscale(100%);
+    }
+
+    .flag {
+        width: 20px;
+        height: 20px;
+        border: 1px solid #000;
+        position: relative;
+    }
+
+    .stripe {
+        height: 33.33%;
+        width: 100%;
+    }
+
+    .light-blue {
+        background-color: #74ACDF;
+    }
+
+    .white {
+        background-color: #FFFFFF;
+    }
+
+    .sun {
+        height: 30%;
+        aspect-ratio: 1;
+        background-color: #FFD700;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+    }
+
+
+    .uk-flag {
+        position: relative;
+        width: 20px;
+        height: 20px;
+        background-color: #00247D; /* Dark blue */
+        border: 1px solid #000;
+        overflow: hidden;
+    }
+
+    /* Horizontal and Vertical Crosses */
+    .white-cross {
+        position: absolute;
+        background-color: #FFFFFF;
+    }
+
+    .white-cross.horizontal {
+        width: 100%;
+        height: 20%;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .white-cross.vertical {
+        width: 20%;
+        height: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .red-cross {
+        position: absolute;
+        background-color: #CF142B;
+    }
+
+    .red-cross.horizontal {
+        width: 100%;
+        height: calc(100% / 15 * 1.5);
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .red-cross.vertical {
+        width: calc(100% / 15 * 1.5);
+        height: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    /* Diagonal Stripes */
+    .white-diagonal {
+        position: absolute;
+        width: 150%;
+        height: calc(100% / 15 * 2);
+        background-color: #FFFFFF;
+        transform-origin: center center;
+    }
+
+    .white-diagonal.top-left {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-45deg);
+    }
+
+    .white-diagonal.top-right {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    .red-diagonal {
+        position: absolute;
+        width: 150%;
+        height: calc(100% / 15);
+        background-color: #CF142B;
+        transform-origin: center center;
+        z-index: 1;
+    }
+
+    .red-diagonal.top-left {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-45deg);
+    }
+
+    .red-diagonal.top-right {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(45deg);
     }
 </style>
