@@ -3,6 +3,8 @@ import contentful from "contentful"
 import FontsCss from "@web/styles/FontsCss.astro"
 import ResetCss from "@web/styles/ResetCss.astro"
 import VariablesCss from "@web/styles/VariablesCss.astro"
+import FlagArgentina from "@web/schedule/FlagArgentina.astro"
+import FlagUnitedKingdom from "@web/schedule/FlagUnitedKingdom.astro"
 
 const clientPreview = contentful.createClient({
 	space: import.meta.env.CONTENTFUL_SPACE_ID!,
@@ -155,45 +157,12 @@ if (futureDays.length > 0)
 						<div class="status" data-status={page.status} title={page.status}></div>
 						<div class="content-container">
 							<div>Transcriptions</div>
-							<div class="flag" data-missing={String(!page.transcribed_spanish)}>
-								<div class="stripe light-blue"></div>
-								<div class="stripe white">
-									<div class="sun"></div>
-								</div>
-								<div class="stripe light-blue"></div>
-							</div>
-							<div class="uk-flag" data-missing={String(!page.transcribed_english)}>
-								<div class="background"></div>
-								<div class="white-diagonal top-left"></div>
-								<div class="white-diagonal top-right"></div>
-								<div class="red-diagonal top-left"></div>
-								<div class="red-diagonal top-right"></div>
-								<div class="white-cross horizontal"></div>
-								<div class="white-cross vertical"></div>
-								<div class="red-cross horizontal"></div>
-								<div class="red-cross vertical"></div>
-							</div>
+							<FlagArgentina greyed={!page.transcribed_spanish} />
+							<FlagUnitedKingdom greyed={!page.transcribed_english} />
 							{(page.author_comment.en || page.author_comment.es) &&
-								<div>
-									Author
-								</div>
-									<div class="flag" data-missing={String(!page.author_comment.es)}>
-										<div class="stripe light-blue"></div>
-										<div class="stripe white">
-											<div class="sun"></div>
-										</div>
-										<div class="stripe light-blue"></div>
-									</div>
-									<div class="uk-flag" data-missing={String(!page.author_comment.en)}>
-										<div class="white-diagonal top-left"></div>
-										<div class="white-diagonal top-right"></div>
-										<div class="red-diagonal top-left"></div>
-										<div class="red-diagonal top-right"></div>
-										<div class="white-cross horizontal"></div>
-										<div class="white-cross vertical"></div>
-										<div class="red-cross horizontal"></div>
-										<div class="red-cross vertical"></div>
-									</div>
+								<div>Author</div>
+								<FlagArgentina greyed={!page.author_comment.es} />
+								<FlagUnitedKingdom greyed={!page.author_comment.en} />
 							}
 						</div>
 					</div>
@@ -286,135 +255,5 @@ if (futureDays.length > 0)
 
     .date-is-unpublished {
         background-color: lightblue;
-    }
-
-    .flag[data-missing=true] {
-        filter: grayscale(100%);
-    }
-
-    .uk-flag[data-missing=true] {
-        filter: grayscale(100%);
-    }
-
-    .flag {
-        width: 20px;
-        height: 20px;
-        border: 1px solid #000;
-        position: relative;
-    }
-
-    .stripe {
-        height: 33.33%;
-        width: 100%;
-    }
-
-    .light-blue {
-        background-color: #74ACDF;
-    }
-
-    .white {
-        background-color: #FFFFFF;
-    }
-
-    .sun {
-        height: 30%;
-        aspect-ratio: 1;
-        background-color: #FFD700;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        border-radius: 50%;
-    }
-
-
-    .uk-flag {
-        position: relative;
-        width: 20px;
-        height: 20px;
-        background-color: #00247D; /* Dark blue */
-        border: 1px solid #000;
-        overflow: hidden;
-    }
-
-    /* Horizontal and Vertical Crosses */
-    .white-cross {
-        position: absolute;
-        background-color: #FFFFFF;
-    }
-
-    .white-cross.horizontal {
-        width: 100%;
-        height: 20%;
-        top: 50%;
-        transform: translateY(-50%);
-    }
-
-    .white-cross.vertical {
-        width: 20%;
-        height: 100%;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    .red-cross {
-        position: absolute;
-        background-color: #CF142B;
-    }
-
-    .red-cross.horizontal {
-        width: 100%;
-        height: calc(100% / 15 * 1.5);
-        top: 50%;
-        transform: translateY(-50%);
-    }
-
-    .red-cross.vertical {
-        width: calc(100% / 15 * 1.5);
-        height: 100%;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    /* Diagonal Stripes */
-    .white-diagonal {
-        position: absolute;
-        width: 150%;
-        height: calc(100% / 15 * 2);
-        background-color: #FFFFFF;
-        transform-origin: center center;
-    }
-
-    .white-diagonal.top-left {
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) rotate(-45deg);
-    }
-
-    .white-diagonal.top-right {
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) rotate(45deg);
-    }
-
-    .red-diagonal {
-        position: absolute;
-        width: 150%;
-        height: calc(100% / 15);
-        background-color: #CF142B;
-        transform-origin: center center;
-        z-index: 1;
-    }
-
-    .red-diagonal.top-left {
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) rotate(-45deg);
-    }
-
-    .red-diagonal.top-right {
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) rotate(45deg);
     }
 </style>
