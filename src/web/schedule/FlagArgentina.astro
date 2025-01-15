@@ -1,0 +1,46 @@
+---
+const { greyed } = Astro.props as { greyed: boolean }
+---
+<div class="flag" data-missing={String(greyed)}>
+	<div class="stripe light-blue"></div>
+	<div class="stripe white">
+		<div class="sun"></div>
+	</div>
+	<div class="stripe light-blue"></div>
+</div>
+<style>
+		.flag[data-missing=true] {
+        filter: grayscale(100%);
+    }
+
+    .flag {
+        width: 20px;
+        height: 20px;
+        border: 1px solid #000;
+        position: relative;
+    }
+
+    .stripe {
+        height: 33.33%;
+        width: 100%;
+    }
+
+    .light-blue {
+        background-color: #74ACDF;
+    }
+
+    .white {
+        background-color: #FFFFFF;
+    }
+
+    .sun {
+        height: 30%;
+        aspect-ratio: 1;
+        background-color: #FFD700;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+    }
+</style>
