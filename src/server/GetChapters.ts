@@ -5,6 +5,11 @@ import { getList } from "@server/GetEntries"
 
 export async function getChapters({ language }: { language: string }): Promise<ReadonlyArray<Chapter>> {
 	const chapters = (await getList<ContentfulChapter>("chapters", language))
+
+	const now = new Date()
+	const hoursToSubtract = 17 * 60 * 60 * 1000
+	now.setTime(now.getTime() - hoursToSubtract)
+
 	return chapters.map((chapter, i) => ({
 		name: chapter.name,
 		number: i + 1,
@@ -15,7 +20,7 @@ export async function getChapters({ language }: { language: string }): Promise<R
 				characters: (page.characters || []).map(character => ({ ...character, image: imageToUrl(character.image) })),
 				number: i
 			})
-		).filter(page => page.createdAt < new Date())
+		).filter(page => page.createdAt < now)
 	})).filter(chapter => chapter.pages.length > 0)
 }
 
