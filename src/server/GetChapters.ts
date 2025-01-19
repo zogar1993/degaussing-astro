@@ -2,13 +2,10 @@ import { imageToUrl } from "@server/Utils"
 import type { ContentfulChapter } from "@transport/ContentfulChapter"
 import type { Chapter } from "@transport/Chapter"
 import { getList } from "@server/GetEntries"
+import { NOW_WITH_DEPLOYMENT_OFFSET } from "@server/time/NOW_WITH_DEPLOYMENT_OFFSET"
 
 export async function getChapters({ language }: { language: string }): Promise<ReadonlyArray<Chapter>> {
 	const chapters = (await getList<ContentfulChapter>("chapters", language))
-
-	const now = new Date()
-	const hoursToSubtract = 17 * 60 * 60 * 1000
-	now.setTime(now.getTime() - hoursToSubtract)
 
 	return chapters.map((chapter, i) => ({
 		name: chapter.name,
@@ -20,7 +17,7 @@ export async function getChapters({ language }: { language: string }): Promise<R
 				characters: (page.characters || []).map(character => ({ ...character, image: imageToUrl(character.image) })),
 				number: i
 			})
-		).filter(page => page.createdAt < now)
+		).filter(page => page.createdAt < NOW_WITH_DEPLOYMENT_OFFSET)
 	})).filter(chapter => chapter.pages.length > 0)
 }
 
