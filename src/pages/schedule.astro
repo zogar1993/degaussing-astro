@@ -120,14 +120,18 @@ for (let i = 0; i < entries_EN.length; i++) {
 		})
 }
 const now = new Date()
-  const hoursToSubtract = 17 * 60 * 60 * 1000;
-  now.setTime(now.getTime() - hoursToSubtract);
+const HOUR = 60 * 60 * 1000
+// 14hs at -3GMT
+const hoursToSubtract = 17 * HOUR
+now.setTime(now.getTime() - hoursToSubtract)
 
 const futureDays = days.filter(item => item.date > now) // Filter for future dates
 	.sort((a, b) => a.date.getTime() - b.date.getTime())
 
 if (futureDays.length > 0)
 	futureDays[0].is_first_future_date = true
+
+const adate = new Date()
 ---
 <!DOCTYPE html>
 <html lang="en">
