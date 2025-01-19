@@ -208,11 +208,13 @@ if (futureDays.length > 0)
 
     ol {
         --items_spacing: 1rem;
+        --date_width: 200px;
+        width: var(--content--desktop_width);
         padding: var(--items_spacing);
         background-color: var(--color--blue);
 
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: repeat(auto-fit, minmax(var(--date_width), 1fr));
         gap: var(--items_spacing);
     }
 
@@ -253,7 +255,6 @@ if (futureDays.length > 0)
         gap: 0.5rem;
     }
 
-
     h3 {
     		display: inline-flex;
         font-family: var(--text_font-family);
@@ -279,5 +280,12 @@ if (futureDays.length > 0)
 
     .date-is-unpublished {
         background-color: lightblue;
+    }
+
+    @media (max-width: 72em) {
+        ol {
+            width: 100%;
+            max-width: calc(var(--date_width) * 3 + var(--items_spacing) * 4);
+        }
     }
 </style>
