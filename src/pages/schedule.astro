@@ -99,8 +99,8 @@ for (let i = 0; i < entries_EN.length; i++) {
 			//This is so because english is default language so spanish is never empty when english is present
 			fields_ES.description !== fields_EN.description
 
-  const image_english = !!fields_EN.image.fields.file
-  const image_spanish = !!fields_ES.image.fields.file
+  const image_english = !!fields_EN.image?.fields?.file
+  const image_spanish = !!fields_ES.image?.fields?.file
 
 	const page: Page = {
 		name: fields_EN.name,
