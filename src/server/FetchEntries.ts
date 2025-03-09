@@ -25,20 +25,24 @@ export async function fetchEntries<T>(
 function contentfulToPlainObject(obj: any) {
 	const result = { ...obj.fields }
 	for (const [key, value] of Object.entries(result)) {
-		result[key] = Array.isArray(value)
+		const x = Array.isArray(value)
 			? contentfulToArrayOfPlainObjects(value)
 			: unwrap(value)
+
+		if (x !== null) // We exclude draft status entries
+			result[key] = x
 	}
 	return result
 }
 
 function contentfulToArrayOfPlainObjects(arr: ReadonlyArray<any>) {
-	return arr.map((x) => unwrap(x))
+	return arr.map(x => unwrap(x)).filter(x => x !== null) // We exclude draft status entries
 }
 
 function unwrap(value: any) {
 	if (!value.hasOwnProperty("sys")) return value
 	if (value.sys.type === "Asset") return value.fields.file.url
 	if (value.sys.type === "Entry") return contentfulToPlainObject(value)
+	if (value.sys.type === "Link") return null //these need to be weeded out by callers, since they are draft entries
 	throw new Error(`Cannot handle type '${value.sys.type}'`)
 }
