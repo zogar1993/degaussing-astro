@@ -13,7 +13,7 @@ export interface Props {
 
 const { info } = Astro.props
 
-const term = `/${language}/chapters/${info.current.chapter}/pages/${info.current.page}/`
+const term = `/chapters/${info.current.chapter}/pages/${info.current.page}/`
 const theme = `${protocol}://${domain}/styles/giscus.css`
 ---
 <script define:vars={{term, theme, language}}>
