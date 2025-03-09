@@ -104,7 +104,7 @@ for (let i = 0; i < entries_EN.length; i++) {
 
 	const page: Page = {
 		name: fields_EN.name,
-		status: status !== "published" ? status : is_chapter_list_published ? status : "unpublished-list",
+		status: status !== "published" ? status : is_chapter_list_published ? status : "unpublished-chapter",
 		author_comment: { en: english_author_comment, es: spanish_author_comment },
 		transcription: {en: transcribed_english, es: transcribed_spanish},
 		image: {en: image_english, es: image_spanish},
@@ -151,7 +151,7 @@ if (futureDays.length > 0)
 						!page.image.es ||
 						!page.has_characters ||
 						page.status === "draft" ||
-						page.status === "unpublished-list" ||
+						page.status === "unpublished-chapter" ||
 						page.author_comment.es !== page.author_comment.en
 					) ? "date-has-errors " :
 						(day.pages.some(page =>
@@ -245,7 +245,7 @@ if (futureDays.length > 0)
         background: yellow;
     }
 
-    .status[data-status=unpublished-list] {
+    .status[data-status=unpublished-chapter] {
         background: darkorange;
     }
 
