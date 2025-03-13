@@ -27,13 +27,6 @@ const { info } = Astro.props
         justify-content: space-between;
     }
 
-    /* adds padding to avoid browser rounding inconsistencies and leaving room for focus outlines
-    #reader-comments__iframe-container {
-        --_iframe_padding: 1px;
-        width: calc(100% + var(--_iframe_padding) * 2);
-        margin-left: calc(var(--_iframe_padding) * -1);
-    }
- 		*/
     #reader-comments__iframe-container > :global(.giscus) {
         display: flex;
     }
