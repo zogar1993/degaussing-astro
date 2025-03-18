@@ -1,12 +1,12 @@
 import type { RelatedPages } from "@server/Utils"
-import type { RichTextDocument } from "@transport/About"
-import type { ContentfulStrip } from "./ContentfulStrip"
+import type { RichTextDocument } from "@server/contentful/types/RichTextDocument"
+import type { Strip } from "@transport/Chapter"
 
 //TODO refactor types
 export type PageInfo = RelatedPages & {
 	image: string,
-	characters: ContentfulStrip["characters"],
-	description: ContentfulStrip["description"],
+	characters: Strip["characters"],
+	description: Strip["description"],
 	author_comment?: RichTextDocument
 	createdAt: Date
 }

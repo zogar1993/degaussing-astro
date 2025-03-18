@@ -1,7 +1,7 @@
 import { imageToUrl } from "@server/Utils"
-import type { ContentfulChapter } from "@transport/ContentfulChapter"
 import type { Chapter } from "@transport/Chapter"
 import { getList } from "@server/contentful/GetEntries"
+import type { RichTextDocument } from "@server/contentful/types/RichTextDocument"
 
 export default async function queryAllChapters({ language }: { language: string }): Promise<ReadonlyArray<Chapter>> {
 	const chapters = (await getList<ContentfulChapter>("chapters", language))
@@ -21,3 +21,17 @@ export default async function queryAllChapters({ language }: { language: string 
 	}))
 }
 
+type ContentfulChapter = {
+	name: string
+	cover: ContentfulStrip
+	pages: Array<ContentfulStrip>
+	number: number
+}
+
+type ContentfulStrip = {
+	image: string;
+	createdAt: string
+	characters?: Array<{ name: string, image: string }>
+	description: string
+	author_comment_lucia?: RichTextDocument
+}
