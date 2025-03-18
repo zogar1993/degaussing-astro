@@ -1,4 +1,4 @@
-import { getList } from "@server/GetEntries"
+import { getList } from "@server/contentful/GetEntries"
 import { imageToUrl } from "@server/Utils"
 import type { Link } from "@transport/Link"
 

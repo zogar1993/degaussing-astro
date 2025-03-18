@@ -1,7 +1,7 @@
 import { imageToUrl } from "@server/Utils"
 import type { ContentfulChapter } from "@transport/ContentfulChapter"
 import type { Chapter } from "@transport/Chapter"
-import { getList } from "@server/GetEntries"
+import { getList } from "@server/contentful/GetEntries"
 
 export default async function queryAllChapters({ language }: { language: string }): Promise<ReadonlyArray<Chapter>> {
 	const chapters = (await getList<ContentfulChapter>("chapters", language))

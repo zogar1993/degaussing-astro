@@ -1,4 +1,4 @@
-import { getEntries } from "@server/GetEntries"
+import { getEntries } from "@server/contentful/GetEntries"
 import { imageToUrl } from "@server/Utils"
 
 export default async function getHeader({ language }: { language: string }) {

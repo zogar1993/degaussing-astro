@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets"
 import { getLangFromUrl, useTranslations } from "@server/i18n/utils"
-import { getNextUpdate } from "@server/GetNextUpdate"
+import { getNextUpdate } from "@server/actions/GetNextUpdate"
 
 const language = getLangFromUrl(Astro.url)
 const t = useTranslations(language)
