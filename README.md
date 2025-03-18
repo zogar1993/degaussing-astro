@@ -5,7 +5,18 @@
 I really appreciate it! Go to the [Issues sections](https://github.com/zogar1993/degaussing-astro/issues) and create a
 new issue there, I promise to take a look.
 
-## Useful commands for myself so I dont forget
+## Page characteristics
 
-- pnpm run dev
-- npm open cypress
+The page was made with a list of concerns in mind, namely it needs to...:
+- ...be fast so that there is not a huge wait time, particularly from slow internet connections.
+- ...be lightweight, so that users relying on mobile data don't get drained out.
+- ...look well on any device.
+- ...respect user privacy.
+
+### Privacy
+
+The best way to talk about privacy is to talk about the third-party tools we use and why we use them.
+
+####
+
+ 

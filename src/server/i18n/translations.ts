@@ -28,7 +28,7 @@ export const translations = {
 
 		"landmarks.navigation-page": "Page navigation",
 		"landmarks.navigation-comic": "Comic navigation",
-		"landmarks.last-update": "Last update",
+		"landmarks.next-update": "Next update",
 		"landmarks.characters": "Characters",
 		"landmarks.donations": "Donations",
 		"landmarks.navigation-social": "Social navigation",
@@ -93,7 +93,7 @@ export const translations = {
 
 		"landmarks.navigation-page": "Navegación de la página",
 		"landmarks.navigation-comic": "Navegación del comic",
-		"landmarks.last-update": "Última actualización",
+		"landmarks.next-update": "Próxima actualización",
 		"landmarks.characters": "Personajes",
 		"landmarks.donations": "Donaciones",
 		"landmarks.navigation-social": "Navegación social",

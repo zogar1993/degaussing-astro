@@ -1,8 +1,8 @@
-import type { Strip } from "@transport/Strip"
+import type { ContentfulStrip } from "./ContentfulStrip"
 
 export type ContentfulChapter = {
 	name: string
-	cover: Strip
-	pages: Array<Strip>
+	cover: ContentfulStrip
+	pages: Array<ContentfulStrip>
 	number: number
 }

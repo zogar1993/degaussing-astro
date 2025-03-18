@@ -1,15 +1,15 @@
 ---
 import { Image } from "astro:assets"
-import getLastUpdate from "@server/actions/GetLastUpdate"
 import { getLangFromUrl, useTranslations } from "@server/i18n/utils"
+import { getNextUpdate } from "@server/GetNextUpdate"
 
 const language = getLangFromUrl(Astro.url)
 const t = useTranslations(language)
 
-const { image, chapter, date } = await getLastUpdate({ language })
-const split_heading = t("landmarks.last-update").split(" ")
+const { image, chapter, date } = await getNextUpdate({ language })
+const split_heading = t("landmarks.next-update").split(" ")
 ---
-<section aria-label={t("landmarks.last-update")}>
+<section aria-label={t("landmarks.next-update")}>
 	<div class="text-container">
 		<h2>{split_heading[0]}&nbsp;<br/>{split_heading[1]}</h2>
 		<time datetime={date.datetime}>{date.localized}</time>
@@ -19,7 +19,7 @@ const split_heading = t("landmarks.last-update").split(" ")
 </section>
 <style>
     section {
-    		grid-area: last-update;
+    		grid-area: next-update;
 
         display: flex;
         flex-direction: column;
