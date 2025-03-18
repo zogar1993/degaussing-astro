@@ -1,4 +1,4 @@
-import { RichTextDocument } from "./About"
+import { RichTextDocument } from "@server/contentful/types/RichTextDocument"
 
 export type Chapter = {
 	name: string
