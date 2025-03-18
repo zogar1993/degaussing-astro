@@ -1,6 +1,6 @@
 import type { RichTextDocument } from "@transport/About"
 
-export type Strip = {
+export type ContentfulStrip = {
 	image: string;
 	createdAt: string
 	characters?: Array<{ name: string, image: string }>

@@ -5,6 +5,7 @@ export type Chapter = {
 	pages: Array<Strip>
 	number: number
 }
+
 export type Strip = {
 	image: string;
 	createdAt: Date

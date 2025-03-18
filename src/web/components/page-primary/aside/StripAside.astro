@@ -28,7 +28,7 @@ const { info } = Astro.props
         gap: 1.25rem;
         grid-template-rows: auto 1fr auto;
         grid-template-areas:
-        	"last-update"
+        	"next-update"
         	"characters"
         	"donations";
     }
@@ -55,8 +55,8 @@ const { info } = Astro.props
             grid-template-rows: 1fr 1fr;
 
             grid-template-areas:
-							"last-update characters"
-							"last-update donations";
+							"next-update characters"
+							"next-update donations";
         }
 
         aside > :global(section) {
@@ -69,7 +69,7 @@ const { info } = Astro.props
             grid-template-columns: auto;
             grid-template-rows: auto;
             grid-template-areas:
-            	"last-update"
+            	"next-update"
 							"characters"
 							"donations";
         }
