@@ -1,6 +1,6 @@
 import fs from "fs"
 import path from "path"
-import { fetchEntries } from "@server/FetchEntries"
+import { fetchEntries } from "@server/contentful/FetchEntries"
 
 export async function getEntries<T>(type: string, language?: string): Promise<ReadonlyArray<T>> {
 	const cachePath = path.resolve(`.cache/${type}_${language}`)

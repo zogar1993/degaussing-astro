@@ -1,4 +1,4 @@
-import { getEntries } from "@server/GetEntries"
+import { getEntries } from "@server/contentful/GetEntries"
 import type { About } from "@transport/About"
 
 export default async function getAbout({ language }: { language: string }) {
