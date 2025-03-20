@@ -1,0 +1,13 @@
+---
+import { getLangFromUrl } from "@server/i18n/utils"
+import type { PageInfo } from "@transport/PageInfo"
+
+const language = getLangFromUrl(Astro.url)
+const { info } = Astro.props as { info: PageInfo }
+const {current: {chapter, page}} = info
+const is_last_page = info.forward === null
+---
+<script define:vars={{chapter, page, language, is_last_page}}>
+	const data = JSON.stringify({chapter, page, language, is_last_page})
+	document.cookie = `bookmark=${encodeURIComponent(data)}; path=/; expires=Fri, 31 Dec 9999 23:59:59 GMT`
+</script>

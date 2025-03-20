@@ -1,1 +1,26 @@
-<meta http-equiv="refresh" content="0;url=/es/" />
+---
+export const prerender = false
+
+import { useTranslations } from "@server/i18n/utils"
+
+const bookmark_cookie = (Astro.request.headers.get("cookie") ?? "")
+	.split(";")
+	.map(x => x.trim())
+	.map(x => x.split("="))
+	.find(x => x[0] == "bookmark")
+
+if (bookmark_cookie) {
+	const { chapter, page, language, is_last_page } = JSON.parse(decodeURIComponent(bookmark_cookie[1]))
+
+	const url_chapters = useTranslations(language)("url.chapters")
+	const url_pages = useTranslations(language)("url.pages")
+	return Astro.redirect(`/${language}/${url_chapters}/${chapter}/${url_pages}/${page}${is_last_page ? "?is_last_page=true" : ""}`)
+} else {
+	const language = (Astro.request.headers.get("accept-language") ?? "")
+		.split(",")
+		.map(x => x.split(";")[0].split("-")[0])
+		.find(x => x === "es" || x === "en") ?? "en"
+
+	return Astro.redirect(`/${language}`)
+}
+---
