@@ -3,7 +3,7 @@ export const prerender = false
 
 const CRON_SECRET = import.meta.env.CRON_SECRET!
 
-export async function POST({ request }) {
+export async function GET({ request }) {
 	if (request.headers.get('Authorization') !== `Bearer ${CRON_SECRET}`) {
 		return new Response(null, { status: 401 })
 	}
