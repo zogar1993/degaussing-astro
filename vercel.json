@@ -1,0 +1,8 @@
+{
+  "crons": [
+    {
+      "path": "/api/deploy",
+      "schedule": "* 20 * * 0"
+    }
+  ]
+}
