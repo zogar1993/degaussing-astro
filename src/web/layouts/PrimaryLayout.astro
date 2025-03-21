@@ -12,6 +12,7 @@ import ArrowNavigationScript from "@web/components/page-primary/scripts/ArrowNav
 import CommentsScript from "@web/components/page-primary/scripts/CommentsScript.astro"
 import NewsletterSubscriptionScript from "@web/components/page-primary/scripts/NewsletterSubscriptionScript.astro"
 import SaveBookmarkScript from "@web/components/page-primary/scripts/SaveBookmarkScript.astro"
+import { ID } from "@web/ID"
 import getLocalizedLinkToComicStrip from "@server/actions/GetLocalizedLinkToComicStrip"
 import { getLangFromUrl } from "@server/i18n/utils"
 import type { PageInfo } from "@transport/PageInfo"
@@ -27,6 +28,9 @@ const next = forward ? getLocalizedLinkToComicStrip({ ...forward.one, language }
 ---
 <MainLayout info={info} title={title}>
 	<div class="grid">
+		<article id={ID.NEW_PAGES_ANNOUNCEMENT}>
+			{"There are two new pages for you to read!"}
+		</article>
 		<PrimaryPageMain info={info} />
 		<StickyNavBar info={info} />
 		<StripAside info={info} />
@@ -85,7 +89,8 @@ const next = forward ? getLocalizedLinkToComicStrip({ ...forward.one, language }
         	[right-end full-width-end];
 
         grid-template-rows:
-        	[main-start strip-start aside-start] auto
+        	[announcement-start] auto
+        	[announcement-end main-start strip-start aside-start] auto
         	[strip-end aside-end transcript-start] auto
         	[transcript-end main-end sticky-nav-bar-start] auto
         	[sticky-nav-bar-end comments-start] auto
@@ -102,7 +107,8 @@ const next = forward ? getLocalizedLinkToComicStrip({ ...forward.one, language }
 							minmax(0, var(--strip_width))
 							[full-width-end left-end right-end];
             grid-template-rows:
-							[main-start strip-start] auto
+            	[announcement-start] auto
+							[announcement-end main-start strip-start] auto
 							[strip-end transcript-start] auto
 							[transcript-end main-end sticky-nav-bar-start] auto
 							[sticky-nav-bar-end aside-start] auto
@@ -110,5 +116,26 @@ const next = forward ? getLocalizedLinkToComicStrip({ ...forward.one, language }
 							[comments-end newsletter-start] auto
 							[newsletter-end];
         }
+    }
+
+    #new-pages-announcement:target {
+        grid-column: full-width;
+        grid-row: announcement;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        background-color: var(--section_background-color);
+        border-radius: var(--component_border-radius);
+        border: var(--section_border);
+        padding: var(--section_padding);
+
+        font-size: var(--heading_font-size);
+        color: var(--heading_color);
+    }
+
+    #new-pages-announcement:not(:target) {
+    	display: none;
     }
 </style>

@@ -17,7 +17,6 @@ export const translations = {
 		"comic.cover.singular": "Cover",
 
 		"strip.heading-main": "Comic page",
-		"strip.heading-main-home": "Latest comic page",
 
 		"chapters.pages": "pages",
 
@@ -78,7 +77,6 @@ export const translations = {
 		"menu.language": "English",
 
 		"strip.heading-main": "Página del comic",
-		"strip.heading-main-home": "Última página del comic",
 		
 		"comic.chapter.singular": "Capítulo",
 		"comic.page.singular": "Página",

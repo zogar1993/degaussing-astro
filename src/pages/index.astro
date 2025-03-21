@@ -14,7 +14,7 @@ if (bookmark_cookie) {
 
 	const url_chapters = useTranslations(language)("url.chapters")
 	const url_pages = useTranslations(language)("url.pages")
-	return Astro.redirect(`/${language}/${url_chapters}/${chapter}/${url_pages}/${page}${is_last_page ? "?is_last_page=true" : ""}`)
+	return Astro.redirect(`/${language}/${url_chapters}/${chapter}/${url_pages}/${page}${is_last_page ? "#new-pages-announcement" : ""}`)
 } else {
 	const language = (Astro.request.headers.get("accept-language") ?? "")
 		.split(",")

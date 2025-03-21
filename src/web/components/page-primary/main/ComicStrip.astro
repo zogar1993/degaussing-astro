@@ -1,6 +1,5 @@
 ---
 import getStripNameParts from "@server/actions/GetStripNameParts"
-import getIsHomepage from "@server/GetIsHomepage"
 import { getLangFromUrl, useTranslations } from "@server/i18n/utils"
 import type { RelatedPages } from "@server/Utils"
 
@@ -10,10 +9,7 @@ const t = useTranslations(language)
 const { info } = Astro.props as { info: RelatedPages }
 const { image, description, current } = info
 
-const isHomepage = getIsHomepage({ path: Astro.url.pathname, language })
-//This is so that an accessible user can understand that he is on the latest page when he is in the homepage.
-const comicPageHeading = isHomepage ? t("strip.heading-main-home") : t("strip.heading-main")
-const heading = [comicPageHeading, ...getStripNameParts({ ...current, language })].join(" | ")
+const heading = [t("strip.heading-main"), ...getStripNameParts({ ...current, language })].join(" | ")
 //TODO Ttabindex -1?
 ---
 <div tabindex="-1">

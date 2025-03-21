@@ -1,4 +1,5 @@
 export const ID = {
 	MAIN: "main",
-	TRANSCRIPT: "transcript"
+	TRANSCRIPT: "transcript",
+	NEW_PAGES_ANNOUNCEMENT: "new-pages-announcement"
 } as const
