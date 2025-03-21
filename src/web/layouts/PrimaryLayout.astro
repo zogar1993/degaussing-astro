@@ -95,7 +95,7 @@ const next = forward ? getLocalizedLinkToComicStrip({ ...forward.one, language }
         gap: var(--primary-layout_gap);
     }
 
-    @media (max-width: 72em) {
+    @media (width <= 72em) {
         .grid {
             grid-template-columns:
 							[full-width-start left-start right-start]

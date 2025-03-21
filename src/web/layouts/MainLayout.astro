@@ -71,7 +71,7 @@ const isHomepage = getIsHomepage({ path: Astro.url.pathname, language })
         background-color: #9c7a5b;
     }
 
-    @media (max-width: 72em) {
+    @media (width <= 72em) {
         #content-container {
             padding: 1rem;
         }

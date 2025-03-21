@@ -52,7 +52,7 @@ const items = getMenuItems({ path: Astro.url.pathname, language })
         color: var(--link--hover_color);
     }
 
-    @media (max-width: 72em) {
+    @media (width <= 72em) {
         nav {
             display: none;
         }
