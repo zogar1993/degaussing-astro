@@ -138,7 +138,7 @@ const items = getMenuItems({ path: Astro.url.pathname, language })
         width: 1.5rem;
     }
 
-    @media (max-width: 72em) {
+    @media (width <= 72em) {
         nav {
             display: flex;
         }

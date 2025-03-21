@@ -144,7 +144,7 @@ const { info: { current, backward, forward } } = Astro.props
         cursor: not-allowed;
     }
 
-    @media (max-width: 72em) {
+    @media (width <= 72em) {
         .sticky-bar {
             position: static;
             --_min_link_size_offset: 0.5rem;
