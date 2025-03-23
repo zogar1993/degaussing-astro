@@ -16,11 +16,13 @@
     --component--muted_color: var(--color--dark-grey);
     --component-disabled_color: var(--color--light-grey);
     --component_border: var(--color--dark-brown);
-    
+
     --button--hover_background-color: var(--color--orange);
     --button_background-color: var(--color--yellow);
-    
+
     --component_border-radius: 5px;
+
+    --form-element_height: 2.25rem;
 
     /*! Extensions from @primer/css/alerts/flash.scss */
     --color-text-secondary: var(--color--dark-grey);
@@ -138,6 +140,10 @@ body {
     font-weight: normal;
     font-style: normal;
     font-display: fallback;
+}
+
+.btn-primary {
+    height: var(--form-element_height);
 }
 
 .btn-primary:disabled {
