@@ -30,33 +30,17 @@
 	*/
 
 	widget.addEventListener("frc:widget.complete", async function() {
-		const isEmailInputInvalid = () => !(input.value.length > 0 && input.checkValidity())
-		const applyEmailInputValidity = () => button.disabled = isEmailInputInvalid()
-		input.addEventListener("input", applyEmailInputValidity)
-		applyEmailInputValidity()
-		/*
-			event.preventDefault()
+		section.setAttribute("aria-busy", "false")
+	})
 
-			const result = await fetch("/api/validate_captcha", {
-				body: JSON.stringify({ solution: event.detail.response }),
-				headers: { "Content-Type": "application/json" },
-				method: "POST"
-			})
+	widget.addEventListener("frc:widget.statechange", async function(e) {
+		if (e.detail.state === "activating")
+			section.setAttribute("aria-busy", "true")
+	})
 
-			if (result.status === 204) {
-				button.disabled = false
-				formContainer.hidden = false
-				section.setAttribute("aria-busy", "false")
-			} else {
-				return new Response(await result.text(), {
-					status: 500,
-					headers: {
-						"Content-Type": "application/json"
-					}
-				})
-			}
-
-		 */
+	widget.addEventListener("frc:widget.error", async function() {
+		messageError.hidden = false
+		formContainer.hidden = true
 	})
 
 	form.onsubmit = async (e) => {
@@ -66,7 +50,7 @@
 		data.append("language", document.documentElement.lang)
 
 		section.setAttribute("aria-busy", "true")
-		formContainer.hidden = true
+		input.disabled = true
 
 		const result = await fetch("/api/subscribe", {
 			body: data,
@@ -78,6 +62,12 @@
 		else
 			messageError.hidden = false
 
+		formContainer.hidden = true
 		section.setAttribute("aria-busy", "false")
 	}
+
+	input.addEventListener("input", () => {
+		const isValid = input.value.length > 0 && input.checkValidity()
+		button.disabled = !isValid
+	})
 </script>
