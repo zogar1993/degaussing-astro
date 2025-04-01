@@ -16,6 +16,7 @@ export async function GET({ request }) {
 		},
 		body: JSON.stringify({
 			name: "degaussing-astro",
+			target: "production",
 			gitSource: {
 				repo: "https://github.com/zogar1993/degaussing-astro",
 				repoId: GITHUB_REPO_ID,
