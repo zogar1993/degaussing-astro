@@ -1,0 +1,129 @@
+---
+import { getLangFromUrl } from "@server/i18n/utils"
+import type { MenuDropdown } from "@server/actions/GetMenuItems"
+import { ID } from "@web/ID"
+import DropdownHydrationScript from "@web/components/header/DropdownHydrationScript.astro"
+
+const { dropdown } = Astro.props as { dropdown: MenuDropdown }
+const language = getLangFromUrl(Astro.url)
+const LISTBOX_ID = `${ID.LANGUAGE_SELECTOR_DESKTOP}__listbox`
+---
+<div id={ID.LANGUAGE_SELECTOR_DESKTOP} class="language-selector">
+	<button
+		value={language}
+		aria-controls=`${LISTBOX_ID}`
+		aria-haspopup="listbox"
+		aria-expanded="false"
+	>
+		{dropdown.text}
+	</button>
+	<ul id=`${LISTBOX_ID}` role="listbox">
+		{dropdown.items.map(item => (
+			<li>
+				<a
+					href={item.href}
+					role="option"
+					aria-selected={item.selected}
+					lang={item.value}
+				>
+					{item.text}
+				</a>
+			</li>
+		))}
+	</ul>
+	<DropdownHydrationScript dropdown-id={ID.LANGUAGE_SELECTOR_DESKTOP} />
+</div>
+<style>
+    .language-selector {
+        display: flex;
+        align-items: center;
+        position: relative;
+        height: 100%;
+    }
+
+    button {
+        line-height: 1;
+        padding: 0.5rem 0.75rem;
+        font-size: 2rem;
+        font-family: var(--heading_font-family);
+        color: var(--link_color);
+        border-radius: var(--component_border-radius);
+        height: var(--link_height);
+    }
+
+    button::after {
+        content: "";
+        display: inline-block;
+        border: 1px var(--link_color);
+        border-bottom-style: solid;
+        border-left-style: solid;
+        width: 8px;
+        aspect-ratio: 1;
+
+        position: relative;
+        bottom: 50%;
+        margin-left: 0.5rem;
+        --button__caret_rotate: -45deg;
+        --button__caret_translate-y: 100%;
+        transform: translateY(var(--button__caret_translate-y)) rotate(var(--button__caret_rotate));
+        transition: transform 300ms;
+    }
+
+    button[aria-expanded=true]::after {
+        --button__caret_rotate: -225deg;
+        --button__caret_translate-y: 150%;
+    }
+
+    button:hover {
+        color: var(--link_color);
+        background-color: var(--header__link--hover_background-color);
+    }
+
+    a {
+        line-height: 1;
+        display: inline-block;
+        padding: 0.5rem;
+        font-size: 2rem;
+        font-family: var(--heading_font-family);
+        color: var(--link_color);
+        border-radius: var(--component_border-radius);
+        height: var(--link_height);
+        width: 100%;
+        text-align: center;
+    }
+
+    a[aria-selected=true] {
+        color: var(--dropdown__item--selected_color)
+    }
+
+    a:hover {
+        color: var(--link_color);
+        background-color: var(--header__link--hover_background-color);
+    }
+
+    ul {
+        position: absolute;
+        top: 100%;
+
+        left: -1rem;
+        width: calc(100% + 2rem);
+
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+        clip-path: inset(0 -1rem -1rem -1rem);
+
+        padding: 0.5rem 1rem 1rem 1rem;
+
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.25rem;
+
+        background-color: var(--navigation_background-color);
+        border-bottom-left-radius: var(--component_border-radius);
+        border-bottom-right-radius: var(--component_border-radius);
+    }
+
+    button[aria-expanded=false] + ul {
+        display: none;
+    }
+</style>

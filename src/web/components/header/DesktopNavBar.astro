@@ -1,6 +1,7 @@
 ---
-import getMenuItems from "@server/actions/GetMenuItems"
+import getMenuItems, { isMenuLink } from "@server/actions/GetMenuItems"
 import { getLangFromUrl, useTranslations } from "@server/i18n/utils"
+import LanguageSelectorDesktop from "@web/components/header/LanguageSelectorDesktop.astro"
 
 const language = getLangFromUrl(Astro.url)
 const t = useTranslations(language)
@@ -11,9 +12,12 @@ const items = getMenuItems({ path: Astro.url.pathname, language })
 	<ul>
 		{items.map(item =>
 			<li>
-				<a href={item.href} class={item.selected ? "selected" : ""}>
-					{item.text}
-				</a>
+				{isMenuLink(item) ?
+					<a href={item.href} class={item.selected ? "selected" : ""}>
+						{item.text}
+					</a> :
+					<LanguageSelectorDesktop dropdown={item}/>
+				}
 			</li>
 		)}
 	</ul>
@@ -21,6 +25,7 @@ const items = getMenuItems({ path: Astro.url.pathname, language })
 <style>
     nav {
         display: flex;
+        z-index: 1;
     }
 
     ul {
@@ -34,13 +39,13 @@ const items = getMenuItems({ path: Astro.url.pathname, language })
     }
 
     a {
-        display: flex;
+        line-height: 1;
         padding: 0.5rem 0.75rem;
         font-size: 2rem;
         font-family: var(--heading_font-family);
         color: var(--link_color);
         border-radius: var(--component_border-radius);
-        line-height: 1;
+        height: var(--link_height);
     }
 
     a:hover {

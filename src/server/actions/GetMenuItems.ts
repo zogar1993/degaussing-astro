@@ -11,42 +11,76 @@ export default function getMenuItems({ path, language }: { path: string, languag
 			href: localizePath("/"),
 			selected: pathname === "/",
 			text: t("menu.home"),
-			icon: "/icons/home.svg"
+			icon: "/icons/home.svg",
+			type: "link"
 		},
 		{
 			href: localizePath(`/${t("url.chapters")}`),
 			selected: pathname.startsWith(`/${t("url.chapters")}`),
 			text: t("menu.chapters"),
-			icon: "/icons/chapters.svg"
+			icon: "/icons/chapters.svg",
+			type: "link"
 		},
 		{
 			href: localizePath(`/${t("url.characters")}`),
 			selected: pathname.startsWith(`/${t("url.characters")}`),
 			text: t("menu.characters"),
-			icon: "/icons/characters.svg"
+			icon: "/icons/characters.svg",
+			type: "link"
 		},
 		{
 			href: localizePath(`/${t("url.about")}`),
 			selected: pathname.startsWith(`/${t("url.about")}`),
 			text: t("menu.about"),
-			icon: "/icons/about.svg"
+			icon: "/icons/about.svg",
+			type: "link"
 		},
 		{
-			href: translatePath({ path: pathname, from: language, to: language === "es" ? "en" : "es" }),
-			selected: false,
 			text: t("menu.language"),
-			icon: "/icons/language.svg"
+			icon: "/icons/language.svg",
+			items: [
+				{
+					text: "English",
+					href: translatePath({ path: pathname, from: language, to: "en" }),
+					selected: language === "en",
+					value: "en"
+				},
+				{
+					text: "Español",
+					href: translatePath({ path: pathname, from: language, to: "es" }),
+					selected: language === "es",
+					value: "es"
+				}
+			],
+			type: "dropdown"
 		}
 	]
 }
 
-type MenuItem = {
+export type MenuItem = MenuLink | MenuDropdown
+
+export type MenuLink = {
+	text: string
 	href: string
 	selected: boolean
-	text: string
 	icon: string
+	type: "link"
 }
 
-const generateMenuItem = (code: string) => ({
+export type MenuDropdown = {
+	text: string
+	icon: string
+	items: Array<MenuDropdownItems>
+	type: "dropdown"
+}
 
-})
+export type MenuDropdownItems = {
+	text: string
+	href: string
+	value: string
+	selected: boolean
+}
+
+export function isMenuLink(item: MenuItem): item is MenuLink {
+	return item.type === "link"
+}

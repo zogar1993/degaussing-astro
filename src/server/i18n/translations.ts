@@ -10,7 +10,7 @@ export const translations = {
 		"menu.chapters": "Chapters",
 		"menu.characters": "Characters",
 		"menu.about": "About",
-		"menu.language": "Español",
+		"menu.language": "Language",
 
 		"comic.chapter.singular": "Chapter",
 		"comic.page.singular": "Page",
@@ -75,7 +75,7 @@ export const translations = {
 		"menu.chapters": "Capítulos",
 		"menu.characters": "Personajes",
 		"menu.about": "Acerca de",
-		"menu.language": "English",
+		"menu.language": "Lenguaje",
 
 		"strip.heading-main": "Página del comic",
 		"strip.heading-main-home": "Última página del comic",
