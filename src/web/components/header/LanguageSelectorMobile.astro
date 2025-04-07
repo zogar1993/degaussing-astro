@@ -1,15 +1,15 @@
 ---
 import { getLangFromUrl } from "@server/i18n/utils"
 import type { MenuDropdown } from "@server/actions/GetMenuItems"
-import { ID } from "@web/ID"
 import DropdownHydrationScript from "@web/components/header/DropdownHydrationScript.astro"
 
 const { dropdown } = Astro.props as { dropdown: MenuDropdown }
 const language = getLangFromUrl(Astro.url)
-const LISTBOX_ID = `${ID.LANGUAGE_SELECTOR_MOBILE}__listbox`
+const ID = "language-selector-mobile"
+const LISTBOX_ID = `${ID}__listbox`
 //TODO make buttons and links not text selectable
 ---
-<div id={ID.LANGUAGE_SELECTOR_MOBILE} class="language-selector">
+<div id={ID} class="language-selector">
 	<button
 		value={language}
 		aria-controls=`${LISTBOX_ID}`
@@ -33,7 +33,7 @@ const LISTBOX_ID = `${ID.LANGUAGE_SELECTOR_MOBILE}__listbox`
 			</li>
 		))}
 	</ul>
-	<DropdownHydrationScript dropdown-id={ID.LANGUAGE_SELECTOR_MOBILE} />
+	<DropdownHydrationScript dropdown-id={ID} />
 </div>
 <style>
     .language-selector {

@@ -1,14 +1,14 @@
 ---
 import { getLangFromUrl } from "@server/i18n/utils"
 import type { MenuDropdown } from "@server/actions/GetMenuItems"
-import { ID } from "@web/ID"
 import DropdownHydrationScript from "@web/components/header/DropdownHydrationScript.astro"
 
 const { dropdown } = Astro.props as { dropdown: MenuDropdown }
 const language = getLangFromUrl(Astro.url)
-const LISTBOX_ID = `${ID.LANGUAGE_SELECTOR_DESKTOP}__listbox`
+const ID = "language-selector-desktop"
+const LISTBOX_ID = `${ID}__listbox`
 ---
-<div id={ID.LANGUAGE_SELECTOR_DESKTOP} class="language-selector">
+<div id={ID} class="language-selector">
 	<button
 		value={language}
 		aria-controls=`${LISTBOX_ID}`
@@ -31,7 +31,7 @@ const LISTBOX_ID = `${ID.LANGUAGE_SELECTOR_DESKTOP}__listbox`
 			</li>
 		))}
 	</ul>
-	<DropdownHydrationScript dropdown-id={ID.LANGUAGE_SELECTOR_DESKTOP} />
+	<DropdownHydrationScript dropdown-id={ID} />
 </div>
 <style>
     .language-selector {
