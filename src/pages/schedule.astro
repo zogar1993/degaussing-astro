@@ -1,7 +1,7 @@
 ---
 export const prerender = false
 
-import contentful from "contentful"
+import { createClient } from "contentful"
 import { NOW_WITH_DEPLOYMENT_OFFSET } from "../server/time/NOW_WITH_DEPLOYMENT_OFFSET"
 import FontsCss from "@web/styles/FontsCss.astro"
 import ResetCss from "@web/styles/ResetCss.astro"
@@ -9,13 +9,13 @@ import VariablesCss from "@web/styles/VariablesCss.astro"
 import FlagArgentina from "@web/schedule/FlagArgentina.astro"
 import FlagUnitedKingdom from "@web/schedule/FlagUnitedKingdom.astro"
 
-const clientPreview = contentful.createClient({
+const clientPreview = createClient({
 	space: import.meta.env.CONTENTFUL_SPACE_ID!,
 	accessToken: import.meta.env.CONTENTFUL_ACCESS_TOKEN_PREVIEW!,
 	host: "preview.contentful.com"
 })
 
-const clientDelivery = contentful.createClient({
+const clientDelivery = createClient({
 	space: import.meta.env.CONTENTFUL_SPACE_ID!,
 	accessToken: import.meta.env.CONTENTFUL_ACCESS_TOKEN_DELIVERY!,
 	host: "cdn.contentful.com"
