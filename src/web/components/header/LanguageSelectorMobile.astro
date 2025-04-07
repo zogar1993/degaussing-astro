@@ -7,7 +7,6 @@ const { dropdown } = Astro.props as { dropdown: MenuDropdown }
 const language = getLangFromUrl(Astro.url)
 const ID = "language-selector-mobile"
 const LISTBOX_ID = `${ID}__listbox`
-//TODO make buttons and links not text selectable
 ---
 <div id={ID} class="language-selector">
 	<button
