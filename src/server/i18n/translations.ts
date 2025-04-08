@@ -49,6 +49,8 @@ export const translations = {
 
 		"page-primary.transcript.title": "Transcript",
 		"page-primary.transcript.no-description": "This page hasn't been transcribed yet.",
+		"page-primary.transcript.button.expanded-false": "Open transcript",
+		"page-primary.transcript.button.expanded-true": "Close transcript",
 
 		"secondary-nav.first": "First page",
 		"secondary-nav.previous": "Previous page",
@@ -114,6 +116,8 @@ export const translations = {
 
 		"page-primary.transcript.title": "Transcripción",
 		"page-primary.transcript.no-description": "Aún no se ha realizado la descripción de esta página.",
+		"page-primary.transcript.button.expanded-false": "Abrir transcripción",
+		"page-primary.transcript.button.expanded-true": "Cerrar transcripción",
 
 		"secondary-nav.first": "Primera página",
 		"secondary-nav.previous": "Página anterior",
