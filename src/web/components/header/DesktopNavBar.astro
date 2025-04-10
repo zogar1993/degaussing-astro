@@ -1,7 +1,7 @@
 ---
 import getMenuItems, { isMenuLink } from "@server/actions/GetMenuItems"
 import { getLangFromUrl, useTranslations } from "@server/i18n/utils"
-import LanguageSelectorDesktop from "@web/components/header/LanguageSelectorDesktop.astro"
+import DesktopLanguageSelector from "@web/components/header/DesktopLanguageSelector.astro"
 
 const language = getLangFromUrl(Astro.url)
 const t = useTranslations(language)
@@ -16,7 +16,7 @@ const items = getMenuItems({ path: Astro.url.pathname, language })
 					<a href={item.href} class={item.selected ? "selected" : ""}>
 						{item.text}
 					</a> :
-					<LanguageSelectorDesktop dropdown={item}/>
+					<DesktopLanguageSelector dropdown={item}/>
 				}
 			</li>
 		)}
