@@ -47,10 +47,10 @@ export const translations = {
 
 		"seo.description": "Our young friends escape their hometown and make a run through the continent of Gaoan, but it seems like nowhere is really safe! Where could a mage go to avoid persecution? What secrets do Alan's sword hold? Old grudges are brewing beneath the surface and war is coming from overseas.",
 
-		"page-primary.transcript.title": "Transcript",
-		"page-primary.transcript.no-description": "This page hasn't been transcribed yet.",
-		"page-primary.transcript.button.expanded-false": "Open transcript",
-		"page-primary.transcript.button.expanded-true": "Close transcript",
+		"transcript.title": "Transcript",
+		"transcript.no-description": "This page hasn't been transcribed yet.",
+		"transcript.button.expanded-false": "Open transcript",
+		"transcript.button.expanded-true": "Close transcript",
 
 		"secondary-nav.first": "First page",
 		"secondary-nav.previous": "Previous page",
@@ -114,10 +114,10 @@ export const translations = {
 
 		"seo.description": "Nuestros jovenes amigos escapan de su pueblo y emprenden un viaje a través del continente de Gaoan, ¡Pero ningún lugar es seguro! ¿Donde podría ir un mago para evitar ser perseguido? ¿Que secretos guarda la espada de Alan? Antiguos rencores no se olvidan, cruzando el mar se preparan para la guerra.",
 
-		"page-primary.transcript.title": "Transcripción",
-		"page-primary.transcript.no-description": "Aún no se ha realizado la descripción de esta página.",
-		"page-primary.transcript.button.expanded-false": "Abrir transcripción",
-		"page-primary.transcript.button.expanded-true": "Cerrar transcripción",
+		"transcript.title": "Transcripción",
+		"transcript.no-description": "Aún no se ha realizado la descripción de esta página.",
+		"transcript.button.expanded-false": "Abrir transcripción",
+		"transcript.button.expanded-true": "Cerrar transcripción",
 
 		"secondary-nav.first": "Primera página",
 		"secondary-nav.previous": "Página anterior",

@@ -20,19 +20,19 @@ const paragraphs = description.trim().split("\n").map(p => {
 const TRANSCRIPT_CONTENT_ID = `${ID.TRANSCRIPT}__body`
 ---
 <section id={ID.TRANSCRIPT} class="transcript">
-	<h2>{t("page-primary.transcript.title")}</h2>
+	<h2>{t("transcript.title")}</h2>
 	<button
 		aria-controls={TRANSCRIPT_CONTENT_ID}
 		aria-expanded="false"
-		aria-label={t("page-primary.transcript.button.expanded-false")}
-		data-label--expanded-false={t("page-primary.transcript.button.expanded-false")}
-		data-label--expanded-true={t("page-primary.transcript.button.expanded-true")}
+		aria-label={t("transcript.button.expanded-false")}
+		data-label--expanded-false={t("transcript.button.expanded-false")}
+		data-label--expanded-true={t("transcript.button.expanded-true")}
 	></button>
 	<div id={TRANSCRIPT_CONTENT_ID} class="transcript__content" aria-hidden="true">
 		{paragraphs.map(({ panel, description }) =>
 			<p>
 				{panel && <strong>{panel}:</strong>}
-				{description || t("page-primary.transcript.no-description")}
+				{description || t("transcript.no-description")}
 			</p>
 		)}
 	</div>
