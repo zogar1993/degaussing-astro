@@ -11,7 +11,7 @@ const { info } = Astro.props as { info: PageInfo }
 <aside
 	id="newsletter"
 	aria-label={t("landmarks.newsletter")}
-	aria-live="polite"
+	aria-live="	polite"
 	aria-busy="false"
 >
 	<h2>{t("newsletter.title")}</h2>
@@ -23,7 +23,7 @@ const { info } = Astro.props as { info: PageInfo }
 			method="post"
 			target="_blank"
 		>
-			<input id="newsletter__input" type="email" name="fields[email]" placeholder="Email" autocomplete="email" />
+			<input aria-label="Email" id="newsletter__input" type="email" name="fields[email]" placeholder="Email" autocomplete="email" />
 			<div>
 				<button id="newsletter__button" type="submit" disabled="disabled">{t("newsletter.subscribe")}</button>
 				<span class="loader" hidden></span>
