@@ -23,6 +23,7 @@ pnpm-debug.log*
 .cache
 .idea
 .vscode
+.vercel
 *.iml
 
 .astro/collections
