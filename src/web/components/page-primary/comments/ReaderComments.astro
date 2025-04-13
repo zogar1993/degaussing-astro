@@ -2,8 +2,6 @@
 import { getLangFromUrl, useTranslations } from "@server/i18n/utils"
 import SocialLinks from "@web/components/page-primary/comments/SocialLinks.astro"
 import type { PageInfo } from "@transport/PageInfo"
-const protocol = import.meta.env.PROTOCOL!
-const domain = import.meta.env.DOMAIN!
 
 const language = getLangFromUrl(Astro.url)
 const t = useTranslations(language)
