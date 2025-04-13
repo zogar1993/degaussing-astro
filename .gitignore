@@ -20,6 +20,7 @@ pnpm-debug.log*
 .DS_Store
 
 #misc
+out
 .cache
 .idea
 .vscode
