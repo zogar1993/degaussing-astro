@@ -4,5 +4,16 @@
       "path": "/api/deploy",
       "schedule": "0 19 * * 0"
     }
+  ],
+  "headers": [
+    {
+      "source": "/styles/giscus.css",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "https://giscus.app"
+        }
+      ]
+    }
   ]
 }
