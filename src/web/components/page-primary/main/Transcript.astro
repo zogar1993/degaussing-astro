@@ -18,6 +18,7 @@ const paragraphs = description.trim().split("\n").map(p => {
 })
 
 const TRANSCRIPT_CONTENT_ID = `${ID.TRANSCRIPT}__body`
+const TRANSCRIPT_CLICKABLE_OVERLAY_ID = `${ID.TRANSCRIPT}__clickable-overlay`
 ---
 <section id={ID.TRANSCRIPT} class="transcript">
 	<h2>{t("transcript.title")}</h2>
@@ -27,7 +28,7 @@ const TRANSCRIPT_CONTENT_ID = `${ID.TRANSCRIPT}__body`
 		aria-label={t("transcript.button.expanded-false")}
 		data-label--expanded-false={t("transcript.button.expanded-false")}
 		data-label--expanded-true={t("transcript.button.expanded-true")}
-	></button>
+	>{">"}</button>
 	<div id={TRANSCRIPT_CONTENT_ID} class="transcript__content" aria-hidden="true">
 		{paragraphs.map(({ panel, description }) =>
 			<p>
@@ -36,22 +37,37 @@ const TRANSCRIPT_CONTENT_ID = `${ID.TRANSCRIPT}__body`
 			</p>
 		)}
 	</div>
+	<div id={TRANSCRIPT_CLICKABLE_OVERLAY_ID}></div>
 </section>
-<script define:vars={{ section_id: ID.TRANSCRIPT, content_id: TRANSCRIPT_CONTENT_ID }}>
+<script define:vars={{
+	section_id: ID.TRANSCRIPT,
+	content_id: TRANSCRIPT_CONTENT_ID,
+	clickable_overlay_id: TRANSCRIPT_CLICKABLE_OVERLAY_ID
+}}>
 	const section = document.getElementById(section_id)
 	const body = document.getElementById(content_id)
+	const clickable_overlay = document.getElementById(clickable_overlay_id)
 	const button = section.querySelector("button")
 
+	function setTranscriptExpanded() {
+		body.setAttribute("aria-hidden", "false")
+		button.setAttribute("aria-expanded", "true")
+		button.setAttribute("aria-label", button.getAttribute("data-label--expanded-true"))
+	}
+
+	function setTranscriptCollapsed() {
+		body.setAttribute("aria-hidden", "true")
+		button.setAttribute("aria-expanded", "false")
+		button.setAttribute("aria-label", button.getAttribute("data-label--expanded-false"))
+	}
+
+	clickable_overlay.addEventListener("click", setTranscriptExpanded)
+
 	button.addEventListener("click", () => {
-		if (button.getAttribute("aria-expanded") === "false") {
-			body.setAttribute("aria-hidden", "false")
-			button.setAttribute("aria-expanded", "true")
-			button.setAttribute("aria-label", button.getAttribute("data-label--expanded-true"))
-		} else {
-			body.setAttribute("aria-hidden", "true")
-			button.setAttribute("aria-expanded", "false")
-			button.setAttribute("aria-label", button.getAttribute("data-label--expanded-false"))
-		}
+		if (button.getAttribute("aria-expanded") === "false")
+			setTranscriptExpanded()
+		else
+			setTranscriptCollapsed()
 	})
 </script>
 <style>
@@ -85,13 +101,30 @@ const TRANSCRIPT_CONTENT_ID = `${ID.TRANSCRIPT}__body`
         position: relative;
     }
 
+    h2 {
+        display: inline;
+    }
+
     button {
-        position: absolute;
-        inset: 0;
-        z-index: 1;
+        display: inline-block;
+        font-size: var(--heading_font-size);
+        font-family: var(--heading_font-family);
+        transition: transform 0.5s;
+        color: var(--heading_color);
+        transform: rotate(90deg);
     }
 
     button[aria-expanded=true] {
+        transform: rotate(-90deg);
+    }
+
+    #transcript__clickable-overlay {
+        cursor: pointer;
+        position: absolute;
+        inset: 0;
+    }
+
+    button[aria-expanded=true] ~ #transcript__clickable-overlay {
         pointer-events: none;
     }
 </style>
