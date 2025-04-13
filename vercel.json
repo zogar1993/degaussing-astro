@@ -11,7 +11,16 @@
       "headers": [
         {
           "key": "Access-Control-Allow-Origin",
-          "value": "https://giscus.app"
+          "value": "*"
+        }
+      ]
+    },
+    {
+      "source": "/fonts/Inter-Full.woff2",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
         }
       ]
     }
