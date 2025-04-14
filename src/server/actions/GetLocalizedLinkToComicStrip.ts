@@ -1,5 +1,6 @@
 import { ID } from "@web/ID"
-import { LanguageCode, useLocalizePath, useTranslations } from "@server/i18n/utils"
+import { useTranslations, useLocalizePath } from "@server/i18n/utils"
+import type { LanguageCode } from "@server/i18n/utils"
 import type { PageCoordinates } from "@server/Utils"
 
 export default function getLocalizedLinkToComicStrip(

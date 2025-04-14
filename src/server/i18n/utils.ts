@@ -10,7 +10,7 @@ export type LanguageCode = keyof typeof translations
 
 export function getLangFromUrl(url: URL) {
 	const [, lang] = url.pathname.split("/")
-	if (lang in translations) return lang as keyof typeof translations
+	if (lang as string in translations) return lang as keyof typeof translations
 	return DEFAULT_LANGUAGE
 }
 

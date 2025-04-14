@@ -1,5 +1,6 @@
 import pathnameWithoutLocale from "@server/GetPathnameWithoutLocale"
-import { useTranslations, useLocalizePath, LanguageCode, translatePath } from "@server/i18n/utils"
+import { useTranslations, useLocalizePath, translatePath } from "@server/i18n/utils"
+import type { LanguageCode } from "@server/i18n/utils"
 
 export default function getMenuItems({ path, language }: { path: string, language: LanguageCode }): Array<MenuItem> {
 	const t = useTranslations(language)

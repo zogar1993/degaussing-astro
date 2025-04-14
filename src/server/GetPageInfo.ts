@@ -1,5 +1,5 @@
 import { getNextAndLast, getPage, getPreviousAndFirst } from "@server/Utils"
-import { Chapter } from "@transport/Chapter"
+import type { Chapter } from "@transport/Chapter"
 import type { PageInfo } from "@transport/PageInfo"
 
 export default function getPageInfo({

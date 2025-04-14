@@ -1,4 +1,5 @@
-import { LanguageCode, useTranslations } from "@server/i18n/utils"
+import { useTranslations } from "@server/i18n/utils"
+import type { LanguageCode } from "@server/i18n/utils"
 import type { PageCoordinates } from "@server/Utils"
 
 export default function getStripNameParts({ chapter, page, language }: PageCoordinates & { language: LanguageCode }) {
