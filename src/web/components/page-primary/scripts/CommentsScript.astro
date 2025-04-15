@@ -12,7 +12,7 @@ export interface Props {
 const { info } = Astro.props
 
 const term = `/chapters/${info.current.chapter}/pages/${info.current.page}/`
-const theme = `${Astro.url.origin}/styles/giscus-comments.css`
+const theme = `${Astro.url.origin}/styles/giscus.css`
 ---
 <script define:vars={{term, theme, language}}>
 	const comments = document.getElementById("comments")

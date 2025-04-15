@@ -7,7 +7,7 @@
   ],
   "headers": [
     {
-      "source": "/styles/giscus-comments.css",
+      "source": "/styles/giscus.css",
       "headers": [
         {
           "key": "Access-Control-Allow-Origin",
