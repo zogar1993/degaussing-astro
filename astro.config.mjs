@@ -30,7 +30,7 @@ export default defineConfig({
         name: 'add-cors-headers',
         configureServer(server) {
           server.middlewares.use((req, res, next) => {
-            if (req.url?.startsWith('/styles/giscus.css') ||
+            if (req.url?.startsWith('/styles/giscus-comments.css') ||
                 req.url?.startsWith('/fonts/Inter-Full.woff2')) {
               res.setHeader('Access-Control-Allow-Origin', 'https://giscus.app');
             }
