@@ -4,7 +4,7 @@ import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
   trailingSlash: "never",
-  site: "https://degaussingcomic.com",
+  site: "https://www.degaussingcomic.com",
   image: {
     domains: ["images.ctfassets.net"]
   },
