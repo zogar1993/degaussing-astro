@@ -4,9 +4,10 @@ import ResetCss from "@web/styles/ResetCss.astro"
 import FontsCss from "@web/styles/FontsCss.astro"
 import ImagesPreload from "@web/performance/ImagesPreload.astro"
 import VariablesCss from "@web/styles/VariablesCss.astro"
-//TODO import { HeadHrefLangs } from "astro-i18next/components" <HeadHrefLangs />
 import getIsHomepage from "@server/GetIsHomepage"
 import { getLangFromUrl, useTranslations } from "@server/i18n/utils"
+import { translatePath } from "@server/i18n/utils"
+import pathnameWithoutLocale from "@server/GetPathnameWithoutLocale"
 import type { PageInfo } from "@transport/PageInfo"
 
 const language = getLangFromUrl(Astro.url)
@@ -15,12 +16,26 @@ const t = useTranslations(language)
 const { info, title } = Astro.props as { info?: PageInfo, title: string }
 
 const isHomepage = getIsHomepage({ path: Astro.url.pathname, language })
+
+const pathname = pathnameWithoutLocale({ path: Astro.url.pathname, language })
+const alternates = language === "es" ?
+	{
+		es: Astro.url.href,
+		en: `${Astro.url.origin}${translatePath({ path: pathname, from: "es", to: "en" })}`
+	} :
+	{
+		en: Astro.url.href,
+		es: `${Astro.url.origin}${translatePath({ path: pathname, from: "en", to: "es" })}`
+	}
 ---
 <!DOCTYPE html>
 <html lang={language}>
 <head>
 	<title>{title}</title>
 	<link rel="icon" href="/favicon.ico" />
+	<link rel="sitemap" href="/sitemap-index.xml" />
+	<link rel="alternate" hreflang="es" href={alternates.es} />
+	<link rel="alternate" hreflang="en" href={alternates.en} />
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	{isHomepage &&
@@ -67,7 +82,7 @@ const isHomepage = getIsHomepage({ path: Astro.url.pathname, language })
         background-color: #9c7a5b;
     }
 
-    @media (max-width: 72em) {
+    @media (width <= 72em) {
         #content-container {
             padding: 1rem;
         }

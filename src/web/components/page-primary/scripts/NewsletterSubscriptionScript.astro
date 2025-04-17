@@ -1,3 +1,5 @@
+<script type="module" src="https://cdn.jsdelivr.net/npm/@friendlycaptcha/sdk@0.1.20/site.min.js" async defer></script>
+<script nomodule src="https://cdn.jsdelivr.net/npm/@friendlycaptcha/sdk@0.1.20/site.compat.min.js" async defer></script>
 <script>
 	const section = document.getElementById("newsletter")
 	const messageSuccess = document.getElementById("newsletter__success-message")
@@ -6,53 +8,61 @@
 	const form = document.getElementById("newsletter__form")
 	const input = document.getElementById("newsletter__input")
 	const button = document.getElementById("newsletter__button")
-
-	const formObserver = new IntersectionObserver((entries) => {
-		entries.forEach(entry => {
-			if (entry.isIntersecting) {
-				const script = document.createElement("script")
-				script.src = "https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad"
-				script.async = true
-				script.onerror = () => {
-					section.setAttribute("aria-busy", "false")
-					messageError.hidden = false
+	const widget = section.querySelector(".frc-captcha")
+	/*
+		const formObserver = new IntersectionObserver((entries) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					const script = document.createElement("script")
+					script.src = "https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad"
+					script.async = true
+					script.onerror = () => {
+						section.setAttribute("aria-busy", "false")
+						messageError.hidden = false
+					}
+					document.head.appendChild(script)
+					formObserver.unobserve(section)
 				}
-				document.head.appendChild(script)
-				formObserver.unobserve(section)
-			}
+			})
 		})
+
+		formObserver.observe(section)
+	*/
+
+	widget.addEventListener("frc:widget.complete", async function() {
+		section.setAttribute("aria-busy", "false")
 	})
 
-	formObserver.observe(section)
+	widget.addEventListener("frc:widget.statechange", async function(e) {
+		if (e.detail.state === "activating")
+			section.setAttribute("aria-busy", "true")
+	})
 
-	window.onNewsletterSubscription = () => {
-		const formData = new FormData(form)
+	widget.addEventListener("frc:widget.error", async function() {
+		messageError.hidden = false
+		formContainer.hidden = true
+	})
+
+	form.onsubmit = async (e) => {
+		e.preventDefault()
+
+		const data = new FormData(form)
+		data.append("language", document.documentElement.lang)
 
 		section.setAttribute("aria-busy", "true")
-		formContainer.hidden = true
+		input.disabled = true
 
-		fetch(form.getAttribute("action"), {
-			method: "POST",
-			body: formData
+		const result = await fetch("/api/subscribe", {
+			body: data,
+			method: "POST"
 		})
-			.then(response => response.json())
-			.then(data => {
-				if (data.success)
-					messageSuccess.hidden = false
-				else
-					messageError.hidden = false
-			})
-			.catch(() => {
-				messageError.hidden = false
-			})
-			.finally(() => {
-				section.setAttribute("aria-busy", "false")
-			})
-	}
 
-	window.onRecaptchaLoad = () => {
-		button.disabled = true
-		formContainer.hidden = false
+		if (result.status === 204)
+			messageSuccess.hidden = false
+		else
+			messageError.hidden = false
+
+		formContainer.hidden = true
 		section.setAttribute("aria-busy", "false")
 	}
 

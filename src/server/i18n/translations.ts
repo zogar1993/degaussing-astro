@@ -10,7 +10,7 @@ export const translations = {
 		"menu.chapters": "Chapters",
 		"menu.characters": "Characters",
 		"menu.about": "About",
-		"menu.language": "Español",
+		"menu.language": "Language",
 
 		"comic.chapter.singular": "Chapter",
 		"comic.page.singular": "Page",
@@ -46,8 +46,11 @@ export const translations = {
 
 		"seo.description": "Our young friends escape their hometown and make a run through the continent of Gaoan, but it seems like nowhere is really safe! Where could a mage go to avoid persecution? What secrets do Alan's sword hold? Old grudges are brewing beneath the surface and war is coming from overseas.",
 
-		"page-primary.transcript.title": "Transcript",
-		"page-primary.transcript.no-description": "This page hasn't been transcribed yet.",
+		"transcript.image.alt-text": "Comic page. Complete transcript for the content below.",
+		"transcript.title": "Transcript",
+		"transcript.no-description": "This page hasn't been transcribed yet.",
+		"transcript.button.expanded-false": "Open transcript",
+		"transcript.button.expanded-true": "Close transcript",
 
 		"secondary-nav.first": "First page",
 		"secondary-nav.previous": "Previous page",
@@ -74,10 +77,10 @@ export const translations = {
 		"menu.chapters": "Capítulos",
 		"menu.characters": "Personajes",
 		"menu.about": "Acerca de",
-		"menu.language": "English",
+		"menu.language": "Lenguaje",
 
-		"strip.heading-main": "Página del comic",
-		
+		"strip.heading-main": "Página del cómic",
+
 		"comic.chapter.singular": "Capítulo",
 		"comic.page.singular": "Página",
 		"comic.cover.singular": "Portada",
@@ -90,7 +93,7 @@ export const translations = {
 		"characters.years-old": "años",
 
 		"landmarks.navigation-page": "Navegación de la página",
-		"landmarks.navigation-comic": "Navegación del comic",
+		"landmarks.navigation-comic": "Navegación del cómic",
 		"landmarks.next-update": "Próxima actualización",
 		"landmarks.characters": "Personajes",
 		"landmarks.donations": "Donaciones",
@@ -110,8 +113,11 @@ export const translations = {
 
 		"seo.description": "Nuestros jovenes amigos escapan de su pueblo y emprenden un viaje a través del continente de Gaoan, ¡Pero ningún lugar es seguro! ¿Donde podría ir un mago para evitar ser perseguido? ¿Que secretos guarda la espada de Alan? Antiguos rencores no se olvidan, cruzando el mar se preparan para la guerra.",
 
-		"page-primary.transcript.title": "Transcripción",
-		"page-primary.transcript.no-description": "Aún no se ha realizado la descripción de esta página.",
+		"transcript.image.alt-text": "Pagina del cómic. La transcripción completa del contenido se encuentra debajo.",
+		"transcript.title": "Transcripción",
+		"transcript.no-description": "Aún no se ha realizado la descripción de esta página.",
+		"transcript.button.expanded-false": "Abrir transcripción",
+		"transcript.button.expanded-true": "Cerrar transcripción",
 
 		"secondary-nav.first": "Primera página",
 		"secondary-nav.previous": "Página anterior",

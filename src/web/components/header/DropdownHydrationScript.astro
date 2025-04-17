@@ -1,0 +1,70 @@
+---
+const { "dropdown-id": id } = Astro.props as { "dropdown-id": string }
+---
+<script define:vars={{ id }}>
+	const language_selector = document.getElementById(id)
+	const list = language_selector.querySelector("ul")
+	const items = [...list.querySelectorAll("a")]
+	const button = language_selector.querySelector("button")
+	const setIsExpanded = (value) => button.setAttribute("aria-expanded", `${value}`)
+	const isExpanded = () => button.getAttribute("aria-expanded") === "true"
+
+	language_selector.addEventListener("keydown", e => {
+		if (e.key === "Escape" && isExpanded()) {
+			e.preventDefault()
+			setIsExpanded(false)
+			button.focus()
+		}
+	})
+
+	button.addEventListener("click", () => {
+		if (isExpanded()) {
+			setIsExpanded(false)
+		} else {
+			setIsExpanded(true)
+			items[0].focus()
+		}
+	})
+
+	button.addEventListener("keydown", e => {
+		const OPEN_KEYS = ["ArrowUp", "ArrowDown"]
+		if (!OPEN_KEYS.includes(e.key)) return
+
+		e.preventDefault()
+
+		setIsExpanded(true)
+		const item = e.key === "ArrowUp" ? items[items.length - 1] : items[0]
+		item.focus()
+	})
+
+	items.forEach(item => {
+		item.addEventListener("keydown", e => {
+			const OPEN_KEYS = ["ArrowUp", "ArrowDown"]
+			if (!OPEN_KEYS.includes(e.key)) return
+
+			e.preventDefault()
+
+			let index = items.indexOf(e.target)
+
+			if (e.key === "ArrowUp") index--
+			if (e.key === "ArrowDown") index++
+
+			if (index < 0 || index >= items.length) return
+			const item = items[index]
+			item.focus()
+		})
+
+		button.addEventListener("blur", e => {
+			if (list.contains(e.relatedTarget)) return
+			if (isExpanded())
+				setIsExpanded(false)
+		})
+
+		item.addEventListener("blur", e => {
+			if (list.contains(e.relatedTarget)) return
+			if (e.relatedTarget === button) return
+			setIsExpanded(false)
+		})
+	})
+
+</script>

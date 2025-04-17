@@ -1,6 +1,7 @@
 ---
-import getMenuItems from "@server/actions/GetMenuItems"
+import getMenuItems, { isMenuLink } from "@server/actions/GetMenuItems"
 import { getLangFromUrl, useTranslations } from "@server/i18n/utils"
+import MobileLanguageSelector from "@web/components/header/MobileLanguageSelector.astro"
 
 const language = getLangFromUrl(Astro.url);
 const t = useTranslations(language);
@@ -13,20 +14,30 @@ const items = getMenuItems({ path: Astro.url.pathname, language })
 		aria-expanded="false"
 		aria-controls="hamburger-dropdown"
 		aria-label={t("interaction.open")}
+		title={t("interaction.open")}
 	>
 		<img src="/icons/hamburger.svg" alt="" />
 	</button>
-	<dialog id="hamburger-dropdown" role="menu" inert>
-		<button id="hamburger-closer" aria-label={t("interaction.close")} title={t("interaction.close")}>
+	<dialog id="hamburger-dropdown" inert>
+		<button
+			id="hamburger-closer"
+			aria-expanded="false"
+			aria-controls="hamburger-dropdown"
+			aria-label={t("interaction.close")}
+			title={t("interaction.close")}
+		>
 			<img src="/icons/close.svg" alt="" />
 		</button>
 		<ul>
 			{items.map(item =>
 				<li>
-					<a href={item.href} class={item.selected ? "selected" : ""}>
-						<img src={item.icon} alt="" />
-						<span>{item.text}</span>
-					</a>
+					{isMenuLink(item) ?
+						<a href={item.href} class={item.selected ? "selected" : ""}>
+							<img src={item.icon} alt="" />
+							<span>{item.text}</span>
+						</a> :
+						<MobileLanguageSelector dropdown={item} />
+					}
 				</li>
 			)}
 		</ul>
@@ -42,6 +53,7 @@ const items = getMenuItems({ path: Astro.url.pathname, language })
 		content.setAttribute("aria-hidden", "true")
 		dialog.removeAttribute("inert")
 		opener.setAttribute("aria-expanded", "true")
+		closer.setAttribute("aria-expanded", "true")
 
 		dialog.showModal()
 	})
@@ -54,6 +66,7 @@ const items = getMenuItems({ path: Astro.url.pathname, language })
 		content.removeAttribute("aria-hidden")
 		dialog.setAttribute("inert", "")
 		opener.setAttribute("aria-expanded", "false")
+		closer.setAttribute("aria-expanded", "false")
 	})
 </script>
 <style>
@@ -111,23 +124,29 @@ const items = getMenuItems({ path: Astro.url.pathname, language })
         padding: 16px;
     }
 
-    li > a {
+    a {
         color: var(--link_color);
         font-family: var(--heading_font-family);
         font-size: 1.25rem;
         display: flex;
         gap: 1rem;
         align-items: center;
+        border-radius: var(--component_border-radius);
 
         padding: 1rem;
     }
 
-    li > a.selected {
+    a.selected {
         color: var(--header__link--selected_color);
     }
 
-    li > a.selected > img {
+    a.selected:not(:hover) > img {
         filter: var(--filter-image-hover);
+    }
+
+    a:hover {
+        color: var(--link_color);
+        background-color: var(--header__link--hover_background-color);
     }
 
     img {
@@ -138,7 +157,7 @@ const items = getMenuItems({ path: Astro.url.pathname, language })
         width: 1.5rem;
     }
 
-    @media (max-width: 72em) {
+    @media (width <= 72em) {
         nav {
             display: flex;
         }

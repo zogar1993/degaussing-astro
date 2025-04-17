@@ -18,6 +18,7 @@
 
         --link_color: var(--color--yellow);
         --link--hover_color: var(--color--orange);
+        --link_height: 3rem;
 
         --heading_color: var(--color--dark-orange);
 
@@ -29,6 +30,9 @@
 
         --header__link--selected_color: var(--color--orange);
         --header__link--hover_background-color: color-mix(in srgb, var(--color--orange) 20%, var(--color--blue));
+
+        --dropdown__item_color: var(--color--yellow);
+        --dropdown__item--selected_color: var(--color--orange);
 
         --buttons_gap: 0.5rem;
 
@@ -56,9 +60,11 @@
 
         /* TODO fix these */
         --filter-image-hover: saturate(20);
+
+        interpolate-size: allow-keywords;
     }
 
-    @media (max-width: 72em) {
+    @media (width <= 72em) {
         :root {
             --heading_font-size: 1.5rem;
             --heading_margin-bottom: 0.5rem;
@@ -81,6 +87,11 @@
 
     p:not(:last-child) {
         margin-bottom: 0.5rem;
+    }
+
+    a,
+    button {
+    	user-select: none;
     }
 
     a:hover,

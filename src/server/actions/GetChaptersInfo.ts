@@ -1,5 +1,4 @@
 import { getChapters } from "@server/GetChapters"
-import { imageToUrl } from "@server/Utils"
 
 export default async function getChaptersInfo({
 																								language

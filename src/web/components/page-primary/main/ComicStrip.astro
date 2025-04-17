@@ -10,16 +10,14 @@ const { info } = Astro.props as { info: RelatedPages }
 const { image, description, current } = info
 
 const heading = [t("strip.heading-main"), ...getStripNameParts({ ...current, language })].join(" | ")
-//TODO Ttabindex -1?
 ---
-<div tabindex="-1">
+<div>
 	<h1 class="semantic-only">{heading}</h1>
 	<img
 		src={image}
-		alt={description}
+		alt={t("transcript.image.alt-text")}
 		loading="eager"
 		decoding="sync"
-		tabindex="0"
 	/>
 	<a href={image} target="_blank" rel="noreferrer noopener" aria-hidden="true" tabindex="-1" />
 </div>

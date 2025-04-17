@@ -1,48 +1,37 @@
 ---
 import { getLangFromUrl, useTranslations } from "@server/i18n/utils"
 import type { PageInfo } from "@transport/PageInfo"
+const FRIENDLY_CAPTCHA_SITE_KEY = import.meta.env.FRIENDLY_CAPTCHA_SITE_KEY!
 
 const language = getLangFromUrl(Astro.url)
 const t = useTranslations(language)
 
 const { info } = Astro.props as { info: PageInfo }
-
-const NEWSLETTER_URL = {
-	es: "https://assets.mailerlite.com/jsonp/989761/forms/124424779064149866/subscribe",
-	en: "https://assets.mailerlite.com/jsonp/989761/forms/124338419743590345/subscribe"
-} as const
 ---
 <aside
 	id="newsletter"
 	aria-label={t("landmarks.newsletter")}
 	aria-live="polite"
-	aria-busy="true"
+	aria-busy="false"
 >
 	<h2>{t("newsletter.title")}</h2>
-	<span class="loader"></span>
-	<div id="newsletter__form-container" hidden>
+	<div id="newsletter__form-container">
 		<p>{t("newsletter.description")}</p>
 		<form
 			id="newsletter__form"
-			action={NEWSLETTER_URL[language]}
 			data-code=""
 			method="post"
 			target="_blank"
 		>
-			<input id="newsletter__input" type="email" name="fields[email]" placeholder="Email" autocomplete="email" />
+			<input aria-label="Email" id="newsletter__input" type="email" name="fields[email]" placeholder="Email" autocomplete="email" />
+			<div>
+				<button id="newsletter__button" type="submit" disabled="disabled">{t("newsletter.subscribe")}</button>
+				<span class="loader" hidden></span>
+			</div>
 			<input type="hidden" name="ml-submit" value="1" />
-			<button
-				id="newsletter__button"
-				class="g-recaptcha"
-				data-sitekey="6LeccXQqAAAAAPGs9dstzJZHDENS23T504768yvk"
-				data-callback="onNewsletterSubscription"
-				disabled="disabled"
-			>
-				<span>{t("newsletter.subscribe")}</span>
-			</button>
-			<input type="hidden" name="anticsrf" value="true">
+			<input type="hidden" name="anticsrf" value="true" />
+			<div class="frc-captcha" data-sitekey={FRIENDLY_CAPTCHA_SITE_KEY}></div>
 		</form>
-		<span class="recaptcha-policy" set:html={t("newsletter.recaptcha-policy")}></span>
 	</div>
 	<p id="newsletter__success-message" hidden>{t("newsletter.success")}</p>
 	<p id="newsletter__error-message" hidden set:html={t("newsletter.error")}></p>
@@ -57,6 +46,8 @@ const NEWSLETTER_URL = {
         border: var(--section_border);
 
         padding: var(--section_padding);
+
+        --form-element_height: 2.25rem
     }
 
     #newsletter__form-container > p {
@@ -75,6 +66,7 @@ const NEWSLETTER_URL = {
         border-radius: var(--component_border-radius);
         border: 1px solid var(--button_border-color);
         outline-color: var(--input_outline-color);
+        height: var(--form-element_height);
     }
 
     button {
@@ -84,6 +76,7 @@ const NEWSLETTER_URL = {
         border: 1px solid var(--button_border-color);
         padding: 0.5rem 0.75rem;
         border-radius: var(--component_border-radius);
+        height: var(--form-element_height);
     }
 
     button:not([disabled]):hover {
@@ -102,8 +95,8 @@ const NEWSLETTER_URL = {
 		}
 
     aside[aria-busy=true] .loader {
-        width: 4rem;
-        height: 4rem;
+        width: 2rem;
+        height: 2rem;
         margin-inline: auto;
         border: 5px solid var(--color--white);
         border-bottom-color: var(--color--yellow);
@@ -112,8 +105,8 @@ const NEWSLETTER_URL = {
         animation: rotation 1s linear infinite;
     }
 
-    aside :global(a) {
-        text-decoration: underline;
+    aside[aria-busy=true] button {
+    	display: none;
     }
 
     @keyframes rotation {
@@ -125,18 +118,7 @@ const NEWSLETTER_URL = {
         }
     }
 
-    /* hide recaptcha badge */
-    #newsletter__form > :global(div:not([class])) {
-        display: none;
-    }
-
-    .recaptcha-policy {
-    		display: block;
-    		margin-top: 0.5rem;
-        font-size: 0.75rem;
-    }
-
-    @media (max-width: 72em) {
+    @media (width <= 72em) {
         h2 {
             font-size: 1.5rem;
         }
@@ -146,7 +128,7 @@ const NEWSLETTER_URL = {
         }
     }
 
-    @media (max-width: 36em) {
+    @media (width <= 36em) {
         input {
             /*
 							this is a hack so that button only grows when alone in its line.
@@ -160,5 +142,9 @@ const NEWSLETTER_URL = {
         button {
             flex-grow: 1;
         }
+    }
+
+    :global(.frc-captcha) {
+        display: none;
     }
 </style>
