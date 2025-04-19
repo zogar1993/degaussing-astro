@@ -2,6 +2,7 @@
 export const prerender = false
 
 import { useTranslations } from "@server/i18n/utils"
+import type { LanguageCode } from "@server/i18n/utils"
 
 const bookmark_cookie = (Astro.request.headers.get("cookie") ?? "")
 	.split(";")
@@ -20,12 +21,15 @@ if (bookmark_cookie) {
 		headers.append("Set-Cookie", `was-last-page=true; path=/; expires=Fri, 31 Dec 9999 23:59:59 GMT`)
 
 } else {
-	const language = (Astro.request.headers.get("accept-language") ?? "")
+	const language = ((Astro.request.headers.get("accept-language") ?? "")
 		.split(",")
 		.map(x => x.split(";")[0].split("-")[0])
-		.find(x => x === "es" || x === "en") ?? "en"
+		.find(x => x === "es" || x === "en") ?? "en") as LanguageCode
 
-	headers.set("Location", `/${language}`)
+	const url_chapters = useTranslations(language)("url.chapters")
+	const url_pages = useTranslations(language)("url.pages")
+
+	headers.set("Location", `/${language}/${url_chapters}/1/${url_pages}/0`)
 }
 
 return new Response(null, {
