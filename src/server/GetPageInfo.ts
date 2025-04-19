@@ -1,4 +1,4 @@
-import { getNextAndLast, getPage, getPreviousAndFirst } from "@server/Utils"
+import { getNextAndLast, getPage, getPreviousAndFirst, getRemainingPagesAmount } from "@server/Utils"
 import type { Chapter } from "@transport/Chapter"
 import type { PageInfo } from "@transport/PageInfo"
 
@@ -20,6 +20,7 @@ export default function getPageInfo({
 		characters: current.characters,
 		description: current.description,
 		author_comment: current.author_comment_lucia,
+		remaining_pages_amount: getRemainingPagesAmount({ chapters, chapter, page }),
 		createdAt: current.createdAt
 	}
 }

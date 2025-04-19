@@ -40,6 +40,16 @@ export function getPage({ chapters, chapter, page }: PageFunctionProps) {
 	return chapters[chapter - 1].pages[page]
 }
 
+export function getRemainingPagesAmount({ chapters, chapter, page }: PageFunctionProps) {
+	let amount = 0
+	for (let i = chapter - 1; i < chapters.length; i++) {
+		const chapter_length = chapters[i].pages.length
+		const is_current_chapter = i === chapter - 1
+		amount += is_current_chapter ? chapter_length - page - 1 : chapter_length
+	}
+	return amount
+}
+
 export function imageToUrl(image: string) {
 	return `https:${image}`
 }

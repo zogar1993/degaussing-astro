@@ -9,18 +9,27 @@ const bookmark_cookie = (Astro.request.headers.get("cookie") ?? "")
 	.map(x => x.split("="))
 	.find(x => x[0] == "bookmark")
 
+const headers = new Headers();
 if (bookmark_cookie) {
 	const { chapter, page, language, is_last_page } = JSON.parse(decodeURIComponent(bookmark_cookie[1]))
 
 	const url_chapters = useTranslations(language)("url.chapters")
 	const url_pages = useTranslations(language)("url.pages")
-	return Astro.redirect(`/${language}/${url_chapters}/${chapter}/${url_pages}/${page}${is_last_page ? "#new-pages-announcement" : ""}`)
+	headers.set("Location", `/${language}/${url_chapters}/${chapter}/${url_pages}/${page}`)
+	if(is_last_page)
+		headers.append("Set-Cookie", `was-last-page=true; path=/; expires=Fri, 31 Dec 9999 23:59:59 GMT`)
+
 } else {
 	const language = (Astro.request.headers.get("accept-language") ?? "")
 		.split(",")
 		.map(x => x.split(";")[0].split("-")[0])
 		.find(x => x === "es" || x === "en") ?? "en"
 
-	return Astro.redirect(`/${language}`)
+	headers.set("Location", `/${language}`)
 }
+
+return new Response(null, {
+  status: 302,
+  headers,
+});
 ---

@@ -12,7 +12,7 @@ import ArrowNavigationScript from "@web/components/page-primary/scripts/ArrowNav
 import CommentsScript from "@web/components/page-primary/scripts/CommentsScript.astro"
 import NewsletterSubscriptionScript from "@web/components/page-primary/scripts/NewsletterSubscriptionScript.astro"
 import SaveBookmarkScript from "@web/components/page-primary/scripts/SaveBookmarkScript.astro"
-import { ID } from "@web/ID"
+import NewPagesAnnouncement from "@web/components/page-primary/announcement/NewPagesAnnouncement.astro"
 import getLocalizedLinkToComicStrip from "@server/actions/GetLocalizedLinkToComicStrip"
 import { getLangFromUrl } from "@server/i18n/utils"
 import type { PageInfo } from "@transport/PageInfo"
@@ -28,9 +28,7 @@ const next = forward ? getLocalizedLinkToComicStrip({ ...forward.one, language }
 ---
 <MainLayout info={info} title={title}>
 	<div class="grid">
-		<article id={ID.NEW_PAGES_ANNOUNCEMENT}>
-			{"There are two new pages for you to read!"}
-		</article>
+		<NewPagesAnnouncement info={info} />
 		<PrimaryPageMain info={info} />
 		<StickyNavBar info={info} />
 		<StripAside info={info} />
@@ -100,6 +98,11 @@ const next = forward ? getLocalizedLinkToComicStrip({ ...forward.one, language }
         gap: var(--primary-layout_gap);
     }
 
+    /* this is to remove the gap when there is no new pages announcement */
+    :global(body:not([data-show-new-pages-announcement])) .grid {
+    	margin-top: calc(var(--primary-layout_gap) * -1);
+    }
+
     @media (width <= 72em) {
         .grid {
             grid-template-columns:
@@ -116,26 +119,5 @@ const next = forward ? getLocalizedLinkToComicStrip({ ...forward.one, language }
 							[comments-end newsletter-start] auto
 							[newsletter-end];
         }
-    }
-
-    #new-pages-announcement:target {
-        grid-column: full-width;
-        grid-row: announcement;
-
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        background-color: var(--section_background-color);
-        border-radius: var(--component_border-radius);
-        border: var(--section_border);
-        padding: var(--section_padding);
-
-        font-size: var(--heading_font-size);
-        color: var(--heading_color);
-    }
-
-    #new-pages-announcement:not(:target) {
-    	display: none;
     }
 </style>

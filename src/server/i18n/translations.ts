@@ -6,7 +6,6 @@ export const translations = {
 		"interaction.close": "Close",
 		"interaction.open": "Open Menu",
 
-		"menu.home": "Home",
 		"menu.chapters": "Chapters",
 		"menu.characters": "Characters",
 		"menu.about": "About",
@@ -15,6 +14,8 @@ export const translations = {
 		"comic.chapter.singular": "Chapter",
 		"comic.page.singular": "Page",
 		"comic.cover.singular": "Cover",
+
+		"announcement.new-pages.text": "There are {number} new pages since your last visit!",
 
 		"strip.heading-main": "Comic page",
 
@@ -73,11 +74,12 @@ export const translations = {
 		"interaction.close": "Cerrar",
 		"interaction.open": "Abir Menu",
 
-		"menu.home": "Inicio",
 		"menu.chapters": "Capítulos",
 		"menu.characters": "Personajes",
 		"menu.about": "Acerca de",
 		"menu.language": "Lenguaje",
+
+		"announcement.new-pages.text": "¡Hay {number} nuevas páginas desde tu última visita!",
 
 		"strip.heading-main": "Página del cómic",
 

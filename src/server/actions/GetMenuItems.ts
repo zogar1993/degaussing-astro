@@ -9,13 +9,6 @@ export default function getMenuItems({ path, language }: { path: string, languag
 
 	return [
 		{
-			href: localizePath("/"),
-			selected: pathname === "/",
-			text: t("menu.home"),
-			icon: "/icons/home.svg",
-			type: "link"
-		},
-		{
 			href: localizePath(`/${t("url.chapters")}`),
 			selected: pathname.startsWith(`/${t("url.chapters")}`),
 			text: t("menu.chapters"),

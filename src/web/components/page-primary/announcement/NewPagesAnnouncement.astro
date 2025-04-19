@@ -1,0 +1,55 @@
+
+---
+import { getLangFromUrl } from "@server/i18n/utils"
+import { useTranslations } from "@server/i18n/utils"
+import type { PageInfo } from "@transport/PageInfo"
+
+const { info } = Astro.props as { info: PageInfo }
+const language = getLangFromUrl(Astro.url)
+const t = useTranslations(language)
+---
+<article>
+	<script>
+		const was_last_page = (await cookieStore.get("was-last-page")).value === "true"
+		if (was_last_page) {
+			const body = document.querySelector("body")
+			body.setAttribute("data-show-new-pages-announcement", "true")
+			cookieStore.delete("was-last-page")
+		}
+	</script>
+	{t("announcement.new-pages.text").replace("{number}", `${info.remaining_pages_amount}`)}
+</article>
+
+<style>
+    article {
+        grid-column: full-width;
+        grid-row: announcement;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background-color: var(--color--white);
+        border-radius: 30px;
+        border: var(--section_border-width) solid var(--announcement_border-color);
+        outline: var(--section_border-width) solid var(--announcement_outline-color);
+        outline-offset: calc(var(--section_border-width) * -2);
+
+        font-family: var(--heading_font-family);
+				font-size: 1.5rem;
+        color: var(--text_color);
+
+        padding: 0.5rem 1rem;
+    }
+
+    :global(body:not([data-show-new-pages-announcement])) article {
+        display: none;
+    }
+
+    @media (72em < width) {
+        article {
+            margin-inline: var(--sticky-navbar--desktop_margin-inline);
+						font-size: 1.75rem;
+        }
+    }
+</style>
