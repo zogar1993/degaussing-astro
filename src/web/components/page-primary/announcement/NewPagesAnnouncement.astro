@@ -9,9 +9,9 @@ const language = getLangFromUrl(Astro.url)
 const t = useTranslations(language)
 ---
 <article>
-	<script>
+	<script define:vars={{is_current_last_page: info.remaining_pages_amount === 0}}>
 		const was_last_page = (await cookieStore.get("was-last-page")).value === "true"
-		if (was_last_page) {
+		if (was_last_page && !is_current_last_page) {
 			const body = document.querySelector("body")
 			body.setAttribute("data-show-new-pages-announcement", "true")
 			cookieStore.delete("was-last-page")
