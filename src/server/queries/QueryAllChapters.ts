@@ -13,7 +13,7 @@ export default async function queryAllChapters({ language }: { language: string 
 			.map((page, i) => ({
 					...page,
 					image: imageToUrl(page.image),
-					createdAt: new Date(page.createdAt),
+					created_at: new Date(page.createdAt),
 					characters: (page.characters || []).map(character => ({ ...character, image: imageToUrl(character.image) })),
 					number: i
 				})

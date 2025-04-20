@@ -8,5 +8,5 @@ export type PageInfo = RelatedPages & {
 	description: Strip["description"],
 	author_comment?: RichTextDocument
 	remaining_pages_amount: number
-	createdAt: Date
+	created_at: Date
 }

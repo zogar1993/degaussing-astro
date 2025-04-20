@@ -17,7 +17,7 @@ const t = useTranslations(language)
 
 const authors = await getAuthorsInfo({ language })
 const lucy = authors.find(author => author.slug === "lucy")
-const date = getLocalizedDate({ date: info.createdAt, language })
+const date = getLocalizedDate({ date: info.created_at, language })
 ---
 {info.author_comment &&
 <section aria-label={t("landmarks.author")}>
@@ -62,6 +62,5 @@ const date = getLocalizedDate({ date: info.createdAt, language })
         .comment-header {
             margin-bottom: 0.5rem;
         }
-
     }
 </style>

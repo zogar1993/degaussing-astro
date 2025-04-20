@@ -21,6 +21,6 @@ export default function getPageInfo({
 		description: current.description,
 		author_comment: current.author_comment_lucia,
 		remaining_pages_amount: getRemainingPagesAmount({ chapters, chapter, page }),
-		createdAt: current.createdAt
+		created_at: current.created_at
 	}
 }

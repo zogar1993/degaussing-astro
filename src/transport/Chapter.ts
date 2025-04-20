@@ -8,7 +8,7 @@ export type Chapter = {
 
 export type Strip = {
 	image: string;
-	createdAt: Date
+	created_at: Date
 	characters: Array<{ name: string, image: string }>
 	description: string
 	author_comment_lucia?: RichTextDocument

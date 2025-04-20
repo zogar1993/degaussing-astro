@@ -12,7 +12,7 @@ export async function getNextUpdate({ language }: { language: string }) {
 		if (next_update_page) {
 			const chapter = i + 1
 			const image = next_update_chapter.pages[0].image
-			const localized_date = getLocalizedDate({date: next_update_page.createdAt, language})
+			const localized_date = getLocalizedDate({date: next_update_page.created_at, language})
 			return {chapter, image, date: localized_date}
 		}
 	}
