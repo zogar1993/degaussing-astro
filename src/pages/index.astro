@@ -1,39 +1,33 @@
 ---
+import { useTranslations } from "@server/i18n/utils"
+import getBookmarkCookie from "@server/cookies/GetBookmarkCookie"
+import getUserPreferenceLanguage from "@server/headers/GetUserPreferenceLanguage"
+import { HEADERS } from "@server/headers/HEADERS"
+import { COOKIES } from "@server/cookies/COOKIES"
+
 export const prerender = false
 
-import { useTranslations } from "@server/i18n/utils"
-import type { LanguageCode } from "@server/i18n/utils"
-
-const bookmark_cookie = (Astro.request.headers.get("cookie") ?? "")
-	.split(";")
-	.map(x => x.trim())
-	.map(x => x.split("="))
-	.find(x => x[0] == "bookmark")
-
-const headers = new Headers();
-if (bookmark_cookie) {
-	const { chapter, page, language, is_last_page } = JSON.parse(decodeURIComponent(bookmark_cookie[1]))
-
+const bookmark = getBookmarkCookie({ headers: Astro.request.headers })
+const headers = new Headers()
+if (bookmark) {
+	const { chapter, page, language, is_last_page } = bookmark
 	const url_chapters = useTranslations(language)("url.chapters")
 	const url_pages = useTranslations(language)("url.pages")
-	headers.set("Location", `/${language}/${url_chapters}/${chapter}/${url_pages}/${page}`)
-	if(is_last_page)
-		headers.append("Set-Cookie", `was-last-page=true; path=/; expires=Fri, 31 Dec 9999 23:59:59 GMT`)
+
+	headers.set(HEADERS.LOCATION, `/${language}/${url_chapters}/${chapter}/${url_pages}/${page}`)
+	if (is_last_page)
+		headers.append(HEADERS.SET_COOKIE, `${COOKIES.WAS_FIRST_PAGE}=true; path=/; expires=Fri, 31 Dec 9999 23:59:59 GMT`)
 
 } else {
-	const language = ((Astro.request.headers.get("accept-language") ?? "")
-		.split(",")
-		.map(x => x.split(";")[0].split("-")[0])
-		.find(x => x === "es" || x === "en") ?? "en") as LanguageCode
-
+	const language = getUserPreferenceLanguage({ headers })
 	const url_chapters = useTranslations(language)("url.chapters")
 	const url_pages = useTranslations(language)("url.pages")
 
-	headers.set("Location", `/${language}/${url_chapters}/1/${url_pages}/0`)
+	headers.set(HEADERS.LOCATION, `/${language}/${url_chapters}/1/${url_pages}/0`)
 }
 
 return new Response(null, {
-  status: 302,
-  headers,
-});
+	status: 302,
+	headers
+})
 ---

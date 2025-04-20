@@ -1,22 +1,26 @@
 ---
 import { getLangFromUrl } from "@server/i18n/utils"
 import { useTranslations } from "@server/i18n/utils"
+import { COOKIES } from "@server/cookies/COOKIES"
 import type { PageInfo } from "@transport/PageInfo"
 
 const { info } = Astro.props as { info: PageInfo }
 const language = getLangFromUrl(Astro.url)
 const t = useTranslations(language)
+
+const is_current_last_page = info.remaining_pages_amount === 0
+const cookie_was_last_page = COOKIES.WAS_FIRST_PAGE
 ---
 <article>
-	<script define:vars={{ is_current_last_page: info.remaining_pages_amount === 0 }}>
+	<script define:vars={{ is_current_last_page, cookie_was_last_page }}>
 		(async () => {
-			const was_last_page = (await cookieStore.get("was-last-page")).value === "true"
+			const was_last_page = (await cookieStore.get(cookie_was_last_page)).value === "true"
 			if (was_last_page) {
 				if (!is_current_last_page) {
 					const body = document.querySelector("body")
 					body.setAttribute("data-show-new-pages-announcement", "true")
 				}
-				cookieStore.delete("was-last-page")
+				cookieStore.delete(cookie_was_last_page)
 			}
 		})()
 	</script>
