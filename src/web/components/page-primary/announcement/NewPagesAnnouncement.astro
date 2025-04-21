@@ -14,7 +14,7 @@ const cookie_was_last_page = COOKIES.WAS_FIRST_PAGE
 <article>
 	<script define:vars={{ is_current_last_page, cookie_was_last_page }}>
 		(async () => {
-			const was_last_page = (await cookieStore.get(cookie_was_last_page)).value === "true"
+			const was_last_page = (await cookieStore.get(cookie_was_last_page))?.value === "true"
 			if (was_last_page) {
 				if (!is_current_last_page) {
 					const body = document.querySelector("body")
