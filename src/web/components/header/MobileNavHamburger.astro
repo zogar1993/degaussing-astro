@@ -159,6 +159,10 @@ const items = getMenuItems({ path: Astro.url.pathname, language })
         }
     }
 
+    button:hover {
+        filter: var(--filter-image-hover);
+    }
+
     body:has(dialog[open]) {
         overflow-y: hidden;
 
