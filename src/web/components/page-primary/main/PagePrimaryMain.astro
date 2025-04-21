@@ -4,11 +4,16 @@ import ComicStrip from "@web/components/page-primary/main/ComicStrip.astro"
 import Transcript from "@web/components/page-primary/main/Transcript.astro"
 import type { PageInfo } from "@transport/PageInfo"
 
-const { info } = Astro.props as { info: PageInfo }
+export interface Props {
+	info: PageInfo
+	title: string
+}
+
+const { info, title } = Astro.props
 // tabindex="-1" is so that "skip to main content" button works correctly
 ---
 <main id={ID.MAIN} tabindex="-1">
-	<ComicStrip info={info} />
+	<ComicStrip info={info} title={title} />
 	<Transcript info={info} />
 </main>
 <style>

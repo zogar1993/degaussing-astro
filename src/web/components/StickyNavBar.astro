@@ -1,6 +1,5 @@
 ---
 import getLocalizedLinkToComicStrip from "@server/actions/GetLocalizedLinkToComicStrip"
-import getStripNameParts from "@server/actions/GetStripNameParts"
 import { getLangFromUrl, useTranslations } from "@server/i18n/utils"
 import type { RelatedPages } from "@server/Utils"
 
@@ -9,8 +8,10 @@ const t = useTranslations(language)
 
 export interface Props {
 	info: RelatedPages
+	title: string
 }
-const { info: { current, backward, forward } } = Astro.props
+
+const { info: { backward, forward }, title } = Astro.props
 ---
 <nav class="sticky-bar" aria-label={t("landmarks.navigation-comic")}>
 	<div class="navigation-arrows">
@@ -39,7 +40,7 @@ const { info: { current, backward, forward } } = Astro.props
 		}
 	</div>
 	<span class="text hide-on-mobile">
-			{getStripNameParts({ ...current, language }).join(" | ")}
+			{title}
 	</span>
 	<div class="navigation-arrows">
 		{

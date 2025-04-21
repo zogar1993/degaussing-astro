@@ -1,15 +1,19 @@
 ---
-import getStripNameParts from "@server/actions/GetStripNameParts"
 import { getLangFromUrl, useTranslations } from "@server/i18n/utils"
 import type { PageInfo } from "@transport/PageInfo"
 
 const language = getLangFromUrl(Astro.url)
 const t = useTranslations(language)
 
-const { info } = Astro.props as PageInfo
-const { image, description, current } = info
+export interface Props {
+	info: PageInfo
+	title: string
+}
 
-const heading = [t("strip.heading-main"), ...getStripNameParts({ ...current, language })].join(" | ")
+const { info, title } = Astro.props as PageInfo
+const { image, description } = info
+
+const heading = [t("strip.heading-main"), title].join(" | ")
 ---
 <div>
 	<h1 class="semantic-only">{heading}</h1>

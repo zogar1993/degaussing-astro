@@ -4,7 +4,7 @@ import StripAside from "@web/components/page-primary/aside/StripAside.astro"
 import StickyNavBar from "@web/components/StickyNavBar.astro"
 import Comments from "@web/components/page-primary/comments/Comments.astro"
 import Newsletter from "@web/components/page-primary/newsletter/Newsletter.astro"
-import PrimaryPageMain from "@web/components/page-primary/main/PagePrimaryMain.astro"
+import PagePrimaryMain from "@web/components/page-primary/main/PagePrimaryMain.astro"
 import StickyDockingAnimationScript from "@web/components/page-primary/scripts/StickyDockingAnimationScript.astro"
 import SwipeNavigationScript from "@web/components/page-primary/scripts/SwipeNavigationScript.astro"
 import ArrowNavigationScript from "@web/components/page-primary/scripts/ArrowNavigationScript.astro"
@@ -16,7 +16,12 @@ import getLocalizedLinkToComicStrip from "@server/actions/GetLocalizedLinkToComi
 import { getLangFromUrl } from "@server/i18n/utils"
 import type { PageInfo } from "@transport/PageInfo"
 
-const { info, title } = Astro.props as { info: PageInfo; title: string }
+export interface Props {
+	info: PageInfo;
+	title: string
+}
+
+const { info, title } = Astro.props
 const language = getLangFromUrl(Astro.url)
 
 const { backward, forward } = info
@@ -26,8 +31,8 @@ const next = forward ? getLocalizedLinkToComicStrip({ ...forward.one, language }
 <MainLayout info={info} title={title}>
 	<div class="grid">
 		<NewPagesAnnouncement info={info} />
-		<PrimaryPageMain info={info} />
-		<StickyNavBar info={info} />
+		<PagePrimaryMain info={info} title={title} />
+		<StickyNavBar info={info} title={title} />
 		<StripAside info={info} />
 		<Comments info={info} />
 		<Newsletter />
@@ -97,7 +102,7 @@ const next = forward ? getLocalizedLinkToComicStrip({ ...forward.one, language }
 
     /* this is to remove the gap when there is no new pages announcement */
     :global(body:not([data-show-new-pages-announcement])) .grid {
-    	margin-top: calc(var(--primary-layout_gap) * -1);
+        margin-top: calc(var(--primary-layout_gap) * -1);
     }
 
     @media (width <= 72em) {

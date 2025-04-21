@@ -24,4 +24,4 @@ const info = Astro.props as Awaited<ReturnType<typeof getStaticPaths>>[0]["props
 const chapter = getLocalizedChapter(info.current.chapter, language)
 const page = getLocalizedPage(info.current.page, language)
 ---
-<PrimaryLayout info={info} title={`${page} | ${chapter}`} />
+<PrimaryLayout info={info} title={`${chapter} | ${page}`} />

@@ -4,12 +4,12 @@ import SkipToMainContent from "@web/components/header/SkipToMainContent.astro"
 import DesktopNavBar from "@web/components/header/DesktopNavBar.astro"
 import MobileNavHamburger from "@web/components/header/MobileNavHamburger.astro"
 import MobileHeaderText from "@web/components/header/MobileHeaderText.astro"
-import type { RelatedPages } from "@server/Utils"
 
 export interface Props {
-	info?: RelatedPages
+	title: string
 }
-const { info } = Astro.props
+
+const { title } = Astro.props
 ---
 <header>
 	<SkipToMainContent />
@@ -19,7 +19,7 @@ const { info } = Astro.props
 	</div>
 	<div class="row-menu">
 		<DesktopNavBar />
-		<MobileHeaderText info={info} />
+		<MobileHeaderText title={title} />
 	</div>
 </header>
 <style>
