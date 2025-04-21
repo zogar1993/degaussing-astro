@@ -3,7 +3,7 @@ import type { RichTextDocument } from "@server/contentful/types/RichTextDocument
 import type { Strip } from "@transport/Chapter"
 
 export type PageInfo = RelatedPages & {
-	image: string,
+	image: { optimized: string, raw: string },
 	characters: Strip["characters"],
 	description: Strip["description"],
 	author_comment?: RichTextDocument

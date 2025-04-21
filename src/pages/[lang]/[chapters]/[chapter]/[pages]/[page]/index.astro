@@ -15,9 +15,9 @@ export async function getStaticPaths() {
 			page: j
 		})))
 
-		return chapterNumbers.flatMap(({ chapter, page }) => {
+		return await Promise.all(chapterNumbers.map(async ({ chapter, page }) => {
 			return {
-				props: getPageInfo({ chapter, page, chapters }),
+				props: await getPageInfo({ chapter, page, chapters }),
 				params: {
 					lang: `${language}`,
 					chapters: useTranslations(language)("url.chapters"),
@@ -26,7 +26,7 @@ export async function getStaticPaths() {
 					page: `${page}`
 				}
 			}
-		})
+		}))
 	}))).flatMap(x => x)
 }
 

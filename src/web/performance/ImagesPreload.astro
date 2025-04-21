@@ -2,4 +2,4 @@
 import type { PageInfo } from "@transport/PageInfo"
 const { info } = Astro.props as { info?: PageInfo }
 ---
-{info && <link rel="preload" fetchpriority="high" as="image" href={info.image} type="image/webp">}
+{info && <link rel="preload" fetchpriority="high" as="image" href={info.image.optimized} type="image/webp">}

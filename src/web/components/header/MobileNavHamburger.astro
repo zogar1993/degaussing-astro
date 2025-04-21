@@ -47,7 +47,7 @@ const items = getMenuItems({ path: Astro.url.pathname, language })
 	const content = document.querySelector("#content-container")
 	const opener = document.querySelector("#hamburger-opener")
 	const closer = document.querySelector("#hamburger-closer")
-	const dialog = document.querySelector("dialog")
+	const dialog = document.getElementById("hamburger-dropdown")
 
 	opener.addEventListener("click", () => {
 		content.setAttribute("aria-hidden", "true")
@@ -81,15 +81,7 @@ const items = getMenuItems({ path: Astro.url.pathname, language })
         border-bottom-right-radius: var(--component_border-radius);
     }
 
-    dialog[open] {
-        top: 0;
-    }
-
-    dialog:not([open]) {
-        top: -100vh;
-    }
-
-    #hamburger-dropdown {
+    dialog {
         display: flex;
         position: absolute;
         background-color: var(--navigation_background-color);
@@ -98,9 +90,13 @@ const items = getMenuItems({ path: Astro.url.pathname, language })
         height: 100vh;
 
         z-index: 50;
-        transition: 0.50s ease-in-out;
+        transition: top 0.5s ease-in-out;
 
         overflow-y: auto;
+    }
+
+    dialog:not([open]) {
+        top: -100vh;
     }
 
     ul {
@@ -117,11 +113,11 @@ const items = getMenuItems({ path: Astro.url.pathname, language })
     }
 
     #hamburger-closer {
-        position: absolute;
+        position: sticky;
         top: .5rem;
         right: .5rem;
 
-        padding: 16px;
+        padding: 1rem;
     }
 
     a {
@@ -167,6 +163,8 @@ const items = getMenuItems({ path: Astro.url.pathname, language })
         overflow-y: hidden;
 
         /*
+        	TODO see if we still need this
+
         	Safari is stupid and has a bug since at least 2018.
         	This kinda fixes it but shifts th background 1px.
         	This is barely noticeable and I don't care.
