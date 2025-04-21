@@ -1,31 +1,27 @@
 ---
-import { useTranslations, getLangFromUrl } from "@server/i18n/utils"
-import getBookmarkCookie from "@server/cookies/GetBookmarkCookie"
-import { HEADERS } from "@server/headers/HEADERS"
-import { COOKIES } from "@server/cookies/COOKIES"
+import PrimaryLayout from "@web/layouts/PrimaryLayout.astro"
+import getLocalizedChapter from "@server/localization/GetLocalizedChapter"
+import getLocalizedPage from "@server/localization/GetLocalizedPage"
+import { useTranslations, getLangFromUrl, LANGUAGE_CODES } from "@server/i18n/utils"
+import { getChapters } from "@server/GetChapters"
+import getPageInfo from "@server/GetPageInfo"
 
-export const prerender = false
-
-const bookmark = getBookmarkCookie({ headers: Astro.request.headers })
-const headers = new Headers();
-if (bookmark) {
-	const { chapter, page, language, is_last_page } = bookmark
-	const url_chapters = useTranslations(language)("url.chapters")
-	const url_pages = useTranslations(language)("url.pages")
-
-	headers.set(HEADERS.LOCATION, `/${language}/${url_chapters}/${chapter}/${url_pages}/${page}`)
-	if (is_last_page)
-		headers.append(HEADERS.SET_COOKIE, `${COOKIES.WAS_FIRST_PAGE}=true; path=/; expires=Fri, 31 Dec 9999 23:59:59 GMT`)
-} else {
-	const language = getLangFromUrl(Astro.url)
-	const url_chapters = useTranslations(language)("url.chapters")
-	const url_pages = useTranslations(language)("url.pages")
-
-	headers.set(HEADERS.LOCATION, `/${language}/${url_chapters}/1/${url_pages}/0`)
+export async function getStaticPaths() {
+	return await Promise.all(LANGUAGE_CODES.map(async (language) => ({
+			props: await getPageInfo({ chapter: 1, page: 0, chapters: await getChapters({ language }) }),
+			params: {
+				lang: `${language}`,
+				chapters: useTranslations(language)("url.chapters"),
+				chapter: `${1}`,
+				pages: useTranslations(language)("url.pages"),
+				page: `${0}`
+			}
+	})))
 }
 
-return new Response(null, {
-  status: 302,
-  headers,
-});
+const language = getLangFromUrl(Astro.url)
+const info = Astro.props as Awaited<ReturnType<typeof getStaticPaths>>[0]["props"]
+const chapter = getLocalizedChapter(info.current.chapter, language)
+const page = getLocalizedPage(info.current.page, language)
 ---
+<PrimaryLayout info={info} title={`${page} | ${chapter}`} />

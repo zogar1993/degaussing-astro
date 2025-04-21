@@ -20,10 +20,8 @@ if (bookmark) {
 
 } else {
 	const language = getUserPreferenceLanguage({ headers })
-	const url_chapters = useTranslations(language)("url.chapters")
-	const url_pages = useTranslations(language)("url.pages")
 
-	headers.set(HEADERS.LOCATION, `/${language}/${url_chapters}/1/${url_pages}/0`)
+	headers.set(HEADERS.LOCATION, `/${language}`)
 }
 
 return new Response(null, {
