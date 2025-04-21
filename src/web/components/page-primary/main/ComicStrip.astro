@@ -49,6 +49,13 @@ const heading = [t("strip.heading-main"), ...getStripNameParts({ ...current, lan
 	close.addEventListener("click", () => {
 		dialog.close()
 	})
+
+	document.addEventListener("keydown", e => {
+		if (e.key === "Escape" && dialog.getAttribute("open") === "") {
+			e.preventDefault()
+			dialog.close()
+		}
+	})
 </script>
 <style>
     div {
