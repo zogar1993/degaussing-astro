@@ -53,6 +53,10 @@ const heading = [t("strip.heading-main"), title].join(" | ")
 	close.addEventListener("click", () => {
 		dialog.close()
 	})
+
+	window.addEventListener("resize", () => {
+		dialog.close()
+	});
 </script>
 <style>
     .strip-container {
@@ -85,8 +89,8 @@ const heading = [t("strip.heading-main"), title].join(" | ")
 
     /* For some reason padding bottom is ignored in the dialog, so we add it manually */
     dialog > div::after {
-    		content: "";
-    		display: block;
+        content: "";
+        display: block;
         height: 3rem;
         position: relative;
     }
@@ -114,5 +118,11 @@ const heading = [t("strip.heading-main"), title].join(" | ")
 
     button:hover {
         filter: var(--filter-image-hover);
+    }
+
+    @media (width <= 72em) {
+				img[loading=eager] {
+            pointer-events: none;
+        }
     }
 </style>
