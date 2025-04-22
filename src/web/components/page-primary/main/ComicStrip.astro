@@ -15,7 +15,7 @@ const { image, description } = info
 
 const heading = [t("strip.heading-main"), title].join(" | ")
 ---
-<div>
+<div class="strip-container">
 	<h1 class="semantic-only">{heading}</h1>
 	<img
 		src={image.optimized}
@@ -55,18 +55,14 @@ const heading = [t("strip.heading-main"), title].join(" | ")
 	})
 </script>
 <style>
-    div {
+    .strip-container {
         grid-column: left;
         grid-row: strip;
-        position: relative;
-        width: 100%;
-        aspect-ratio: var(--strip_aspect-ratio);
     }
 
     img[loading=eager] {
         display: block;
         width: 100%;
-        height: 100%;
         background-color: white;
         border-radius: var(--component_border-radius);
         border: var(--section_border);

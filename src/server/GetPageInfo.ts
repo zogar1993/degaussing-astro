@@ -16,7 +16,7 @@ export default async function getPageInfo({
 
 	return {
 		image: {
-			optimized: (await getImage({ src: current.image, width: 864, height: 1225, format: "webp", quality: "max" })).src,
+			optimized: (await getImage({ src: current.image, width: 864, height: 1223, format: "webp", quality: "max" })).src,
 			raw: current.image
 		},
 		backward: getPreviousAndFirst({ chapters, chapter, page }),

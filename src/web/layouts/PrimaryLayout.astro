@@ -84,17 +84,25 @@ const next = forward ? getLocalizedLinkToComicStrip({ ...forward.one, language }
         display: grid;
 
         grid-template-columns:
-        	[full-width-start left-start] var(--strip_width)
-        	[left-end right-start] var(--aside--desktop_width)
+        	[full-width-start left-start]
+        		var(--strip_width)
+        	[left-end right-start]
+        		var(--aside--desktop_width)
         	[right-end full-width-end];
 
         grid-template-rows:
-        	[announcement-start] auto
-        	[announcement-end main-start strip-start aside-start] auto
-        	[strip-end aside-end transcript-start] auto
-        	[transcript-end main-end sticky-nav-bar-start] auto
-        	[sticky-nav-bar-end comments-start] auto
-        	[comments-end newsletter-start] auto
+        	[announcement-start]
+        		auto
+        	[announcement-end main-start strip-start aside-start]
+        		calc(var(--content--desktop_width) / calc(var(--strip_aspect-ratio)) + 2 * var(--section_border-width))
+        	[strip-end aside-end transcript-start]
+        		auto
+        	[transcript-end main-end sticky-nav-bar-start]
+        		auto
+        	[sticky-nav-bar-end comments-start]
+        		auto
+        	[comments-end newsletter-start]
+        		auto
     			[newsletter-end];
 
         gap: var(--primary-layout_gap);
@@ -109,16 +117,23 @@ const next = forward ? getLocalizedLinkToComicStrip({ ...forward.one, language }
         .grid {
             grid-template-columns:
 							[full-width-start left-start right-start]
-							minmax(0, var(--strip_width))
+								minmax(0, var(--strip_width))
 							[full-width-end left-end right-end];
             grid-template-rows:
-            	[announcement-start] auto
-							[announcement-end main-start strip-start] auto
-							[strip-end transcript-start] auto
-							[transcript-end main-end sticky-nav-bar-start] auto
-							[sticky-nav-bar-end aside-start] auto
-							[aside-end comments-start] auto
-							[comments-end newsletter-start] auto
+            	[announcement-start]
+            		auto
+							[announcement-end main-start strip-start]
+								auto
+							[strip-end transcript-start]
+								auto
+							[transcript-end main-end sticky-nav-bar-start]
+								auto
+							[sticky-nav-bar-end aside-start]
+								auto
+							[aside-end comments-start]
+								auto
+							[comments-end newsletter-start]
+								auto
 							[newsletter-end];
         }
     }
