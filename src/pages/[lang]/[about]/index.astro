@@ -4,28 +4,35 @@ import PeopleList from "@web/components/PeopleList.astro"
 import RichText from "@web/components/general/RichText.astro"
 import Section from "@web/components/page-secondary/SecondaryPageSection.astro"
 import SectionHeading from "@web/components/general/SectionHeading.astro"
-import getAbout from "@server/actions/GetAbout"
+import getAboutComic from "@server/actions/GetAboutComic"
 import getAuthorsInfo from "@server/actions/GetAuthorsInfo"
+import getFAQ from "@server/actions/GetFAQ"
 import { getLangFromUrl, useTranslations, LANGUAGE_CODES } from "@server/i18n/utils"
 
 export async function getStaticPaths() {
-	return Promise.all(LANGUAGE_CODES.map(async (language) => ({
-		props: {
-			comic: await getAbout({ language }),
-			authors: await getAuthorsInfo({ language })
-		},
-		params: {
-			lang: language,
-			about: useTranslations(language)("url.about")
+	return Promise.all(LANGUAGE_CODES.map(async (language) => {
+		const [comic, authors, faq] = await Promise.all([getAboutComic({ language }), getAuthorsInfo({ language }), getFAQ({ language })])
+		return {
+			props: { comic, authors, faq },
+			params: {
+				lang: language,
+				about: useTranslations(language)("url.about")
+			}
 		}
-	})))
+	}))
 }
 
 const language = getLangFromUrl(Astro.url)
 const t = useTranslations(language)
 
-const props = Astro.props as Awaited<ReturnType<typeof getStaticPaths>>[0]["props"]
-const { comic, authors } = props
+export interface Props {
+	comic: Awaited<ReturnType<typeof getAboutComic>>
+	authors: Awaited<ReturnType<typeof getAuthorsInfo>>
+	faq: Awaited<ReturnType<typeof getFAQ>>
+}
+
+const props = Astro.props
+const { comic, authors, faq } = props
 ---
 <SecondaryLayout title={t("menu.about")}>
 	<Section>
@@ -36,4 +43,26 @@ const { comic, authors } = props
 		<SectionHeading>{t("about.authors")}</SectionHeading>
 		<PeopleList people={authors} />
 	</Section>
+	<Section>
+		<SectionHeading>FAQ</SectionHeading>
+		<dl>
+			{faq.questions_and_answers.map((question_and_answer) =>
+				<dt>{question_and_answer.question}</dt>
+				<dd>
+					<RichText text={question_and_answer.answer} />
+				</dd>
+			)}
+		</dl>
+	</Section>
 </SecondaryLayout>
+<style>
+	dt {
+      font-size: 1.25rem;
+      font-weight: bold;
+      margin-bottom: 0.25rem;
+  }
+
+	dd:has(+ dt) {
+		margin-bottom: 1rem;
+	}
+</style>
