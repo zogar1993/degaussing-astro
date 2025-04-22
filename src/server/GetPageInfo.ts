@@ -16,7 +16,13 @@ export default async function getPageInfo({
 
 	return {
 		image: {
-			optimized: (await getImage({ src: current.image, width: 864, height: 1223, format: "webp", quality: "max" })).src,
+			optimized: (await getImage({
+				src: current.image,
+				width: OPTIMIZED_STRIP.WIDTH,
+				height: OPTIMIZED_STRIP.HEIGHT,
+				format: "webp",
+				quality: "max"
+			})).src,
 			raw: current.image
 		},
 		backward: getPreviousAndFirst({ chapters, chapter, page }),
@@ -29,3 +35,8 @@ export default async function getPageInfo({
 		created_at: current.created_at
 	}
 }
+
+export const OPTIMIZED_STRIP = {
+	WIDTH: 864,
+	HEIGHT: 1223
+} as const

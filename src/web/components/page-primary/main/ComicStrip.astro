@@ -1,5 +1,6 @@
 ---
 import { getLangFromUrl, useTranslations } from "@server/i18n/utils"
+import { OPTIMIZED_STRIP } from "@server/GetPageInfo"
 import type { PageInfo } from "@transport/PageInfo"
 
 const language = getLangFromUrl(Astro.url)
@@ -56,9 +57,12 @@ const heading = [t("strip.heading-main"), title].join(" | ")
 
 	window.addEventListener("resize", () => {
 		dialog.close()
-	});
+	})
 </script>
-<style>
+<style define:vars={{
+	"strip--optimized_width": OPTIMIZED_STRIP.WIDTH,
+	"strip--optimized_height": OPTIMIZED_STRIP.HEIGHT
+}}>
     .strip-container {
         grid-column: left;
         grid-row: strip;
@@ -71,6 +75,8 @@ const heading = [t("strip.heading-main"), title].join(" | ")
         border-radius: var(--component_border-radius);
         border: var(--section_border);
         cursor: zoom-in;
+        /* 3 is the width of the wide borders, so it compensats for its borders in the aspect ratio */
+        aspect-ratio: calc((var(--strip--optimized_width) + 3 * 2) / (var(--strip--optimized_height) + 3 * 2));
     }
 
     a {
@@ -121,7 +127,7 @@ const heading = [t("strip.heading-main"), title].join(" | ")
     }
 
     @media (width <= 72em) {
-				img[loading=eager] {
+        img[loading=eager] {
             pointer-events: none;
         }
     }
