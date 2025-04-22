@@ -4,7 +4,7 @@ const VERCEL_ACCESS_TOKEN = import.meta.env.VERCEL_ACCESS_TOKEN!
 const CRON_SECRET = import.meta.env.CRON_SECRET!
 const GITHUB_REPO_ID = import.meta.env.GITHUB_REPO_ID!
 
-export async function GET({ request }) {
+export async function GET({ request }: { request: Request }) {
 	if (request.headers.get("Authorization") !== `Bearer ${CRON_SECRET}`)
 		return new Response(null, { status: 401 })
 
