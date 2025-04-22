@@ -14,9 +14,22 @@ The page was made with a list of concerns in mind, namely it needs to...:
 - ...respect user privacy.
 - ...be accessible to all kinds of users.
 
+### Size & Speed
+
+The lighthouse plugin assesses these two concerns: 
+
+![Lighthouse performance score 99](readme/speed.png)
+
 ### Privacy
 
-This webpage does not gather any kind of cookies, show any kinds of adds, nor gather any kind of personal information.
+This webpage does not use invasive cookies, show any kinds of adds, nor gather any kind of personal information.
+
+### Accessibility
+
+This page has been run through by accessibility experts and tooling such as axe-core show 0 issues:
+![Axe Core found 0 vulnerabilities](readme/accessibility.png)
+
+## Third Party Libraries
 
 ### Newsletters
 **MailerLite** is our newsletter subscription service. We make sure to...:
@@ -28,9 +41,9 @@ This webpage does not gather any kind of cookies, show any kinds of adds, nor ga
 To protect the newsletter service against malicious users, we use an invisible captcha, called **Friendly Captcha**.
 It is important that it is an invisible captcha so that it provides a seamless user experience and good accessibility.
 Google provides an invisible captcha, but it works by gathering as much information as it can about the user,
-which is how it infers that it is indeed a legitimate user. This is not very privacy-oriented.
-It also bloats the page with scripts, html and images that we don't really need. Friendly Captcha works instead in
-a proof of work manner to check if the user is genuine or not. You can learn more about it [here](https://friendlycaptcha.com/#overview).
+which is how it infers that it is indeed a legitimate user. That is not very privacy-oriented.
+It also bloats the page with scripts, html and images that we don't really need. Friendly Captcha instead relies on
+proof of work to check if the user is genuine or not. You can learn more about it [here](https://friendlycaptcha.com/#overview).
 
 ### User Comments
 For user comments we use Giscus. It has the upside of getting us to manage the content alongside with the code repository.
