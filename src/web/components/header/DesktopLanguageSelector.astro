@@ -59,18 +59,16 @@ const LISTBOX_ID = `${ID}__listbox`
         border-left-style: solid;
         width: 8px;
         aspect-ratio: 1;
-
         position: relative;
-        bottom: 50%;
         --button__caret_rotate: -45deg;
-        --button__caret_translate-y: 100%;
+        --button__caret_translate-y: calc(-50% - 4px);
         transform: translateY(var(--button__caret_translate-y)) rotate(var(--button__caret_rotate));
         transition: transform 300ms;
     }
 
     button[aria-expanded=true]::after {
         --button__caret_rotate: -225deg;
-        --button__caret_translate-y: 150%;
+        --button__caret_translate-y: calc(50% - 8px);
     }
 
     button:hover {
