@@ -6,7 +6,17 @@ const { "dropdown-id": id } = Astro.props as { "dropdown-id": string }
 	const list = language_selector.querySelector("ul")
 	const items = [...list.querySelectorAll("a")]
 	const button = language_selector.querySelector("button")
-	const setIsExpanded = (value) => button.setAttribute("aria-expanded", `${value}`)
+
+	/* this lock is because Safari makes it very hard on the blur interaction */
+	let expanded_lock = false
+	const setIsExpanded = (value) => {
+		if (expanded_lock) return
+		expanded_lock = true
+		setTimeout(() => {
+			expanded_lock = false
+		}, 250)
+		button.setAttribute("aria-expanded", `${value}`)
+	}
 	const isExpanded = () => button.getAttribute("aria-expanded") === "true"
 
 	language_selector.addEventListener("keydown", e => {
