@@ -164,19 +164,6 @@ const items = getMenuItems({ path: Astro.url.pathname, language })
     }
 
     body:has(dialog[open]) {
-        overflow-y: hidden;
-
-        /*
-        	TODO see if we still need this
-
-        	Safari is stupid and has a bug since at least 2018.
-        	This kinda fixes it but shifts th background 1px.
-        	This is barely noticeable and I don't care.
-        	Article explaining the issue here:
-        	https://medium.com/@jaredt_28429/why-do-hamburger-menus-break-in-ios-safari-e076083bda5c
-				*/
-        position: fixed;
-        width: calc(100vw + 2px);
-        transform: translateX(-1px);
+        overflow-y: clip;
     }
 </style>
