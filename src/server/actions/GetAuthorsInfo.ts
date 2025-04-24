@@ -1,6 +1,6 @@
 import { getList } from "@server/contentful/GetEntries"
 import { imageToUrl } from "@server/Utils"
-import type { Person } from "@transport/Person"
+import type { Person } from "@server/actions/types/Person"
 
 export default async function getAuthorsInfo({ language }: { language: string }) {
 	const authors = await getList<Person>("authors", language)

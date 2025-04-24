@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets"
 import { getLangFromUrl, useTranslations } from "@server/i18n/utils"
-import type { Person } from "@transport/Person"
+import type { Person } from "@server/actions/types/Person"
 
 const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
 const language = getLangFromUrl(Astro.url)
