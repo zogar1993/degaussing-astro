@@ -16,7 +16,13 @@ const { image, description } = info
 
 const heading = [t("strip.heading-main"), title].join(" | ")
 ---
-<div class="strip-container">
+<div
+	class="strip-container"
+	style={{
+		"--strip--optimized_width": OPTIMIZED_STRIP.WIDTH,
+		"--strip--optimized_height": OPTIMIZED_STRIP.HEIGHT
+	}}
+>
 	<h1 class="semantic-only">{heading}</h1>
 	<img
 		src={image.optimized}
@@ -59,10 +65,7 @@ const heading = [t("strip.heading-main"), title].join(" | ")
 		dialog.close()
 	})
 </script>
-<style define:vars={{
-	"strip--optimized_width": OPTIMIZED_STRIP.WIDTH,
-	"strip--optimized_height": OPTIMIZED_STRIP.HEIGHT
-}}>
+<style>
     .strip-container {
         grid-column: left;
         grid-row: strip;
