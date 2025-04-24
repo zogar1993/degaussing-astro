@@ -1,7 +1,8 @@
 import { getImage } from "astro:assets"
 import { getNextAndLast, getPage, getPreviousAndFirst, getRemainingPagesAmount } from "@server/Utils"
-import type { Chapter } from "@transport/Chapter"
-import type { PageInfo } from "@transport/PageInfo"
+import type { Chapter, Strip } from "@transport/Chapter"
+import type { RelatedPages } from "@server/Utils"
+import type { RichTextDocument } from "@server/contentful/types/RichTextDocument"
 
 export default async function getPageInfo({
 																						chapter,
@@ -40,3 +41,12 @@ export const OPTIMIZED_STRIP = {
 	WIDTH: 864,
 	HEIGHT: 1223
 } as const
+
+export type PageInfo = RelatedPages & {
+	image: { optimized: string, raw: string },
+	characters: Strip["characters"],
+	description: Strip["description"],
+	author_comment?: RichTextDocument
+	remaining_pages_amount: number
+	created_at: Date
+}

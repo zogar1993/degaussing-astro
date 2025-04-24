@@ -5,7 +5,7 @@ import SocialLinks from "@web/components/page-primary/comments/SocialLinks.astro
 import getAuthorsInfo from "@server/actions/GetAuthorsInfo"
 import getLocalizedDate from "@server/localization/GetLocalizedDate"
 import { getLangFromUrl, useTranslations } from "@server/i18n/utils"
-import type { PageInfo } from "@transport/PageInfo"
+import type { PageInfo } from "@server/GetPageInfo"
 
 export interface Props {
 	info: PageInfo

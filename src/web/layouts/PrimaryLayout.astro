@@ -14,7 +14,7 @@ import SaveBookmarkScript from "@web/components/page-primary/scripts/SaveBookmar
 import NewPagesAnnouncement from "@web/components/page-primary/announcement/NewPagesAnnouncement.astro"
 import getLocalizedLinkToComicStrip from "@server/actions/GetLocalizedLinkToComicStrip"
 import { getLangFromUrl } from "@server/i18n/utils"
-import type { PageInfo } from "@transport/PageInfo"
+import type { PageInfo } from "@server/GetPageInfo"
 
 export interface Props {
 	info: PageInfo;

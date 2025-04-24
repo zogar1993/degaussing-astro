@@ -2,7 +2,7 @@
 import AuthorComment from "@web/components/page-primary/comments/AuthorComment.astro"
 import ReaderComments from "@web/components/page-primary/comments/ReaderComments.astro"
 import { getLangFromUrl, useTranslations } from "@server/i18n/utils"
-import type { PageInfo } from "@transport/PageInfo"
+import type { PageInfo } from "@server/GetPageInfo"
 
 const language = getLangFromUrl(Astro.url)
 const t = useTranslations(language)

@@ -1,6 +1,6 @@
 ---
 import { getLangFromUrl, useTranslations } from "@server/i18n/utils"
-import type { PageInfo } from "@transport/PageInfo"
+import type { PageInfo } from "@server/GetPageInfo"
 const FRIENDLY_CAPTCHA_SITE_KEY = import.meta.env.FRIENDLY_CAPTCHA_SITE_KEY!
 
 const language = getLangFromUrl(Astro.url)

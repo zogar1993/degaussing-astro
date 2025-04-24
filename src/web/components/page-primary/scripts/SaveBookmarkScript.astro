@@ -1,7 +1,7 @@
 ---
 import { getLangFromUrl } from "@server/i18n/utils"
 import { COOKIES } from "@server/cookies/COOKIES"
-import type { PageInfo } from "@transport/PageInfo"
+import type { PageInfo } from "@server/GetPageInfo"
 
 const language = getLangFromUrl(Astro.url)
 const { info } = Astro.props as { info: PageInfo }
