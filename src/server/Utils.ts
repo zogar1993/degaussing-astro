@@ -1,4 +1,4 @@
-import type { Chapter } from "@transport/Chapter"
+import type { Chapter } from "@server/actions/types/Chapter"
 
 export function getNextAndLast({ chapters, chapter, page }: PageFunctionProps) {
 	const lastChapter = last(chapters)

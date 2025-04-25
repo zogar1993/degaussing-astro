@@ -1,4 +1,4 @@
-import type { Chapter } from "@transport/Chapter"
+import type { Chapter } from "@server/actions/types/Chapter"
 import isPageDeployed from "@server/time/IsPageDeployed"
 import queryAllChapters from "@server/queries/QueryAllChapters"
 

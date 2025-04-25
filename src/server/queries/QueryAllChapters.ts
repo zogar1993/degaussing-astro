@@ -1,5 +1,5 @@
 import { imageToUrl } from "@server/Utils"
-import type { Chapter } from "@transport/Chapter"
+import type { Chapter } from "@server/actions/types/Chapter"
 import { getList } from "@server/contentful/GetEntries"
 import type { RichTextDocument } from "@server/contentful/types/RichTextDocument"
 

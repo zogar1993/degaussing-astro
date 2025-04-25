@@ -1,6 +1,6 @@
 import { getImage } from "astro:assets"
 import { getNextAndLast, getPage, getPreviousAndFirst, getRemainingPagesAmount } from "@server/Utils"
-import type { Chapter, Strip } from "@transport/Chapter"
+import type { Chapter, Strip } from "@server/actions/types/Chapter"
 import type { RelatedPages } from "@server/Utils"
 import type { RichTextDocument } from "@server/contentful/types/RichTextDocument"
 
