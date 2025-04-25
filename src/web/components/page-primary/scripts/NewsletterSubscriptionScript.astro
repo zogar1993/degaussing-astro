@@ -9,25 +9,6 @@
 	const input = document.getElementById("newsletter__input")
 	const button = document.getElementById("newsletter__button")
 	const widget = section.querySelector(".frc-captcha")
-	/*
-		const formObserver = new IntersectionObserver((entries) => {
-			entries.forEach(entry => {
-				if (entry.isIntersecting) {
-					const script = document.createElement("script")
-					script.src = "https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad"
-					script.async = true
-					script.onerror = () => {
-						section.setAttribute("aria-busy", "false")
-						messageError.hidden = false
-					}
-					document.head.appendChild(script)
-					formObserver.unobserve(section)
-				}
-			})
-		})
-
-		formObserver.observe(section)
-	*/
 
 	widget.addEventListener("frc:widget.complete", async function() {
 		section.setAttribute("aria-busy", "false")
