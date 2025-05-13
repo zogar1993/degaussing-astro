@@ -30,7 +30,13 @@ export default async function getPageInfo({
 		current: { chapter: chapter, page: page },
 		forward: getNextAndLast({ chapters, chapter, page }),
 		characters: current.characters,
-		description: current.description,
+		description: current.description.trim().split("\n").map(p => {
+			const parts = p.split(":")
+			if (parts.length === 1) return { panel: null, description: parts[0] }
+			if (!parts[0].toLowerCase().includes("panel"))
+				return { panel: null, description: parts.join(":") }
+			return { panel: parts[0], description: parts.splice(1).join(":") }
+		}).map(p => ({panel: p.panel && p.panel.trim(), description: p.description.trim()})),
 		author_comment: current.author_comment_lucia,
 		remaining_pages_amount: getRemainingPagesAmount({ chapters, chapter, page }),
 		created_at: current.created_at
@@ -45,7 +51,7 @@ export const OPTIMIZED_STRIP = {
 export type PageInfo = RelatedPages & {
 	image: { optimized: string, raw: string },
 	characters: Strip["characters"],
-	description: Strip["description"],
+	description: Array<{ panel: string | null, description: string }>,
 	author_comment?: RichTextDocument
 	remaining_pages_amount: number
 	created_at: Date

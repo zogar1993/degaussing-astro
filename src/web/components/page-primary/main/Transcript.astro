@@ -9,14 +9,6 @@ const t = useTranslations(language)
 const { info } = Astro.props as { info: PageInfo }
 const { description } = info
 
-const paragraphs = description.trim().split("\n").map(p => {
-	const parts = p.split(":")
-	if (parts.length === 1) return { panel: null, description: parts[0] }
-	if (!parts[0].toLowerCase().includes("panel"))
-		return { panel: null, description: parts.join(":") }
-	return { panel: parts[0], description: parts.splice(1).join(":") }
-})
-
 const TRANSCRIPT_CONTENT_ID = `${ID.TRANSCRIPT}__body`
 const TRANSCRIPT_CLICKABLE_OVERLAY_ID = `${ID.TRANSCRIPT}__clickable-overlay`
 ---
@@ -30,10 +22,10 @@ const TRANSCRIPT_CLICKABLE_OVERLAY_ID = `${ID.TRANSCRIPT}__clickable-overlay`
 		data-label--expanded-true={t("transcript.button.expanded-true")}
 	>{">"}</button>
 	<div id={TRANSCRIPT_CONTENT_ID} class="transcript__content" aria-hidden="true">
-		{paragraphs.map(({ panel, description }) =>
+		{description.map(({ panel, description }) =>
 			<p>
 				{panel && <strong>{panel}:</strong>}
-				{description || t("transcript.no-description")}
+				{description}
 			</p>
 		)}
 	</div>

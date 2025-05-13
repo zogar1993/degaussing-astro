@@ -49,7 +49,6 @@ export const translations = {
 
 		"transcript.image.alt-text": "Comic page. Complete transcript for the content below.",
 		"transcript.title": "Transcript",
-		"transcript.no-description": "This page hasn't been transcribed yet.",
 		"transcript.button.expanded-false": "Open transcript",
 		"transcript.button.expanded-true": "Close transcript",
 
@@ -117,7 +116,6 @@ export const translations = {
 
 		"transcript.image.alt-text": "Pagina del cómic. La transcripción completa del contenido se encuentra debajo.",
 		"transcript.title": "Transcripción",
-		"transcript.no-description": "Aún no se ha realizado la descripción de esta página.",
 		"transcript.button.expanded-false": "Abrir transcripción",
 		"transcript.button.expanded-true": "Cerrar transcripción",
 

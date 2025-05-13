@@ -38,6 +38,22 @@ const alternates = language === "es" ?
 	<link rel="alternate" hreflang="en" href={alternates.en} />
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	{
+		isHomepage ?
+			<meta name="description" content={t("seo.description")} /> :
+			info &&
+			<meta
+				name="description"
+				content={
+					// If all .panel entries are null, then it's a cover, so we get the first paragraph
+					// Otherwise we get the first description that corresponds to a panel,
+					// so that we skip the "there are X panels" and anything that comes before
+					`${info.description.every(p => p.panel === null) ?
+						info.description[0].description :
+						info.description.find(p => p.panel).description}..`
+				}
+			/>
+	}
 	{isHomepage &&
 		<meta name="description" content={t("seo.description")} />}
 	<FontsCss />
