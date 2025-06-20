@@ -126,6 +126,9 @@ for (let i = 0; i < entries_EN.length; i++) {
 const futureDays = days.filter(item => item.date > NOW_WITH_DEPLOYMENT_OFFSET) // Filter for future dates
 	.sort((a, b) => a.date.getTime() - b.date.getTime())
 
+const deployed = days.filter(day => day.date < NOW_WITH_DEPLOYMENT_OFFSET).flatMap(day => day.pages).length
+const total = days.flatMap(day => day.pages).length
+
 if (futureDays.length > 0)
 	futureDays[0].is_first_future_date = true
 ---
@@ -141,6 +144,7 @@ if (futureDays.length > 0)
 	<VariablesCss />
 </head>
 <body>
+<div class="pages-amount">{`Deployed: ${deployed} | Total: ${total}`}</div>
 <ol>
 	{days.map(day =>
 		<li
@@ -289,5 +293,18 @@ if (futureDays.length > 0)
             width: 100%;
             max-width: calc(var(--date_width) * 3 + var(--items_spacing) * 4);
         }
+    }
+
+    .pages-amount {
+				font-family: var(--heading_font-family);
+				font-size: var(--heading_font-size);
+				color: var(--heading_color);
+				margin: 1rem;
+        padding: 1rem;
+        background-color: var(--color--white);
+        border: var(--component_border);
+        border-radius: var(--component_border-radius);
+
+
     }
 </style>
