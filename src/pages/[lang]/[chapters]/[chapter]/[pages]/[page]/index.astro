@@ -5,10 +5,12 @@ import getLocalizedPage from "@server/localization/GetLocalizedPage"
 import { useTranslations, getLangFromUrl, LANGUAGE_CODES } from "@server/i18n/utils"
 import { getChapters } from "@server/GetChapters"
 import getPageInfo from "@server/GetPageInfo"
+import getAuthorsInfo from "@server/actions/GetAuthorsInfo"
 
 export async function getStaticPaths() {
 	return (await Promise.all(LANGUAGE_CODES.map(async (language) => {
 		const chapters = await getChapters({ language })
+		const authors = await getAuthorsInfo({ language })
 
 		const chapterNumbers = chapters.flatMap(chapter => chapter.pages.map((_, j) => ({
 			chapter: chapter.number,
@@ -17,7 +19,7 @@ export async function getStaticPaths() {
 
 		return await Promise.all(chapterNumbers.map(async ({ chapter, page }) => {
 			return {
-				props: await getPageInfo({ chapter, page, chapters }),
+				props: await getPageInfo({ chapter, page, chapters, authors }),
 				params: {
 					lang: `${language}`,
 					chapters: useTranslations(language)("url.chapters"),

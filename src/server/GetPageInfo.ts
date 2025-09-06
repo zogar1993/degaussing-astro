@@ -3,15 +3,18 @@ import { getNextAndLast, getPage, getPreviousAndFirst, getRemainingPagesAmount }
 import type { Chapter, Strip } from "@server/actions/types/Chapter"
 import type { RelatedPages } from "@server/Utils"
 import type { RichTextDocument } from "@server/contentful/types/RichTextDocument"
+import type { Person } from "@server/actions/types/Person"
 
 export default async function getPageInfo({
 																						chapter,
 																						page,
-																						chapters
+																						chapters,
+																						authors
 																					}: {
 	chapter: number
 	page: number
-	chapters: ReadonlyArray<Chapter>
+	chapters: ReadonlyArray<Chapter>,
+	authors: Array<Person>
 }): Promise<PageInfo> {
 	const current = getPage({ chapters, chapter, page })
 
@@ -36,8 +39,8 @@ export default async function getPageInfo({
 			if (!parts[0].toLowerCase().includes("panel"))
 				return { panel: null, description: parts.join(":") }
 			return { panel: parts[0], description: parts.splice(1).join(":") }
-		}).map(p => ({panel: p.panel && p.panel.trim(), description: p.description.trim()})),
-		author_comment: current.author_comment_lucia,
+		}).map(p => ({ panel: p.panel && p.panel.trim(), description: p.description.trim() })),
+		author_comments: getAuthorComments({ authors, strip: current }),
 		remaining_pages_amount: getRemainingPagesAmount({ chapters, chapter, page }),
 		created_at: current.created_at
 	}
@@ -52,7 +55,27 @@ export type PageInfo = RelatedPages & {
 	image: { optimized: string, raw: string },
 	characters: Strip["characters"],
 	description: Array<{ panel: string | null, description: string }>,
-	author_comment?: RichTextDocument
+	author_comments: Array<{ author: Person, comment: RichTextDocument }>
 	remaining_pages_amount: number
 	created_at: Date
+}
+
+const getAuthorComments = ({ authors, strip }: { authors: Array<Person>, strip: Strip }) => {
+	const author_comments: Array<{ author: Person, comment: RichTextDocument }> = []
+
+	if (strip.author_comment_lucia) {
+		author_comments.push({
+			author: authors.find(author => author.slug === "lucy")!,
+			comment: strip.author_comment_lucia
+		})
+	}
+
+	if (strip.author_comment_facundo) {
+		author_comments.push({
+			author: authors.find(author => author.slug === "facu")!,
+			comment: strip.author_comment_facundo
+		})
+	}
+
+	return author_comments
 }

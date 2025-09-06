@@ -2,7 +2,6 @@
 import { Image } from "astro:assets"
 import RichText from "@web/components/general/RichText.astro"
 import SocialLinks from "@web/components/page-primary/comments/SocialLinks.astro"
-import getAuthorsInfo from "@server/actions/GetAuthorsInfo"
 import getLocalizedDate from "@server/localization/GetLocalizedDate"
 import { getLangFromUrl, useTranslations } from "@server/i18n/utils"
 import type { PageInfo } from "@server/GetPageInfo"
@@ -15,22 +14,26 @@ const { info } = Astro.props
 const language = getLangFromUrl(Astro.url)
 const t = useTranslations(language)
 
-const authors = await getAuthorsInfo({ language })
-const lucy = authors.find(author => author.slug === "lucy")
 const date = getLocalizedDate({ date: info.created_at, language })
 ---
-{info.author_comment &&
+{info.author_comments.length > 0 &&
 <section aria-label={t("landmarks.author")}>
 	<div class="heading-container">
 		<h2>{t("landmarks.author")}</h2>
 		<SocialLinks />
 	</div>
-	<div class="comment-header">
-		<Image src={lucy.portrait} alt="" width={48} height={48} quality="max" />
-		<span>{lucy.name}</span>
-		<time class="comment-header__date" datetime={date.datetime}>{date.localized}</time>
+	<div class="author-comments">
+		{info.author_comments.map(({ author, comment }) =>
+			<div class="author-comment">
+				<div class="comment-header">
+					<Image src={author.portrait} alt="" width={48} height={48} quality="max" />
+					<span>{author.name}</span>
+					<time class="comment-header__date" datetime={date.datetime}>{date.localized}</time>
+				</div>
+				<RichText text={comment} />
+			</div>
+		)}
 	</div>
-	<RichText text={info.author_comment} />
 </section>
 	}
 <style>
@@ -56,6 +59,17 @@ const date = getLocalizedDate({ date: info.created_at, language })
     .heading-container {
         display: flex;
         justify-content: space-between;
+    }
+
+    .heading-container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .author-comments {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
     }
 
     @media (width <= 72em) {

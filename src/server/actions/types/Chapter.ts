@@ -12,5 +12,6 @@ export type Strip = {
 	characters: Array<{ name: string, image: string }>
 	description: string
 	author_comment_lucia?: RichTextDocument
+	author_comment_facundo?: RichTextDocument
 	number: number
 }

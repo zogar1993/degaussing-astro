@@ -75,7 +75,8 @@ type Page = {
 	has_characters: boolean
 	image: { en: boolean, es: boolean }
 	transcription: { en: boolean, es: boolean }
-	author_comment: { en: boolean, es: boolean }
+	has_comment_lucia: { en: boolean, es: boolean }
+	has_comment_facundo: { en: boolean, es: boolean }
 }
 
 const days: Array<Day> = []
@@ -84,32 +85,38 @@ for (let i = 0; i < entries_EN.length; i++) {
 	const { sys, fields: fields_EN } = entries_EN[i]
 	const { fields: fields_ES } = entries_ES[i]
 
+	const get_author_comment = (author) => {
+		const field_name = `author_comment_${author}`
+		const english_author_comment = !!fields_EN[field_name]
+		const spanish_author_comment =
+			(!!fields_ES[field_name] && !english_author_comment) ||
+			//This is so because english is default language so spanish is never empty when english is present
+			(english_author_comment && JSON.stringify(fields_EN[field_name]) !== JSON.stringify(fields_ES[field_name]))
+		return { en: english_author_comment, es: spanish_author_comment }
+	}
+
 	const day = days.find(day => day.date_string === fields_EN.createdAt)
 
-	const english_author_comment = !!fields_EN.author_comment_lucia
-	const spanish_author_comment =
-		(!!fields_ES.author_comment_lucia && !english_author_comment) ||
-		//This is so because english is default language so spanish is never empty when english is present
-		(english_author_comment && JSON.stringify(fields_EN.author_comment_lucia) !== JSON.stringify(fields_ES.author_comment_lucia))
 
 	const status = getEntryStatus(sys)
 	const is_chapter_list_published = fields_EN.name ? published_chapter_numbers.includes(fields_EN.name.split(" ")[0]) : false
 	const transcribed_english = typeof fields_EN.description === "string" && fields_EN.description !== ""
-	const	transcribed_spanish =
-			typeof fields_ES.description === "string" &&
-			fields_ES.description !== "" &&
-			//This is so because english is default language so spanish is never empty when english is present
-			fields_ES.description !== fields_EN.description
+	const transcribed_spanish =
+		typeof fields_ES.description === "string" &&
+		fields_ES.description !== "" &&
+		//This is so because english is default language so spanish is never empty when english is present
+		fields_ES.description !== fields_EN.description
 
-  const image_english = !!fields_EN.image?.fields?.file
-  const image_spanish = !!fields_ES.image?.fields?.file
+	const image_english = !!fields_EN.image?.fields?.file
+	const image_spanish = !!fields_ES.image?.fields?.file
 
 	const page: Page = {
 		name: fields_EN.name,
 		status: status !== "published" ? status : is_chapter_list_published ? status : "unpublished-chapter",
-		author_comment: { en: english_author_comment, es: spanish_author_comment },
-		transcription: {en: transcribed_english, es: transcribed_spanish},
-		image: {en: image_english, es: image_spanish},
+		has_comment_lucia: get_author_comment("lucia"),
+		has_comment_facundo: get_author_comment("facundo"),
+		transcription: { en: transcribed_english, es: transcribed_spanish },
+		image: { en: image_english, es: image_spanish },
 		has_characters: !!fields_EN.characters
 	}
 
@@ -158,7 +165,8 @@ if (futureDays.length > 0)
 						!page.has_characters ||
 						page.status === "draft" ||
 						page.status === "unpublished-chapter" ||
-						page.author_comment.es !== page.author_comment.en
+						page.has_comment_lucia.es !== page.has_comment_lucia.en ||
+						page.has_comment_facundo.es !== page.has_comment_facundo.en
 					) ? "date-has-errors " :
 						(day.pages.some(page =>
 							page.status === "changed"
@@ -185,10 +193,15 @@ if (futureDays.length > 0)
 								<FlagArgentina greyed={!page.transcription.es} />
 								<FlagUnitedKingdom greyed={!page.transcription.en} />
 							}
-							{(page.author_comment.en || page.author_comment.es) &&
+							{(
+									page.has_comment_lucia.en ||
+									page.has_comment_lucia.es ||
+									page.has_comment_facundo.en ||
+									page.has_comment_facundo.es
+								) &&
 								<div>Author</div>
-								<FlagArgentina greyed={!page.author_comment.es} />
-								<FlagUnitedKingdom greyed={!page.author_comment.en} />
+								<FlagArgentina greyed={!page.has_comment_lucia.es && !page.has_comment_facundo.es} />
+								<FlagUnitedKingdom greyed={!page.has_comment_lucia.en && !page.has_comment_facundo.en} />
 							}
 							{!page.has_characters &&
 								<div>Characters</div>
@@ -232,7 +245,7 @@ if (futureDays.length > 0)
     }
 
     .status {
-    		margin-right: 0.5rem;
+        margin-right: 0.5rem;
         height: 24px;
         aspect-ratio: 1;
         border: 1px solid black;
@@ -262,7 +275,7 @@ if (futureDays.length > 0)
     }
 
     h3 {
-    		display: inline-flex;
+        display: inline-flex;
         font-family: var(--text_font-family);
         color: black;
         margin-bottom: 0.25rem;
@@ -296,10 +309,10 @@ if (futureDays.length > 0)
     }
 
     .pages-amount {
-				font-family: var(--heading_font-family);
-				font-size: var(--heading_font-size);
-				color: var(--heading_color);
-				margin: 1rem;
+        font-family: var(--heading_font-family);
+        font-size: var(--heading_font-size);
+        color: var(--heading_color);
+        margin: 1rem;
         padding: 1rem;
         background-color: var(--color--white);
         border: var(--component_border);
