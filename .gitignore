@@ -27,8 +27,3 @@ out
 .vercel
 *.iml
 public/_astro/
-
-.astro/collections
-.astro/content-assets.mjs
-.astro/content-modules.mjs
-.astro/data-store.json
