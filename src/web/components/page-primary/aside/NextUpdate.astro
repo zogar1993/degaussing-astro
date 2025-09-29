@@ -2,6 +2,7 @@
 import { Image } from "astro:assets"
 import { getLangFromUrl, useTranslations } from "@server/i18n/utils"
 import { getNextUpdate } from "@server/actions/GetNextUpdate"
+import { NEXT_UPDATE_IMAGE_MAX_HEIGHT, NEXT_UPDATE_IMAGE_MAX_WIDTH } from "@server/actions/GetNextUpdate"
 
 const language = getLangFromUrl(Astro.url)
 const t = useTranslations(language)
@@ -11,15 +12,20 @@ const split_heading = t("landmarks.next-update").split(" ")
 ---
 <section aria-label={t("landmarks.next-update")}>
 	<div class="text-container">
-		<h2>{split_heading[0]}&nbsp;<br/>{split_heading[1]}</h2>
+		<h2>{split_heading[0]}&nbsp;<br />{split_heading[1]}</h2>
 		<time datetime={date.datetime}>{date.localized}</time>
 		<span>{t("comic.chapter.singular")} {chapter}</span>
 	</div>
-	<Image src={image} alt={`${t("comic.chapter.singular")} ${chapter}`} width={188} height={266} />
+	<Image
+		src={image}
+		alt={`${t("comic.chapter.singular")} ${chapter}`}
+		width={NEXT_UPDATE_IMAGE_MAX_WIDTH}
+		height={NEXT_UPDATE_IMAGE_MAX_HEIGHT}
+	/>
 </section>
 <style>
     section {
-    		grid-area: next-update;
+        grid-area: next-update;
 
         display: flex;
         flex-direction: column;
@@ -32,7 +38,7 @@ const split_heading = t("landmarks.next-update").split(" ")
     }
 
     h2 {
-    		margin-bottom: 0.25em;
+        margin-bottom: 0.25em;
     }
 
     time {
@@ -63,20 +69,20 @@ const split_heading = t("landmarks.next-update").split(" ")
         }
 
         .text-container {
-        	flex-grow: 1;
+            flex-grow: 1;
         }
 
         span {
-        		margin-top: auto;
-        		margin-bottom: 1em;
+            margin-top: auto;
+            margin-bottom: 1em;
         }
 
         img {
-        		margin-inline: auto;
+            margin-inline: auto;
         }
 
         br {
-        	display: none;
+            display: none;
         }
     }
 
@@ -87,7 +93,7 @@ const split_heading = t("landmarks.next-update").split(" ")
         }
 
         img {
-        		margin-inline: auto;
+            margin-inline: auto;
             height: calc(1.5rem * 1.2 + var(--heading_margin-bottom) + 3rem * 2 + 0.5rem);
             width: auto;
         }

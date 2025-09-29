@@ -1,9 +1,10 @@
 import isPageDeployed from "@server/time/IsPageDeployed"
 import getLocalizedDate from "@server/localization/GetLocalizedDate"
 import queryAllChapters from "@server/queries/QueryAllChapters"
+import blurImage from "@server/images/BlurImage"
 
 export async function getNextUpdate({ language }: { language: string }) {
-	const chapters = await queryAllChapters({language})
+	const chapters = await queryAllChapters({ language })
 
 	for (let i = 0; i < chapters.length; i++) {
 		const next_update_chapter = chapters[i]
@@ -12,10 +13,23 @@ export async function getNextUpdate({ language }: { language: string }) {
 		if (next_update_page) {
 			const chapter = i + 1
 			const image = next_update_chapter.pages[0].image
-			const localized_date = getLocalizedDate({date: next_update_page.created_at, language})
-			return {chapter, image, date: localized_date}
+			const localized_date = getLocalizedDate({ date: next_update_page.created_at, language })
+			return {
+				chapter,
+				image: next_update_page.number === 0 ?
+					await blurImage({
+						url: image,
+						fileName: `chapter_${chapter}.webp`,
+						width: NEXT_UPDATE_IMAGE_MAX_WIDTH,
+						height: NEXT_UPDATE_IMAGE_MAX_HEIGHT
+					}) : image,
+				date: localized_date
+			}
 		}
 	}
 
 	return null
 }
+
+export const NEXT_UPDATE_IMAGE_MAX_WIDTH = 188
+export const NEXT_UPDATE_IMAGE_MAX_HEIGHT = 266
