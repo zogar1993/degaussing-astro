@@ -1,5 +1,5 @@
 ---
-import LastUpdate from "@web/components/page-primary/aside/NextUpdate.astro"
+import NextUpdate from "@web/components/page-primary/aside/NextUpdate.astro"
 import Characters from "@web/components/page-primary/aside/Characters.astro"
 import Donations from "@web/components/page-primary/aside/Donations.astro"
 import { getLangFromUrl, useTranslations } from "@server/i18n/utils"
@@ -13,7 +13,7 @@ export interface Props {
 const { info } = Astro.props
 ---
 <aside aria-label={t("landmarks.strip-aside")}>
-	<LastUpdate />
+	<NextUpdate />
 	<Characters info={info} />
 	<Donations />
 </aside>
