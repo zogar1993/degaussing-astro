@@ -1,0 +1,39 @@
+---
+import queryAllChapters from "@server/queries/QueryAllChapters"
+import isPageDeployed from "@server/time/IsPageDeployed"
+import blurImage from "@server/images/BlurImage"
+import { NEXT_UPDATE_IMAGE_MAX_HEIGHT, NEXT_UPDATE_IMAGE_MAX_WIDTH } from "../server/actions/GetNextUpdate"
+
+const chapters = await queryAllChapters({ language: "en" })
+
+for (let i = 0; i < chapters.length; i++) {
+	const next_update_chapter = chapters[i]
+	const next_update_page = next_update_chapter.pages.find(page => !isPageDeployed(page))
+
+	if (next_update_page) {
+		const chapter = i + 1
+		const image = next_update_chapter.pages[0].image
+
+
+		return new Response(await blurImage({
+			url: image,
+			width: NEXT_UPDATE_IMAGE_MAX_WIDTH,
+			height: NEXT_UPDATE_IMAGE_MAX_HEIGHT
+		}), {
+			status: 200,
+			headers: {
+				"Content-Type": "image/png",
+				"Cache-Control": "public, max-age=3600"
+			}
+		})
+		// let wea = {
+		// 	image: next_update_page.number === 0 ?
+		// 		await blurImage({
+		// 			url: image,
+		// 			width: NEXT_UPDATE_IMAGE_MAX_WIDTH,
+		// 			height: NEXT_UPDATE_IMAGE_MAX_HEIGHT
+		// 		}) : image
+		// }
+	}
+}
+---

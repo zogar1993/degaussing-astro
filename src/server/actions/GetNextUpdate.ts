@@ -1,7 +1,6 @@
 import isPageDeployed from "@server/time/IsPageDeployed"
 import getLocalizedDate from "@server/localization/GetLocalizedDate"
 import queryAllChapters from "@server/queries/QueryAllChapters"
-import blurImage from "@server/images/BlurImage"
 
 export async function getNextUpdate({ language }: { language: string }) {
 	const chapters = await queryAllChapters({ language })
@@ -12,17 +11,10 @@ export async function getNextUpdate({ language }: { language: string }) {
 
 		if (next_update_page) {
 			const chapter = i + 1
-			const image = next_update_chapter.pages[0].image
 			const localized_date = getLocalizedDate({ date: next_update_page.created_at, language })
 			return {
 				chapter,
-				image: next_update_page.number === 0 ?
-					await blurImage({
-						url: image,
-						fileName: `chapter_${chapter}.webp`,
-						width: NEXT_UPDATE_IMAGE_MAX_WIDTH,
-						height: NEXT_UPDATE_IMAGE_MAX_HEIGHT
-					}) : image,
+				image: "/next-update-cover",//TODO use different urls for different chapters so that cache is not bothersome
 				date: localized_date
 			}
 		}

@@ -1,37 +1,19 @@
 import sharp from "sharp"
-import path from "path"
-import fs from "fs/promises"
 
-export default async function blurImage({url, fileName, width, height}: {
+export default async function blurImage({url, width, height}: {
 	url: string,
-	fileName: string,
 	width: number,
 	height: number
-}): Promise<string> {
-	try {
-		const outDir = path.join(process.cwd(), "public", "blurred")
-		const outPath = path.join(outDir, fileName)
-		await fs.access(outPath)
-		return `/blurred/${fileName}`
-	} catch {
-		// if file doesn't exist we continue and generate it
-	}
-
+}): Promise<Buffer> {
 	const blurAmount = 4
+
 	const res = await fetch(url)
 	if (!res.ok) throw new Error("Image fetch failed")
 	const buf = Buffer.from(await res.arrayBuffer())
 
-	const blurred = await sharp(buf)
+	return await sharp(buf)
 		.blur(blurAmount)
 		.resize(width, height)
 		.webp()
 		.toBuffer()
-
-	const outPath = path.join(process.cwd(), "public", "blurred", fileName)
-
-	await fs.mkdir(path.dirname(outPath), { recursive: true })
-	await fs.writeFile(outPath, blurred)
-
-	return `/blurred/${fileName}`
 }
