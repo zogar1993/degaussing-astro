@@ -19,7 +19,7 @@ export async function getNextUpdate({ language }: { language: string }) {
 				image: next_update_page.number === 0 ?
 					await blurImage({
 						url: image,
-						fileName: `chapter_${chapter}.webp`,
+						fileName: `blurred_chapter_${chapter}.webp`,
 						width: NEXT_UPDATE_IMAGE_MAX_WIDTH,
 						height: NEXT_UPDATE_IMAGE_MAX_HEIGHT
 					}) : image,
