@@ -6,6 +6,5 @@ const hoursToSubtract = 19 * HOUR
 const DAY = HOUR * 24
 // This is for debug purposes
 const daysAhead = (DAYS_AHEAD ? Number(DAYS_AHEAD) : 0)
-console.log(daysAhead)
 now.setTime(now.getTime() - hoursToSubtract + daysAhead * DAY)
 export const NOW_WITH_DEPLOYMENT_OFFSET = Object.freeze(now)
