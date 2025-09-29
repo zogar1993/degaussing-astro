@@ -15,4 +15,6 @@ interface ImportMetaEnv {
 
 	readonly MAILERLITE_SUBSCRIBE_URL_ES: string
 	readonly MAILERLITE_SUBSCRIBE_URL_EN: string
+
+	readonly DAYS_AHEAD?: string
 }
