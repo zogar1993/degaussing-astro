@@ -12,7 +12,7 @@ export default async function blurImage({url, fileName, width, height}: {
 		const outDir = path.join(process.cwd(), "public", "blurred")
 		const outPath = path.join(outDir, fileName)
 		await fs.access(outPath)
-		return `/_astro/${fileName}`
+		return `/blurred/${fileName}`
 	} catch {
 		// if file doesn't exist we continue and generate it
 	}
@@ -28,10 +28,10 @@ export default async function blurImage({url, fileName, width, height}: {
 		.webp()
 		.toBuffer()
 
-	const outPath = path.join(process.cwd(), "public", "_astro", fileName)
+	const outPath = path.join(process.cwd(), "public", "blurred", fileName)
 
 	await fs.mkdir(path.dirname(outPath), { recursive: true })
 	await fs.writeFile(outPath, blurred)
 
-	return `/_astro/${fileName}`
+	return `/blurred/${fileName}`
 }

@@ -26,7 +26,7 @@ out
 .vscode
 .vercel
 *.iml
-public/_astro/
+public/blurred/
 
 .astro/collections
 .astro/content-assets.mjs
