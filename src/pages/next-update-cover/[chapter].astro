@@ -1,0 +1,56 @@
+---
+import queryAllChapters from "@server/queries/QueryAllChapters"
+import isPageDeployed from "@server/time/IsPageDeployed"
+import blurImage from "@server/images/BlurImage"
+import resizeImage from "@server/images/ResizeImage"
+import { NEXT_UPDATE_IMAGE_MAX_HEIGHT, NEXT_UPDATE_IMAGE_MAX_WIDTH } from "@server/actions/GetNextUpdate"
+
+export async function getStaticPaths() {
+	const chapters = await queryAllChapters({ language: "en" })
+	for (let i = 0; i < chapters.length; i++) {
+		const next_update_chapter = chapters[i]
+		const next_update_page = next_update_chapter.pages.find(page => !isPageDeployed(page))
+
+		if (next_update_page) {
+			const chapter = i + 1
+			const image = next_update_chapter.pages[0].image
+
+			return [{
+				props: {
+					image,
+					blur: next_update_page.number === 0
+				},
+				params: {
+					chapter
+				}
+			}]
+		}
+	}
+}
+
+const { image, blur } = Astro.props
+
+const res = await fetch(image)
+if (!res.ok) throw new Error("Image fetch failed")
+const buf = Buffer.from(await res.arrayBuffer())
+
+const result = blur ?
+	await blurImage({
+		buf: buf,
+		width: NEXT_UPDATE_IMAGE_MAX_WIDTH,
+		height: NEXT_UPDATE_IMAGE_MAX_HEIGHT
+	}) :
+	await resizeImage({
+		buf: buf,
+		width: NEXT_UPDATE_IMAGE_MAX_WIDTH,
+		height: NEXT_UPDATE_IMAGE_MAX_HEIGHT
+	})
+
+return new Response(result, {
+	status: 200,
+	headers: {
+		"Content-Type": "image/png",
+		"Cache-Control": "public, max-age=3600"
+	}
+})
+---

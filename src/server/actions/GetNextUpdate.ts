@@ -14,7 +14,7 @@ export async function getNextUpdate({ language }: { language: string }) {
 			const localized_date = getLocalizedDate({ date: next_update_page.created_at, language })
 			return {
 				chapter,
-				image: "/next-update-cover",//TODO use different urls for different chapters so that cache is not bothersome
+				image: `/next-update-cover/${chapter}`,
 				date: localized_date
 			}
 		}
