@@ -35,14 +35,14 @@ const next = forward ? getLocalizedLinkToComicStrip({ ...forward.one, language }
 		<StickyNavBar info={info} title={title} />
 		<StripAside info={info} />
 		<Comments info={info} />
-		<Newsletter />
+		{/* <Newsletter /> */}
 	</div>
 </MainLayout>
 <StickyDockingAnimationScript />
 <SwipeNavigationScript previous={previous} next={next} />
 <ArrowNavigationScript previous={previous} next={next} />
 <CommentsScript info={info} />
-<NewsletterSubscriptionScript />
+{/* <NewsletterSubscriptionScript /> */}
 <SaveBookmarkScript info={info} />
 <style>
     /* Adding these on ":root" instead of ".grid" so it is easier to query the variables from js. */
