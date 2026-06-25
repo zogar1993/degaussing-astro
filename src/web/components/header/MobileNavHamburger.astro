@@ -1,10 +1,10 @@
 ---
 import getMenuItems, { isMenuLink } from "@server/actions/GetMenuItems"
 import { getLangFromUrl, useTranslations } from "@server/i18n/utils"
-import MobileLanguageSelector from "@web/components/header/MobileLanguageSelector.astro"
+import Dropdown from "@web/components/header/MobileDropdown.astro"
 
-const language = getLangFromUrl(Astro.url);
-const t = useTranslations(language);
+const language = getLangFromUrl(Astro.url)
+const t = useTranslations(language)
 
 const items = getMenuItems({ path: Astro.url.pathname, language })
 ---
@@ -36,7 +36,7 @@ const items = getMenuItems({ path: Astro.url.pathname, language })
 							<img src={item.icon} alt="" />
 							<span>{item.text}</span>
 						</a> :
-						<MobileLanguageSelector dropdown={item} />
+						<Dropdown dropdown={item} id="language-selector-mobile" />
 					}
 				</li>
 			)}

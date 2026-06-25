@@ -3,19 +3,19 @@ import { getLangFromUrl } from "@server/i18n/utils"
 import type { MenuDropdown } from "@server/actions/GetMenuItems"
 import DropdownHydrationScript from "@web/components/header/DropdownHydrationScript.astro"
 
-const { dropdown } = Astro.props as { dropdown: MenuDropdown }
+const { dropdown, id } = Astro.props as { dropdown: MenuDropdown, id: string }
 const language = getLangFromUrl(Astro.url)
-const ID = "language-selector-desktop"
-const LISTBOX_ID = `${ID}__listbox`
+const LISTBOX_ID = `${id}__listbox`
 ---
-<div id={ID} class="language-selector">
+<div id={id} class="dropdown">
 	<button
 		value={language}
 		aria-controls=`${LISTBOX_ID}`
 		aria-haspopup="listbox"
 		aria-expanded="false"
 	>
-		{dropdown.text}
+		<img src={dropdown.icon} alt="" />
+		<span>{dropdown.text}</span>
 	</button>
 	<ul id=`${LISTBOX_ID}` role="listbox">
 		{dropdown.items.map(item => (
@@ -24,34 +24,34 @@ const LISTBOX_ID = `${ID}__listbox`
 					href={item.href}
 					role="option"
 					aria-selected={item.selected}
-					lang={item.value}
+					lang={item.language}
 				>
 					{item.text}
 				</a>
 			</li>
 		))}
 	</ul>
-	<DropdownHydrationScript dropdown-id={ID} />
+	<DropdownHydrationScript dropdown-id={id} />
 </div>
 <style>
-    .language-selector {
+    .dropdown {
         display: flex;
-        align-items: center;
-        position: relative;
-        height: 100%;
+        flex-direction: column;
     }
 
     button {
-        line-height: 1;
-        padding: 0.5rem 0.75rem;
-        font-size: 2rem;
-        font-family: var(--heading_font-family);
         color: var(--link_color);
+        font-family: var(--heading_font-family);
+        font-size: 1.25rem;
+        display: flex;
+        gap: 1rem;
+        align-items: center;
         border-radius: var(--component_border-radius);
-        height: var(--link_height);
+
+        padding: 1rem;
     }
 
-    button::after {
+    button > span::after {
         content: "";
         display: inline-block;
         border: 1px var(--link_color);
@@ -59,16 +59,19 @@ const LISTBOX_ID = `${ID}__listbox`
         border-left-style: solid;
         width: 8px;
         aspect-ratio: 1;
+
         position: relative;
+        bottom: 50%;
+        margin-left: 0.5rem;
         --button__caret_rotate: -45deg;
-        --button__caret_translate-y: calc(-50% - 4px);
+        --button__caret_translate-y: -50%;
         transform: translateY(var(--button__caret_translate-y)) rotate(var(--button__caret_rotate));
         transition: transform 300ms;
     }
 
-    button[aria-expanded=true]::after {
+    button[aria-expanded=true] > span::after {
         --button__caret_rotate: -225deg;
-        --button__caret_translate-y: calc(50% - 8px);
+        --button__caret_translate-y: 0;
     }
 
     button:hover {
@@ -76,17 +79,46 @@ const LISTBOX_ID = `${ID}__listbox`
         background-color: var(--header__link--hover_background-color);
     }
 
+    ul {
+        position: relative;
+
+        margin-top: 0.5rem;
+        margin-left: 3rem;
+
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    ul::after {
+        content: "";
+        position: absolute;
+        bottom: 1.25rem;
+        left: -1.25rem;
+        height: calc(100% - 0.75rem);
+        width: 1px;
+        background-color: var(--link_color);
+    }
+
     a {
+        position: relative;
         line-height: 1;
         display: inline-block;
         padding: 0.5rem;
-        font-size: 2rem;
+        font-size: 1.25rem;
         font-family: var(--heading_font-family);
         color: var(--link_color);
         border-radius: var(--component_border-radius);
-        height: var(--link_height);
-        width: 100%;
-        text-align: center;
+    }
+
+    a:after {
+        content: "";
+        position: absolute;
+        left: -1.25rem;
+        top: 1rem;
+        height: 1px;
+        width: 1.25rem;
+        background-color: var(--link_color);
     }
 
     a[aria-selected=true] {
@@ -98,26 +130,12 @@ const LISTBOX_ID = `${ID}__listbox`
         background-color: var(--header__link--hover_background-color);
     }
 
-    ul {
-        position: absolute;
-        top: 100%;
-
-        left: -1rem;
-        width: calc(100% + 2rem);
-
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
-        clip-path: inset(0 -1rem -1rem -1rem);
-
-        padding: 0.5rem 1rem 1rem 1rem;
-
+    img {
         display: flex;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0.25rem;
-
-        background-color: var(--navigation_background-color);
-        border-bottom-left-radius: var(--component_border-radius);
-        border-bottom-right-radius: var(--component_border-radius);
+        justify-content: center;
+        align-items: center;
+        height: 1.5rem;
+        width: 1.5rem;
     }
 
     button[aria-expanded=false] + ul {
