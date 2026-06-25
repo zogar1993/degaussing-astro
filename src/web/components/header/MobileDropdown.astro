@@ -3,8 +3,10 @@ import { getLangFromUrl } from "@server/i18n/utils"
 import type { MenuDropdown } from "@server/actions/GetMenuItems"
 import DropdownHydrationScript from "@web/components/header/DropdownHydrationScript.astro"
 
-const { dropdown, id } = Astro.props as { dropdown: MenuDropdown, id: string }
+const { dropdown } = Astro.props as { dropdown: MenuDropdown, id: string }
 const language = getLangFromUrl(Astro.url)
+
+const id = `${dropdown.text}-mobile-dropdown`
 const LISTBOX_ID = `${id}__listbox`
 ---
 <div id={id} class="dropdown">

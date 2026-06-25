@@ -1,0 +1,38 @@
+---
+import SecondaryLayout from "@web/layouts/SecondaryLayout.astro"
+import RichText from "@web/components/general/RichText.astro"
+import Section from "@web/components/page-secondary/SecondaryPageSection.astro"
+import SectionHeading from "@web/components/general/SectionHeading.astro"
+import getAboutComic from "@server/actions/GetAboutComic"
+import { getLangFromUrl, useTranslations, LANGUAGE_CODES } from "@server/i18n/utils"
+
+export async function getStaticPaths() {
+	return Promise.all(LANGUAGE_CODES.map(async (language) => {
+		const story = await getAboutComic({ language })
+		return {
+			props: { story },
+			params: {
+				lang: language,
+				about: useTranslations(language)("url.about"),
+				story: useTranslations(language)("url.story"),
+			}
+		}
+	}))
+}
+
+const language = getLangFromUrl(Astro.url)
+const t = useTranslations(language)
+
+export interface Props {
+	story: Awaited<ReturnType<typeof getAboutComic>>
+}
+
+const props = Astro.props
+const { story } = props
+---
+<SecondaryLayout title={t("menu.about.story")}>
+	<Section>
+		<SectionHeading>{t("about.story")}</SectionHeading>
+		<RichText text={story.synopsis} />
+	</Section>
+</SecondaryLayout>

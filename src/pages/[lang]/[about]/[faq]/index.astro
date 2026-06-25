@@ -1,22 +1,20 @@
 ---
 import SecondaryLayout from "@web/layouts/SecondaryLayout.astro"
-import PeopleList from "@web/components/PeopleList.astro"
 import RichText from "@web/components/general/RichText.astro"
 import Section from "@web/components/page-secondary/SecondaryPageSection.astro"
 import SectionHeading from "@web/components/general/SectionHeading.astro"
-import getAboutComic from "@server/actions/GetAboutComic"
-import getAuthorsInfo from "@server/actions/GetAuthorsInfo"
 import getFAQ from "@server/actions/GetFAQ"
 import { getLangFromUrl, useTranslations, LANGUAGE_CODES } from "@server/i18n/utils"
 
 export async function getStaticPaths() {
 	return Promise.all(LANGUAGE_CODES.map(async (language) => {
-		const [comic, authors, faq] = await Promise.all([getAboutComic({ language }), getAuthorsInfo({ language }), getFAQ({ language })])
+		const faq = await getFAQ({ language })
 		return {
-			props: { comic, authors, faq },
+			props: { faq },
 			params: {
 				lang: language,
-				about: useTranslations(language)("url.about")
+				about: useTranslations(language)("url.about"),
+				faq: useTranslations(language)("url.faq"),
 			}
 		}
 	}))
@@ -26,23 +24,13 @@ const language = getLangFromUrl(Astro.url)
 const t = useTranslations(language)
 
 export interface Props {
-	comic: Awaited<ReturnType<typeof getAboutComic>>
-	authors: Awaited<ReturnType<typeof getAuthorsInfo>>
 	faq: Awaited<ReturnType<typeof getFAQ>>
 }
 
 const props = Astro.props
-const { comic, authors, faq } = props
+const { faq } = props
 ---
-<SecondaryLayout title={t("menu.about")}>
-	<Section>
-		<SectionHeading>{t("about.story")}</SectionHeading>
-		<RichText text={comic.synopsis} />
-	</Section>
-	<Section>
-		<SectionHeading>{t("about.authors")}</SectionHeading>
-		<PeopleList people={authors} />
-	</Section>
+<SecondaryLayout title={t("menu.about.faq")}>
 	<Section>
 		<SectionHeading>FAQ</SectionHeading>
 		<dl>

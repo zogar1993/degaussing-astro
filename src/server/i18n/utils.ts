@@ -29,8 +29,8 @@ export function useLocalizePath(lang: LanguageCode) {
 export const localizePath = ({ path, language }: { path: string, language: LanguageCode }) => `/${language}${path}`
 
 export function translatePath({ path, from, to }: { path: string, from: LanguageCode, to: LanguageCode }) {
-	let parts = path.split("/")
+	let parts = path.split("/").filter(x => x !== "")
 	parts = parts.map(part => isNaN(+part) ? URL_PARTS.find(pair => pair[from] === part)![to] : part)
 	const url = parts.join("/")
-	return localizePath({path: url, language: to})
+	return localizePath({path: `/${url}`, language: to})
 }

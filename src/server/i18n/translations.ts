@@ -9,6 +9,9 @@ export const translations = {
 		"menu.chapters": "Chapters",
 		"menu.characters": "Characters",
 		"menu.about": "About",
+		"menu.about.story": "Story",
+		"menu.about.authors": "Authors",
+		"menu.about.faq": "FAQ",
 		"menu.language": "Language",
 
 		"comic.chapter.singular": "Chapter",
@@ -64,7 +67,10 @@ export const translations = {
 		"url.chapters": "chapters",
 		"url.pages": "pages",
 		"url.characters": "characters",
-		"url.about": "about"
+		"url.about": "about",
+		"url.story": "story",
+		"url.authors": "authors",
+		"url.faq": "faq",
 	},
 	es: {
 		"interaction.skip-to-main": "Saltar al contenido principal",
@@ -76,6 +82,9 @@ export const translations = {
 		"menu.chapters": "Capítulos",
 		"menu.characters": "Personajes",
 		"menu.about": "Acerca de",
+		"menu.about.story": "Historia",
+		"menu.about.authors": "Autores",
+		"menu.about.faq": "FAQ",
 		"menu.language": "Lenguaje",
 
 		"announcement.new-pages.text": "¡Hay {number} nuevas páginas desde tu última visita!",
@@ -131,13 +140,20 @@ export const translations = {
 		"url.chapters": "capitulos",
 		"url.pages": "paginas",
 		"url.characters": "personajes",
-		"url.about": "acerca-de"
+		"url.about": "acerca-de",
+		"url.story": "historia",
+		"url.authors": "autores",
+		"url.faq": "faq",
 	}
 } as const
 
+//TODO this is a bit ugly, lets see if we can make it better. typpings of languages overall is bad
 export const URL_PARTS = [
 	{ en: translations["en"]["url.chapters"], es: translations["es"]["url.chapters"] },
 	{ en: translations["en"]["url.pages"], es: translations["es"]["url.pages"] },
 	{ en: translations["en"]["url.characters"], es: translations["es"]["url.characters"] },
-	{ en: translations["en"]["url.about"], es: translations["es"]["url.about"] }
+	{ en: translations["en"]["url.about"], es: translations["es"]["url.about"] },
+	{ en: translations["en"]["url.story"], es: translations["es"]["url.story"] },
+	{ en: translations["en"]["url.authors"], es: translations["es"]["url.authors"] },
+	{ en: translations["en"]["url.faq"], es: translations["es"]["url.faq"] },
 ] as const

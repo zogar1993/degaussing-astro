@@ -36,7 +36,7 @@ const items = getMenuItems({ path: Astro.url.pathname, language })
 							<img src={item.icon} alt="" />
 							<span>{item.text}</span>
 						</a> :
-						<Dropdown dropdown={item} id="language-selector-mobile" />
+						<Dropdown dropdown={item} />
 					}
 				</li>
 			)}

@@ -9,27 +9,43 @@ export default function getMenuItems({ path, language }: { path: string, languag
 
 	return [
 		{
+			type: "link",
 			href: localizePath(`/${t("url.chapters")}`),
 			selected: pathname === `/${t("url.chapters")}`,
 			text: t("menu.chapters"),
 			icon: "/icons/chapters.svg",
-			type: "link"
 		},
 		{
+			type: "link",
 			href: localizePath(`/${t("url.characters")}`),
 			selected: pathname === `/${t("url.characters")}`,
 			text: t("menu.characters"),
 			icon: "/icons/characters.svg",
-			type: "link"
 		},
 		{
-			href: localizePath(`/${t("url.about")}`),
-			selected: pathname === `/${t("url.about")}`,
+			type: "dropdown",
 			text: t("menu.about"),
 			icon: "/icons/about.svg",
-			type: "link"
+			items: [
+				{
+					text: t("menu.about.authors"),
+					href: localizePath(`/${t("url.about")}/${t("url.authors")}`),
+					selected: pathname === `/${t("url.about")}/${t("url.authors")}`,
+				},
+				{
+					text: t("menu.about.story"),
+					href: localizePath(`/${t("url.about")}/${t("url.story")}`),
+					selected: pathname === `/${t("url.about")}/${t("url.story")}`,
+				},
+				{
+					text: t("menu.about.faq"),
+					href: localizePath(`/${t("url.about")}/${t("url.faq")}`),
+					selected: pathname === `/${t("url.about")}/${t("url.faq")}`,
+				},
+			]
 		},
 		{
+			type: "dropdown",
 			text: t("menu.language"),
 			icon: "/icons/language.svg",
 			items: [
@@ -37,16 +53,15 @@ export default function getMenuItems({ path, language }: { path: string, languag
 					text: "English",
 					href: translatePath({ path: pathname, from: language, to: "en" }),
 					selected: language === "en",
-					value: "en"
+					language: "en"
 				},
 				{
 					text: "Español",
 					href: translatePath({ path: pathname, from: language, to: "es" }),
 					selected: language === "es",
-					value: "es"
+					language: "es"
 				}
 			],
-			type: "dropdown"
 		}
 	]
 }
@@ -64,15 +79,15 @@ export type MenuLink = {
 export type MenuDropdown = {
 	text: string
 	icon: string
-	items: Array<MenuDropdownItems>
+	items: Array<MenuDropdownItem>
 	type: "dropdown"
 }
 
-export type MenuDropdownItems = {
+export type MenuDropdownItem = {
 	text: string
 	href: string
-	value: string
 	selected: boolean
+	language?: string
 }
 
 export function isMenuLink(item: MenuItem): item is MenuLink {

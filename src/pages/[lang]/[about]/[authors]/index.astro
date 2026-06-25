@@ -1,0 +1,38 @@
+---
+import SecondaryLayout from "@web/layouts/SecondaryLayout.astro"
+import PeopleList from "@web/components/PeopleList.astro"
+import Section from "@web/components/page-secondary/SecondaryPageSection.astro"
+import SectionHeading from "@web/components/general/SectionHeading.astro"
+import getAuthorsInfo from "@server/actions/GetAuthorsInfo"
+import { getLangFromUrl, useTranslations, LANGUAGE_CODES } from "@server/i18n/utils"
+
+export async function getStaticPaths() {
+	return Promise.all(LANGUAGE_CODES.map(async (language) => {
+		const authors = await getAuthorsInfo({ language })
+		return {
+			props: { authors },
+			params: {
+				lang: language,
+				about: useTranslations(language)("url.about"),
+				authors: useTranslations(language)("url.authors"),
+			}
+		}
+	}))
+}
+
+const language = getLangFromUrl(Astro.url)
+const t = useTranslations(language)
+
+export interface Props {
+	authors: Awaited<ReturnType<typeof getAuthorsInfo>>
+}
+
+const props = Astro.props
+const { authors } = props
+---
+<SecondaryLayout title={t("menu.about")}>
+	<Section>
+		<SectionHeading>{t("about.authors")}</SectionHeading>
+		<PeopleList people={authors} />
+	</Section>
+</SecondaryLayout>

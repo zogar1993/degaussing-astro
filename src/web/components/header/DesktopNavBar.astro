@@ -16,7 +16,7 @@ const items = getMenuItems({ path: Astro.url.pathname, language })
 					<a href={item.href} class={item.selected ? "selected" : ""}>
 						{item.text}
 					</a> :
-					<Dropdown dropdown={item} id="language-selector-desktop"/>
+					<Dropdown dropdown={item} />
 				}
 			</li>
 		)}
