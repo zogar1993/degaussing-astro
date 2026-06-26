@@ -63,6 +63,8 @@ export const translations = {
 
 		"about.story": "About the story",
 		"about.authors": "About the authors",
+		"about.characters": "About the characters",
+		"about.faq": "Frequently asked questions",
 
 		"url.chapters": "chapters",
 		"url.pages": "pages",
@@ -136,6 +138,8 @@ export const translations = {
 
 		"about.story": "Acerca de la historia",
 		"about.authors": "Acerca de los autores",
+		"about.characters": "Acerca de los personajes",
+		"about.faq": "Preguntas frecuentes",
 
 		"url.chapters": "capitulos",
 		"url.pages": "paginas",
