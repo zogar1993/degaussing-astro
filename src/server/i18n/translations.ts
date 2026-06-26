@@ -61,10 +61,10 @@ export const translations = {
 		"secondary-nav.last": "Last page",
 		"secondary-nav.back": "Back",
 
-		"about.story": "About the story",
-		"about.authors": "About the authors",
-		"about.characters": "About the characters",
-		"about.faq": "Frequently asked questions",
+		"heading.about.story": "About the story",
+		"heading.about.authors": "About the authors",
+		"heading.about.characters": "About the characters",
+		"heading.about.faq": "Frequently asked questions",
 
 		"url.chapters": "chapters",
 		"url.pages": "pages",
@@ -136,10 +136,10 @@ export const translations = {
 		"secondary-nav.last": "Última página",
 		"secondary-nav.back": "Atrás",
 
-		"about.story": "Acerca de la historia",
-		"about.authors": "Acerca de los autores",
-		"about.characters": "Acerca de los personajes",
-		"about.faq": "Preguntas frecuentes",
+		"heading.about.story": "Acerca de la historia",
+		"heading.about.authors": "Acerca de los autores",
+		"heading.about.characters": "Acerca de los personajes",
+		"heading.about.faq": "Preguntas frecuentes",
 
 		"url.chapters": "capitulos",
 		"url.pages": "paginas",
