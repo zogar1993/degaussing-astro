@@ -16,13 +16,6 @@ export default function getMenuItems({ path, language }: { path: string, languag
 			icon: "/icons/chapters.svg",
 		},
 		{
-			type: "link",
-			href: localizePath(`/${t("url.characters")}`),
-			selected: pathname === `/${t("url.characters")}`,
-			text: t("menu.characters"),
-			icon: "/icons/characters.svg",
-		},
-		{
 			type: "dropdown",
 			text: t("menu.about"),
 			icon: "/icons/about.svg",
@@ -31,6 +24,11 @@ export default function getMenuItems({ path, language }: { path: string, languag
 					text: t("menu.about.authors"),
 					href: localizePath(`/${t("url.about")}/${t("url.authors")}`),
 					selected: pathname === `/${t("url.about")}/${t("url.authors")}`,
+				},
+				{
+					text: t("menu.about.characters"),
+					href: localizePath(`/${t("url.about")}/${t("url.characters")}`),
+					selected: pathname === `/${t("url.about")}/${t("url.characters")}`,
 				},
 				{
 					text: t("menu.about.story"),

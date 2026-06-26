@@ -7,8 +7,8 @@ export const translations = {
 		"interaction.open": "Open Menu",
 
 		"menu.chapters": "Chapters",
-		"menu.characters": "Characters",
 		"menu.about": "About",
+		"menu.about.characters": "Characters",
 		"menu.about.story": "Story",
 		"menu.about.authors": "Authors",
 		"menu.about.faq": "FAQ",
@@ -80,8 +80,8 @@ export const translations = {
 		"interaction.open": "Abir Menu",
 
 		"menu.chapters": "Capítulos",
-		"menu.characters": "Personajes",
 		"menu.about": "Acerca de",
+		"menu.about.characters": "Personajes",
 		"menu.about.story": "Historia",
 		"menu.about.authors": "Autores",
 		"menu.about.faq": "FAQ",

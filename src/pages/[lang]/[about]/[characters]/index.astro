@@ -2,6 +2,7 @@
 import SecondaryLayout from "@web/layouts/SecondaryLayout.astro"
 import Section from "@web/components/page-secondary/SecondaryPageSection.astro"
 import PeopleList from "@web/components/PeopleList.astro"
+import SectionHeading from "@web/components/general/SectionHeading.astro"
 import getCharactersInfo from "@server/actions/GetCharactersInfo"
 import { getLangFromUrl, useTranslations, LANGUAGE_CODES } from "@server/i18n/utils"
 
@@ -10,6 +11,7 @@ export async function getStaticPaths() {
 		props: { characters: await getCharactersInfo({ language }) },
 		params: {
 			lang: language,
+			about: useTranslations(language)("url.about"),
 			characters: useTranslations(language)("url.characters")
 		}
 	})))
@@ -19,8 +21,9 @@ const { characters } = Astro.props as Awaited<ReturnType<typeof getCharactersInf
 const language = getLangFromUrl(Astro.url)
 const t = useTranslations(language)
 ---
-<SecondaryLayout title={t("menu.characters")}>
+<SecondaryLayout title={t("menu.about.characters")}>
 	<Section>
+		<SectionHeading>{t("menu.about.characters")}</SectionHeading>
 		<PeopleList people={characters} />
 	</Section>
 </SecondaryLayout>
