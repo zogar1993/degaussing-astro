@@ -19,7 +19,7 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
-#misc
+# misc
 out
 .cache
 .idea
@@ -27,7 +27,9 @@ out
 .vercel
 *.iml
 
+# astro
 .astro/collections
 .astro/content-assets.mjs
 .astro/content-modules.mjs
 .astro/data-store.json
+.astro/dev.json
