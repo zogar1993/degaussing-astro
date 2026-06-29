@@ -44,9 +44,9 @@ const items = getMenuItems({ path: Astro.url.pathname, language })
 	</dialog>
 </nav>
 <script>
-	const content = document.querySelector("#content-container")
-	const opener = document.querySelector("#hamburger-opener")
-	const closer = document.querySelector("#hamburger-closer")
+	const content = document.getElementById("content-container")
+	const opener = document.getElementById("hamburger-opener")
+	const closer = document.getElementById("hamburger-closer")
 	const dialog = document.getElementById("hamburger-dropdown")
 
 	opener.addEventListener("click", () => {
